@@ -1,0 +1,9 @@
+#!/bin/bash
+set -e
+
+cd "${BASH_SOURCE%/*}"
+
+printf "Setting up Node.js environment\n\n"
+
+# TODO: fix dependencies in package.json. Ignore NODE_ENV for now.
+yarn install --production=false
