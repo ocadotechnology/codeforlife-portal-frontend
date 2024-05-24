@@ -9,11 +9,11 @@
 /.prettierrc.json
 /codecov.yml
 /codeforlife.code-workspace
-/package.json
+<!-- /package.json -->
 /README.md
 /setup
 /tsconfig.json
 /tsconfig.node.json
 /vite.config.ts
-/yarn.lock
+<!-- /yarn.lock -->
 /index.html
