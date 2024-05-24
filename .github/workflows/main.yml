@@ -6,6 +6,6 @@ on:
   workflow_dispatch:
 
 jobs:
-  test-frontend:
-    uses: ocadotechnology/codeforlife-workspace/.github/workflows/test-javascript-code.yaml@configure_js_services # TODO: set to @main
+  main:
+    uses: ocadotechnology/codeforlife-workspace/.github/workflows/frontend.yaml@configure_js_services  # TODO: set to @main
     secrets: inherit
