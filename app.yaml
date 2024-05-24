@@ -1,5 +1,5 @@
 runtime: nodejs18
 instance_class: F1
-service: REPLACE_IN_PIPELINE2
+service: REPLACE_IN_PIPELINE
 inbound_services:
   - warmup
