@@ -1,0 +1,26 @@
+{
+  "[md]": {
+    "editor.tabSize": 4
+  },
+  "cSpell.words": [
+    "codeforlife",
+    "klass",
+    "ocado",
+    "kurono",
+    "pipenv"
+  ],
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": "explicit"
+  },
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "editor.rulers": [
+    80
+  ],
+  "editor.tabSize": 2,
+  "javascript.format.semicolons": "remove",
+  "javascript.preferences.quoteStyle": "double",
+  "prettier.configPath": ".prettierrc.json",
+  "typescript.format.semicolons": "remove",
+  "typescript.preferences.quoteStyle": "double"
+}

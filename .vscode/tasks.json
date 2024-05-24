@@ -1,0 +1,17 @@
+{
+  "tasks": [
+    {
+      "isBackground": true,
+      "label": "start-react-dev-server",
+      "options": {
+        "env": {
+          "BROWSER": "none"
+        }
+      },
+      "problemMatcher": [],
+      "script": "start",
+      "type": "npm"
+    }
+  ],
+  "version": "2.0.0"
+}
