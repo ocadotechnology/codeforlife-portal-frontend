@@ -6,4 +6,4 @@ inbound_services:
   - warmup
 
 env_variables:
-  PORT: 443
+  PORT: 80
