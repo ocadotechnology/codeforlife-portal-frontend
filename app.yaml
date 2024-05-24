@@ -1,4 +1,4 @@
-runtime: nodejs18
+runtime: REPLACE_IN_PIPELINE
 instance_class: F1
 service: REPLACE_IN_PIPELINE
 
