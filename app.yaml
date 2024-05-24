@@ -4,6 +4,3 @@ service: REPLACE_IN_PIPELINE
 
 inbound_services:
   - warmup
-
-env_variables:
-  PORT: 80
