@@ -16,6 +16,12 @@ export default defineConfig({
       enabled: true,
       provider: "istanbul",
       reporter: ["html", "cobertura"],
+      thresholds: {
+        lines: 90,
+        functions: 90,
+        branches: 90,
+        statements: 90,
+      },
     },
   },
 })
