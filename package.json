@@ -10,7 +10,7 @@
     "preview": "vite preview",
     "test": "vitest run",
     "test:coverage": "vitest run --coverage",
-    "test:verbose": "vitest run --reporter=verbose",
+    "test:verbose": "vitest run --reporter=verbose --coverage.thresholds.lines=90 --coverage.thresholds.functions=90 --coverage.thresholds.branches=90 --coverage.thresholds.statements=90",
     "test:ui": "vitest --ui",
     "format": "prettier --write .",
     "format:check": "prettier --check --write=false .",
