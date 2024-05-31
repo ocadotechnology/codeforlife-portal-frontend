@@ -1,14 +1,5 @@
-import { type Model } from "codeforlife/lib/esm/helpers/rtkQuery"
-
 import api from "."
-
-export type AuthFactor = Model<
-  number,
-  {
-    user: number
-    type: "otp"
-  }
->
+// import { type AuthFactor } from "../models"
 
 const authFactorApi = api.injectEndpoints({
   endpoints: build => ({}),

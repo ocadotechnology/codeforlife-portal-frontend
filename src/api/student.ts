@@ -1,18 +1,109 @@
-import { type Model } from "codeforlife/lib/esm/helpers/rtkQuery"
+import type { Student, User } from "codeforlife/lib/esm/api/models"
+import {
+  tagData,
+  type Arg,
+  type BulkCreateArg,
+  type BulkCreateResult,
+  type BulkDestroyArg,
+  type BulkDestroyResult,
+  type BulkUpdateArg,
+  type BulkUpdateResult,
+} from "codeforlife/lib/esm/helpers/rtkQuery"
 
 import api from "."
 
-export type Student = Model<
-  number,
-  {
-    school: number
-    klass: number
-  }
->
+const listUrl = "users/students/"
 
 const studentApi = api.injectEndpoints({
-  endpoints: build => ({}),
+  endpoints: build => ({
+    createStudents: build.mutation<
+      BulkCreateResult<Student>,
+      BulkCreateArg<
+        Student,
+        "klass",
+        never,
+        {
+          user: Arg<User, "first_name">
+        }
+      >
+    >({
+      query: body => ({
+        url: listUrl + "bulk/",
+        method: "POST",
+        body,
+      }),
+    }),
+    releaseStudents: build.mutation<
+      BulkUpdateResult<Student>,
+      BulkUpdateArg<
+        Student,
+        never,
+        never,
+        {
+          user: Arg<User, "email", "first_name">
+        }
+      >
+    >({
+      query: body => ({
+        url: listUrl + "release/",
+        method: "PUT",
+        body,
+      }),
+      invalidatesTags: tagData("User", "user"),
+    }),
+    transferStudents: build.mutation<
+      BulkUpdateResult<Student>,
+      BulkUpdateArg<
+        Student,
+        "klass",
+        never,
+        {
+          user: Arg<User, never, "first_name">
+        }
+      >
+    >({
+      query: body => ({
+        url: listUrl + "transfer/",
+        method: "PUT",
+        body,
+      }),
+      invalidatesTags: tagData("User", "user"),
+    }),
+    resetStudentsPassword: build.mutation<
+      BulkUpdateResult<Student>,
+      BulkUpdateArg<
+        Student,
+        never,
+        never,
+        {
+          user: Arg<User, never, "password">
+        }
+      >
+    >({
+      query: body => ({
+        url: listUrl + "reset-password/",
+        method: "PUT",
+        body,
+      }),
+    }),
+    destroyStudents: build.mutation<BulkDestroyResult, BulkDestroyArg<Student>>(
+      {
+        query: body => ({
+          url: listUrl + "bulk/",
+          method: "DELETE",
+          body,
+        }),
+        invalidatesTags: tagData("User", "user"),
+      },
+    ),
+  }),
 })
 
 export default studentApi
-export const {} = studentApi
+export const {
+  useCreateStudentsMutation,
+  useReleaseStudentsMutation,
+  useTransferStudentsMutation,
+  useResetStudentsPasswordMutation,
+  useDestroyStudentsMutation,
+} = studentApi
