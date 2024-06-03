@@ -1381,9 +1381,9 @@
     eslint-visitor-keys "^3.3.0"
 
 "@eslint-community/regexpp@^4.4.0", "@eslint-community/regexpp@^4.6.1":
-  version "4.10.0"
-  resolved "https://registry.yarnpkg.com/@eslint-community/regexpp/-/regexpp-4.10.0.tgz#548f6de556857c8bb73bbee70c35dc82a2e74d63"
-  integrity sha512-Cu96Sd2By9mCNTx2iyKOmq10v22jUVQv0lQnlGNy16oE9589yE+QADPbrMGCkA51cKZSg3Pu/aTJVTGfL/qjUA==
+  version "4.10.1"
+  resolved "https://registry.yarnpkg.com/@eslint-community/regexpp/-/regexpp-4.10.1.tgz#361461e5cb3845d874e61731c11cfedd664d83a0"
+  integrity sha512-Zm2NGpWELsQAD1xsJzGQpYfvICSsFkEpU0jxBjfdC6uNEWXcHnfs9hScFWtXVDVl+rBQJGrl4g1vcKIejpH9dA==
 
 "@eslint/eslintrc@^2.1.4":
   version "2.1.4"
@@ -2559,9 +2559,9 @@ clsx@^2.1.0:
   resolved "https://registry.yarnpkg.com/clsx/-/clsx-2.1.1.tgz#eed397c9fd8bd882bfb18deab7102049a2f32999"
   integrity sha512-eYm0QWBtUrBWZWG0d386OGAw16Z995PiOVo2B7bjWSbHedGl5e0ZWaq65kOGgUSNesEIDkB9ISbTg/JK9dhCZA==
 
-"codeforlife@github:ocadotechnology/codeforlife-package-javascript#fix_api_types":
-  version "1.27.6"
-  resolved "https://codeload.github.com/ocadotechnology/codeforlife-package-javascript/tar.gz/fcecd92ab827a73af8103abd49f2b268731dcdfe"
+"codeforlife@github:ocadotechnology/codeforlife-package-javascript#v1.27.7":
+  version "1.27.7"
+  resolved "https://codeload.github.com/ocadotechnology/codeforlife-package-javascript/tar.gz/5490e02874d1f4fa6f99332d19db9c7749ab8066"
   dependencies:
     "@emotion/react" "^11.10.6"
     "@emotion/styled" "^11.10.6"
