@@ -1,4 +1,4 @@
-import type { Student, User } from "codeforlife/lib/esm/api/models"
+import { urls, type Student, type User } from "codeforlife/lib/esm/api"
 import {
   tagData,
   type Arg,
@@ -11,8 +11,6 @@ import {
 } from "codeforlife/lib/esm/helpers/rtkQuery"
 
 import api from "."
-
-const listUrl = "users/students/"
 
 const studentApi = api.injectEndpoints({
   endpoints: build => ({
@@ -28,7 +26,7 @@ const studentApi = api.injectEndpoints({
       >
     >({
       query: body => ({
-        url: listUrl + "bulk/",
+        url: urls.student.list + "bulk/",
         method: "POST",
         body,
       }),
@@ -45,7 +43,7 @@ const studentApi = api.injectEndpoints({
       >
     >({
       query: body => ({
-        url: listUrl + "release/",
+        url: urls.student.list + "release/",
         method: "PUT",
         body,
       }),
@@ -63,7 +61,7 @@ const studentApi = api.injectEndpoints({
       >
     >({
       query: body => ({
-        url: listUrl + "transfer/",
+        url: urls.student.list + "transfer/",
         method: "PUT",
         body,
       }),
@@ -81,7 +79,7 @@ const studentApi = api.injectEndpoints({
       >
     >({
       query: body => ({
-        url: listUrl + "reset-password/",
+        url: urls.student.list + "reset-password/",
         method: "PUT",
         body,
       }),
@@ -89,7 +87,7 @@ const studentApi = api.injectEndpoints({
     destroyStudents: build.mutation<BulkDestroyResult, BulkDestroyArg<Student>>(
       {
         query: body => ({
-          url: listUrl + "bulk/",
+          url: urls.student.list + "bulk/",
           method: "DELETE",
           body,
         }),

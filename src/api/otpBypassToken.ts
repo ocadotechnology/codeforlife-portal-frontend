@@ -1,13 +1,12 @@
-import api from "."
+import { urls } from "codeforlife/lib/esm/api"
 
-const listUrl = "otp-bypass-tokens/"
-// const detailUrl = listUrl + "<id>/"
+import api from "."
 
 const otpBypassTokenApi = api.injectEndpoints({
   endpoints: build => ({
     generateOtpBypassTokens: build.mutation<string[], null>({
       query: () => ({
-        url: listUrl,
+        url: urls.otpBypassToken.list,
         method: "POST",
       }),
     }),

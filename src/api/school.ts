@@ -1,4 +1,4 @@
-import { type School } from "codeforlife/lib/esm/api/models"
+import { urls, type School } from "codeforlife/lib/esm/api"
 import {
   buildUrl,
   tagData,
@@ -12,9 +12,6 @@ import {
 
 import api from "."
 
-const listUrl = "schools/"
-const detailUrl = listUrl + "<id>/"
-
 const schoolApi = api.injectEndpoints({
   endpoints: build => ({
     retrieveSchool: build.query<
@@ -22,7 +19,7 @@ const schoolApi = api.injectEndpoints({
       RetrieveArg<School>
     >({
       query: id => ({
-        url: buildUrl(detailUrl, { url: { id } }),
+        url: buildUrl(urls.school.detail, { url: { id } }),
         method: "GET",
       }),
       providesTags: tagData("School"),
@@ -32,7 +29,7 @@ const schoolApi = api.injectEndpoints({
       CreateArg<School, "name", "country" | "uk_county">
     >({
       query: body => ({
-        url: listUrl,
+        url: urls.school.list,
         method: "POST",
         body,
       }),
@@ -42,7 +39,7 @@ const schoolApi = api.injectEndpoints({
       UpdateArg<School, never, "name" | "country" | "uk_county">
     >({
       query: ([id, body]) => ({
-        url: buildUrl(detailUrl, { url: { id } }),
+        url: buildUrl(urls.school.detail, { url: { id } }),
         method: "PATCH",
         body,
       }),

@@ -1,4 +1,4 @@
-import { type User } from "codeforlife/lib/esm/api/models"
+import { type User } from "codeforlife/lib/esm/api"
 import {
   buildUrl,
   tagData,
@@ -65,9 +65,9 @@ const schoolTeacherInvitationApi = api.injectEndpoints({
     }),
     refreshSchoolTeacherInvitation: build.mutation<
       UpdateResult<SchoolTeacherInvitation, "expires_at">,
-      UpdateArg<SchoolTeacherInvitation, never> // TODO:default 2nd arg to never
+      UpdateArg<SchoolTeacherInvitation>
     >({
-      query: ([id]) => ({
+      query: id => ({
         url: buildUrl(detailUrl, { url: { id } }),
         method: "PUT",
       }),

@@ -1,4 +1,4 @@
-import { type Class } from "codeforlife/lib/esm/api/models"
+import { urls, type Class } from "codeforlife/lib/esm/api"
 import {
   buildUrl,
   tagData,
@@ -16,9 +16,6 @@ import {
 
 import api from "."
 
-const listUrl = "classes/"
-const detailUrl = listUrl + "<id>/"
-
 const classApi = api.injectEndpoints({
   endpoints: build => ({
     createClass: build.mutation<
@@ -30,14 +27,14 @@ const classApi = api.injectEndpoints({
       >
     >({
       query: body => ({
-        url: listUrl,
+        url: urls.class.list,
         method: "POST",
         body,
       }),
     }),
     destroyClass: build.mutation<DestroyResult, DestroyArg<Class>>({
       query: id => ({
-        url: buildUrl(detailUrl, { url: { id } }),
+        url: buildUrl(urls.class.detail, { url: { id } }),
         method: "DELETE",
       }),
       invalidatesTags: tagData("Class"),
@@ -51,7 +48,7 @@ const classApi = api.injectEndpoints({
       >
     >({
       query: ([id, body]) => ({
-        url: buildUrl(detailUrl, { url: { id } }),
+        url: buildUrl(urls.class.detail, { url: { id } }),
         method: "PATCH",
         body,
       }),
@@ -69,7 +66,7 @@ const classApi = api.injectEndpoints({
       RetrieveArg<Class>
     >({
       query: id => ({
-        url: buildUrl(detailUrl, { url: { id } }),
+        url: buildUrl(urls.class.detail, { url: { id } }),
         method: "GET",
       }),
       providesTags: tagData("Class"),
@@ -86,7 +83,7 @@ const classApi = api.injectEndpoints({
       ListArg
     >({
       query: search => ({
-        url: buildUrl(listUrl, { search }),
+        url: buildUrl(urls.class.list, { search }),
         method: "GET",
       }),
       providesTags: tagData("Class"),

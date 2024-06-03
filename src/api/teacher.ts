@@ -1,4 +1,4 @@
-import type { Teacher, User } from "codeforlife/lib/esm/api/models"
+import { urls, type Teacher, type User } from "codeforlife/lib/esm/api"
 import {
   buildUrl,
   tagData,
@@ -12,9 +12,6 @@ import {
 
 import api from "."
 
-const listUrl = "users/teachers/"
-const detailUrl = listUrl + "<id>/"
-
 const teacherApi = api.injectEndpoints({
   endpoints: build => ({
     createTeacher: build.mutation<
@@ -26,7 +23,7 @@ const teacherApi = api.injectEndpoints({
       }
     >({
       query: body => ({
-        url: listUrl,
+        url: urls.teacher.list,
         method: "POST",
         body,
       }),
@@ -36,7 +33,7 @@ const teacherApi = api.injectEndpoints({
       Teacher["id"]
     >({
       query: id => ({
-        url: buildUrl(detailUrl, { url: { id } }),
+        url: buildUrl(urls.teacher.detail, { url: { id } }),
         method: "PUT",
       }),
       invalidatesTags: tagData("User", "user"),
@@ -46,7 +43,7 @@ const teacherApi = api.injectEndpoints({
       UpdateArg<Teacher, "is_admin">
     >({
       query: ([id, body]) => ({
-        url: buildUrl(detailUrl, { url: { id } }),
+        url: buildUrl(urls.teacher.detail, { url: { id } }),
         method: "PUT",
         body,
       }),
@@ -54,7 +51,7 @@ const teacherApi = api.injectEndpoints({
     }),
     destroyTeacher: build.mutation<DestroyResult, DestroyArg<Teacher>>({
       query: id => ({
-        url: buildUrl(detailUrl, { url: { id } }),
+        url: buildUrl(urls.teacher.detail, { url: { id } }),
         method: "DELETE",
       }),
       invalidatesTags: tagData("User", "user"),

@@ -1,4 +1,4 @@
-import { type User } from "codeforlife/lib/esm/api/models"
+import { urls, type User } from "codeforlife/lib/esm/api"
 import {
   buildUrl,
   tagData,
@@ -17,9 +17,6 @@ import {
 
 import api from "."
 
-const listUrl = "users/"
-const detailUrl = listUrl + "<id>/"
-
 const userApi = api.injectEndpoints({
   endpoints: build => ({
     handleJoinClassRequest: build.mutation<
@@ -27,7 +24,7 @@ const userApi = api.injectEndpoints({
       UpdateArg<User, never, "first_name", { accept: boolean }>
     >({
       query: ([id, body]) => ({
-        url: buildUrl(detailUrl + "handle-join-class-request/", {
+        url: buildUrl(urls.user.detail + "handle-join-class-request/", {
           url: { id },
         }),
         method: "PUT",
@@ -37,7 +34,7 @@ const userApi = api.injectEndpoints({
     }),
     requestPasswordReset: build.query<null, Arg<User, "email">>({
       query: body => ({
-        url: listUrl + "request-password-reset/",
+        url: urls.user.list + "request-password-reset/",
         method: "POST",
         body,
       }),
@@ -47,7 +44,7 @@ const userApi = api.injectEndpoints({
       UpdateArg<User, "password", never, { token: string }>
     >({
       query: ([id, body]) => ({
-        url: buildUrl(detailUrl + "reset-password/", { url: { id } }),
+        url: buildUrl(urls.user.detail + "reset-password/", { url: { id } }),
         method: "PUT",
         body,
       }),
@@ -57,7 +54,9 @@ const userApi = api.injectEndpoints({
       UpdateArg<User, never, never, { token: string }>
     >({
       query: ([id, body]) => ({
-        url: buildUrl(detailUrl + "verify-email-address/", { url: { id } }),
+        url: buildUrl(urls.user.detail + "verify-email-address/", {
+          url: { id },
+        }),
         method: "PUT",
         body,
       }),
@@ -76,7 +75,7 @@ const userApi = api.injectEndpoints({
       >
     >({
       query: ([id, body]) => ({
-        url: buildUrl(detailUrl, { url: { id } }),
+        url: buildUrl(urls.user.detail, { url: { id } }),
         method: "PATCH",
         body,
       }),
@@ -84,7 +83,7 @@ const userApi = api.injectEndpoints({
     }),
     destroyIndependentUser: build.mutation<DestroyResult, DestroyArg<User>>({
       query: id => ({
-        url: buildUrl(detailUrl, { url: { id } }),
+        url: buildUrl(urls.user.detail, { url: { id } }),
         method: "DELETE",
       }),
       invalidatesTags: tagData("User"),
@@ -97,7 +96,7 @@ const userApi = api.injectEndpoints({
       }
     >({
       query: body => ({
-        url: listUrl,
+        url: urls.user.list,
         method: "POST",
         body,
       }),
@@ -117,7 +116,7 @@ const userApi = api.injectEndpoints({
       RetrieveArg<User>
     >({
       query: id => ({
-        url: buildUrl(detailUrl, { url: { id } }),
+        url: buildUrl(urls.user.detail, { url: { id } }),
         method: "GET",
       }),
       providesTags: tagData("User"),
@@ -137,7 +136,7 @@ const userApi = api.injectEndpoints({
       ListArg<{ students_in_class: string }>
     >({
       query: search => ({
-        url: buildUrl(listUrl, { search }),
+        url: buildUrl(urls.user.list, { search }),
         method: "GET",
       }),
       providesTags: tagData("User"),

@@ -1,4 +1,4 @@
-import { type AuthFactor } from "codeforlife/lib/esm/api/models"
+import { urls, type AuthFactor } from "codeforlife/lib/esm/api"
 import {
   buildUrl,
   tagData,
@@ -12,9 +12,6 @@ import {
 
 import api from "."
 
-const listUrl = "auth-factors/"
-const detailUrl = listUrl + "<id>/"
-
 const authFactorApi = api.injectEndpoints({
   endpoints: build => ({
     createAuthFactor: build.mutation<
@@ -22,21 +19,21 @@ const authFactorApi = api.injectEndpoints({
       CreateArg<AuthFactor, "type">
     >({
       query: body => ({
-        url: listUrl,
+        url: urls.authFactor.list,
         method: "POST",
         body,
       }),
     }),
     destroyAuthFactor: build.mutation<DestroyResult, DestroyArg<AuthFactor>>({
       query: id => ({
-        url: buildUrl(detailUrl, { url: { id } }),
+        url: buildUrl(urls.authFactor.detail, { url: { id } }),
         method: "DELETE",
       }),
       invalidatesTags: tagData("AuthFactor"),
     }),
     listAuthFactors: build.query<ListResult<AuthFactor, "type">, ListArg>({
       query: search => ({
-        url: buildUrl(listUrl, { search }),
+        url: buildUrl(urls.authFactor.list, { search }),
         method: "GET",
       }),
       providesTags: tagData("AuthFactor"),
