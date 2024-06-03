@@ -30,7 +30,7 @@ const teacherApi = api.injectEndpoints({
     }),
     removeTeacherFromSchool: build.mutation<
       UpdateResult<Teacher, "user">,
-      Teacher["id"]
+      UpdateArg<Teacher>
     >({
       query: id => ({
         url: buildUrl(urls.teacher.detail, { url: { id } }),
