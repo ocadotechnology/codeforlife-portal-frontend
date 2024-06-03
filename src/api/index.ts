@@ -5,7 +5,13 @@ const api = createApi({
     baseUrl: import.meta.env.VITE_API_BASE_URL,
   }),
   // NOTE: Don't use the "Teacher" and "Student" tags. Use "User" instead.
-  tagTypes: ["User", "School", "Class"],
+  tagTypes: [
+    "User",
+    "School",
+    "Class",
+    "SchoolTeacherInvitation",
+    "AuthFactor",
+  ],
   endpoints: () => ({}),
 })
 

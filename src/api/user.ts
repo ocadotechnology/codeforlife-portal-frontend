@@ -7,6 +7,10 @@ import {
   type CreateResult,
   type DestroyArg,
   type DestroyResult,
+  type ListArg,
+  type ListResult,
+  type RetrieveArg,
+  type RetrieveResult,
   type UpdateArg,
   type UpdateResult,
 } from "codeforlife/lib/esm/helpers/rtkQuery"
@@ -98,6 +102,46 @@ const userApi = api.injectEndpoints({
         body,
       }),
     }),
+    retrieveUser: build.query<
+      RetrieveResult<
+        User,
+        | "first_name"
+        | "last_name"
+        | "email"
+        | "is_active"
+        | "date_joined"
+        | "requesting_to_join_class"
+        | "student"
+        | "teacher"
+      >,
+      RetrieveArg<User>
+    >({
+      query: id => ({
+        url: buildUrl(detailUrl, { url: { id } }),
+        method: "GET",
+      }),
+      providesTags: tagData("User"),
+    }),
+    listUsers: build.query<
+      ListResult<
+        User,
+        | "first_name"
+        | "last_name"
+        | "email"
+        | "is_active"
+        | "date_joined"
+        | "requesting_to_join_class"
+        | "student"
+        | "teacher"
+      >,
+      ListArg<{ students_in_class: string }>
+    >({
+      query: search => ({
+        url: buildUrl(listUrl, { search }),
+        method: "GET",
+      }),
+      providesTags: tagData("User"),
+    }),
   }),
 })
 
@@ -111,4 +155,8 @@ export const {
   useUpdateUserMutation,
   useDestroyIndependentUserMutation,
   useCreateIndependentUserMutation,
+  useRetrieveUserQuery,
+  useLazyRetrieveUserQuery,
+  useListUsersQuery,
+  useLazyListUsersQuery,
 } = userApi
