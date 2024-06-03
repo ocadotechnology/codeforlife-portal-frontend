@@ -22,7 +22,6 @@
       "vitest/globals"
     ]
   },
-  "include": [],
   "references": [
     {
       "path": "./tsconfig.node.json"
