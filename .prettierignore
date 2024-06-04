@@ -1,6 +1,5 @@
 **/*.json
 **/*.yaml
 **/*.yml
-**/*.code-workspace
-**/*.code-snippets
+**/*.code-*
 **/*.md
