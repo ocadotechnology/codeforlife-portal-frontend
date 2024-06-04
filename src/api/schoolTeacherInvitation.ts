@@ -47,7 +47,7 @@ const schoolTeacherInvitationApi = api.injectEndpoints({
       ]
     >({
       query: ([id, body]) => ({
-        url: buildUrl(detailUrl, { url: { id } }),
+        url: buildUrl(detailUrl + "accept/", { url: { id } }),
         method: "DELETE",
         body,
       }),
@@ -58,7 +58,7 @@ const schoolTeacherInvitationApi = api.injectEndpoints({
       SchoolTeacherInvitation["id"]
     >({
       query: id => ({
-        url: buildUrl(detailUrl, { url: { id } }),
+        url: buildUrl(detailUrl + "reject/", { url: { id } }),
         method: "DELETE",
       }),
       invalidatesTags: tagData("SchoolTeacherInvitation"),
