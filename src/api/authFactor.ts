@@ -1,4 +1,4 @@
-import { urls, type AuthFactor } from "codeforlife/lib/esm/api"
+import { urls, type AuthFactor } from "codeforlife/api"
 import {
   buildUrl,
   tagData,
@@ -8,7 +8,7 @@ import {
   type DestroyResult,
   type ListArg,
   type ListResult,
-} from "codeforlife/lib/esm/helpers/rtkQuery"
+} from "codeforlife/utils/rtkQuery"
 
 import api from "."
 

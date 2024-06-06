@@ -37,6 +37,14 @@
             ],
             "message": "Please use pre-typed versions from `src/app/hooks.ts` instead."
           }
+        ],
+        "patterns": [
+          {
+            "group": [
+              "codeforlife/src"
+            ],
+            "message": "Please use `codeforlife` instead of `codeforlife/src`."
+          }
         ]
       }
     ]
