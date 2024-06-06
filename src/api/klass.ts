@@ -1,4 +1,4 @@
-import { urls, type Class } from "codeforlife/lib/esm/api"
+import { urls, type Class } from "codeforlife/api"
 import {
   buildUrl,
   tagData,
@@ -12,7 +12,7 @@ import {
   type RetrieveResult,
   type UpdateArg,
   type UpdateResult,
-} from "codeforlife/lib/esm/helpers/rtkQuery"
+} from "codeforlife/utils/rtkQuery"
 
 import api from "."
 

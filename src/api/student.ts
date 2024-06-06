@@ -1,4 +1,4 @@
-import { urls, type Student, type User } from "codeforlife/lib/esm/api"
+import { urls, type Student, type User } from "codeforlife/api"
 import {
   tagData,
   type Arg,
@@ -8,7 +8,7 @@ import {
   type BulkDestroyResult,
   type BulkUpdateArg,
   type BulkUpdateResult,
-} from "codeforlife/lib/esm/helpers/rtkQuery"
+} from "codeforlife/utils/rtkQuery"
 
 import api from "."
 

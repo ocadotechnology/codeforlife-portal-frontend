@@ -19,8 +19,14 @@
     "noEmit": true,
     "jsx": "react-jsx",
     "types": [
-      "vitest/globals"
-    ]
+      "vitest/globals",
+      "node"
+    ],
+    "paths": {
+      "codeforlife/*": [
+        "./node_modules/codeforlife/src/*"
+      ]
+    }
   },
   "references": [
     {

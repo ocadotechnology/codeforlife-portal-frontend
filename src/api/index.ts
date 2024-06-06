@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react"
-import { tagTypes } from "codeforlife/lib/esm/api"
+import { tagTypes } from "codeforlife/api"
 
 const api = createApi({
   baseQuery: fetchBaseQuery({

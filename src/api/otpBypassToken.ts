@@ -1,4 +1,4 @@
-import { urls } from "codeforlife/lib/esm/api"
+import { urls } from "codeforlife/api"
 
 import api from "."
 
