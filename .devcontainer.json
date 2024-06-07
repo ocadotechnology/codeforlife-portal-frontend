@@ -42,12 +42,12 @@
     }
   },
   "mounts": [
-    "source=./codeforlife-portal-react,target=/workspace/codeforlife-portal-react,type=bind,consistency=cached",
+    "source=./codeforlife-portal-backend,target=/workspace/codeforlife-portal-backend,type=bind,consistency=cached",
     "source=./codeforlife-package-javascript,target=/workspace/codeforlife-package-javascript,type=bind,consistency=cached",
     "source=./codeforlife-package-python,target=/workspace/codeforlife-package-python,type=bind,consistency=cached"
   ],
-  "name": "portal",
-  "postCreateCommand": "chmod u+x ./setup && ./setup",
+  "name": "portal-frontend",
+  "postCreateCommand": "sudo chmod u+x ./setup && ./setup",
   "remoteUser": "root",
   "service": "base-service",
   "shutdownAction": "none",

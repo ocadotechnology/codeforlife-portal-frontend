@@ -8,8 +8,8 @@
 /.prettierignore
 /.prettierrc.json
 /codecov.yml
-/codeforlife.code-workspace
-/README.md
+/*.code-*
+/*.md
 /setup
 /tsconfig.json
 /tsconfig.node.json
