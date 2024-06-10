@@ -1,7 +1,7 @@
 {
   "tasks": [
     {
-      "command": "sudo chmod u+x scripts/setup && scripts/setup && yarn dev",
+      "command": "sudo chmod u+x scripts/run && scripts/run",
       "isBackground": true,
       "label": "start-vite-server",
       "options": {
