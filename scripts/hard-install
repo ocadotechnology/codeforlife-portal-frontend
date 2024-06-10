@@ -3,6 +3,6 @@ set -e
 
 cd "${BASH_SOURCE%/*}"
 
-printf "Setting up Node.js environment\n\n"
-
+rm -f ../yarn.lock
+rm -rf ../node_modules
 yarn install --production=false

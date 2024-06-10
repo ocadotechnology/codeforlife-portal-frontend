@@ -1,16 +1,22 @@
 {
   "tasks": [
     {
+      "command": "sudo chmod u+x scripts/setup && scripts/setup && yarn dev",
       "isBackground": true,
-      "label": "start-react-dev-server",
+      "label": "start-vite-server",
       "options": {
         "env": {
           "BROWSER": "none"
         }
       },
       "problemMatcher": [],
-      "script": "start",
-      "type": "npm"
+      "type": "shell"
+    },
+    {
+      "command": "sudo chmod u+x scripts/hard-install && scripts/hard-install",
+      "label": "hard-install",
+      "problemMatcher": [],
+      "type": "shell"
     }
   ],
   "version": "2.0.0"
