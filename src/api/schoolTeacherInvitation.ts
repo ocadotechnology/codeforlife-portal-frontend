@@ -14,7 +14,7 @@ import {
   type RetrieveResult,
   type UpdateArg,
   type UpdateResult,
-} from "codeforlife/utils/rtkQuery"
+} from "codeforlife/utils/api"
 
 import api from "."
 

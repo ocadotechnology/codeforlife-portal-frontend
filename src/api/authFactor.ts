@@ -8,7 +8,7 @@ import {
   type DestroyResult,
   type ListArg,
   type ListResult,
-} from "codeforlife/utils/rtkQuery"
+} from "codeforlife/utils/api"
 
 import api from "."
 
