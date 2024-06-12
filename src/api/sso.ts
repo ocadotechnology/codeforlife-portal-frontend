@@ -22,7 +22,7 @@ const ssoApi = api.injectEndpoints({
     }),
     loginWithOtp: build.mutation<null, { otp: number }>({
       query: body => ({
-        url: baseUrl + "otp/",
+        url: baseUrl + "login-with-otp/",
         method: "POST",
         body,
       }),
