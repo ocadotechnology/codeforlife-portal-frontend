@@ -24,7 +24,7 @@ const authentication = (
   <>
     <Route
       path={paths.login.teacher._}
-      element={<Login form="teacher-password" />}
+      element={<Login form="teacher-email" />}
     />
     <Route
       path={paths.login.teacher.otp._}
@@ -34,7 +34,14 @@ const authentication = (
       path={paths.login.teacher.otp.bypassToken._}
       element={<Login form="teacher-otp-bypass-token" />}
     />
-    <Route path={paths.login.student._} element={<Login form="student" />} />
+    <Route
+      path={paths.login.student._}
+      element={<Login form="student-class" />}
+    />
+    <Route
+      path={paths.login.student.class._}
+      element={<Login form="student-first-name" />}
+    />
     <Route path={paths.login.independent._} element={<Login form="indy" />} />
   </>
 )

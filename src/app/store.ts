@@ -12,6 +12,8 @@ const reducer = combineSlices(api)
 // Infer the `RootState` type from the root reducer
 export type RootState = ReturnType<typeof reducer>
 
+// TODO: create middleware for api errors.
+// https://redux-toolkit.js.org/rtk-query/usage/error-handling#handling-errors-at-a-macro-level
 const store = makeStore({ reducer, middlewares: [api.middleware] })
 
 export default store

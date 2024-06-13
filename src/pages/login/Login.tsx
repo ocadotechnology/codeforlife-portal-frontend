@@ -6,15 +6,16 @@ import * as page from "codeforlife/components/page"
 // import { tryValidateSync } from "codeforlife/utils/schema"
 
 import IndyForm from "./IndyForm"
-import StudentForm from "./StudentForm"
+import * as studentForms from "./studentForms"
 import * as teacherForms from "./teacherForms"
 
 export interface LoginProps {
   form:
-    | "teacher-password"
+    | "teacher-email"
     | "teacher-otp"
     | "teacher-otp-bypass-token"
-    | "student"
+    | "student-class"
+    | "student-first-name"
     | "indy"
 }
 
@@ -36,10 +37,11 @@ const Login: FC<LoginProps> = ({ form }) => {
       <page.Section maxWidth="md">
         {
           {
-            "teacher-password": <teacherForms.Password />,
+            "teacher-email": <teacherForms.Email />,
             "teacher-otp": <teacherForms.Otp />,
             "teacher-otp-bypass-token": <teacherForms.OtpBypassToken />,
-            student: <StudentForm />,
+            "student-class": <studentForms.Class />,
+            "student-first-name": <studentForms.FirstName />,
             indy: <IndyForm />,
           }[form]
         }

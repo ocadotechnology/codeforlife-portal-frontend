@@ -8,7 +8,7 @@ const paths = _("", {
       }),
     }),
     student: _("/student", {
-      class: _("/:accessCode"),
+      class: _("/:classId"),
     }),
     independent: _("/independent"),
   }),
