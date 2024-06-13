@@ -1,12 +1,12 @@
+import Email, { type EmailProps } from "./Email"
 import Otp, { type OtpProps } from "./Otp"
 import OtpBypassToken, { type OtpBypassTokenProps } from "./OtpBypassToken"
-import Password, { type PasswordProps } from "./Password"
 
 export {
+  Email,
   Otp,
   OtpBypassToken,
-  Password,
+  type EmailProps,
   type OtpBypassTokenProps,
   type OtpProps,
-  type PasswordProps,
 }
