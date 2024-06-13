@@ -35,7 +35,7 @@ const Class: FC<ClassProps> = () => {
       })
         .unwrap()
         .then(() => {
-          navigate(paths.student.dashboard.dependent._)
+          navigate(paths.student.dashboard._)
         })
         .catch(() => {
           navigate(".", {
