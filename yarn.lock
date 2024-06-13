@@ -2576,7 +2576,7 @@ clsx@^2.1.0:
 
 "codeforlife@github:ocadotechnology/codeforlife-package-javascript#auth_flow":
   version "2.0.0"
-  resolved "https://codeload.github.com/ocadotechnology/codeforlife-package-javascript/tar.gz/182d467560528a7d64108e8a7d04ac76efedb2ba"
+  resolved "https://codeload.github.com/ocadotechnology/codeforlife-package-javascript/tar.gz/73814fa45fd15f8ea8f92a063163a8166980c549"
   dependencies:
     "@emotion/react" "^11.10.6"
     "@emotion/styled" "^11.10.6"

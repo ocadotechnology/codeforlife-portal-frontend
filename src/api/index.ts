@@ -24,7 +24,11 @@ const api = createApi({
   baseQuery: async (args, api, extraOptions) => {
     if (api.type === "mutation" && getCsrfCookie() === undefined) {
       // Get the CSRF token.
-      const { error } = await fetch({ url: "", method: "GET" }, api, {})
+      const { error } = await fetch(
+        { url: "/csrf/cookie", method: "GET" },
+        api,
+        {},
+      )
 
       // Validate we got the CSRF token.
       if (error !== undefined) {
