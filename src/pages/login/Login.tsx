@@ -1,9 +1,9 @@
 import type { FC } from "react"
-// import * as yup from "yup"
+import * as yup from "yup"
 
 import * as page from "codeforlife/components/page"
-// import { useSearchParamEntries } from "codeforlife/hooks"
-// import { tryValidateSync } from "codeforlife/utils/schema"
+import { useSearchParamEntries } from "codeforlife/hooks"
+import { tryValidateSync } from "codeforlife/utils/schema"
 
 import IndyForm from "./IndyForm"
 import * as studentForms from "./studentForms"
@@ -20,20 +20,20 @@ export interface LoginProps {
 }
 
 const Login: FC<LoginProps> = ({ form }) => {
-  // const searchParams = tryValidateSync(
-  //   useSearchParamEntries(),
-  //   yup.object({
-  //     verifyEmail: yup.boolean().default(false),
-  //   }),
-  // )
+  const searchParams = tryValidateSync(
+    useSearchParamEntries(),
+    yup.object({
+      verifyEmail: yup.boolean().default(false),
+    }),
+  )
 
   return (
     <page.Page>
-      {/* {searchParams?.verifyEmail && (
+      {searchParams?.verifyEmail && (
         <page.Notification>
           Your email address was successfully verified, please log in.
         </page.Notification>
-      )} */}
+      )}
       <page.Section maxWidth="md">
         {
           {
