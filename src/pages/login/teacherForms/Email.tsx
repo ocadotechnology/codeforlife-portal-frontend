@@ -10,9 +10,9 @@ import { useLoginWithEmailMutation } from "../../../api/sso"
 import { paths } from "../../../router"
 import BaseForm from "../BaseForm"
 
-export interface PasswordProps {}
+export interface EmailProps {}
 
-const Password: FC<PasswordProps> = () => {
+const Email: FC<EmailProps> = () => {
   const [loginWithEmail] = useLoginWithEmailMutation()
   const navigate = useNavigate()
 
@@ -32,8 +32,8 @@ const Password: FC<PasswordProps> = () => {
         },
       })}
     >
-      <form.EmailField />
-      <form.PasswordField />
+      <form.EmailField helperText="Enter your email address" />
+      <form.PasswordField helperText="Enter your password" />
       <Stack>
         <Typography variant="body2" fontWeight="bold" my={0}>
           Forgotten your password?
@@ -50,4 +50,4 @@ const Password: FC<PasswordProps> = () => {
   )
 }
 
-export default Password
+export default Email
