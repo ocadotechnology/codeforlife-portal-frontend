@@ -36,17 +36,26 @@ const Login: FC<LoginProps> = ({ form }) => {
   )
 
   useEffect(() => {
-    if (sessionMetadata && !sessionMetadata.auth_factors.length) {
-      navigate(
-        {
-          teacher: paths.teacher.dashboard.school._,
-          student: paths.student.dashboard._,
-          indy: paths.indy.dashboard._,
-        }[sessionMetadata.user_type],
-        { replace: true },
-      )
+    if (sessionMetadata) {
+      if (
+        sessionMetadata.user_type === "teacher" &&
+        sessionMetadata.auth_factors.includes("otp") &&
+        form !== "teacher-otp" &&
+        form !== "teacher-otp-bypass-token"
+      ) {
+        navigate(paths.login.teacher.otp._, { replace: true })
+      } else {
+        navigate(
+          {
+            teacher: paths.teacher.dashboard.school._,
+            student: paths.student.dashboard._,
+            indy: paths.indy.dashboard._,
+          }[sessionMetadata.user_type],
+          { replace: true },
+        )
+      }
     }
-  }, [sessionMetadata, navigate])
+  }, [sessionMetadata, navigate, form])
 
   return (
     <page.Page>
