@@ -22,7 +22,7 @@ const Class: FC<ClassProps> = () => {
   const searchParams = tryValidateSync(
     useSearchParamEntries(),
     yup.object({
-      userId: yup.number().required(),
+      id: yup.number().required(),
       agp: yup.string().required(),
     }),
   )
@@ -30,7 +30,7 @@ const Class: FC<ClassProps> = () => {
   useEffect(() => {
     if (searchParams) {
       autoLoginAsStudent({
-        user_id: searchParams.userId,
+        student_id: searchParams.id,
         auto_gen_password: searchParams.agp,
       })
         .unwrap()

@@ -1,6 +1,11 @@
 // TODO: rename this file to session.ts and move to codeforlife-sso-frontend.
 
-import { type Class, type OtpBypassToken, type User } from "codeforlife/api"
+import {
+  type Class,
+  type OtpBypassToken,
+  type Student,
+  type User,
+} from "codeforlife/api"
 import { type SessionMetadata } from "codeforlife/hooks"
 import { type Arg } from "codeforlife/utils/api"
 
@@ -50,7 +55,7 @@ const ssoApi = api.injectEndpoints({
     autoLoginAsStudent: build.mutation<
       SessionMetadata,
       {
-        user_id: User["id"]
+        student_id: Student["id"]
         auto_gen_password: string
       }
     >({
