@@ -20,7 +20,7 @@
   },
   "//": "🚫 Don't add `dependencies` below that are inherited from the CFL package.",
   "dependencies": {
-    "codeforlife": "github:ocadotechnology/codeforlife-package-javascript#v2.0.1"
+    "codeforlife": "github:ocadotechnology/codeforlife-package-javascript#v2.0.3"
   },
   "//": "✅ Do add `devDependencies` below that are `peerDependencies` in the CFL package.",
   "devDependencies": {

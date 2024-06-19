@@ -50,7 +50,7 @@ const api = createApi({
     logout: build.mutation<null, null>({
       query: () => ({
         url: "session/logout/",
-        method: "GET", // Should this be DELETE?
+        method: "POST",
       }),
       async onQueryStarted(_, { dispatch, queryFulfilled }) {
         try {
@@ -58,6 +58,8 @@ const api = createApi({
         } catch (error) {
           console.error("Failed to log out...", error)
         } finally {
+          Cookies.remove("session_key")
+          Cookies.remove("session_metadata")
           dispatch(api.util.resetApiState())
         }
       },
