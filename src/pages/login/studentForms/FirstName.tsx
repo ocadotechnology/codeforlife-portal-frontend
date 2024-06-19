@@ -33,7 +33,7 @@ const FirstName: FC<FirstNameProps> = () => {
             {
               props: {
                 error: true,
-                children: "Please provide a valid access code for your class.",
+                children: "Please provide the correct code for your class.",
               },
             },
           ],
@@ -60,11 +60,7 @@ const FirstName: FC<FirstNameProps> = () => {
             },
           })}
         >
-          <form.FirstNameField
-            label="Username"
-            placeholder="Enter your username"
-            required
-          />
+          <form.FirstNameField required />
           <form.PasswordField required />
           <Stack alignItems="end">
             <form.SubmitButton endIcon={<ChevronRightIcon />}>

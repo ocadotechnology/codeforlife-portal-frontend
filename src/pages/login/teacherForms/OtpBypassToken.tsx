@@ -21,7 +21,7 @@ const OtpBypassToken: FC<OtpBypassTokenProps> = () => {
   return useSession(
     <BaseForm
       themedBoxProps={{ userType: "teacher" }}
-      header="Login as a teacher"
+      header="Welcome"
       initialValues={{ token: "" }}
       onSubmit={submitForm(loginWithOtpBypassToken, {
         then: () => {
@@ -34,7 +34,6 @@ const OtpBypassToken: FC<OtpBypassTokenProps> = () => {
         have been generated for you to print and keep safe. Please enter one of
         these backup tokens to login to your account.
       </Typography>
-      <Typography fontWeight="bold">Token:</Typography>
       <form.TextField
         name="token"
         label="OTP-bypass token"

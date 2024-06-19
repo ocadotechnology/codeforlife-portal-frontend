@@ -2,7 +2,7 @@ import * as yup from "yup"
 
 export const classIdSchema = yup
   .string()
-  .matches(/^[A-Z0-9]{5}$/, "Invalid access code")
+  .matches(/^[A-Z0-9]{5}$/, "Invalid class code")
 
 const passwordSchema = yup.string().required("required")
 
@@ -23,7 +23,6 @@ export const studentPasswordSchema = passwordSchema.test({
   test: password => password.length >= 6,
 })
 
-// TODO: make indy password schema the same as teacher's.
 export const indyPasswordSchema = passwordSchema.test({
   message: "too-weak",
   test: password =>
