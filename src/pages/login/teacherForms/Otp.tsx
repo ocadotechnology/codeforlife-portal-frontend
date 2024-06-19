@@ -3,7 +3,7 @@ import { type FC } from "react"
 
 import * as form from "codeforlife/components/form"
 import { LinkButton } from "codeforlife/components/router"
-import { useNavigate, useSessionRequired } from "codeforlife/hooks"
+import { useNavigate, useSession } from "codeforlife/hooks"
 import { submitForm } from "codeforlife/utils/form"
 
 import { useLoginWithOtpMutation } from "../../../api/sso"
@@ -16,8 +16,7 @@ const Otp: FC<OtpProps> = () => {
   const [loginWithOtp] = useLoginWithOtpMutation()
   const navigate = useNavigate()
 
-  return useSessionRequired(
-    paths.login.teacher._,
+  return useSession(
     ({ otp_bypass_token_exists }) => (
       <BaseForm
         themedBoxProps={{ userType: "teacher" }}
@@ -47,7 +46,7 @@ const Otp: FC<OtpProps> = () => {
         </Stack>
       </BaseForm>
     ),
-    { next: false },
+    { userType: "teacher", next: false },
   )
 }
 

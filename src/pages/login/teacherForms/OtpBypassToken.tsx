@@ -4,7 +4,7 @@ import * as yup from "yup"
 
 import * as form from "codeforlife/components/form"
 import { LinkButton } from "codeforlife/components/router"
-import { useNavigate, useSessionRequired } from "codeforlife/hooks"
+import { useNavigate, useSession } from "codeforlife/hooks"
 import { submitForm } from "codeforlife/utils/form"
 
 import { useLoginWithOtpBypassTokenMutation } from "../../../api/sso"
@@ -18,8 +18,7 @@ const OtpBypassToken: FC<OtpBypassTokenProps> = () => {
   const navigate = useNavigate()
   const theme = useTheme()
 
-  return useSessionRequired(
-    paths.login.teacher._,
+  return useSession(
     <BaseForm
       themedBoxProps={{ userType: "teacher" }}
       header="Login as a teacher"
@@ -55,7 +54,7 @@ const OtpBypassToken: FC<OtpBypassTokenProps> = () => {
         <form.SubmitButton>Log in</form.SubmitButton>
       </Stack>
     </BaseForm>,
-    { next: false },
+    { userType: "teacher", next: false },
   )
 }
 
