@@ -8,7 +8,7 @@ import {
   type BulkDestroyResult,
   type BulkUpdateArg,
   type BulkUpdateResult,
-} from "codeforlife/utils/rtkQuery"
+} from "codeforlife/utils/api"
 
 import api from "."
 

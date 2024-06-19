@@ -24,4 +24,8 @@ export default defineConfig({
       reporter: ["html", "cobertura"],
     },
   },
+  optimizeDeps: {
+    // TODO: investigate which of these are needed
+    include: ["@mui/icons-material", "yup", "formik"],
+  },
 })

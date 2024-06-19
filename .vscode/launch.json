@@ -1,8 +1,8 @@
 {
   "configurations": [
     {
-      "name": "React Dev Server",
-      "preLaunchTask": "start-react-dev-server",
+      "name": "Vite Server",
+      "preLaunchTask": "start-vite-server",
       "request": "launch",
       "type": "chrome",
       "url": "http://localhost:5173"
