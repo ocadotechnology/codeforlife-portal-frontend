@@ -2576,9 +2576,9 @@ clsx@^2.1.0:
   resolved "https://registry.yarnpkg.com/clsx/-/clsx-2.1.1.tgz#eed397c9fd8bd882bfb18deab7102049a2f32999"
   integrity sha512-eYm0QWBtUrBWZWG0d386OGAw16Z995PiOVo2B7bjWSbHedGl5e0ZWaq65kOGgUSNesEIDkB9ISbTg/JK9dhCZA==
 
-"codeforlife@github:ocadotechnology/codeforlife-package-javascript#auth_flow":
-  version "2.0.0"
-  resolved "https://codeload.github.com/ocadotechnology/codeforlife-package-javascript/tar.gz/d07d4b011f53b4497e9e85eb3d3820ddf3af1f99"
+"codeforlife@github:ocadotechnology/codeforlife-package-javascript#v2.0.1":
+  version "2.0.1"
+  resolved "https://codeload.github.com/ocadotechnology/codeforlife-package-javascript/tar.gz/34e5ef00ce037f9f54a7404208037a8a4fee5334"
   dependencies:
     "@emotion/react" "^11.10.6"
     "@emotion/styled" "^11.10.6"

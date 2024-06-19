@@ -28,8 +28,8 @@ const IndyForm: FC<IndyFormProps> = () => {
         },
       })}
     >
-      <form.EmailField required helperText="Enter your email address" />
-      <form.PasswordField required helperText="Enter your password" />
+      <form.EmailField required />
+      <form.PasswordField required />
       <Stack>
         <Typography variant="body2" fontWeight="bold" mb={0}>
           Forgotten your password?

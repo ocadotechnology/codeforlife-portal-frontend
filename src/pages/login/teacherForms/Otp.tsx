@@ -29,13 +29,13 @@ const Otp: FC<OtpProps> = () => {
           },
         })}
       >
-        <form.OtpField helperText="Enter your code from your app" />
+        <form.OtpField />
         {otp_bypass_token_exists && (
           <LinkButton
             className="body"
             to={paths.login.teacher.otp.bypassToken._}
           >
-            Use a backup token
+            Use an otp-bypass token
           </LinkButton>
         )}
         <Stack direction="row" spacing={2} justifyContent="space-between">

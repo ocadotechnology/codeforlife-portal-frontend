@@ -37,7 +37,8 @@ const OtpBypassToken: FC<OtpBypassTokenProps> = () => {
       <Typography fontWeight="bold">Token:</Typography>
       <form.TextField
         name="token"
-        helperText="Enter one of your tokens"
+        label="OTP-bypass token"
+        placeholder="Enter one of your otp-bypass tokens"
         schema={yup.string().matches(/^[a-z0-9]{8}$/, "Invalid token")}
         required
       />

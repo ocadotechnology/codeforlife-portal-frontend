@@ -71,8 +71,8 @@ const Class: FC<ClassProps> = () => {
         >
           <form.TextField
             name="classId"
-            placeholder="Access code"
-            helperText="Enter your access code"
+            label="Access code"
+            placeholder="Enter your access code"
             schema={classIdSchema}
             required
           />

@@ -61,11 +61,11 @@ const FirstName: FC<FirstNameProps> = () => {
           })}
         >
           <form.FirstNameField
-            placeholder="Username"
-            helperText="Enter your username"
+            label="Username"
+            placeholder="Enter your username"
             required
           />
-          <form.PasswordField helperText="Enter your password" required />
+          <form.PasswordField required />
           <Stack alignItems="end">
             <form.SubmitButton endIcon={<ChevronRightIcon />}>
               Log in

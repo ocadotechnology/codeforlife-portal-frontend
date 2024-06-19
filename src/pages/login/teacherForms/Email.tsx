@@ -32,8 +32,8 @@ const Email: FC<EmailProps> = () => {
         },
       })}
     >
-      <form.EmailField helperText="Enter your email address" />
-      <form.PasswordField helperText="Enter your password" />
+      <form.EmailField required />
+      <form.PasswordField required />
       <Stack>
         <Typography variant="body2" fontWeight="bold" my={0}>
           Forgotten your password?
