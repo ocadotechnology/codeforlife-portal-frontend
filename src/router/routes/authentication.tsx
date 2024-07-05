@@ -1,7 +1,6 @@
 import { Route } from "react-router-dom"
 
-// eslint-disable-next-line max-len
-// import EmailVerification from '../../../pages/emailVerification/EmailVerification'
+import EmailVerification from "../../pages/emailVerification/EmailVerification"
 import Login from "../../pages/login/Login"
 // import Register from '../../../pages/register/Register'
 // import ResetPassword from '../../../pages/resetPassword/ResetPassword'
@@ -14,10 +13,6 @@ import paths from "../paths"
 // <Route
 //   path={paths.register._}
 //   element={<Register />}
-// />
-// <Route
-//   path={`${paths.register.emailVerification._}/:userType`}
-//   element={<EmailVerification />}
 // />
 
 const authentication = (
@@ -43,6 +38,10 @@ const authentication = (
       element={<Login form="student-first-name" />}
     />
     <Route path={paths.login.independent._} element={<Login form="indy" />} />
+    <Route
+      path={paths.register.emailVerification.userType._}
+      element={<EmailVerification />}
+    />
   </>
 )
 

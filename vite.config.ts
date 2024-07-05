@@ -26,6 +26,14 @@ export default defineConfig({
   },
   optimizeDeps: {
     // TODO: investigate which of these are needed
-    include: ["@mui/icons-material", "yup", "formik"],
+    include: [
+      "@mui/x-date-pickers",
+      "@mui/x-date-pickers/AdapterDayjs",
+      "dayjs",
+      "dayjs/locale/en-gb",
+      "@mui/icons-material",
+      "yup",
+      "formik",
+    ],
   },
 })
