@@ -22,7 +22,8 @@
         "ms-python.mypy-type-checker",
         "ms-python.black-formatter",
         "qwtel.sqlite-viewer",
-        "njpwerner.autodocstring"
+        "njpwerner.autodocstring",
+        "eamodio.gitlens"
       ]
     }
   },
