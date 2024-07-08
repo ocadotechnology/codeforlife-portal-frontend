@@ -10,31 +10,44 @@ const paths = _("", {
     student: _("/student", {
       class: _("/:classId"),
     }),
-    independent: _("/independent"),
+    indy: _("/independent"),
   }),
   resetPassword: _("/reset-password", {
-    teacher: _("/teacher"),
-    independent: _("/independent"),
+    userType: _("/:userType", {
+      teacher: _({ userType: "teacher" }),
+      indy: _({ userType: "independent" }),
+    }),
   }),
   teacher: _("/teacher", {
     onboarding: _("/onboarding"),
     dashboard: _("/dashboard", {
-      school: _("/school", {
-        leave: _("/leave"),
-      }),
-      classes: _("/classes", {
-        editClass: _("/:accessCode", {
-          additional: _("/additional"),
-          studentCredentials: _("/student-credentials"),
-          editStudent: _("/edit/?studentIds={studentIds}"),
-          resetStudents: _("/reset/?studentIds={studentIds}"),
-          moveStudents: _("/move/?studentIds={studentIds}"),
-          releaseStudents: _("/release/?studentIds={studentIds}"),
-        }),
-      }),
-      account: _("/account", {
-        setup2FA: _("/setup-2fa"),
-        backupTokens: _("/backup-tokens"),
+      tab: _("/:tab", {
+        school: _(
+          { tab: "school" },
+          {
+            leave: _("/leave"),
+          },
+        ),
+        classes: _(
+          { tab: "classes" },
+          {
+            editClass: _("/:accessCode", {
+              additional: _("/additional"),
+              studentCredentials: _("/student-credentials"),
+              editStudent: _("/edit/?studentIds={studentIds}"),
+              resetStudents: _("/reset/?studentIds={studentIds}"),
+              moveStudents: _("/move/?studentIds={studentIds}"),
+              releaseStudents: _("/release/?studentIds={studentIds}"),
+            }),
+          },
+        ),
+        account: _(
+          { tab: "account" },
+          {
+            setup2FA: _("/setup-2fa"),
+            backupTokens: _("/backup-tokens"),
+          },
+        ),
       }),
       student: _("/student", {
         accept: _("/accept/:studentId"),
@@ -67,23 +80,34 @@ const paths = _("", {
   contribute: _("/contribute"),
   homeLearning: _("/home-learning"),
   privacyNotice: _("/privacy-notice", {
-    privacyNotice: _("/privacy-notice"),
-    childFriendly: _("/child-friendly"),
+    tab: _("/:tab", {
+      privacyNotice: _({ tab: "privacy-notice" }),
+      childFriendly: _({ tab: "child-friendly" }),
+    }),
   }),
   termsOfUse: _("/terms-of-use", {
-    termsOfUse: _("/terms-of-use"),
-    childFriendly: _("/child-friendly"),
+    tab: _("/:tab", {
+      termsOfUse: _({ tab: "terms-of-use" }),
+      childFriendly: _({ tab: "child-friendly" }),
+    }),
   }),
   communicationPreferences: _("/communication-preferences"),
   error: _("/error", {
-    forbidden: _("/forbidden"),
-    pageNotFound: _("/page-not-found"),
-    tooManyRequests: _("/too-many-requests", {
-      teacher: _("/teacher"),
-      indy: _("/independent"),
-      student: _("/student"),
+    type: _("/:type", {
+      forbidden: _({ type: "forbidden" }),
+      pageNotFound: _({ type: "page-not-found" }),
+      internalServerError: _({ type: "internal-server-error" }),
+      userType: _("/:userType?", {
+        tooManyRequests: _(
+          { type: "too-many-requests" },
+          {
+            teacher: _({ userType: "teacher" }),
+            indy: _({ userType: "independent" }),
+            student: _({ userType: "student" }),
+          },
+        ),
+      }),
     }),
-    internalServerError: _("/internal-server-error"),
   }),
   rapidRouter: _("/rapid-router", {
     scoreboard: _("/scoreboard"),

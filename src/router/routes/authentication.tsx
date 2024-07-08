@@ -2,18 +2,9 @@ import { Route } from "react-router-dom"
 
 import EmailVerification from "../../pages/emailVerification/EmailVerification"
 import Login from "../../pages/login/Login"
-// import Register from '../../../pages/register/Register'
-// import ResetPassword from '../../../pages/resetPassword/ResetPassword'
+// import Register from '../../pages/register/Register'
+// import ResetPassword from '../../pages/resetPassword/ResetPassword'
 import paths from "../paths"
-
-// <Route
-//   path={`${paths.resetPassword._}/:userType`}
-//   element={<ResetPassword />}
-// />
-// <Route
-//   path={paths.register._}
-//   element={<Register />}
-// />
 
 const authentication = (
   <>
@@ -37,11 +28,13 @@ const authentication = (
       path={paths.login.student.class._}
       element={<Login form="student-first-name" />}
     />
-    <Route path={paths.login.independent._} element={<Login form="indy" />} />
+    <Route path={paths.login.indy._} element={<Login form="indy" />} />
     <Route
       path={paths.register.emailVerification.userType._}
       element={<EmailVerification />}
     />
+    {/* <Route path={paths.resetPassword.userType._} element={<ResetPassword />} /> */}
+    {/* <Route path={paths.register._} element={<Register />} /> */}
   </>
 )
 
