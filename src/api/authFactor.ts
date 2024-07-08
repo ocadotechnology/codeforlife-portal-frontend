@@ -1,4 +1,8 @@
-import { urls, type AuthFactor } from "codeforlife/api"
+import {
+  getReadAuthFactorEndpoints,
+  urls,
+  type AuthFactor,
+} from "codeforlife/api"
 import {
   buildUrl,
   tagData,
@@ -6,14 +10,13 @@ import {
   type CreateResult,
   type DestroyArg,
   type DestroyResult,
-  type ListArg,
-  type ListResult,
 } from "codeforlife/utils/api"
 
 import api from "."
 
 const authFactorApi = api.injectEndpoints({
   endpoints: build => ({
+    ...getReadAuthFactorEndpoints(build),
     createAuthFactor: build.mutation<
       CreateResult<AuthFactor>,
       CreateArg<AuthFactor, "type">
@@ -30,13 +33,6 @@ const authFactorApi = api.injectEndpoints({
         method: "DELETE",
       }),
       invalidatesTags: tagData("AuthFactor"),
-    }),
-    listAuthFactors: build.query<ListResult<AuthFactor, "type">, ListArg>({
-      query: search => ({
-        url: buildUrl(urls.authFactor.list, { search }),
-        method: "GET",
-      }),
-      providesTags: tagData("AuthFactor"),
     }),
   }),
 })
