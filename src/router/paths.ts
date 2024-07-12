@@ -12,11 +12,9 @@ const paths = _("", {
     }),
     indy: _("/independent"),
   }),
-  resetPassword: _("/reset-password", {
-    userType: _("/:userType", {
-      teacher: _({ userType: "teacher" }),
-      indy: _({ userType: "independent" }),
-    }),
+  resetPassword: _("/reset-password/:userType/:userId?/:token?", {
+    teacher: _({ userType: "teacher" }),
+    indy: _({ userType: "independent" }),
   }),
   teacher: _("/teacher", {
     onboarding: _("/onboarding"),
