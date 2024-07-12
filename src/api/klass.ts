@@ -1,4 +1,4 @@
-import { urls, type Class } from "codeforlife/api"
+import { getReadClassEndpoints, urls, type Class } from "codeforlife/api"
 import {
   buildUrl,
   tagData,
@@ -6,10 +6,6 @@ import {
   type CreateResult,
   type DestroyArg,
   type DestroyResult,
-  type ListArg,
-  type ListResult,
-  type RetrieveArg,
-  type RetrieveResult,
   type UpdateArg,
   type UpdateResult,
 } from "codeforlife/utils/api"
@@ -18,6 +14,7 @@ import api from "."
 
 const classApi = api.injectEndpoints({
   endpoints: build => ({
+    ...getReadClassEndpoints(build),
     createClass: build.mutation<
       CreateResult<Class>,
       CreateArg<
@@ -53,40 +50,6 @@ const classApi = api.injectEndpoints({
         body,
       }),
       invalidatesTags: tagData("Class"),
-    }),
-    retrieveClass: build.query<
-      RetrieveResult<
-        Class,
-        | "name"
-        | "read_classmates_data"
-        | "receive_requests_until"
-        | "school"
-        | "teacher"
-      >,
-      RetrieveArg<Class>
-    >({
-      query: id => ({
-        url: buildUrl(urls.class.detail, { url: { id } }),
-        method: "GET",
-      }),
-      providesTags: tagData("Class"),
-    }),
-    listClasses: build.query<
-      ListResult<
-        Class,
-        | "name"
-        | "read_classmates_data"
-        | "receive_requests_until"
-        | "school"
-        | "teacher"
-      >,
-      ListArg
-    >({
-      query: search => ({
-        url: buildUrl(urls.class.list, { search }),
-        method: "GET",
-      }),
-      providesTags: tagData("Class"),
     }),
   }),
 })
