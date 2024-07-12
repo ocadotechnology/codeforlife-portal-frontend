@@ -1,11 +1,15 @@
+import {
+  MailOutline as MailOutlineIcon,
+  Send as SendIcon,
+  SentimentVeryDissatisfied as SentimentVeryDissatisfiedIcon,
+} from "@mui/icons-material"
+import { type SvgIconProps } from "@mui/material"
 import { type FC, useEffect } from "react"
 import * as yup from "yup"
 
 import * as page from "codeforlife/components/page"
 import { useNavigate, useParams, useSearchParams } from "codeforlife/hooks"
 
-import PaperPlaneImg from "../../images/paper_plane.png"
-import SadFaceImg from "../../images/sadface.png"
 import { paths } from "../../router"
 import Status from "./Status"
 
@@ -29,6 +33,11 @@ const EmailVerification: FC<EmailVerificationProps> = () => {
 
   if (!params) return <></>
 
+  const svgIconProps: SvgIconProps = {
+    color: "white",
+    style: { fontSize: "100px" },
+  }
+
   return (
     <page.Page>
       <page.Section maxWidth="md" className="flex-center">
@@ -37,14 +46,24 @@ const EmailVerification: FC<EmailVerificationProps> = () => {
             userType={params.userType}
             header="We need to verify your email address"
             body={[
-              "An email has been sent to the address you provided.",
+              "An email has been sent to you. Make sure to check your spam.",
               "Please follow the link within the email to verify your details. This will expire in 1 hour.",
-              "If you don't receive the email within the next few minutes, check your spam folder.",
             ]}
-            imageProps={{
-              alt: "PaperPlane",
-              src: PaperPlaneImg,
-            }}
+            icon={<SendIcon {...svgIconProps} />}
+            buttonProps={[
+              {
+                to: import.meta.env.VITE_LINK_OPEN_VERIFY_EMAIL_IN_GMAIL,
+                target: "_blank",
+                children: "Open in Gmail",
+                endIcon: <MailOutlineIcon />,
+              },
+              {
+                to: import.meta.env.VITE_LINK_OPEN_VERIFY_EMAIL_IN_OUTLOOK,
+                target: "_blank",
+                children: "Open in Outlook",
+                endIcon: <MailOutlineIcon />,
+              },
+            ]}
           />
         ) : (
           <Status
@@ -54,10 +73,7 @@ const EmailVerification: FC<EmailVerificationProps> = () => {
               "You used an invalid link, either you mistyped the URL or that link is expired.",
               "When you next attempt to log in, you will be sent a new verification email.",
             ]}
-            imageProps={{
-              alt: "SadFace",
-              src: SadFaceImg,
-            }}
+            icon={<SentimentVeryDissatisfiedIcon {...svgIconProps} />}
           />
         )}
       </page.Section>
