@@ -5,8 +5,7 @@ import { generatePath } from "react-router-dom"
 import * as yup from "yup"
 
 import * as form from "codeforlife/components/form"
-import { useNavigate, useSearchParamEntries } from "codeforlife/hooks"
-import { tryValidateSync } from "codeforlife/utils/schema"
+import { useNavigate, useSearchParams } from "codeforlife/hooks"
 
 import { useAutoLoginAsStudentMutation } from "../../../api/sso"
 import { classIdSchema } from "../../../app/schemas"
@@ -18,14 +17,10 @@ export interface ClassProps {}
 const Class: FC<ClassProps> = () => {
   const [autoLoginAsStudent] = useAutoLoginAsStudentMutation()
   const navigate = useNavigate()
-
-  const searchParams = tryValidateSync(
-    useSearchParamEntries(),
-    yup.object({
-      id: yup.number().required(),
-      agp: yup.string().required(),
-    }),
-  )
+  const searchParams = useSearchParams({
+    id: yup.number().required(),
+    agp: yup.string().required(),
+  })
 
   useEffect(() => {
     if (searchParams) {

@@ -55,9 +55,10 @@ const paths = _("", {
   }),
   register: _("/register", {
     emailVerification: _("/email-verification", {
-      teacher: _("/teacher"),
-      student: _("/student"),
-      indy: _("/independent"),
+      userType: _("/:userType", {
+        teacher: _({ userType: "teacher" }),
+        indy: _({ userType: "independent" }),
+      }),
     }),
   }),
   aboutUs: _("/about-us"),
