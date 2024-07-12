@@ -2,7 +2,7 @@
   "configurations": [
     {
       "name": "Vite Server",
-      "preLaunchTask": "start-vite-server",
+      "preLaunchTask": "run",
       "request": "launch",
       "type": "chrome",
       "url": "http://localhost:5173"
