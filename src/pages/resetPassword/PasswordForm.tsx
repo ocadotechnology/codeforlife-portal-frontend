@@ -6,7 +6,7 @@ import * as form from "codeforlife/components/form"
 import { LinkButton } from "codeforlife/components/router"
 
 import { useResetPasswordMutation } from "../../api/user"
-// import CflPasswordFields from "../../features/cflPasswordFields/CflPasswordFields"
+import { NewPasswordField } from "../../components"
 import { paths } from "../../router"
 
 export interface PasswordFormProps {
@@ -52,7 +52,7 @@ const PasswordForm: FC<PasswordFormProps> = ({ userType, userId, token }) => {
           resetPassword([userId, { token, password }])
         }
       >
-        {/* <CflPasswordFields userType={userType} /> */}
+        <NewPasswordField userType={userType} />
         <Stack mt={3} direction="row" gap={5} justifyContent="center">
           <LinkButton variant="outlined" to={paths._}>
             Cancel
