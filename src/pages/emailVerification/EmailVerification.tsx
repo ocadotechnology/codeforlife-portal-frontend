@@ -28,7 +28,7 @@ const EmailVerification: FC<EmailVerificationProps> = () => {
   })
 
   useEffect(() => {
-    if (!params) navigate(paths.error.pageNotFound._)
+    if (!params) navigate(paths.error.type.pageNotFound._)
   }, [params, navigate])
 
   if (!params) return <></>

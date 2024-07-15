@@ -42,7 +42,7 @@ const Login: FC<LoginProps> = ({ form }) => {
       } else {
         navigate(
           {
-            teacher: paths.teacher.dashboard.school._,
+            teacher: paths.teacher.dashboard.tab.school._,
             student: paths.student.dashboard._,
             indy: paths.indy.dashboard._,
           }[sessionMetadata.user_type],
