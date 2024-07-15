@@ -18,19 +18,22 @@
     "lint:fix": "eslint --fix .",
     "type-check": "tsc --noEmit"
   },
-  "//": "🚫 Don't add `dependencies` below that are inherited from the CFL package.",
+  "//": [
+    "🚫 Don't add `dependencies` below that are inherited from the CFL package.",
+    "✅ Do add `devDependencies` below that are `peerDependencies` in the CFL package."
+  ],
   "dependencies": {
-    "codeforlife": "github:ocadotechnology/codeforlife-package-javascript#v2.1.1"
+    "codeforlife": "github:ocadotechnology/codeforlife-package-javascript#v2.1.1",
+    "crypto-js": "^4.2.0"
   },
-  "//": "✅ Do add `devDependencies` below that are `peerDependencies` in the CFL package.",
   "devDependencies": {
     "@testing-library/dom": "^9.3.4",
     "@testing-library/jest-dom": "^6.2.0",
     "@testing-library/react": "^14.1.2",
     "@testing-library/user-event": "^14.5.2",
     "@types/js-cookie": "^3.0.3",
-    "@types/qs": "^6.9.7",
     "@types/node": "^20.14.2",
+    "@types/qs": "^6.9.7",
     "@types/react": "^18.2.47",
     "@types/react-dom": "^18.2.18",
     "@vitejs/plugin-react": "^4.2.1",
