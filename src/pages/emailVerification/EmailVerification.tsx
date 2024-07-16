@@ -1,5 +1,4 @@
 import {
-  MailOutline as MailOutlineIcon,
   Send as SendIcon,
   SentimentVeryDissatisfied as SentimentVeryDissatisfiedIcon,
 } from "@mui/icons-material"
@@ -28,7 +27,7 @@ const EmailVerification: FC<EmailVerificationProps> = () => {
   })
 
   useEffect(() => {
-    if (!params) navigate(paths.error.pageNotFound._)
+    if (!params) navigate(paths.error.type.pageNotFound._)
   }, [params, navigate])
 
   if (!params) return <></>
@@ -50,20 +49,10 @@ const EmailVerification: FC<EmailVerificationProps> = () => {
               "Please follow the link within the email to verify your details. This will expire in 1 hour.",
             ]}
             icon={<SendIcon {...svgIconProps} />}
-            buttonProps={[
-              {
-                to: import.meta.env.VITE_LINK_OPEN_VERIFY_EMAIL_IN_GMAIL,
-                target: "_blank",
-                children: "Open in Gmail",
-                endIcon: <MailOutlineIcon />,
-              },
-              {
-                to: import.meta.env.VITE_LINK_OPEN_VERIFY_EMAIL_IN_OUTLOOK,
-                target: "_blank",
-                children: "Open in Outlook",
-                endIcon: <MailOutlineIcon />,
-              },
-            ]}
+            openInEmailButtonsProps={{
+              gmailFilters: import.meta.env
+                .VITE_GMAIL_FILTERS_EMAIL_VERIFICATION,
+            }}
           />
         ) : (
           <Status

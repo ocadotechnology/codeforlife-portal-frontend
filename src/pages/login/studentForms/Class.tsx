@@ -68,7 +68,7 @@ const Class: FC<ClassProps> = () => {
             name="classId"
             label="Class code"
             placeholder="Enter your class code"
-            schema={classIdSchema}
+            schema={classIdSchema()}
             required
           />
           <Typography variant="body2" fontWeight="bold">

@@ -25,7 +25,7 @@ const OtpBypassToken: FC<OtpBypassTokenProps> = () => {
       initialValues={{ token: "" }}
       onSubmit={submitForm(loginWithOtpBypassToken, {
         then: () => {
-          navigate(paths.teacher.dashboard.school._)
+          navigate(paths.teacher.dashboard.tab.school._)
         },
       })}
     >

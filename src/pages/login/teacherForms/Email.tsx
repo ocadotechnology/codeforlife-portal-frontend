@@ -27,7 +27,7 @@ const Email: FC<EmailProps> = () => {
           navigate(
             auth_factors.includes("otp")
               ? paths.login.teacher.otp._
-              : paths.teacher.dashboard.school._,
+              : paths.teacher.dashboard.tab.school._,
           )
         },
       })}
