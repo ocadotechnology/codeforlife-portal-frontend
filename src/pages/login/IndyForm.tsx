@@ -36,10 +36,7 @@ const IndyForm: FC<IndyFormProps> = () => {
         </Typography>
         <Typography variant="body2">
           Don&apos;t worry, you can&nbsp;
-          <Link to={paths.resetPassword.independent._}>
-            reset your password
-          </Link>
-          .
+          <Link to={paths.resetPassword.indy._}>reset your password</Link>.
         </Typography>
       </Stack>
       <Stack direction="row">

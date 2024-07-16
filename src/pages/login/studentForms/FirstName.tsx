@@ -1,13 +1,10 @@
 import { ChevronRight as ChevronRightIcon } from "@mui/icons-material"
 import { Stack } from "@mui/material"
 import { useEffect, type FC } from "react"
-import { useParams } from "react-router-dom"
-import * as yup from "yup"
 
 import * as form from "codeforlife/components/form"
-import { useNavigate } from "codeforlife/hooks"
+import { useNavigate, useParams } from "codeforlife/hooks"
 import { submitForm } from "codeforlife/utils/form"
-import { tryValidateSync } from "codeforlife/utils/schema"
 
 import { useLoginAsStudentMutation } from "../../../api/sso"
 import { classIdSchema } from "../../../app/schemas"
@@ -20,10 +17,7 @@ const FirstName: FC<FirstNameProps> = () => {
   const [loginAsStudent] = useLoginAsStudentMutation()
   const navigate = useNavigate()
 
-  const params = tryValidateSync(
-    useParams(),
-    yup.object({ classId: classIdSchema.required() }),
-  )
+  const params = useParams({ classId: classIdSchema().required() })
 
   useEffect(() => {
     if (!params) {

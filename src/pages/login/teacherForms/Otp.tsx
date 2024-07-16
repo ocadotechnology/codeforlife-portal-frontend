@@ -25,7 +25,7 @@ const Otp: FC<OtpProps> = () => {
         initialValues={{ otp: "" }}
         onSubmit={submitForm(loginWithOtp, {
           then: () => {
-            navigate(paths.teacher.dashboard.school._)
+            navigate(paths.teacher.dashboard.tab.school._)
           },
         })}
       >

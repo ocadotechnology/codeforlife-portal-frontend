@@ -3,7 +3,7 @@ import { Route } from "react-router-dom"
 import EmailVerification from "../../pages/emailVerification/EmailVerification"
 import Login from "../../pages/login/Login"
 // import Register from '../../pages/register/Register'
-// import ResetPassword from '../../pages/resetPassword/ResetPassword'
+import ResetPassword from "../../pages/resetPassword/ResetPassword"
 import paths from "../paths"
 
 const authentication = (
@@ -33,7 +33,7 @@ const authentication = (
       path={paths.register.emailVerification.userType._}
       element={<EmailVerification />}
     />
-    {/* <Route path={paths.resetPassword.userType._} element={<ResetPassword />} /> */}
+    <Route path={paths.resetPassword._} element={<ResetPassword />} />
     {/* <Route path={paths.register._} element={<Register />} /> */}
   </>
 )
