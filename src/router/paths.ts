@@ -91,7 +91,6 @@ const paths = _("", {
       childFriendly: _({ tab: "child-friendly" }),
     }),
   }),
-  communicationPreferences: _("/communication-preferences"),
   error: _("/error", {
     type: _("/:type", {
       forbidden: _({ type: "forbidden" }),
