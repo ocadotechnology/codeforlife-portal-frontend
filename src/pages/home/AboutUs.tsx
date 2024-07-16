@@ -58,7 +58,7 @@ const AboutUs: FC<AboutUsProps> = () => (
     </Column>
     <Column img={{ alt: "earth", src: GlobeIcon }}>
       <Typography textAlign="center">
-        Code for Life has over 350,000 registered users across the world.
+        Code for Life has over 660,000 registered users across the world.
       </Typography>
     </Column>
     <Grid xs={12} display="flex" justifyContent="end">
