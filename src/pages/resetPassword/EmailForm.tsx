@@ -3,9 +3,10 @@ import { Stack, Typography } from "@mui/material"
 import { type FC } from "react"
 
 import * as form from "codeforlife/components/form"
-import { LinkButton } from "codeforlife/components/router"
+import { Link, LinkButton } from "codeforlife/components/router"
 
 import { useLazyRequestPasswordResetQuery } from "../../api/user"
+import { OpenInEmailButtons } from "../../components"
 import { paths } from "../../router"
 
 export interface EmailFormProps {}
@@ -18,12 +19,17 @@ const EmailForm: FC<EmailFormProps> = () => {
       <Typography textAlign="center" variant="h4">
         Thank you
       </Typography>
-      <SendIcon color="white" sx={{ fontSize: "100px", marginY: 5 }} />
       <Typography>
-        If you have entered a valid email address, you will receive a link
-        enabling you to reset your password.
+        If you have entered a valid email address, you will receive a link to
+        reset your password. Make sure to check your <strong>spam</strong>.
       </Typography>
-      <LinkButton to={paths._}>Back to homepage</LinkButton>
+      <SendIcon color="white" sx={{ fontSize: "100px", marginY: 5 }} />
+      <OpenInEmailButtons
+        gmailFilters={import.meta.env.VITE_GMAIL_FILTERS_PASSWORD_RESET_REQUEST}
+      />
+      <Link to={paths._} className="back-to">
+        homepage
+      </Link>
     </Stack>
   ) : (
     <Stack gap={1}>

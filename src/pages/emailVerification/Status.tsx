@@ -1,14 +1,14 @@
 import { Stack, Typography } from "@mui/material"
 import { type FC, type ReactElement } from "react"
 
-import {
-  Link,
-  LinkButton,
-  type LinkButtonProps,
-} from "codeforlife/components/router"
+import { Link } from "codeforlife/components/router"
 import { ThemedBox, type ThemedBoxProps } from "codeforlife/theme"
 
 import { themeOptions } from "../../app/theme"
+import {
+  OpenInEmailButtons,
+  type OpenInEmailButtonsProps,
+} from "../../components"
 import { paths } from "../../router"
 
 export interface StatusProps {
@@ -16,7 +16,7 @@ export interface StatusProps {
   header: string
   body: string[]
   icon: ReactElement
-  buttonProps?: LinkButtonProps[]
+  openInEmailButtonsProps?: OpenInEmailButtonsProps
 }
 
 const Status: FC<StatusProps> = ({
@@ -24,7 +24,7 @@ const Status: FC<StatusProps> = ({
   header,
   body,
   icon,
-  buttonProps,
+  openInEmailButtonsProps,
 }) => (
   <ThemedBox withShapes options={themeOptions} userType={userType}>
     <Stack alignItems="center" marginBottom={2.5}>
@@ -37,12 +37,8 @@ const Status: FC<StatusProps> = ({
           <Typography key={index}>{text}</Typography>
         ))}
       </Stack>
-      {buttonProps && (
-        <Stack direction="row" spacing={5}>
-          {buttonProps.map((props, index) => (
-            <LinkButton key={index} {...props} />
-          ))}
-        </Stack>
+      {openInEmailButtonsProps && (
+        <OpenInEmailButtons {...openInEmailButtonsProps} />
       )}
     </Stack>
     <Link to={paths._} className="back-to">
