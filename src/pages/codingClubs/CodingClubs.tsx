@@ -4,7 +4,7 @@ import { Download as DownloadIcon } from "@mui/icons-material"
 
 import * as page from "codeforlife/components/page"
 
-import CodeClubHeroImage from "../../images/coding_club_hero_hexagon.jpg"
+import CodeClubHeroImage from "../../images/coding_club_hero_hexagon.png"
 import AboutUsImage from "../../images/about_us.jpg"
 import PythonClubImage from "../../images/coding_club_python_pack.png"
 import Introduction from "../../components/Introduction"
