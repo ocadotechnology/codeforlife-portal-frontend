@@ -3,18 +3,18 @@ import {
   type GridDirection,
   Stack,
   Typography,
-  Unstable_Grid2 as Grid
+  Unstable_Grid2 as Grid,
 } from "@mui/material"
 import type { ResponsiveStyleValue } from "@mui/system"
 
 import { Image } from "codeforlife/components"
 
 const Introduction: FC<{
-  header: string;
-  img: { alt: string; src: string };
-  children: ReactNode;
-  direction?: ResponsiveStyleValue<GridDirection>;
-}> = ({ header, img, children, direction = 'row' }) => {
+  header: string
+  img: { alt: string; src: string }
+  children: ReactNode
+  direction?: ResponsiveStyleValue<GridDirection>
+}> = ({ header, img, children, direction = "row" }) => {
   return (
     <>
       <Grid
@@ -24,7 +24,7 @@ const Introduction: FC<{
         direction={direction}
       >
         <Grid xs={12} md={6}>
-          <Stack sx={{ height: '100%' }}>
+          <Stack sx={{ height: "100%" }}>
             <Typography variant="h5">{header}</Typography>
             {children}
           </Stack>
@@ -34,7 +34,7 @@ const Introduction: FC<{
         </Grid>
       </Grid>
     </>
-  );
-};
+  )
+}
 
-export default Introduction;
+export default Introduction
