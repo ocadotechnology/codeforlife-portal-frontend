@@ -31,7 +31,7 @@ const IndyForm: FC<IndyFormProps> = () => {
     >
       <forms.Form
         initialValues={{
-          date_of_birth: new Date(),
+          date_of_birth: "",
           first_name: "",
           last_name: "",
           email: "",
