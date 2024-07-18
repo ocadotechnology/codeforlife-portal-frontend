@@ -2,7 +2,7 @@ import { Route } from "react-router-dom"
 
 import EmailVerification from "../../pages/emailVerification/EmailVerification"
 import Login from "../../pages/login/Login"
-// import Register from '../../pages/register/Register'
+import Register from "../../pages/register/Register"
 import ResetPassword from "../../pages/resetPassword/ResetPassword"
 import paths from "../paths"
 
@@ -34,7 +34,7 @@ const authentication = (
       element={<EmailVerification />}
     />
     <Route path={paths.resetPassword._} element={<ResetPassword />} />
-    {/* <Route path={paths.register._} element={<Register />} /> */}
+    <Route path={paths.register._} element={<Register />} />
   </>
 )
 
