@@ -63,7 +63,7 @@ const IndyForm: FC<IndyFormProps> = () => {
               </FormHelperText>
               <forms.DatePickerField
                 name="date_of_birth"
-                maxDate={dayjs().subtract(1, "day")}
+                maxDate={dayjs()}
                 required
               />
               {yearsOfAge !== undefined && (
