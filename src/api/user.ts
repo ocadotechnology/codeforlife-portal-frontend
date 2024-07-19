@@ -88,7 +88,7 @@ const userApi = api.injectEndpoints({
     createIndependentUser: build.mutation<
       CreateResult<User>,
       CreateArg<User, "first_name" | "last_name" | "email" | "password"> & {
-        date_of_birth: Date
+        date_of_birth: string
         add_to_newsletter: boolean
       }
     >({
