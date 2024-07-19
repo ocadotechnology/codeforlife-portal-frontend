@@ -1,14 +1,13 @@
-import { type FC, useEffect } from "react"
-import * as yup from "yup"
-
 import * as page from "codeforlife/components/page"
+import * as yup from "yup"
+import { type FC, useEffect } from "react"
 import { useNavigate, useParams } from "codeforlife/hooks"
 import { ThemedBox } from "codeforlife/theme"
 
-import { themeOptions } from "../../app/theme"
-import { paths } from "../../router"
 import EmailForm from "./EmailForm"
 import PasswordForm from "./PasswordForm"
+import { paths } from "../../router"
+import { themeOptions } from "../../app/theme"
 
 export interface ResetPasswordProps {}
 

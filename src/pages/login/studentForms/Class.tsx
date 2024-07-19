@@ -1,16 +1,15 @@
-import { ChevronRight as ChevronRightIcon } from "@mui/icons-material"
-import { Stack, Typography } from "@mui/material"
-import { useEffect, type FC } from "react"
-import { generatePath } from "react-router-dom"
-import * as yup from "yup"
-
 import * as form from "codeforlife/components/form"
+import * as yup from "yup"
+import { type FC, useEffect } from "react"
+import { Stack, Typography } from "@mui/material"
 import { useNavigate, useSearchParams } from "codeforlife/hooks"
+import { ChevronRight as ChevronRightIcon } from "@mui/icons-material"
+import { generatePath } from "react-router-dom"
 
-import { useAutoLoginAsStudentMutation } from "../../../api/sso"
+import BaseForm from "../BaseForm"
 import { classIdSchema } from "../../../app/schemas"
 import { paths } from "../../../router"
-import BaseForm from "../BaseForm"
+import { useAutoLoginAsStudentMutation } from "../../../api/sso"
 
 export interface ClassProps {}
 

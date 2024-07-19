@@ -1,15 +1,15 @@
 import {
+  type AuthFactor,
   getReadAuthFactorEndpoints,
   urls,
-  type AuthFactor,
 } from "codeforlife/api"
 import {
-  buildUrl,
-  tagData,
   type CreateArg,
   type CreateResult,
   type DestroyArg,
   type DestroyResult,
+  buildUrl,
+  tagData,
 } from "codeforlife/utils/api"
 
 import api from "."

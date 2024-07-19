@@ -1,13 +1,12 @@
-import { CheckCircleOutline as CheckCircleOutlineIcon } from "@mui/icons-material"
-import { Stack, Typography } from "@mui/material"
-import { type FC } from "react"
-
 import * as form from "codeforlife/components/form"
+import { Stack, Typography } from "@mui/material"
+import { CheckCircleOutline as CheckCircleOutlineIcon } from "@mui/icons-material"
+import { type FC } from "react"
 import { LinkButton } from "codeforlife/components/router"
 
-import { useResetPasswordMutation } from "../../api/user"
 import { NewPasswordField } from "../../components/form"
 import { paths } from "../../router"
+import { useResetPasswordMutation } from "../../api/user"
 
 export interface PasswordFormProps {
   userType: "teacher" | "independent"

@@ -1,6 +1,4 @@
-import { urls, type Student, type User } from "codeforlife/api"
 import {
-  tagData,
   type Arg,
   type BulkCreateArg,
   type BulkCreateResult,
@@ -8,7 +6,9 @@ import {
   type BulkDestroyResult,
   type BulkUpdateArg,
   type BulkUpdateResult,
+  tagData,
 } from "codeforlife/utils/api"
+import { type Student, type User, urls } from "codeforlife/api"
 
 import api from "."
 

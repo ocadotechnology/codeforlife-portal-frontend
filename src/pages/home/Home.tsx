@@ -1,8 +1,7 @@
-import { useTheme } from "@mui/material"
-import { type FC } from "react"
-
 import * as page from "codeforlife/components/page"
+import { type FC } from "react"
 import { useLocation } from "codeforlife/hooks"
+import { useTheme } from "@mui/material"
 
 import AboutUs from "./AboutUs"
 import CodingClubs from "./CodingClubs"

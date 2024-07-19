@@ -1,9 +1,8 @@
-import { ChevronRight as ChevronRightIcon } from "@mui/icons-material"
-import { Stack, type SxProps, Typography, useTheme } from "@mui/material"
-import { type FC } from "react"
-
 import { Image, type ImageProps, OrderedGrid } from "codeforlife/components"
 import { LinkButton, type LinkButtonProps } from "codeforlife/components/router"
+import { Stack, type SxProps, Typography, useTheme } from "@mui/material"
+import { ChevronRight as ChevronRightIcon } from "@mui/icons-material"
+import { type FC } from "react"
 
 import EducateImage from "../../images/dashboard_educate.png"
 import PlayImage from "../../images/dashboard_play.png"

@@ -1,12 +1,12 @@
-// import { Route } from "react-router-dom"
+import { Route } from "react-router-dom"
 
 // import Teacher from "../../pages/teacher/Teacher"
 // import TeacherDashboard from "../../pages/teacherDashboard/TeacherDashboard"
-// import AddExternalStudent from "../../pages/teacherDashboard/classes/AddExternalStudent"
+import AddExternalStudent from "../../pages/teacherDashboard/classes/AddExternalStudent"
 // import AddedExternalStudent from "../../pages/teacherDashboard/classes/AddedExternalStudent"
 // import StudentCredentials from "../../pages/teacherDashboard/classes/editClass/student/editStudent/StudentCredentials"
 // import TeacherOnboarding from "../../pages/teacherOnboarding/TeacherOnboarding"
-// import paths from "../paths"
+import paths from "../paths"
 
 const teacher = (
   <>
@@ -32,10 +32,10 @@ const teacher = (
       path={`${paths.teacher.dashboard.tab.account._}/:view?`}
       element={<TeacherDashboard tab={2} />}
     /> */}
-    {/* <Route
+    <Route
       path={paths.teacher.dashboard.student.accept._}
       element={<AddExternalStudent />}
-    /> */}
+    />
     {/* <Route
       path={paths.teacher.dashboard.student.added._}
       element={<AddedExternalStudent />}

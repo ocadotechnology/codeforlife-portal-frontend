@@ -1,7 +1,6 @@
 import { FormHelperText, Typography } from "@mui/material"
-import { type FC } from "react"
-
 import { ThemedBox, type ThemedBoxProps } from "codeforlife/theme"
+import { type FC } from "react"
 
 import { themeOptions } from "../../app/theme"
 
