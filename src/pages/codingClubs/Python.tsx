@@ -16,11 +16,11 @@ const Python: FC<PythonProps> = () => {
       direction="row-reverse"
     >
       <Typography>
-        Download your FREE coding club pack for students aged 12 and above.
-        This pack is a fast paced introduction to Python. It is aimed at
-        students already interested in learning coding, individuals looking
-        to learn and run their own club, or adults wanting to try coding
-        out. It is designed to be used in face-to-face or online clubs.
+        Download your FREE coding club pack for students aged 12 and above. This
+        pack is a fast paced introduction to Python. It is aimed at students
+        already interested in learning coding, individuals looking to learn and
+        run their own club, or adults wanting to try coding out. It is designed
+        to be used in face-to-face or online clubs.
       </Typography>
       <Typography>
         View the resources{" "}
