@@ -1,7 +1,9 @@
 import { Stack, Typography } from "@mui/material"
 import { type FC } from "react"
 
-const ClubAim: FC = () => {
+export interface ClubAimProps {}
+
+const ClubAim: FC<ClubAimProps> = () => {
   return (
     <>
       <Stack>

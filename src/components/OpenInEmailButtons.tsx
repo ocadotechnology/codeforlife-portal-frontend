@@ -18,7 +18,7 @@ const OpenInEmailButtons: FC<OpenInEmailButtonsProps> = ({ gmailFilters }) => {
         Open in Gmail
       </LinkButton>
       <LinkButton
-        to="https://outlook.live.com/mail/"
+        to={import.meta.env.VITE_LINK_OUTLOOK_HOME}
         target="_blank"
         endIcon={<MailOutlineIcon />}
       >

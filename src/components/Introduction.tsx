@@ -8,12 +8,19 @@ import {
 import { Image } from "codeforlife/components"
 import type { ResponsiveStyleValue } from "@mui/system"
 
-const Introduction: FC<{
+export interface IntroductionProps {
   header: string
   img: { alt: string; src: string }
   children: ReactNode
   direction?: ResponsiveStyleValue<GridDirection>
-}> = ({ header, img, children, direction = "row" }) => {
+}
+
+const Introduction: FC<IntroductionProps> = ({
+  header,
+  img,
+  children,
+  direction = "row",
+}) => {
   return (
     <>
       <Grid
