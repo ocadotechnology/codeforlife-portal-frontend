@@ -1,16 +1,15 @@
-import { ChevronRight as ChevronRightIcon } from "@mui/icons-material"
-import { Stack } from "@mui/material"
-import { type FC } from "react"
-
 import * as form from "codeforlife/components/form"
+import { ChevronRight as ChevronRightIcon } from "@mui/icons-material"
+import { type FC } from "react"
 import { Link } from "codeforlife/components/router"
-import { useNavigate } from "codeforlife/hooks"
+import { Stack } from "@mui/material"
 import { submitForm } from "codeforlife/utils/form"
+import { useNavigate } from "codeforlife/hooks"
 
-import { useCreateTeacherMutation } from "../../api/teacher"
 import { LastNameField, NewPasswordField } from "../../components/form"
-import { paths } from "../../router"
 import BaseForm from "./BaseForm"
+import { paths } from "../../router"
+import { useCreateTeacherMutation } from "../../api/teacher"
 
 export interface TeacherFormProps {}
 

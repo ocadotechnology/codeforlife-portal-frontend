@@ -1,6 +1,5 @@
 import type { Action, ThunkAction } from "@reduxjs/toolkit"
 import { combineSlices } from "@reduxjs/toolkit"
-
 import { makeStore } from "codeforlife/utils/store"
 
 import api from "../api"

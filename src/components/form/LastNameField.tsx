@@ -1,7 +1,6 @@
+import { TextField, type TextFieldProps } from "codeforlife/components/form"
 import { type FC } from "react"
 import { string as YupString } from "yup"
-
-import { TextField, type TextFieldProps } from "codeforlife/components/form"
 
 export type LastNameFieldProps = Omit<
   TextFieldProps,

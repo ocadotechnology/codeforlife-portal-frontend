@@ -1,15 +1,14 @@
-import { Stack, Typography } from "@mui/material"
 import { type FC, type ReactElement } from "react"
-
-import { Link } from "codeforlife/components/router"
+import { Stack, Typography } from "@mui/material"
 import { ThemedBox, type ThemedBoxProps } from "codeforlife/theme"
+import { Link } from "codeforlife/components/router"
 
-import { themeOptions } from "../../app/theme"
 import {
   OpenInEmailButtons,
   type OpenInEmailButtonsProps,
 } from "../../components"
 import { paths } from "../../router"
+import { themeOptions } from "../../app/theme"
 
 export interface StatusProps {
   userType: ThemedBoxProps["userType"]

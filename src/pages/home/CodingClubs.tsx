@@ -1,7 +1,6 @@
-import { ChevronRight as ChevronRightIcon } from "@mui/icons-material"
 import { Stack, Typography } from "@mui/material"
+import { ChevronRight as ChevronRightIcon } from "@mui/icons-material"
 import { type FC } from "react"
-
 import { LinkButton } from "codeforlife/components/router"
 
 import { paths } from "../../router"

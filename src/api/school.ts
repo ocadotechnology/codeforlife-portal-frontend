@@ -1,12 +1,12 @@
-import { getReadSchoolEndpoints, urls, type School } from "codeforlife/api"
 import {
-  buildUrl,
-  tagData,
   type CreateArg,
   type CreateResult,
   type UpdateArg,
   type UpdateResult,
+  buildUrl,
+  tagData,
 } from "codeforlife/utils/api"
+import { type School, getReadSchoolEndpoints, urls } from "codeforlife/api"
 
 import api from "."
 

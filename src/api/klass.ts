@@ -1,13 +1,13 @@
-import { getReadClassEndpoints, urls, type Class } from "codeforlife/api"
+import { type Class, getReadClassEndpoints, urls } from "codeforlife/api"
 import {
-  buildUrl,
-  tagData,
   type CreateArg,
   type CreateResult,
   type DestroyArg,
   type DestroyResult,
   type UpdateArg,
   type UpdateResult,
+  buildUrl,
+  tagData,
 } from "codeforlife/utils/api"
 
 import api from "."

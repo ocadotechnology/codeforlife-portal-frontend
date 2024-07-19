@@ -1,13 +1,12 @@
-import { Send as SendIcon } from "@mui/icons-material"
-import { Stack, Typography } from "@mui/material"
-import { type FC } from "react"
-
 import * as form from "codeforlife/components/form"
 import { Link, LinkButton } from "codeforlife/components/router"
+import { Stack, Typography } from "@mui/material"
+import { type FC } from "react"
+import { Send as SendIcon } from "@mui/icons-material"
 
-import { useLazyRequestPasswordResetQuery } from "../../api/user"
 import { OpenInEmailButtons } from "../../components"
 import { paths } from "../../router"
+import { useLazyRequestPasswordResetQuery } from "../../api/user"
 
 export interface EmailFormProps {}
 

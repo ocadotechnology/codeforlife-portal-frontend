@@ -1,17 +1,16 @@
-import { useEffect, type FC } from "react"
-import * as yup from "yup"
-
 import * as page from "codeforlife/components/page"
+import * as yup from "yup"
+import { type FC, useEffect } from "react"
 import {
   useNavigate,
   useSearchParams,
   useSessionMetadata,
 } from "codeforlife/hooks"
 
-import { paths } from "../../router"
-import IndyForm from "./IndyForm"
 import * as studentForms from "./studentForms"
 import * as teacherForms from "./teacherForms"
+import IndyForm from "./IndyForm"
+import { paths } from "../../router"
 
 export interface LoginProps {
   form:

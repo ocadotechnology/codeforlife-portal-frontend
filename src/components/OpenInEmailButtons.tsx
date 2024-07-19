@@ -1,8 +1,7 @@
+import { type FC } from "react"
+import { LinkButton } from "codeforlife/components/router"
 import { MailOutline as MailOutlineIcon } from "@mui/icons-material"
 import { Stack } from "@mui/material"
-import { type FC } from "react"
-
-import { LinkButton } from "codeforlife/components/router"
 
 export interface OpenInEmailButtonsProps {
   gmailFilters: string

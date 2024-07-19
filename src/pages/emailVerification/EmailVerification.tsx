@@ -1,16 +1,15 @@
+import * as page from "codeforlife/components/page"
+import * as yup from "yup"
+import { type FC, useEffect } from "react"
 import {
   Send as SendIcon,
   SentimentVeryDissatisfied as SentimentVeryDissatisfiedIcon,
 } from "@mui/icons-material"
-import { type SvgIconProps } from "@mui/material"
-import { type FC, useEffect } from "react"
-import * as yup from "yup"
-
-import * as page from "codeforlife/components/page"
 import { useNavigate, useParams, useSearchParams } from "codeforlife/hooks"
+import { type SvgIconProps } from "@mui/material"
 
-import { paths } from "../../router"
 import Status from "./Status"
+import { paths } from "../../router"
 
 export interface EmailVerificationProps {}
 

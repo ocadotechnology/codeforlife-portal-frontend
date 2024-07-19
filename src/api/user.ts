@@ -1,7 +1,4 @@
-import { getReadUserEndpoints, urls, type User } from "codeforlife/api"
 import {
-  buildUrl,
-  tagData,
   type Arg,
   type CreateArg,
   type CreateResult,
@@ -9,7 +6,10 @@ import {
   type DestroyResult,
   type UpdateArg,
   type UpdateResult,
+  buildUrl,
+  tagData,
 } from "codeforlife/utils/api"
+import { type User, getReadUserEndpoints, urls } from "codeforlife/api"
 
 import api from "."
 

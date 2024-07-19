@@ -1,14 +1,13 @@
-import { ChevronRight as ChevronRightIcon } from "@mui/icons-material"
 import { Unstable_Grid2 as Grid, Stack, Typography } from "@mui/material"
-import { type FC } from "react"
-
-import { Image } from "codeforlife/components"
 import { Link, LinkButton } from "codeforlife/components/router"
+import { ChevronRight as ChevronRightIcon } from "@mui/icons-material"
+import { type FC } from "react"
+import { Image } from "codeforlife/components"
 
 import ControllerIcon from "../../images/icon_controller.png"
-import TicketIcon from "../../images/icon_free.png"
 import GlobeIcon from "../../images/icon_globe.png"
 import PieChartIcon from "../../images/icon_piechart.png"
+import TicketIcon from "../../images/icon_free.png"
 import { paths } from "../../router"
 
 const Column: FC<{

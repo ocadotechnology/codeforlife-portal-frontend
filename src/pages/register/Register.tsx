@@ -1,12 +1,11 @@
-import { Unstable_Grid2 as Grid } from "@mui/material"
-import { type FC, useEffect } from "react"
-
 import * as page from "codeforlife/components/page"
+import { type FC, useEffect } from "react"
 import { useNavigate, useSessionMetadata } from "codeforlife/hooks"
+import { Unstable_Grid2 as Grid } from "@mui/material"
 
-import { paths } from "../../router"
 import IndyForm from "./IndyForm"
 import TeacherForm from "./TeacherForm"
+import { paths } from "../../router"
 
 export interface RegisterProps {}
 

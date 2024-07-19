@@ -1,8 +1,8 @@
 import { CssBaseline, ThemeProvider } from "@mui/material"
 import type { FC } from "react"
 
-import theme from "./app/theme"
 import Router from "./router"
+import theme from "./app/theme"
 
 const App: FC = () => {
   return (
