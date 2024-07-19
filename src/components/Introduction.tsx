@@ -1,13 +1,12 @@
 import type { FC, ReactNode } from "react"
 import {
+  Unstable_Grid2 as Grid,
   type GridDirection,
   Stack,
   Typography,
-  Unstable_Grid2 as Grid,
 } from "@mui/material"
-import type { ResponsiveStyleValue } from "@mui/system"
-
 import { Image } from "codeforlife/components"
+import type { ResponsiveStyleValue } from "@mui/system"
 
 const Introduction: FC<{
   header: string

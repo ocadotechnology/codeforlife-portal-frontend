@@ -1,5 +1,5 @@
-import { type FC } from "react"
 import { Stack, Typography } from "@mui/material"
+import { type FC } from "react"
 
 const ClubAim: FC = () => {
   return (

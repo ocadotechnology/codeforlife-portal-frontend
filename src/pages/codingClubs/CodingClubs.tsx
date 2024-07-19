@@ -1,16 +1,14 @@
-import { type FC } from "react"
+import * as page from "codeforlife/components/page"
+import { Link, LinkButton } from "codeforlife/components/router"
 import { Typography, useTheme } from "@mui/material"
 import { Download as DownloadIcon } from "@mui/icons-material"
+import { type FC } from "react"
 
-import * as page from "codeforlife/components/page"
-
-import CodeClubHeroImage from "../../images/coding_club_hero_hexagon.png"
 import AboutUsImage from "../../images/about_us.jpg"
-import PythonClubImage from "../../images/coding_club_python_pack.png"
-import Introduction from "../../components/Introduction"
-
 import ClubAim from "./ClubAim"
-import { Link, LinkButton } from "codeforlife/components/router"
+import CodeClubHeroImage from "../../images/coding_club_hero_hexagon.png"
+import Introduction from "../../components/Introduction"
+import PythonClubImage from "../../images/coding_club_python_pack.png"
 
 export interface CodingClubProps {}
 
