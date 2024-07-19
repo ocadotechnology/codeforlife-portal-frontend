@@ -1,20 +1,30 @@
 import { Button, Dialog, Typography } from "@mui/material"
 import { type FC, useState } from "react"
 
-import { PasswordField } from "codeforlife/components/form"
+import {
+  PasswordField,
+  type PasswordFieldProps,
+} from "codeforlife/components/form"
 
 import {
   indyPasswordSchema,
   pwnedPasswordSchema,
   studentPasswordSchema,
   teacherPasswordSchema,
-} from "../app/schemas"
+} from "../../app/schemas"
 
-export interface NewPasswordFieldProps {
+export interface NewPasswordFieldProps
+  extends Omit<
+    PasswordFieldProps,
+    "required" | "withRepeatField" | "schema" | "validateOptions"
+  > {
   userType: "teacher" | "independent" | "student"
 }
 
-const NewPasswordField: FC<NewPasswordFieldProps> = ({ userType }) => {
+const NewPasswordField: FC<NewPasswordFieldProps> = ({
+  userType,
+  ...passwordFieldProps
+}) => {
   const [pwnedPasswords, setPwnedPasswords] = useState<{
     online: boolean
     dialogOpen: boolean
@@ -46,6 +56,7 @@ const NewPasswordField: FC<NewPasswordFieldProps> = ({ userType }) => {
         withRepeatField
         schema={schema}
         validateOptions={{ abortEarly: false }}
+        {...passwordFieldProps}
       />
       <Dialog open={!pwnedPasswords.online && pwnedPasswords.dialogOpen}>
         <Typography variant="h5" className="no-override">

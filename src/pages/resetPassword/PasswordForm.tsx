@@ -6,7 +6,7 @@ import * as form from "codeforlife/components/form"
 import { LinkButton } from "codeforlife/components/router"
 
 import { useResetPasswordMutation } from "../../api/user"
-import { NewPasswordField } from "../../components"
+import { NewPasswordField } from "../../components/form"
 import { paths } from "../../router"
 
 export interface PasswordFormProps {
@@ -46,7 +46,7 @@ const PasswordForm: FC<PasswordFormProps> = ({ userType, userId, token }) => {
       <form.Form
         initialValues={{
           password: "",
-          repeat_password: "",
+          password_repeat: "",
         }}
         onSubmit={({ password }) =>
           resetPassword([userId, { token, password }])
