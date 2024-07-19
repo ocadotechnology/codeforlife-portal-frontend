@@ -12,7 +12,9 @@ import Introduction from "../../components/Introduction"
 import ClubAim from "./ClubAim"
 import { Link, LinkButton } from "codeforlife/components/router"
 
-const CodingClubs: FC = () => {
+export interface CodingClubProps {}
+
+const CodingClubs: FC<CodingClubProps> = () => {
   const theme = useTheme()
 
   return (
