@@ -1,14 +1,13 @@
+import * as form from "codeforlife/components/form"
 import { Stack, Typography } from "@mui/material"
 import type { FC } from "react"
-
-import * as form from "codeforlife/components/form"
 import { Link } from "codeforlife/components/router"
-import { useNavigate } from "codeforlife/hooks"
 import { submitForm } from "codeforlife/utils/form"
+import { useNavigate } from "codeforlife/hooks"
 
-import { useLoginWithEmailMutation } from "../../../api/sso"
-import { paths } from "../../../router"
 import BaseForm from "../BaseForm"
+import { paths } from "../../../router"
+import { useLoginWithEmailMutation } from "../../../api/sso"
 
 export interface EmailProps {}
 

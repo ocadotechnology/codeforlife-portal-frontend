@@ -1,14 +1,13 @@
-import { Stack } from "@mui/material"
-import { type FC } from "react"
-
 import * as form from "codeforlife/components/form"
-import { LinkButton } from "codeforlife/components/router"
 import { useNavigate, useSession } from "codeforlife/hooks"
+import { type FC } from "react"
+import { LinkButton } from "codeforlife/components/router"
+import { Stack } from "@mui/material"
 import { submitForm } from "codeforlife/utils/form"
 
-import { useLoginWithOtpMutation } from "../../../api/sso"
-import { paths } from "../../../router"
 import BaseForm from "../BaseForm"
+import { paths } from "../../../router"
+import { useLoginWithOtpMutation } from "../../../api/sso"
 
 export interface OtpProps {}
 

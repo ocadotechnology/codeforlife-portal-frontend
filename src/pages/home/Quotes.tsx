@@ -1,7 +1,6 @@
 import { Unstable_Grid2 as Grid, Stack, Typography } from "@mui/material"
-import { type FC } from "react"
-
 import { Image, type ImageProps } from "codeforlife/components"
+import { type FC } from "react"
 import { Link } from "codeforlife/components/router"
 
 import ReubenPhoto from "../../images/reuben.png"

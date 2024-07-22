@@ -1,5 +1,5 @@
+import { type Schema, type StringSchema, string as YupString } from "yup"
 import CryptoJS from "crypto-js"
-import { string as YupString, type Schema, type StringSchema } from "yup"
 
 type Options<S extends Schema, Extras = {}> = Partial<{ schema: S } & Extras>
 

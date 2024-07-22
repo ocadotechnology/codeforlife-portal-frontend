@@ -1,7 +1,4 @@
-import { type User } from "codeforlife/api"
 import {
-  buildUrl,
-  tagData,
   type Arg,
   type CreateArg,
   type CreateResult,
@@ -14,7 +11,10 @@ import {
   type RetrieveResult,
   type UpdateArg,
   type UpdateResult,
+  buildUrl,
+  tagData,
 } from "codeforlife/utils/api"
+import { type User } from "codeforlife/api"
 
 import api from "."
 

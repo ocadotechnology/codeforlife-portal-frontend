@@ -1,5 +1,5 @@
-import type { FC } from "react"
 import { BrowserRouter, Routes } from "react-router-dom"
+import type { FC } from "react"
 
 // import Header from '../../features/header/Header';
 // import Footer from '../../features/footer/Footer';

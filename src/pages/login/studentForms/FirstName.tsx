@@ -1,15 +1,14 @@
+import * as form from "codeforlife/components/form"
+import { type FC, useEffect } from "react"
+import { useNavigate, useParams } from "codeforlife/hooks"
 import { ChevronRight as ChevronRightIcon } from "@mui/icons-material"
 import { Stack } from "@mui/material"
-import { useEffect, type FC } from "react"
-
-import * as form from "codeforlife/components/form"
-import { useNavigate, useParams } from "codeforlife/hooks"
 import { submitForm } from "codeforlife/utils/form"
 
-import { useLoginAsStudentMutation } from "../../../api/sso"
+import BaseForm from "../BaseForm"
 import { classIdSchema } from "../../../app/schemas"
 import { paths } from "../../../router"
-import BaseForm from "../BaseForm"
+import { useLoginAsStudentMutation } from "../../../api/sso"
 
 export interface FirstNameProps {}
 

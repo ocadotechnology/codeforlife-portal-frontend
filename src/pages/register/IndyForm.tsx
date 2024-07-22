@@ -1,17 +1,16 @@
-import { ChevronRight as ChevronRightIcon } from "@mui/icons-material"
+import * as forms from "codeforlife/components/form"
 import { FormHelperText, Stack } from "@mui/material"
-import dayjs from "dayjs"
+import { ChevronRight as ChevronRightIcon } from "@mui/icons-material"
 import { type FC } from "react"
+import { Link } from "codeforlife/components/router"
+import dayjs from "dayjs"
+import { submitForm } from "codeforlife/utils/form"
 import { useNavigate } from "react-router-dom"
 
-import * as forms from "codeforlife/components/form"
-import { Link } from "codeforlife/components/router"
-import { submitForm } from "codeforlife/utils/form"
-
-import { useCreateIndependentUserMutation } from "../../api/user"
 import { LastNameField, NewPasswordField } from "../../components/form"
-import { paths } from "../../router"
 import BaseForm from "./BaseForm"
+import { paths } from "../../router"
+import { useCreateIndependentUserMutation } from "../../api/user"
 
 export interface IndyFormProps {}
 

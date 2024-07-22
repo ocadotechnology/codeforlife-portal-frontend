@@ -1,14 +1,14 @@
-import { urls, type Teacher, type User } from "codeforlife/api"
 import {
-  buildUrl,
-  tagData,
   type Arg,
   type CreateResult,
   type DestroyArg,
   type DestroyResult,
   type UpdateArg,
   type UpdateResult,
+  buildUrl,
+  tagData,
 } from "codeforlife/utils/api"
+import { type Teacher, type User, urls } from "codeforlife/api"
 
 import api from "."
 

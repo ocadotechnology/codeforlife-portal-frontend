@@ -6,8 +6,8 @@ import {
   type Student,
   type User,
 } from "codeforlife/api"
-import { type SessionMetadata } from "codeforlife/hooks"
 import { type Arg } from "codeforlife/utils/api"
+import { type SessionMetadata } from "codeforlife/hooks"
 
 import api from "."
 

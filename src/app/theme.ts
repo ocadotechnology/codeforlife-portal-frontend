@@ -1,9 +1,8 @@
 import {
+  type ThemeOptions,
   createTheme,
   responsiveFontSizes,
-  type ThemeOptions,
 } from "@mui/material"
-
 import { themeOptions as cflThemeOptions } from "codeforlife/theme"
 
 // Unpack the base options to extend the theme

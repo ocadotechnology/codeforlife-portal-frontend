@@ -1,8 +1,7 @@
+import { type FC } from "react"
+import { LinkButton } from "codeforlife/components/router"
 import { MailOutline as MailOutlineIcon } from "@mui/icons-material"
 import { Stack } from "@mui/material"
-import { type FC } from "react"
-
-import { LinkButton } from "codeforlife/components/router"
 
 export interface OpenInEmailButtonsProps {
   gmailFilters: string
@@ -19,7 +18,7 @@ const OpenInEmailButtons: FC<OpenInEmailButtonsProps> = ({ gmailFilters }) => {
         Open in Gmail
       </LinkButton>
       <LinkButton
-        to="https://outlook.live.com/mail/"
+        to={import.meta.env.VITE_LINK_OUTLOOK_HOME}
         target="_blank"
         endIcon={<MailOutlineIcon />}
       >

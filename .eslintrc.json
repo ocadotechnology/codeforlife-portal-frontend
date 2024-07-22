@@ -18,6 +18,12 @@
     "dist"
   ],
   "rules": {
+    "sort-imports": [
+      "error",
+      {
+        "allowSeparatedGroups": true
+      }
+    ],
     "@typescript-eslint/consistent-type-imports": [
       2,
       {
