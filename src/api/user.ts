@@ -9,16 +9,81 @@ import {
   buildUrl,
   tagData,
 } from "codeforlife/utils/api"
-import { type User, getReadUserEndpoints, urls } from "codeforlife/api"
+import { type User, urls } from "codeforlife/api"
+import getReadUserEndpoints, {
+  type ListUsersArg,
+  type ListUsersResult,
+  type RetrieveUserArg,
+  type RetrieveUserResult,
+  USER_TAG,
+} from "codeforlife/api/endpoints/user"
 
 import api from "."
+
+export type {
+  RetrieveUserArg,
+  RetrieveUserResult,
+  ListUsersArg,
+  ListUsersResult,
+}
+
+export type HandleJoinClassRequestResult = UpdateResult<User>
+export type HandleJoinClassRequestArg = UpdateArg<
+  User,
+  never,
+  "first_name",
+  { accept: boolean }
+>
+
+export type RequestPasswordResetResult = null
+export type RequestPasswordResetArg = Arg<User, "email">
+
+export type ResetPasswordResult = UpdateResult<User>
+export type ResetPasswordArg = UpdateArg<
+  User,
+  "password",
+  never,
+  { token: string }
+>
+
+export type VerifyEmailAddressResult = UpdateResult<User>
+export type VerifyEmailAddressArg = UpdateArg<
+  User,
+  never,
+  never,
+  { token: string }
+>
+
+export type UpdateUserResult = UpdateResult<User>
+export type UpdateUserArg = UpdateArg<
+  User,
+  never,
+  | "first_name"
+  | "last_name"
+  | "email"
+  | "requesting_to_join_class"
+  | "password",
+  { current_password?: string }
+>
+
+export type DestroyIndependentUserResult = DestroyResult
+export type DestroyIndependentUserArg = DestroyArg<User>
+
+export type CreateIndependentUserResult = CreateResult<User>
+export type CreateIndependentUserArg = CreateArg<
+  User,
+  "first_name" | "last_name" | "email" | "password"
+> & {
+  date_of_birth: string
+  add_to_newsletter: boolean
+}
 
 const userApi = api.injectEndpoints({
   endpoints: build => ({
     ...getReadUserEndpoints(build),
     handleJoinClassRequest: build.mutation<
-      UpdateResult<User>,
-      UpdateArg<User, never, "first_name", { accept: boolean }>
+      HandleJoinClassRequestResult,
+      HandleJoinClassRequestArg
     >({
       query: ([id, body]) => ({
         url: buildUrl(urls.user.detail + "handle-join-class-request/", {
@@ -27,19 +92,19 @@ const userApi = api.injectEndpoints({
         method: "PUT",
         body,
       }),
-      invalidatesTags: tagData("User"),
+      invalidatesTags: tagData(USER_TAG),
     }),
-    requestPasswordReset: build.query<null, Arg<User, "email">>({
+    requestPasswordReset: build.query<
+      RequestPasswordResetResult,
+      RequestPasswordResetArg
+    >({
       query: body => ({
         url: urls.user.list + "request-password-reset/",
         method: "POST",
         body,
       }),
     }),
-    resetPassword: build.mutation<
-      UpdateResult<User>,
-      UpdateArg<User, "password", never, { token: string }>
-    >({
+    resetPassword: build.mutation<ResetPasswordResult, ResetPasswordArg>({
       query: ([id, body]) => ({
         url: buildUrl(urls.user.detail + "reset-password/", { url: { id } }),
         method: "PUT",
@@ -47,8 +112,8 @@ const userApi = api.injectEndpoints({
       }),
     }),
     verifyEmailAddress: build.mutation<
-      UpdateResult<User>,
-      UpdateArg<User, never, never, { token: string }>
+      VerifyEmailAddressResult,
+      VerifyEmailAddressArg
     >({
       query: ([id, body]) => ({
         url: buildUrl(urls.user.detail + "verify-email-address/", {
@@ -58,39 +123,27 @@ const userApi = api.injectEndpoints({
         body,
       }),
     }),
-    updateUser: build.mutation<
-      UpdateResult<User>,
-      UpdateArg<
-        User,
-        never,
-        | "first_name"
-        | "last_name"
-        | "email"
-        | "requesting_to_join_class"
-        | "password",
-        { current_password?: string }
-      >
-    >({
+    updateUser: build.mutation<UpdateUserResult, UpdateUserArg>({
       query: ([id, body]) => ({
         url: buildUrl(urls.user.detail, { url: { id } }),
         method: "PATCH",
         body,
       }),
-      invalidatesTags: tagData("User"),
+      invalidatesTags: tagData(USER_TAG),
     }),
-    destroyIndependentUser: build.mutation<DestroyResult, DestroyArg<User>>({
+    destroyIndependentUser: build.mutation<
+      DestroyIndependentUserResult,
+      DestroyIndependentUserArg
+    >({
       query: id => ({
         url: buildUrl(urls.user.detail, { url: { id } }),
         method: "DELETE",
       }),
-      invalidatesTags: tagData("User"),
+      invalidatesTags: tagData(USER_TAG),
     }),
     createIndependentUser: build.mutation<
-      CreateResult<User>,
-      CreateArg<User, "first_name" | "last_name" | "email" | "password"> & {
-        date_of_birth: string
-        add_to_newsletter: boolean
-      }
+      CreateIndependentUserResult,
+      CreateIndependentUserArg
     >({
       query: body => ({
         url: urls.user.list,

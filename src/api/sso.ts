@@ -13,19 +13,36 @@ import api from "."
 
 const baseUrl = "sso/session/"
 
+export type LoginWithEmailResult = SessionMetadata
+export type LoginWithEmailArg = Arg<User, "email" | "password">
+
+export type LoginWithOtpResult = null
+export type LoginWithOtpArg = { otp: string }
+
+export type LoginWithOtpBypassTokenResult = SessionMetadata
+export type LoginWithOtpBypassTokenArg = Arg<OtpBypassToken, "token">
+
+export type LoginAsStudentResult = SessionMetadata
+export type LoginAsStudentArg = Arg<User, "first_name" | "password"> & {
+  class_id: Class["id"]
+}
+
+export type AutoLoginAsStudentResult = SessionMetadata
+export type AutoLoginAsStudentArg = {
+  student_id: Student["id"]
+  auto_gen_password: string
+}
+
 const ssoApi = api.injectEndpoints({
   endpoints: build => ({
-    loginWithEmail: build.mutation<
-      SessionMetadata,
-      Arg<User, "email" | "password">
-    >({
+    loginWithEmail: build.mutation<LoginWithEmailResult, LoginWithEmailArg>({
       query: body => ({
         url: baseUrl + "login-with-email/",
         method: "POST",
         body,
       }),
     }),
-    loginWithOtp: build.mutation<null, { otp: string }>({
+    loginWithOtp: build.mutation<LoginWithOtpResult, LoginWithOtpArg>({
       query: body => ({
         url: baseUrl + "login-with-otp/",
         method: "POST",
@@ -33,8 +50,8 @@ const ssoApi = api.injectEndpoints({
       }),
     }),
     loginWithOtpBypassToken: build.mutation<
-      SessionMetadata,
-      Arg<OtpBypassToken, "token">
+      LoginWithOtpBypassTokenResult,
+      LoginWithOtpBypassTokenArg
     >({
       query: body => ({
         url: baseUrl + "login-with-otp-bypass-token/",
@@ -42,10 +59,7 @@ const ssoApi = api.injectEndpoints({
         body,
       }),
     }),
-    loginAsStudent: build.mutation<
-      SessionMetadata,
-      Arg<User, "first_name" | "password"> & { class_id: Class["id"] }
-    >({
+    loginAsStudent: build.mutation<LoginAsStudentResult, LoginAsStudentArg>({
       query: body => ({
         url: baseUrl + "login-as-student/",
         method: "POST",
@@ -53,11 +67,8 @@ const ssoApi = api.injectEndpoints({
       }),
     }),
     autoLoginAsStudent: build.mutation<
-      SessionMetadata,
-      {
-        student_id: Student["id"]
-        auto_gen_password: string
-      }
+      AutoLoginAsStudentResult,
+      AutoLoginAsStudentArg
     >({
       query: body => ({
         url: baseUrl + "auto-login-as-student/",
