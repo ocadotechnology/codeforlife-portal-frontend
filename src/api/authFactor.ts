@@ -1,8 +1,4 @@
-import {
-  type AuthFactor,
-  getReadAuthFactorEndpoints,
-  urls,
-} from "codeforlife/api"
+import { type AuthFactor, urls } from "codeforlife/api"
 import {
   type CreateArg,
   type CreateResult,
@@ -11,15 +7,28 @@ import {
   buildUrl,
   tagData,
 } from "codeforlife/utils/api"
+import getReadAuthFactorEndpoints, {
+  AUTH_FACTOR_TAG,
+  type ListAuthFactorsArg,
+  type ListAuthFactorsResult,
+} from "codeforlife/api/endpoints/authFactor"
 
 import api from "."
+
+export type { ListAuthFactorsArg, ListAuthFactorsResult }
+
+export type CreateAuthFactorResult = CreateResult<AuthFactor>
+export type CreateAuthFactorArg = CreateArg<AuthFactor, "type">
+
+export type DestroyAuthFactorResult = DestroyResult
+export type DestroyAuthFactorArg = DestroyArg<AuthFactor>
 
 const authFactorApi = api.injectEndpoints({
   endpoints: build => ({
     ...getReadAuthFactorEndpoints(build),
     createAuthFactor: build.mutation<
-      CreateResult<AuthFactor>,
-      CreateArg<AuthFactor, "type">
+      CreateAuthFactorResult,
+      CreateAuthFactorArg
     >({
       query: body => ({
         url: urls.authFactor.list,
@@ -27,12 +36,15 @@ const authFactorApi = api.injectEndpoints({
         body,
       }),
     }),
-    destroyAuthFactor: build.mutation<DestroyResult, DestroyArg<AuthFactor>>({
+    destroyAuthFactor: build.mutation<
+      DestroyAuthFactorResult,
+      DestroyAuthFactorArg
+    >({
       query: id => ({
         url: buildUrl(urls.authFactor.detail, { url: { id } }),
         method: "DELETE",
       }),
-      invalidatesTags: tagData("AuthFactor"),
+      invalidatesTags: tagData(AUTH_FACTOR_TAG),
     }),
   }),
 })

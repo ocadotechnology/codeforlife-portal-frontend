@@ -29,22 +29,71 @@ export type SchoolTeacherInvitation = Model<
   }
 >
 
+export type AcceptSchoolTeacherInvitationResult = null
+export type AcceptSchoolTeacherInvitationArg = [
+  SchoolTeacherInvitation["id"],
+  {
+    user?: Arg<User, "first_name" | "last_name" | "password" | "email"> & {
+      add_to_newsletter: boolean
+    }
+  },
+]
+
+export type RejectSchoolTeacherInvitationResult = null
+export type RejectSchoolTeacherInvitationArg = SchoolTeacherInvitation["id"]
+
+export type RefreshSchoolTeacherInvitationResult = UpdateResult<
+  SchoolTeacherInvitation,
+  "expires_at"
+>
+export type RefreshSchoolTeacherInvitationArg =
+  UpdateArg<SchoolTeacherInvitation>
+
+export type CreateSchoolTeacherInvitationResult = CreateResult<
+  SchoolTeacherInvitation,
+  "expires_at"
+>
+export type CreateSchoolTeacherInvitationArg = CreateArg<
+  SchoolTeacherInvitation,
+  | "invited_teacher_email"
+  | "invited_teacher_first_name"
+  | "invited_teacher_last_name"
+  | "invited_teacher_is_admin"
+>
+
+export type DestroySchoolTeacherInvitationResult = DestroyResult
+export type DestroySchoolTeacherInvitationArg =
+  DestroyArg<SchoolTeacherInvitation>
+
+export type RetrieveSchoolTeacherInvitationResult = RetrieveResult<
+  SchoolTeacherInvitation,
+  | "expires_at"
+  | "invited_teacher_email"
+  | "invited_teacher_first_name"
+  | "invited_teacher_last_name"
+  | "invited_teacher_is_admin"
+>
+export type RetrieveSchoolTeacherInvitationArg =
+  RetrieveArg<SchoolTeacherInvitation>
+
+export type ListSchoolTeacherInvitationsResult = ListResult<
+  SchoolTeacherInvitation,
+  | "expires_at"
+  | "invited_teacher_email"
+  | "invited_teacher_first_name"
+  | "invited_teacher_last_name"
+  | "invited_teacher_is_admin"
+>
+export type ListSchoolTeacherInvitationsArg = ListArg
+
 const listUrl = "schools/teacher-invitations/"
 const detailUrl = listUrl + "<id>/"
 
 const schoolTeacherInvitationApi = api.injectEndpoints({
   endpoints: build => ({
     acceptSchoolTeacherInvitation: build.mutation<
-      null,
-      [
-        SchoolTeacherInvitation["id"],
-        {
-          user?: Arg<
-            User,
-            "first_name" | "last_name" | "password" | "email"
-          > & { add_to_newsletter: boolean }
-        },
-      ]
+      AcceptSchoolTeacherInvitationResult,
+      AcceptSchoolTeacherInvitationArg
     >({
       query: ([id, body]) => ({
         url: buildUrl(detailUrl + "accept/", { url: { id } }),
@@ -54,8 +103,8 @@ const schoolTeacherInvitationApi = api.injectEndpoints({
       invalidatesTags: tagData("SchoolTeacherInvitation"),
     }),
     rejectSchoolTeacherInvitation: build.mutation<
-      null,
-      SchoolTeacherInvitation["id"]
+      RejectSchoolTeacherInvitationResult,
+      RejectSchoolTeacherInvitationArg
     >({
       query: id => ({
         url: buildUrl(detailUrl + "reject/", { url: { id } }),
@@ -64,8 +113,8 @@ const schoolTeacherInvitationApi = api.injectEndpoints({
       invalidatesTags: tagData("SchoolTeacherInvitation"),
     }),
     refreshSchoolTeacherInvitation: build.mutation<
-      UpdateResult<SchoolTeacherInvitation, "expires_at">,
-      UpdateArg<SchoolTeacherInvitation>
+      RefreshSchoolTeacherInvitationResult,
+      RefreshSchoolTeacherInvitationArg
     >({
       query: id => ({
         url: buildUrl(detailUrl, { url: { id } }),
@@ -74,14 +123,8 @@ const schoolTeacherInvitationApi = api.injectEndpoints({
       invalidatesTags: tagData("SchoolTeacherInvitation"),
     }),
     createSchoolTeacherInvitation: build.mutation<
-      CreateResult<SchoolTeacherInvitation, "expires_at">,
-      CreateArg<
-        SchoolTeacherInvitation,
-        | "invited_teacher_email"
-        | "invited_teacher_first_name"
-        | "invited_teacher_last_name"
-        | "invited_teacher_is_admin"
-      >
+      CreateSchoolTeacherInvitationResult,
+      CreateSchoolTeacherInvitationArg
     >({
       query: body => ({
         url: listUrl,
@@ -90,8 +133,8 @@ const schoolTeacherInvitationApi = api.injectEndpoints({
       }),
     }),
     destroySchoolTeacherInvitation: build.mutation<
-      DestroyResult,
-      DestroyArg<SchoolTeacherInvitation>
+      DestroySchoolTeacherInvitationResult,
+      DestroySchoolTeacherInvitationArg
     >({
       query: id => ({
         url: buildUrl(detailUrl, { url: { id } }),
@@ -100,15 +143,8 @@ const schoolTeacherInvitationApi = api.injectEndpoints({
       invalidatesTags: tagData("SchoolTeacherInvitation"),
     }),
     retrieveSchoolTeacherInvitation: build.query<
-      RetrieveResult<
-        SchoolTeacherInvitation,
-        | "expires_at"
-        | "invited_teacher_email"
-        | "invited_teacher_first_name"
-        | "invited_teacher_last_name"
-        | "invited_teacher_is_admin"
-      >,
-      RetrieveArg<SchoolTeacherInvitation>
+      RetrieveSchoolTeacherInvitationResult,
+      RetrieveSchoolTeacherInvitationArg
     >({
       query: id => ({
         url: buildUrl(detailUrl, { url: { id } }),
@@ -117,15 +153,8 @@ const schoolTeacherInvitationApi = api.injectEndpoints({
       providesTags: tagData("SchoolTeacherInvitation"),
     }),
     listSchoolTeacherInvitations: build.query<
-      ListResult<
-        SchoolTeacherInvitation,
-        | "expires_at"
-        | "invited_teacher_email"
-        | "invited_teacher_first_name"
-        | "invited_teacher_last_name"
-        | "invited_teacher_is_admin"
-      >,
-      ListArg
+      ListSchoolTeacherInvitationsResult,
+      ListSchoolTeacherInvitationsArg
     >({
       query: search => ({
         url: buildUrl(listUrl, { search }),

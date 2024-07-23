@@ -12,16 +12,25 @@ import { type Teacher, type User, urls } from "codeforlife/api"
 
 import api from "."
 
+export type CreateTeacherResult = CreateResult<Teacher>
+export type CreateTeacherArg = {
+  user: Arg<User, "first_name" | "last_name" | "password" | "email"> & {
+    add_to_newsletter: boolean
+  }
+}
+
+export type RemoveTeacherFromSchoolResult = UpdateResult<Teacher, "user">
+export type RemoveTeacherFromSchoolArg = UpdateArg<Teacher>
+
+export type SetTeacherAdminAccessResult = UpdateResult<Teacher, "user">
+export type SetTeacherAdminAccessArg = UpdateArg<Teacher, "is_admin">
+
+export type DestroyTeacherResult = DestroyResult
+export type DestroyTeacherArg = DestroyArg<Teacher>
+
 const teacherApi = api.injectEndpoints({
   endpoints: build => ({
-    createTeacher: build.mutation<
-      CreateResult<Teacher>,
-      {
-        user: Arg<User, "first_name" | "last_name" | "password" | "email"> & {
-          add_to_newsletter: boolean
-        }
-      }
-    >({
+    createTeacher: build.mutation<CreateTeacherResult, CreateTeacherArg>({
       query: body => ({
         url: urls.teacher.list,
         method: "POST",
@@ -29,8 +38,8 @@ const teacherApi = api.injectEndpoints({
       }),
     }),
     removeTeacherFromSchool: build.mutation<
-      UpdateResult<Teacher, "user">,
-      UpdateArg<Teacher>
+      RemoveTeacherFromSchoolResult,
+      RemoveTeacherFromSchoolArg
     >({
       query: id => ({
         url: buildUrl(urls.teacher.detail, { url: { id } }),
@@ -39,8 +48,8 @@ const teacherApi = api.injectEndpoints({
       invalidatesTags: tagData("User", "user"),
     }),
     setTeacherAdminAccess: build.mutation<
-      UpdateResult<Teacher, "user">,
-      UpdateArg<Teacher, "is_admin">
+      SetTeacherAdminAccessResult,
+      SetTeacherAdminAccessArg
     >({
       query: ([id, body]) => ({
         url: buildUrl(urls.teacher.detail, { url: { id } }),
@@ -49,7 +58,7 @@ const teacherApi = api.injectEndpoints({
       }),
       invalidatesTags: tagData("User", "user"),
     }),
-    destroyTeacher: build.mutation<DestroyResult, DestroyArg<Teacher>>({
+    destroyTeacher: build.mutation<DestroyTeacherResult, DestroyTeacherArg>({
       query: id => ({
         url: buildUrl(urls.teacher.detail, { url: { id } }),
         method: "DELETE",

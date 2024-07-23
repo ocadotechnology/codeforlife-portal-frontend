@@ -12,36 +12,59 @@ import { type Student, type User, urls } from "codeforlife/api"
 
 import api from "."
 
+export type CreateStudentsResult = BulkCreateResult<Student>
+export type CreateStudentsArg = BulkCreateArg<
+  Student,
+  "klass",
+  never,
+  {
+    user: Arg<User, "first_name">
+  }
+>
+
+export type ReleaseStudentsResult = BulkUpdateResult<Student>
+export type ReleaseStudentsArg = BulkUpdateArg<
+  Student,
+  never,
+  never,
+  {
+    user: Arg<User, "email", "first_name">
+  }
+>
+
+export type TransferStudentsResult = BulkUpdateResult<Student>
+export type TransferStudentsArg = BulkUpdateArg<
+  Student,
+  "klass",
+  never,
+  {
+    user: Arg<User, never, "first_name">
+  }
+>
+
+export type ResetStudentsPasswordResult = BulkUpdateResult<Student>
+export type ResetStudentsPasswordArg = BulkUpdateArg<
+  Student,
+  never,
+  never,
+  {
+    user: Arg<User, never, "password">
+  }
+>
+
+export type DestroyStudentsResult = BulkDestroyResult
+export type DestroyStudentsArg = BulkDestroyArg<Student>
+
 const studentApi = api.injectEndpoints({
   endpoints: build => ({
-    createStudents: build.mutation<
-      BulkCreateResult<Student>,
-      BulkCreateArg<
-        Student,
-        "klass",
-        never,
-        {
-          user: Arg<User, "first_name">
-        }
-      >
-    >({
+    createStudents: build.mutation<CreateStudentsResult, CreateStudentsArg>({
       query: body => ({
         url: urls.student.list + "bulk/",
         method: "POST",
         body,
       }),
     }),
-    releaseStudents: build.mutation<
-      BulkUpdateResult<Student>,
-      BulkUpdateArg<
-        Student,
-        never,
-        never,
-        {
-          user: Arg<User, "email", "first_name">
-        }
-      >
-    >({
+    releaseStudents: build.mutation<ReleaseStudentsResult, ReleaseStudentsArg>({
       query: body => ({
         url: urls.student.list + "release/",
         method: "PUT",
@@ -50,15 +73,8 @@ const studentApi = api.injectEndpoints({
       invalidatesTags: tagData("User", "user"),
     }),
     transferStudents: build.mutation<
-      BulkUpdateResult<Student>,
-      BulkUpdateArg<
-        Student,
-        "klass",
-        never,
-        {
-          user: Arg<User, never, "first_name">
-        }
-      >
+      TransferStudentsResult,
+      TransferStudentsArg
     >({
       query: body => ({
         url: urls.student.list + "transfer/",
@@ -68,15 +84,8 @@ const studentApi = api.injectEndpoints({
       invalidatesTags: tagData("User", "user"),
     }),
     resetStudentsPassword: build.mutation<
-      BulkUpdateResult<Student>,
-      BulkUpdateArg<
-        Student,
-        never,
-        never,
-        {
-          user: Arg<User, never, "password">
-        }
-      >
+      ResetStudentsPasswordResult,
+      ResetStudentsPasswordArg
     >({
       query: body => ({
         url: urls.student.list + "reset-password/",
@@ -84,16 +93,14 @@ const studentApi = api.injectEndpoints({
         body,
       }),
     }),
-    destroyStudents: build.mutation<BulkDestroyResult, BulkDestroyArg<Student>>(
-      {
-        query: body => ({
-          url: urls.student.list + "bulk/",
-          method: "DELETE",
-          body,
-        }),
-        invalidatesTags: tagData("User", "user"),
-      },
-    ),
+    destroyStudents: build.mutation<DestroyStudentsResult, DestroyStudentsArg>({
+      query: body => ({
+        url: urls.student.list + "bulk/",
+        method: "DELETE",
+        body,
+      }),
+      invalidatesTags: tagData("User", "user"),
+    }),
   }),
 })
 
