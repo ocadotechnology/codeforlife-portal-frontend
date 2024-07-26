@@ -1,5 +1,7 @@
 import { type Class, urls } from "codeforlife/api"
 import {
+  type BulkUpdateArg,
+  type BulkUpdateResult,
   type CreateArg,
   type CreateResult,
   type DestroyArg,
@@ -43,6 +45,13 @@ export type UpdateClassArg = UpdateArg<
   "name" | "read_classmates_data" | "receive_requests_until" | "teacher"
 >
 
+export type UpdateClassesResult = BulkUpdateResult<Class>
+export type UpdateClassesArg = BulkUpdateArg<
+  Class,
+  never,
+  "name" | "read_classmates_data" | "receive_requests_until" | "teacher"
+>
+
 const classApi = api.injectEndpoints({
   endpoints: build => ({
     ...getReadClassEndpoints(build),
@@ -68,6 +77,13 @@ const classApi = api.injectEndpoints({
       }),
       invalidatesTags: tagData(CLASS_TAG),
     }),
+    updateClasses: build.mutation<UpdateClassesResult, UpdateClassesArg>({
+      query: body => ({
+        url: urls.class.list + "bulk/",
+        method: "PATCH",
+        body,
+      }),
+    }),
   }),
 })
 
@@ -80,4 +96,5 @@ export const {
   useLazyRetrieveClassQuery,
   useListClassesQuery,
   useLazyListClassesQuery,
+  useUpdateClassesMutation,
 } = classApi
