@@ -1,17 +1,16 @@
 import * as page from "codeforlife/components/page"
 import { type FC, useEffect } from "react"
+import { type SessionMetadata, useNavigate } from "codeforlife/hooks"
 import { CircularProgress } from "@mui/material"
-import { type Parameters } from "codeforlife/utils/router"
 import { type SchoolTeacherUser } from "codeforlife/api"
-import { useNavigate } from "codeforlife/hooks"
+import { getParam } from "codeforlife/utils/router"
 
-// import YourAccount from "./account/YourAccount"
-// import Classes from "./classes/Classes"
-// import MoveClasses from "./classes/MoveClasses"
 import {
   type RetrieveUserResult,
   useLazyRetrieveUserQuery,
 } from "../../api/user"
+import Account from "./account/Account"
+import Classes from "./classes/Classes"
 import School from "./school/School"
 import { paths } from "../../router"
 
@@ -32,47 +31,42 @@ const TeacherDashboard: FC<TeacherDashboardProps> = () => {
   // TODO: handle this better
   if (isError) return <>There was an error!</>
 
-  return (
-    <page.Page session={{ userType: "teacher" }}>
-      {({ user_id }) => {
-        if (!authUser) {
-          retrieveUser(user_id)
-          return <CircularProgress />
-        }
+  const Tabs: FC<SessionMetadata> = ({ user_id }) => {
+    useEffect(() => {
+      if (!authUser) retrieveUser(user_id)
+    }, [user_id])
 
-        const authSchoolTeacherUser =
-          authUser as SchoolTeacherUser<RetrieveUserResult>
+    if (!authUser) return <CircularProgress />
 
-        return (
-          <page.TabBar
-            header={`Welcome back, ${authUser.first_name} ${authUser.last_name}`}
-            originalPath={paths.teacher.dashboard.tab._}
-            tabs={[
-              {
-                label: "Your school",
-                children: <School authUser={authSchoolTeacherUser} />,
-                path: (paths.teacher.dashboard.tab.school.__ as Parameters).tab,
-              },
-              // {
-              //   label: "Your classes",
-              //   children: movingClass ? (
-              //     <MoveClasses />
-              //   ) : (
-              //     <Classes data={data} />
-              //   ),
-              //   path: "classes",
-              // },
-              // {
-              //   label: "Your account",
-              //   children: <YourAccount />,
-              //   path: "account",
-              // },
-            ]}
-          />
-        )
-      }}
-    </page.Page>
-  )
+    const authSchoolTeacherUser =
+      authUser as SchoolTeacherUser<RetrieveUserResult>
+
+    return (
+      <page.TabBar
+        header={`Welcome back, ${authUser.first_name} ${authUser.last_name}`}
+        originalPath={paths.teacher.dashboard.tab._}
+        tabs={[
+          {
+            label: "Your school",
+            children: <School authUser={authSchoolTeacherUser} />,
+            path: getParam(paths.teacher.dashboard.tab.school, "tab"),
+          },
+          {
+            label: "Your classes",
+            children: <Classes authUser={authSchoolTeacherUser} />,
+            path: getParam(paths.teacher.dashboard.tab.classes, "tab"),
+          },
+          {
+            label: "Your account",
+            children: <Account authUser={authSchoolTeacherUser} />,
+            path: getParam(paths.teacher.dashboard.tab.account, "tab"),
+          },
+        ]}
+      />
+    )
+  }
+
+  return <page.Page session={{ userType: "teacher" }}>{Tabs}</page.Page>
 }
 
 export default TeacherDashboard
