@@ -1,5 +1,6 @@
 import * as page from "codeforlife/components/page"
 import { type FC, useEffect } from "react"
+import { CircularProgress } from "@mui/material"
 import { type Parameters } from "codeforlife/utils/router"
 import { type SchoolTeacherUser } from "codeforlife/api"
 import { useNavigate } from "codeforlife/hooks"
@@ -17,10 +18,10 @@ import { paths } from "../../router"
 export interface TeacherDashboardProps {}
 
 const TeacherDashboard: FC<TeacherDashboardProps> = () => {
-  const [retrieveUser, { data: user, isError }] = useLazyRetrieveUserQuery()
+  let [retrieveUser, { data: authUser, isError }] = useLazyRetrieveUserQuery()
   const navigate = useNavigate()
 
-  const isNonSchoolTeacher = user && !user.teacher?.school
+  const isNonSchoolTeacher = authUser && !authUser.teacher?.school
 
   useEffect(() => {
     if (isNonSchoolTeacher) navigate(paths.teacher.onboarding._)
@@ -34,21 +35,22 @@ const TeacherDashboard: FC<TeacherDashboardProps> = () => {
   return (
     <page.Page session={{ userType: "teacher" }}>
       {({ user_id }) => {
-        if (!user) {
+        if (!authUser) {
           retrieveUser(user_id)
-          return <>Loading...</>
+          return <CircularProgress />
         }
 
-        const schoolTeacherUser = user as SchoolTeacherUser<RetrieveUserResult>
+        const authSchoolTeacherUser =
+          authUser as SchoolTeacherUser<RetrieveUserResult>
 
         return (
           <page.TabBar
-            header={`Welcome back, ${user.first_name} ${user.last_name}`}
+            header={`Welcome back, ${authUser.first_name} ${authUser.last_name}`}
             originalPath={paths.teacher.dashboard.tab._}
             tabs={[
               {
                 label: "Your school",
-                children: <School user={schoolTeacherUser} />,
+                children: <School authUser={authSchoolTeacherUser} />,
                 path: (paths.teacher.dashboard.tab.school.__ as Parameters).tab,
               },
               // {

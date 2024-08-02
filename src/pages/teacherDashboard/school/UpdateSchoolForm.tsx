@@ -1,48 +1,74 @@
-import * as form from "codeforlife/components/form"
+import * as forms from "codeforlife/components/form"
+import { Stack, Typography } from "@mui/material"
 import { type FC } from "react"
+import { submitForm } from "codeforlife/utils/form"
+import { useNavigate } from "codeforlife/hooks"
+
+import {
+  type RetrieveSchoolResult,
+  useUpdateSchoolMutation,
+} from "../../../api/school"
+import { SchoolNameField } from "../../../components/form"
 
 export interface UpdateSchoolFormProps {
-  schoolData: TeacherDashboardProps["school"]
+  school: RetrieveSchoolResult
 }
 
-const UpdateSchoolForm: FC<UpdateSchoolFormProps> = ({ schoolData }) => {
+const UpdateSchoolForm: FC<UpdateSchoolFormProps> = ({ school }) => {
   const navigate = useNavigate()
-  const schoolName = schoolData.name
-  const schoolPostcode = schoolData.postcode
-  const schoolCountry = schoolData.country
-  const [updateSchool] = useOldUpdateSchoolMutation()
+  const [updateSchool] = useUpdateSchoolMutation()
 
   return (
-    <CflHorizontalForm
-      header="Update details of your school or club"
-      subheader="Update your school or club's name and/or postcode"
-      initialValues={{
-        name: schoolName,
-        postcode: schoolPostcode,
-        country: schoolCountry,
-      }}
-      validationSchema={SCHOOL_DETAILS_UPDATE_SCHEMA}
-      onSubmit={values => {
-        updateSchool(values)
-          .unwrap()
-          .then(() => {
+    <>
+      <Typography variant="h5" sx={{ mb: 2 }}>
+        Update details of your school or club
+      </Typography>
+      <forms.Form
+        initialValues={school}
+        onSubmit={submitForm(updateSchool, {
+          then: () => {
             navigate(".", {
               state: {
-                message:
-                  "You have updated the details for your school or club successfully.",
+                notifications: [
+                  {
+                    props: {
+                      children:
+                        "You have updated the details for your school or club successfully.",
+                    },
+                  },
+                ],
               },
             })
-          })
-          .catch(err => {
-            console.error("UpdateSchool error: ", err)
-          })
-      }}
-      submitButton={<form.SubmitButton>Update details</form.SubmitButton>}
-    >
-      <SchoolNameField />
-      <SchoolPostcodeField />
-      <SchoolCountryField />
-    </CflHorizontalForm>
+          },
+          catch: () => {
+            navigate(".", {
+              state: {
+                notifications: [
+                  {
+                    props: {
+                      children:
+                        "Failed to updated the details for your school or club.",
+                      error: true,
+                    },
+                  },
+                ],
+              },
+            })
+          },
+        })}
+      >
+        {form => (
+          <>
+            <Stack direction={{ xs: "column", md: "row" }} gap={3}>
+              <SchoolNameField />
+              <forms.CountryField />
+              {form.values.country === "GB" && <forms.UkCountyField />}
+            </Stack>
+            <forms.SubmitButton>Update details</forms.SubmitButton>
+          </>
+        )}
+      </forms.Form>
+    </>
   )
 }
 

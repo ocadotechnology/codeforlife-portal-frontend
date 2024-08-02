@@ -1,52 +1,50 @@
 import * as page from "codeforlife/components/page"
-import { Button, Stack, Typography } from "@mui/material"
+import {
+  Button,
+  CircularProgress,
+  Unstable_Grid2 as Grid,
+  Stack,
+  Typography,
+} from "@mui/material"
 import { useLocation, useNavigate } from "codeforlife/hooks"
 import { type FC } from "react"
 import { type SchoolTeacherUser } from "codeforlife/api"
 
+import TransferClasses, { type TransferClassesProps } from "./TransferClasses"
 import InviteTeacherForm from "./InviteTeacherForm"
 import { type RetrieveUserResult } from "../../../api/user"
-import TransferClasses from "./TransferClasses"
-import { paths } from "../../../router"
-import { useRemoveTeacherFromSchoolMutation } from "../../../api/teacher"
+import TeacherInvitationTable from "./TeacherInvitationTable"
+import TeacherTable from "./TeacherTable"
+import UpdateSchoolForm from "./UpdateSchoolForm"
 import { useRetrieveSchoolQuery } from "../../../api/school"
 
 export interface SchoolProps {
-  user: SchoolTeacherUser<RetrieveUserResult>
+  authUser: SchoolTeacherUser<RetrieveUserResult>
 }
 
-const School: FC<SchoolProps> = ({ user }) => {
-  const { data: school } = useRetrieveSchoolQuery(user.teacher.school)
-  const { state } = useLocation<{ transferClasses: boolean }>()
-  const [removeTeacherFromSchool] = useRemoveTeacherFromSchoolMutation()
-  const navigate = useNavigate()
+const School: FC<SchoolProps> = ({ authUser }) => {
+  const { data: school, isError } = useRetrieveSchoolQuery(
+    authUser.teacher.school,
+  )
+  const { state } = useLocation<{
+    transferClasses: TransferClassesProps["user"]
+  }>()
+  const navigate = useNavigate<{
+    transferClasses?: TransferClassesProps["user"]
+  }>()
 
-  const { transferClasses } = state || {}
-
-  const onLeaveOrganisation = (): void => {
-    removeTeacherFromSchool(user.id)
-      .unwrap()
-      .then(() => {
-        // if (moveClassData?.classes) {
-        //   navigate(paths.teacher.dashboard.school.leave._, {
-        //     state: moveClassData,
-        //   })
-        // } else {
-        //   navigate(paths.teacher.onboarding._, {
-        //     state: { leftOrganisation: true },
-        //   })
-        // }
-      })
-      .catch(error => {
-        console.error(error)
-      })
+  if (state?.transferClasses) {
+    return (
+      <TransferClasses authUserId={authUser.id} user={state.transferClasses} />
+    )
   }
 
-  if (!school) return <>TODO</>
+  // TODO: handle this better
+  if (isError) return <>There was an error!</>
 
-  return true ? (
-    <TransferClasses loggedInTeacherId={user.teacher.id} teacherUser={user} />
-  ) : (
+  if (!school) return <CircularProgress />
+
+  return (
     <>
       <page.Section>
         <Typography align="center" variant="h4" marginBottom={0}>
@@ -54,7 +52,7 @@ const School: FC<SchoolProps> = ({ user }) => {
         </Typography>
       </page.Section>
       <page.Section sx={{ paddingTop: 0 }}>
-        {user.teacher.is_admin ? (
+        {authUser.teacher.is_admin ? (
           <>
             <Typography mb={0}>
               As an administrator of your school or club, you can select other
@@ -77,15 +75,7 @@ const School: FC<SchoolProps> = ({ user }) => {
             </Typography>
             <Button
               onClick={() => {
-                removeTeacherFromSchool(user.teacher.id)
-                  .unwrap()
-                  .then(() => {
-                    navigate(paths.teacher.onboarding._)
-                  })
-                  .catch(() => {
-                    // TODO: error handling strategy.
-                    alert("Failed to leave school")
-                  })
+                navigate(".", { state: { transferClasses: authUser } })
               }}
             >
               Leave school or club
@@ -93,26 +83,21 @@ const School: FC<SchoolProps> = ({ user }) => {
           </Stack>
         )}
       </page.Section>
-      {/* <page.Section>
+      <page.Section>
         <Typography variant="h5">
           These teachers are already part of your school or club
         </Typography>
-        <TeachersTable
-          teacherData={data.teacher}
-          coworkersData={data.coworkers}
-          sentInvites={data.sentInvites}
-          setDialog={setDialog}
-        />
-        {isAdmin && (
+        <TeacherTable authUser={authUser} />
+        {authUser.teacher.is_admin && (
           <Grid container columnSpacing={5}>
-            <Grid item sm={6}>
+            <Grid sm={6}>
               <Typography mb={0}>
                 Select &apos;Delete&apos; to delete a teacher from your school
                 or club. You will be able to move any existing classes assigned
                 to that teacher to other teachers in your school or club.
               </Typography>
             </Grid>
-            <Grid item sm={6}>
+            <Grid sm={6}>
               <Typography fontWeight="bold" color="error" mb={0}>
                 We strongly recommend that administrators who are using 2FA
                 ensure there is another administrator who will be able to
@@ -122,12 +107,18 @@ const School: FC<SchoolProps> = ({ user }) => {
             </Grid>
           </Grid>
         )}
-      </page.Section> */}
-      {/* {isAdmin && (
-        <page.Section gridProps={{ bgcolor: theme.palette.info.main }}>
-          <UpdateSchoolDetailsForm schoolData={data.school} />
+      </page.Section>
+      <page.Section>
+        <Typography variant="h5">
+          These teachers are invited to your school but have not joined yet
+        </Typography>
+        <TeacherInvitationTable authUser={authUser} />
+      </page.Section>
+      {authUser.teacher.is_admin && (
+        <page.Section boxProps={{ bgcolor: "info.main" }}>
+          <UpdateSchoolForm school={school} />
         </page.Section>
-      )} */}
+      )}
     </>
   )
 }
