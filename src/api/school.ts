@@ -38,7 +38,7 @@ const schoolApi = api.injectEndpoints({
       }),
     }),
     updateSchool: build.mutation<UpdateSchoolResult, UpdateSchoolArg>({
-      query: ([id, body]) => ({
+      query: ({ id, ...body }) => ({
         url: buildUrl(urls.school.detail, { url: { id } }),
         method: "PATCH",
         body,

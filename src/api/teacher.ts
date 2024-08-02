@@ -53,7 +53,7 @@ const teacherApi = api.injectEndpoints({
       SetTeacherAdminAccessResult,
       SetTeacherAdminAccessArg
     >({
-      query: ([id, body]) => ({
+      query: ({ id, ...body }) => ({
         url: buildUrl(urls.teacher.detail + "set-admin-access/", {
           url: { id },
         }),

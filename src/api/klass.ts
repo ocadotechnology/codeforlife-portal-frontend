@@ -70,7 +70,7 @@ const classApi = api.injectEndpoints({
       invalidatesTags: tagData(CLASS_TAG),
     }),
     updateClass: build.mutation<UpdateClassResult, UpdateClassArg>({
-      query: ([id, body]) => ({
+      query: ({ id, ...body }) => ({
         url: buildUrl(urls.class.detail, { url: { id } }),
         method: "PATCH",
         body,
@@ -83,6 +83,7 @@ const classApi = api.injectEndpoints({
         method: "PATCH",
         body,
       }),
+      invalidatesTags: tagData(CLASS_TAG),
     }),
   }),
 })
