@@ -111,10 +111,7 @@ const TransferClasses: FC<TransferClassesProps> = ({ authUserId, user }) => {
                       <table.Cell direction="column" alignItems="flex-start">
                         <form.ApiAutocompleteField
                           useLazyListQuery={useLazyListUsersQuery}
-                          filterOptions={{
-                            teachers_in_school: user.teacher.school,
-                            _id: user.id,
-                          }}
+                          filterOptions={{ only_teachers: true, _id: user.id }}
                           getOptionLabel={({ first_name, last_name }) =>
                             `${first_name} ${last_name}`
                           }
