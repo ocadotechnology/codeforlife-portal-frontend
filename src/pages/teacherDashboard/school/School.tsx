@@ -20,6 +20,7 @@ import { useRetrieveSchoolQuery } from "../../../api/school"
 
 export interface SchoolProps {
   authUser: SchoolTeacherUser<RetrieveUserResult>
+  view?: "transfer-classes"
 }
 
 const School: FC<SchoolProps> = ({ authUser }) => {
