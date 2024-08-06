@@ -20,7 +20,12 @@ const paths = _("", {
     onboarding: _("/onboarding"),
     dashboard: _("/dashboard", {
       tab: _("/:tab", {
-        school: _({ tab: "school" }),
+        school: _(
+          { tab: "school" },
+          {
+            leave: _("/leave/:userId"),
+          },
+        ),
         classes: _(
           { tab: "classes" },
           {

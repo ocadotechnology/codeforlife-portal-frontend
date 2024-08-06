@@ -1,38 +1,68 @@
 import * as form from "codeforlife/components/form"
 import * as page from "codeforlife/components/page"
+import * as yup from "yup"
+import { CircularProgress, Stack, Typography } from "@mui/material"
+import { type FC, useEffect } from "react"
 import { Link, LinkButton } from "codeforlife/components/router"
 import { type SchoolTeacher, type User } from "codeforlife/api"
-import { Stack, Typography } from "@mui/material"
-import { type FC } from "react"
+import { useNavigate, useParams } from "codeforlife/hooks"
 import { TablePagination } from "codeforlife/components"
-import { useNavigate } from "codeforlife/hooks"
 
 import * as table from "../../../components/table"
 import {
   useLazyListClassesQuery,
   useUpdateClassesMutation,
 } from "../../../api/klass"
+import {
+  useLazyListUsersQuery,
+  useLazyRetrieveUserQuery,
+} from "../../../api/user"
 import { paths } from "../../../router"
 import { submitForm } from "codeforlife/utils/form"
-import { useLazyListUsersQuery } from "../../../api/user"
 import { useRemoveTeacherFromSchoolMutation } from "../../../api/teacher"
 
-export interface TransferClassesProps {
+export interface LeaveProps {
   authUserId: User["id"]
-  user: Pick<User, "id" | "first_name" | "last_name"> & {
-    teacher: Pick<SchoolTeacher, "id" | "school">
-  }
 }
 
-const TransferClasses: FC<TransferClassesProps> = ({ authUserId, user }) => {
+const Leave: FC<LeaveProps> = ({ authUserId }) => {
   const [updateClasses] = useUpdateClassesMutation()
   const [removeTeacherFromSchool] = useRemoveTeacherFromSchoolMutation()
-  const navigate = useNavigate()
+  const [retrieveUser, { data: user, isLoading, isError }] =
+    useLazyRetrieveUserQuery()
 
-  const isSelf = user.id === authUserId
+  const navigate = useNavigate()
+  const params = useParams({ userId: yup.number().required() })
+
+  useEffect(() => {
+    function navigateToSchoolTabWithErrorNotification(message: string) {
+      navigate(paths.teacher.dashboard.tab.school._, {
+        state: {
+          notifications: [
+            {
+              props: { children: message, error: true },
+            },
+          ],
+        },
+      })
+    }
+
+    if (!params) navigate(paths.error.type.pageNotFound._)
+    else if (isError)
+      navigateToSchoolTabWithErrorNotification("Failed to retrieve user.")
+    else if (!isLoading && !user) retrieveUser(params.userId)
+    else if (user && !user.teacher)
+      navigateToSchoolTabWithErrorNotification("This user is not a teacher.")
+  }, [params, navigate, isError, isLoading, user, retrieveUser])
+
+  if (!params || isError) return <></>
+  if (isLoading || !user) return <CircularProgress />
+  if (!user.teacher) return <></>
+
+  const isSelf = params.userId === authUserId
 
   function handleRemoveTeacherFromSchool() {
-    removeTeacherFromSchool(user.teacher.id)
+    removeTeacherFromSchool(user!.teacher!.id)
       .unwrap()
       .then(() => {
         if (isSelf) {
@@ -78,7 +108,7 @@ const TransferClasses: FC<TransferClassesProps> = ({ authUserId, user }) => {
         </Typography>
         <TablePagination
           useLazyListQuery={useLazyListClassesQuery}
-          filters={{ teacher: user.teacher.id }}
+          filters={{ teacher: user.teacher!.id }}
         >
           {classes => {
             if (!classes.length) {
@@ -150,4 +180,4 @@ const TransferClasses: FC<TransferClassesProps> = ({ authUserId, user }) => {
   )
 }
 
-export default TransferClasses
+export default Leave
