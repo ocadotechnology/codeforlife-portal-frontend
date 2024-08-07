@@ -5,6 +5,7 @@ import { type SchoolTeacher, type User } from "codeforlife/api"
 import { Stack, Typography } from "@mui/material"
 import { type FC } from "react"
 import { TablePagination } from "codeforlife/components"
+import { submitForm } from "codeforlife/utils/form"
 import { useNavigate } from "codeforlife/hooks"
 
 import * as table from "../../../components/table"
@@ -13,7 +14,6 @@ import {
   useUpdateClassesMutation,
 } from "../../../api/klass"
 import { paths } from "../../../router"
-import { submitForm } from "codeforlife/utils/form"
 import { useLazyListUsersQuery } from "../../../api/user"
 import { useRemoveTeacherFromSchoolMutation } from "../../../api/teacher"
 
