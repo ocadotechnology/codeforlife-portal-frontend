@@ -1,3 +1,4 @@
+import { type User } from "codeforlife/api"
 import {
   type Arg,
   type CreateArg,
@@ -14,7 +15,6 @@ import {
   buildUrl,
   tagData,
 } from "codeforlife/utils/api"
-import { type User } from "codeforlife/api"
 
 import api from "."
 
@@ -30,14 +30,12 @@ export type SchoolTeacherInvitation = Model<
 >
 
 export type AcceptSchoolTeacherInvitationResult = null
-export type AcceptSchoolTeacherInvitationArg = [
-  SchoolTeacherInvitation["id"],
-  {
-    user?: Arg<User, "first_name" | "last_name" | "password" | "email"> & {
-      add_to_newsletter: boolean
-    }
-  },
-]
+export type AcceptSchoolTeacherInvitationArg = {
+  id: SchoolTeacherInvitation["id"]
+  user?: Arg<User, "first_name" | "last_name" | "password" | "email"> & {
+    add_to_newsletter: boolean
+  }
+}
 
 export type RejectSchoolTeacherInvitationResult = null
 export type RejectSchoolTeacherInvitationArg = SchoolTeacherInvitation["id"]
@@ -95,7 +93,7 @@ const schoolTeacherInvitationApi = api.injectEndpoints({
       AcceptSchoolTeacherInvitationResult,
       AcceptSchoolTeacherInvitationArg
     >({
-      query: ([id, body]) => ({
+      query: ({ id, ...body }) => ({
         url: buildUrl(detailUrl + "accept/", { url: { id } }),
         method: "DELETE",
         body,

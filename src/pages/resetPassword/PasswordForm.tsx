@@ -3,6 +3,7 @@ import { Stack, Typography } from "@mui/material"
 import { CheckCircleOutline as CheckCircleOutlineIcon } from "@mui/icons-material"
 import { type FC } from "react"
 import { LinkButton } from "codeforlife/components/router"
+import { submitForm } from "codeforlife/utils/form"
 
 import { NewPasswordField } from "../../components/form"
 import { paths } from "../../router"
@@ -15,9 +16,9 @@ export interface PasswordFormProps {
 }
 
 const PasswordForm: FC<PasswordFormProps> = ({ userType, userId, token }) => {
-  const [resetPassword, result] = useResetPasswordMutation()
+  const [resetPassword, { isSuccess }] = useResetPasswordMutation()
 
-  return result.isSuccess ? (
+  return isSuccess ? (
     <Stack gap={1} alignItems="center">
       <Typography textAlign="center" variant="h4">
         Your password has been reset
@@ -44,12 +45,12 @@ const PasswordForm: FC<PasswordFormProps> = ({ userType, userId, token }) => {
       </Typography>
       <form.Form
         initialValues={{
+          id: userId,
+          token,
           password: "",
           password_repeat: "",
         }}
-        onSubmit={({ password }) =>
-          resetPassword([userId, { token, password }])
-        }
+        onSubmit={submitForm(resetPassword)}
       >
         <NewPasswordField userType={userType} />
         <Stack mt={3} direction="row" gap={5} justifyContent="center">

@@ -42,7 +42,9 @@ const teacherApi = api.injectEndpoints({
       RemoveTeacherFromSchoolArg
     >({
       query: id => ({
-        url: buildUrl(urls.teacher.detail, { url: { id } }),
+        url: buildUrl(urls.teacher.detail + "remove-from-school/", {
+          url: { id },
+        }),
         method: "PUT",
       }),
       invalidatesTags: tagData("User", "user"),
@@ -51,8 +53,10 @@ const teacherApi = api.injectEndpoints({
       SetTeacherAdminAccessResult,
       SetTeacherAdminAccessArg
     >({
-      query: ([id, body]) => ({
-        url: buildUrl(urls.teacher.detail, { url: { id } }),
+      query: ({ id, ...body }) => ({
+        url: buildUrl(urls.teacher.detail + "set-admin-access/", {
+          url: { id },
+        }),
         method: "PUT",
         body,
       }),

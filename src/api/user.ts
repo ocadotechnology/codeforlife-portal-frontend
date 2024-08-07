@@ -1,3 +1,11 @@
+import { type User, urls } from "codeforlife/api"
+import getReadUserEndpoints, {
+  type ListUsersArg,
+  type ListUsersResult,
+  type RetrieveUserArg,
+  type RetrieveUserResult,
+  USER_TAG,
+} from "codeforlife/api/endpoints/user"
 import {
   type Arg,
   type CreateArg,
@@ -9,62 +17,41 @@ import {
   buildUrl,
   tagData,
 } from "codeforlife/utils/api"
-import { type User, urls } from "codeforlife/api"
-import getReadUserEndpoints, {
-  type ListUsersArg,
-  type ListUsersResult,
-  type RetrieveUserArg,
-  type RetrieveUserResult,
-  USER_TAG,
-} from "codeforlife/api/endpoints/user"
 
 import api from "."
 
 export type {
-  RetrieveUserArg,
-  RetrieveUserResult,
   ListUsersArg,
   ListUsersResult,
+  RetrieveUserArg,
+  RetrieveUserResult,
 }
 
 export type HandleJoinClassRequestResult = UpdateResult<User>
-export type HandleJoinClassRequestArg = UpdateArg<
-  User,
-  never,
-  "first_name",
-  { accept: boolean }
->
+export type HandleJoinClassRequestArg = UpdateArg<User, never, "first_name"> & {
+  accept: boolean
+}
 
 export type RequestPasswordResetResult = null
 export type RequestPasswordResetArg = Arg<User, "email">
 
 export type ResetPasswordResult = UpdateResult<User>
-export type ResetPasswordArg = UpdateArg<
-  User,
-  "password",
-  never,
-  { token: string }
->
+export type ResetPasswordArg = UpdateArg<User, "password", never> & {
+  token: string
+}
 
 export type VerifyEmailAddressResult = UpdateResult<User>
-export type VerifyEmailAddressArg = UpdateArg<
-  User,
-  never,
-  never,
-  { token: string }
->
+export type VerifyEmailAddressArg = {
+  id: User["id"]
+  token: string
+}
 
 export type UpdateUserResult = UpdateResult<User>
 export type UpdateUserArg = UpdateArg<
   User,
   never,
-  | "first_name"
-  | "last_name"
-  | "email"
-  | "requesting_to_join_class"
-  | "password",
-  { current_password?: string }
->
+  "first_name" | "last_name" | "email" | "requesting_to_join_class" | "password"
+> & { current_password?: string }
 
 export type DestroyIndependentUserResult = DestroyResult
 export type DestroyIndependentUserArg = DestroyArg<User>
@@ -85,7 +72,7 @@ const userApi = api.injectEndpoints({
       HandleJoinClassRequestResult,
       HandleJoinClassRequestArg
     >({
-      query: ([id, body]) => ({
+      query: ({ id, ...body }) => ({
         url: buildUrl(urls.user.detail + "handle-join-class-request/", {
           url: { id },
         }),
@@ -105,7 +92,7 @@ const userApi = api.injectEndpoints({
       }),
     }),
     resetPassword: build.mutation<ResetPasswordResult, ResetPasswordArg>({
-      query: ([id, body]) => ({
+      query: ({ id, ...body }) => ({
         url: buildUrl(urls.user.detail + "reset-password/", { url: { id } }),
         method: "PUT",
         body,
@@ -115,7 +102,7 @@ const userApi = api.injectEndpoints({
       VerifyEmailAddressResult,
       VerifyEmailAddressArg
     >({
-      query: ([id, body]) => ({
+      query: ({ id, ...body }) => ({
         url: buildUrl(urls.user.detail + "verify-email-address/", {
           url: { id },
         }),
@@ -124,7 +111,7 @@ const userApi = api.injectEndpoints({
       }),
     }),
     updateUser: build.mutation<UpdateUserResult, UpdateUserArg>({
-      query: ([id, body]) => ({
+      query: ({ id, ...body }) => ({
         url: buildUrl(urls.user.detail, { url: { id } }),
         method: "PATCH",
         body,

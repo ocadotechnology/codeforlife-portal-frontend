@@ -1,25 +1,21 @@
-// import { Route } from "react-router-dom"
+import { Route } from "react-router-dom"
 
 // import Teacher from "../../pages/teacher/Teacher"
-// import TeacherDashboard from "../../pages/teacherDashboard/TeacherDashboard"
+import TeacherDashboard from "../../pages/teacherDashboard/TeacherDashboard"
 // import AddExternalStudent from "../../pages/teacherDashboard/classes/AddExternalStudent"
 // import AddedExternalStudent from "../../pages/teacherDashboard/classes/AddedExternalStudent"
 // import StudentCredentials from "../../pages/teacherDashboard/classes/editClass/student/editStudent/StudentCredentials"
 // import TeacherOnboarding from "../../pages/teacherOnboarding/TeacherOnboarding"
-// import paths from "../paths"
+import paths from "../paths"
 
 const teacher = (
   <>
     {/* <Route path={paths.teacher._} element={<Teacher />} /> */}
     {/* <Route path={paths.teacher.onboarding._} element={<TeacherOnboarding />} /> */}
-    {/* <Route
-      path={paths.teacher.dashboard.school._}
-      element={<TeacherDashboard tab={0} />}
-    /> */}
-    {/* <Route
-      path={paths.teacher.dashboard.tab.school.leave._}
-      element={<TeacherDashboard tab={1} movingClass={true} />}
-    /> */}
+    <Route
+      path={paths.teacher.dashboard.tab._}
+      element={<TeacherDashboard />}
+    />
     {/* <Route
       path={`${paths.teacher.dashboard.classes._}/:accessCode?/:view?`}
       element={<TeacherDashboard tab={1} />}

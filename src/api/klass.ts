@@ -1,5 +1,14 @@
 import { type Class, urls } from "codeforlife/api"
+import getReadClassEndpoints, {
+  CLASS_TAG,
+  type ListClassesArg,
+  type ListClassesResult,
+  type RetrieveClassArg,
+  type RetrieveClassResult,
+} from "codeforlife/api/endpoints/klass"
 import {
+  type BulkUpdateArg,
+  type BulkUpdateResult,
   type CreateArg,
   type CreateResult,
   type DestroyArg,
@@ -9,21 +18,14 @@ import {
   buildUrl,
   tagData,
 } from "codeforlife/utils/api"
-import getReadClassEndpoints, {
-  CLASS_TAG,
-  type ListClassesArg,
-  type ListClassesResult,
-  type RetrieveClassArg,
-  type RetrieveClassResult,
-} from "codeforlife/api/endpoints/klass"
 
 import api from "."
 
 export type {
-  RetrieveClassArg,
-  RetrieveClassResult,
   ListClassesArg,
   ListClassesResult,
+  RetrieveClassArg,
+  RetrieveClassResult,
 }
 
 export type CreateClassResult = CreateResult<Class>
@@ -38,6 +40,13 @@ export type DestroyClassArg = DestroyArg<Class>
 
 export type UpdateClassResult = UpdateResult<Class>
 export type UpdateClassArg = UpdateArg<
+  Class,
+  never,
+  "name" | "read_classmates_data" | "receive_requests_until" | "teacher"
+>
+
+export type UpdateClassesResult = BulkUpdateResult<Class>
+export type UpdateClassesArg = BulkUpdateArg<
   Class,
   never,
   "name" | "read_classmates_data" | "receive_requests_until" | "teacher"
@@ -61,8 +70,16 @@ const classApi = api.injectEndpoints({
       invalidatesTags: tagData(CLASS_TAG),
     }),
     updateClass: build.mutation<UpdateClassResult, UpdateClassArg>({
-      query: ([id, body]) => ({
+      query: ({ id, ...body }) => ({
         url: buildUrl(urls.class.detail, { url: { id } }),
+        method: "PATCH",
+        body,
+      }),
+      invalidatesTags: tagData(CLASS_TAG),
+    }),
+    updateClasses: build.mutation<UpdateClassesResult, UpdateClassesArg>({
+      query: body => ({
+        url: urls.class.list + "bulk/",
         method: "PATCH",
         body,
       }),
@@ -80,4 +97,5 @@ export const {
   useLazyRetrieveClassQuery,
   useListClassesQuery,
   useLazyListClassesQuery,
+  useUpdateClassesMutation,
 } = classApi
