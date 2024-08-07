@@ -8,12 +8,14 @@ import { Button, Typography } from "@mui/material"
 import { type FC } from "react"
 import { type SchoolTeacherUser } from "codeforlife/api"
 import { TablePagination } from "codeforlife/components"
+import type { TypedMutationTrigger } from "@reduxjs/toolkit/query/react"
 import { useNavigate } from "codeforlife/hooks"
 
 import * as table from "../../../components/table"
 import {
   useDestroySchoolTeacherInvitationMutation,
   useLazyListSchoolTeacherInvitationsQuery,
+  useRefreshSchoolTeacherInvitationMutation,
 } from "../../../api/schoolTeacherInvitation"
 import { type RetrieveUserResult } from "../../../api/user"
 
@@ -25,6 +27,8 @@ const TeacherInvitationTable: FC<TeacherInvitationTableProps> = ({
   authUser,
 }) => {
   const navigate = useNavigate()
+  const [refreshSchoolTeacherInvitation] =
+    useRefreshSchoolTeacherInvitationMutation()
   const [destroySchoolTeacherInvitation] =
     useDestroySchoolTeacherInvitationMutation()
 
@@ -32,6 +36,25 @@ const TeacherInvitationTable: FC<TeacherInvitationTableProps> = ({
     navigate(".", {
       state: { notifications: [{ props: { children, error } }] },
     })
+  }
+
+  function handleClickAction(
+    mutationTrigger: TypedMutationTrigger<any, number, any>,
+    id: number,
+    successMessage: string,
+    errorMessage: string,
+  ) {
+    return () => {
+      mutationTrigger(id)
+        .unwrap()
+        .then(() => {
+          showNotification(successMessage)
+        })
+        .catch(error => {
+          if (error) console.error(error)
+          showNotification(errorMessage, true)
+        })
+    }
   }
 
   return (
@@ -103,28 +126,24 @@ const TeacherInvitationTable: FC<TeacherInvitationTableProps> = ({
                     )}
                     <Button
                       endIcon={<EmailOutlinedIcon />}
-                      onClick={() => {
-                        alert("TODO: create action of backend for this")
-                      }}
+                      onClick={handleClickAction(
+                        refreshSchoolTeacherInvitation,
+                        id,
+                        "Successfully resent invitation.",
+                        "Failed to resend invitation.",
+                      )}
                     >
                       Resend invite
                     </Button>
                     <Button
                       className="alert"
                       endIcon={<DeleteOutlineIcon />}
-                      onClick={() => {
-                        destroySchoolTeacherInvitation(id)
-                          .unwrap()
-                          .then(() => {
-                            showNotification("Invitation successfully deleted.")
-                          })
-                          .catch(() => {
-                            showNotification(
-                              "Failed to delete invitation.",
-                              true,
-                            )
-                          })
-                      }}
+                      onClick={handleClickAction(
+                        destroySchoolTeacherInvitation,
+                        id,
+                        "Invitation successfully deleted.",
+                        "Failed to delete invitation.",
+                      )}
                     >
                       Delete
                     </Button>

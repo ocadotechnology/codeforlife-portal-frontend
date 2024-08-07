@@ -11,7 +11,6 @@ const teacher = (
   <>
     {/* <Route path={paths.teacher._} element={<Teacher />} /> */}
     {/* <Route path={paths.teacher.onboarding._} element={<TeacherOnboarding />} /> */}
-
     <Route
       path={paths.teacher.dashboard.tab.school.leave._}
       element={<TeacherDashboard tab="school" view="leave" />}

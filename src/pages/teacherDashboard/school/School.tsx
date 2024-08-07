@@ -110,12 +110,14 @@ const School: FC<SchoolProps> = ({ authUser, view }) => {
           </Grid>
         )}
       </page.Section>
-      <page.Section>
-        <Typography variant="h5">
-          These teachers are invited to your school but have not joined yet
-        </Typography>
-        <TeacherInvitationTable authUser={authUser} />
-      </page.Section>
+      {authUser.teacher.is_admin && (
+        <page.Section>
+          <Typography variant="h5">
+            These teachers are invited to your school but have not joined yet
+          </Typography>
+          <TeacherInvitationTable authUser={authUser} />
+        </page.Section>
+      )}
       {authUser.teacher.is_admin && (
         <page.Section boxProps={{ bgcolor: "info.main" }}>
           <UpdateSchoolForm school={school} />
