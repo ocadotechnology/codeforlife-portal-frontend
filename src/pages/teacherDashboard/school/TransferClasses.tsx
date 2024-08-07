@@ -69,6 +69,7 @@ const TransferClasses: FC<TransferClassesProps> = ({ authUserId, user }) => {
         <Typography variant="h4" align="center" marginBottom={5}>
           Move all classes for teacher {user.first_name} {user.last_name}
         </Typography>
+        {/* TODO: discuss if this link is needed since cancel button is below */}
         <Link className="back-to" to={paths.teacher.dashboard.tab.school._}>
           dashboard
         </Link>
