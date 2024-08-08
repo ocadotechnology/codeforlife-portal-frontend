@@ -1,11 +1,7 @@
 import { Unstable_Grid2 as Grid, Typography } from "@mui/material"
 import { type FC } from "react"
 
-export interface QuoteProps {
-  children: string
-}
-
-const Quote: FC<QuoteProps> = ({ children }) => {
+const Quote: FC<{ children: string }> = ({ children }) => {
   return (
     <Typography
       sx={{

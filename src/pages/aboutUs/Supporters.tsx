@@ -1,7 +1,12 @@
-import { Unstable_Grid2 as Grid, Link, Stack, Typography } from "@mui/material"
+import {
+  Unstable_Grid2 as Grid,
+  Link as MuiLink,
+  Stack,
+  Typography,
+} from "@mui/material"
 import { type FC } from "react"
-
 import { Image } from "codeforlife/components"
+import { Link } from "codeforlife/components/router"
 
 import BarefootImage from "../../images/barefoot_logo.png"
 import BcsImage from "../../images/bcs_logo.png"
@@ -12,12 +17,10 @@ import Logo10xImage from "../../images/10x_logo.png"
 import MCSaatchiImage from "../../images/mc_saatchi_logo.png"
 import PressureCookerImage from "../../images/pressure_cooker_logo.png"
 
-export interface SupporterProps {
+const Supporter: FC<{
   desc: string
   src: string
-}
-
-const Supporter: FC<SupporterProps> = ({ desc, src }) => (
+}> = ({ desc, src }) => (
   <Image alt={desc} title={desc} src={src} style={{ width: "auto" }} />
 )
 
@@ -52,23 +55,13 @@ const Supporters: FC<SupportersProps> = () => {
           <Typography variant="h5">Developers</Typography>
           <Typography>
             To contribute, head over to{" "}
-            <Link
-              href={import.meta.env.VITE_LINK_PORTAL_GITHUB_HREF}
-              color="inherit"
-              underline="always"
-              target="_blank"
-            >
+            <Link to={import.meta.env.VITE_LINK_PORTAL_GITHUB} target="_blank">
               GitHub
             </Link>
             , check out the issue tracker, and get started. There you can
             suggest new features or assign yourself an issue to develop. You can
             find more info about how to do all these on our{" "}
-            <Link
-              href={import.meta.env.VITE_LINK_CFL_DOCS_HREF}
-              color="inherit"
-              underline="always"
-              target="_blank"
-            >
+            <Link to={import.meta.env.VITE_LINK_CFL_DOCS} target="_blank">
               docs on Gitbook
             </Link>
             .
@@ -76,14 +69,14 @@ const Supporters: FC<SupportersProps> = () => {
           <Typography variant="h5">Teachers, parents, and creatives</Typography>
           <Typography>
             Please get in touch through our{" "}
-            <Link
+            <MuiLink
             // TODO: Implement Freshdesk widget hook
             // onClick={() => {
             //   useFreshworksWidget("open")
             // }}
             >
               contact
-            </Link>{" "}
+            </MuiLink>{" "}
             form and let us know how you would like to get involved.
           </Typography>
           <Typography>

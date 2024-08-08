@@ -1,6 +1,5 @@
 import * as page from "codeforlife/components/page"
 import { type FC } from "react"
-import { useTheme } from "@mui/material"
 
 import AboutUsHeroImage from "../../images/about_us_hero_hexagon.png"
 import CodeForLife from "./CodeForLife"
@@ -13,8 +12,6 @@ import Supporters from "./Supporters"
 export interface AboutUsProps {}
 
 const AboutUs: FC<AboutUsProps> = () => {
-  const theme = useTheme()
-
   return (
     <page.Page>
       <page.Banner
@@ -31,19 +28,19 @@ const AboutUs: FC<AboutUsProps> = () => {
       <page.Section>
         <Statistics />
       </page.Section>
-      <page.Section boxProps={{ bgcolor: theme.palette.info.main }}>
+      <page.Section boxProps={{ bgcolor: "info.main" }}>
         <CodeForLife />
       </page.Section>
       <page.Section>
         <OcadoGroup />
       </page.Section>
-      <page.Section boxProps={{ bgcolor: theme.palette.info.main }}>
+      <page.Section boxProps={{ bgcolor: "info.main" }}>
         <Quotes />
       </page.Section>
       <page.Section>
         <Supporters />
       </page.Section>
-      <page.Section boxProps={{ bgcolor: theme.palette.info.main }}>
+      <page.Section boxProps={{ bgcolor: "info.main" }}>
         <Dedication />
       </page.Section>
     </page.Page>

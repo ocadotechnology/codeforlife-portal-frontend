@@ -1,12 +1,10 @@
 import { Stack, Typography } from "@mui/material"
 import { type FC } from "react"
 
-export interface StatisticProps {
+const Statistic: FC<{
   number: string
   description: string
-}
-
-const Statistic: FC<StatisticProps> = ({ number, description }) => (
+}> = ({ number, description }) => (
   <Stack>
     <Typography
       variant="h2"
