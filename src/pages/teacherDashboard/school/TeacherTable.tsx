@@ -9,6 +9,7 @@ import { Button, Typography } from "@mui/material"
 import { type FC } from "react"
 import { type SchoolTeacherUser } from "codeforlife/api"
 import { TablePagination } from "codeforlife/components"
+import { generatePath } from "react-router"
 import { useNavigate } from "codeforlife/hooks"
 
 import * as table from "../../../components/table"
@@ -17,7 +18,6 @@ import {
   type RetrieveUserResult,
   useLazyListUsersQuery,
 } from "../../../api/user"
-import { type TransferClassesProps } from "./TransferClasses"
 import { paths } from "../../../router"
 import { useSetTeacherAdminAccessMutation } from "../../../api/teacher"
 
@@ -26,9 +26,7 @@ export interface TeacherTableProps {
 }
 
 const TeacherTable: FC<TeacherTableProps> = ({ authUser }) => {
-  const navigate = useNavigate<{
-    transferClasses?: TransferClassesProps["user"]
-  }>()
+  const navigate = useNavigate()
   const [setTeacherAdminAccess] = useSetTeacherAdminAccessMutation()
 
   function showNotification(children: string, error: boolean = false) {
@@ -129,7 +127,12 @@ const TeacherTable: FC<TeacherTableProps> = ({ authUser }) => {
                     className="alert"
                     endIcon={<DeleteOutlineIcon />}
                     onClick={() => {
-                      navigate(".", { state: { transferClasses: user } })
+                      navigate(
+                        generatePath(
+                          paths.teacher.dashboard.tab.school.leave._,
+                          { userId: user.id },
+                        ),
+                      )
                     }}
                   >
                     Delete

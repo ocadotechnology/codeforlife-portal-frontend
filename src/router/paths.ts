@@ -20,17 +20,25 @@ const paths = _("", {
     onboarding: _("/onboarding"),
     dashboard: _("/dashboard", {
       tab: _("/:tab", {
-        school: _({ tab: "school" }),
+        school: _(
+          { tab: "school" },
+          {
+            leave: _("/leave/:userId"),
+          },
+        ),
         classes: _(
           { tab: "classes" },
           {
-            editClass: _("/:accessCode", {
+            class: _("/:classId", {
+              joinRequest: _("/join-request/:userId"),
               additional: _("/additional"),
-              studentCredentials: _("/student-credentials"),
-              editStudent: _("/edit/?studentIds={studentIds}"),
-              resetStudents: _("/reset/?studentIds={studentIds}"),
-              moveStudents: _("/move/?studentIds={studentIds}"),
-              releaseStudents: _("/release/?studentIds={studentIds}"),
+              students: _("/students", {
+                credentials: _("/credentials"),
+                edit: _("/edit"),
+                reset: _("/reset"),
+                move: _("/move"),
+                release: _("/release"),
+              }),
             }),
           },
         ),
@@ -41,10 +49,6 @@ const paths = _("", {
             backupTokens: _("/backup-tokens"),
           },
         ),
-      }),
-      student: _("/student", {
-        accept: _("/accept/:studentId"),
-        added: _("/added"),
       }),
     }),
   }),

@@ -5,6 +5,7 @@ import { type RetrieveUserResult } from "../../../api/user"
 
 export interface AccountProps {
   authUser: SchoolTeacherUser<RetrieveUserResult>
+  view?: "otp"
 }
 
 const Account: FC<AccountProps> = ({ authUser }) => {

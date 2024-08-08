@@ -6,37 +6,35 @@ import {
   Stack,
   Typography,
 } from "@mui/material"
-import { useLocation, useNavigate } from "codeforlife/hooks"
 import { type FC } from "react"
 import { type SchoolTeacherUser } from "codeforlife/api"
+import { generatePath } from "react-router"
+import { useNavigate } from "codeforlife/hooks"
 
-import TransferClasses, { type TransferClassesProps } from "./TransferClasses"
 import InviteTeacherForm from "./InviteTeacherForm"
+import Leave from "./Leave"
 import { type RetrieveUserResult } from "../../../api/user"
 import TeacherInvitationTable from "./TeacherInvitationTable"
 import TeacherTable from "./TeacherTable"
 import UpdateSchoolForm from "./UpdateSchoolForm"
+import { paths } from "../../../router"
 import { useRetrieveSchoolQuery } from "../../../api/school"
 
 export interface SchoolProps {
   authUser: SchoolTeacherUser<RetrieveUserResult>
+  view?: "leave"
 }
 
-const School: FC<SchoolProps> = ({ authUser }) => {
+const School: FC<SchoolProps> = ({ authUser, view }) => {
+  const navigate = useNavigate()
   const { data: school, isError } = useRetrieveSchoolQuery(
     authUser.teacher.school,
   )
-  const { state } = useLocation<{
-    transferClasses: TransferClassesProps["user"]
-  }>()
-  const navigate = useNavigate<{
-    transferClasses?: TransferClassesProps["user"]
-  }>()
 
-  if (state?.transferClasses) {
-    return (
-      <TransferClasses authUserId={authUser.id} user={state.transferClasses} />
-    )
+  if (view) {
+    return {
+      leave: <Leave authUserId={authUser.id} />,
+    }[view]
   }
 
   // TODO: handle this better
@@ -75,7 +73,11 @@ const School: FC<SchoolProps> = ({ authUser }) => {
             </Typography>
             <Button
               onClick={() => {
-                navigate(".", { state: { transferClasses: authUser } })
+                navigate(
+                  generatePath(paths.teacher.dashboard.tab.school.leave._, {
+                    userId: authUser.id,
+                  }),
+                )
               }}
             >
               Leave school or club
