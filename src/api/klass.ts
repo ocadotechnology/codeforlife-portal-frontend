@@ -1,11 +1,3 @@
-import { type Class, urls } from "codeforlife/api"
-import getReadClassEndpoints, {
-  CLASS_TAG,
-  type ListClassesArg,
-  type ListClassesResult,
-  type RetrieveClassArg,
-  type RetrieveClassResult,
-} from "codeforlife/api/endpoints/klass"
 import {
   type BulkUpdateArg,
   type BulkUpdateResult,
@@ -18,6 +10,14 @@ import {
   buildUrl,
   tagData,
 } from "codeforlife/utils/api"
+import { type Class, urls } from "codeforlife/api"
+import getReadClassEndpoints, {
+  CLASS_TAG,
+  type ListClassesArg,
+  type ListClassesResult,
+  type RetrieveClassArg,
+  type RetrieveClassResult,
+} from "codeforlife/api/endpoints/klass"
 
 import api from "."
 
