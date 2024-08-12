@@ -1,8 +1,4 @@
-import {
-  Unstable_Grid2 as Grid,
-  Stack,
-  Typography,
-} from "@mui/material"
+import { Unstable_Grid2 as Grid, Stack, Typography } from "@mui/material"
 import { type FC } from "react"
 import { Image } from "codeforlife/components"
 import { Link } from "codeforlife/components/router"
@@ -67,8 +63,7 @@ const Supporters: FC<SupportersProps> = () => {
           </Typography>
           <Typography variant="h5">Teachers, parents, and creatives</Typography>
           <Typography>
-            Please get in touch through our{" "}
-            {/*<Link*/}
+            Please get in touch through our {/*<Link*/}
             {/*TODO: Implement Freshdesk widget hook*/}
             {/*onClick={() => {*/}
             {/*  useFreshworksWidget("open")*/}
