@@ -13,7 +13,7 @@ const Python: FC<PythonProps> = () => {
     <Introduction
       header="Python coding club"
       img={{
-        alt: "adults following Python club on laptops",
+        desc: "Adults following Python club on laptops",
         src: PythonClubImage,
       }}
       direction="row-reverse"
