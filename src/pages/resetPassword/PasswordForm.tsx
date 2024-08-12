@@ -50,7 +50,9 @@ const PasswordForm: FC<PasswordFormProps> = ({ userType, userId, token }) => {
           password: "",
           password_repeat: "",
         }}
-        onSubmit={submitForm(resetPassword)}
+        onSubmit={submitForm(resetPassword, {
+          exclude: ["password_repeat"],
+        })}
       >
         <NewPasswordField userType={userType} />
         <Stack mt={3} direction="row" gap={5} justifyContent="center">

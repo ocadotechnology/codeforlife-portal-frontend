@@ -1,8 +1,8 @@
 import * as forms from "codeforlife/components/form"
 import { Stack, Typography } from "@mui/material"
+import { getDirty, isDirty, submitForm } from "codeforlife/utils/form"
 import { type FC } from "react"
 import { LinkButton } from "codeforlife/components/router"
-import { submitForm } from "codeforlife/utils/form"
 import { useNavigate } from "codeforlife/hooks"
 
 import {
@@ -10,6 +10,7 @@ import {
   type UpdateUserArg,
   useUpdateUserMutation,
 } from "../../api/user"
+import { indyPasswordSchema, studentPasswordSchema } from "../../app/schemas"
 import { LastNameField } from "../../components/form"
 
 export interface UpdateAccountFormProps {
@@ -69,20 +70,22 @@ const UpdateAccountForm: FC<UpdateAccountFormProps> = ({ user }) => {
       <forms.Form
         initialValues={initialValues}
         onSubmit={submitForm(updateUser, {
-          onlyDirtyValues: initialValues,
           exclude: ["password_repeat"],
           clean: values => {
-            if (user.student) {
-              const { id, password, current_password } =
-                values as typeof initialStudentValues
-
-              return { id, password, current_password }
+            const arg: UpdateUserArg = { id: values.id }
+            if (user.student || isDirty(values, initialValues, "password")) {
+              arg.password = values.password
+              arg.current_password = values.current_password
+            } else if (isDirty(values, initialValues, "email")) {
+              arg.email = values.email
+              arg.current_password = values.current_password
+            } else if (isDirty(values, initialValues, "first_name")) {
+              arg.first_name = values.first_name
+            } else if (isDirty(values, initialValues, "last_name")) {
+              arg.last_name = values.last_name
             }
 
-            const { id, first_name, last_name } =
-              values as typeof initialIndyValues
-
-            return { id, first_name, last_name }
+            return arg
           },
           then: (_, values) => {
             const messages = [
@@ -111,11 +114,19 @@ const UpdateAccountForm: FC<UpdateAccountFormProps> = ({ user }) => {
         })}
       >
         {form => {
-          // Checking if individual fields are dirty is not currently supported.
-          // https://github.com/jaredpalmer/formik/issues/1421
-          const dirty = {
-            email: form.values.email !== form.initialValues.email,
-            password: form.values.password !== form.initialValues.password,
+          const dirty = getDirty(form.values, initialValues, [
+            "email",
+            "password",
+          ])
+
+          let passwordSchema = user.student
+            ? studentPasswordSchema()
+            : indyPasswordSchema()
+          if (form.values.current_password !== initialValues.current_password) {
+            passwordSchema = passwordSchema.notOneOf(
+              [form.values.current_password],
+              "cannot match your current password",
+            )
           }
 
           return (
@@ -128,7 +139,11 @@ const UpdateAccountForm: FC<UpdateAccountFormProps> = ({ user }) => {
                 </>
               )}
               <forms.PasswordField
+                required={Boolean(user.student)}
+                label="New password"
+                repeatFieldProps={{ label: "Repeat new password" }}
                 withRepeatField={Boolean(user.student) || dirty.password}
+                schema={passwordSchema}
               />
               {(Boolean(user.student) || dirty.email || dirty.password) && (
                 <forms.PasswordField
