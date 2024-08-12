@@ -1,6 +1,5 @@
 import {
   Unstable_Grid2 as Grid,
-  Link as MuiLink,
   Stack,
   Typography,
 } from "@mui/material"
@@ -69,14 +68,14 @@ const Supporters: FC<SupportersProps> = () => {
           <Typography variant="h5">Teachers, parents, and creatives</Typography>
           <Typography>
             Please get in touch through our{" "}
-            <MuiLink
-            // TODO: Implement Freshdesk widget hook
-            // onClick={() => {
-            //   useFreshworksWidget("open")
-            // }}
-            >
-              contact
-            </MuiLink>{" "}
+            {/*<Link*/}
+            {/*TODO: Implement Freshdesk widget hook*/}
+            {/*onClick={() => {*/}
+            {/*  useFreshworksWidget("open")*/}
+            {/*}}*/}
+            {/*>*/}
+            {/*  contact*/}
+            {/*</Link>{" "}*/}
             form and let us know how you would like to get involved.
           </Typography>
           <Typography>
