@@ -12,7 +12,10 @@ const Primary: FC<PrimaryProps> = () => {
   return (
     <Introduction
       header="Primary coding club"
-      img={{ alt: "girl looking at Code for Life website", src: AboutUsImage }}
+      img={{
+        desc: "Girl looking at Code for Life website",
+        src: AboutUsImage,
+      }}
     >
       <Typography>
         Download your FREE coding club pack for students aged 7-11. This pack
