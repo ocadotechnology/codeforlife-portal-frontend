@@ -2,7 +2,6 @@ import {
   type Arg,
   type CreateArg,
   type CreateResult,
-  type DestroyArg,
   type DestroyResult,
   type UpdateArg,
   type UpdateResult,
@@ -41,10 +40,7 @@ export type ResetPasswordArg = UpdateArg<User, "password", never> & {
 }
 
 export type VerifyEmailAddressResult = UpdateResult<User>
-export type VerifyEmailAddressArg = {
-  id: User["id"]
-  token: string
-}
+export type VerifyEmailAddressArg = Pick<User, "id"> & { token: string }
 
 export type UpdateUserResult = UpdateResult<User>
 export type UpdateUserArg = UpdateArg<
@@ -54,7 +50,9 @@ export type UpdateUserArg = UpdateArg<
 > & { current_password?: string }
 
 export type DestroyIndependentUserResult = DestroyResult
-export type DestroyIndependentUserArg = DestroyArg<User>
+export type DestroyIndependentUserArg = Pick<User, "id" | "password"> & {
+  remove_from_newsletter: boolean
+}
 
 export type CreateIndependentUserResult = CreateResult<User>
 export type CreateIndependentUserArg = CreateArg<
@@ -64,6 +62,9 @@ export type CreateIndependentUserArg = CreateArg<
   date_of_birth: string
   add_to_newsletter: boolean
 }
+
+export type ValidatePasswordResult = null
+export type ValidatePasswordArg = Pick<User, "id" | "password">
 
 const userApi = api.injectEndpoints({
   endpoints: build => ({
@@ -122,9 +123,10 @@ const userApi = api.injectEndpoints({
       DestroyIndependentUserResult,
       DestroyIndependentUserArg
     >({
-      query: id => ({
+      query: ({ id, ...body }) => ({
         url: buildUrl(urls.user.detail, { url: { id } }),
         method: "DELETE",
+        body,
       }),
       invalidatesTags: tagData(USER_TAG),
     }),
@@ -134,6 +136,14 @@ const userApi = api.injectEndpoints({
     >({
       query: body => ({
         url: urls.user.list,
+        method: "POST",
+        body,
+      }),
+    }),
+    // TODO: create action on the backend.
+    validatePassword: build.query<ValidatePasswordResult, ValidatePasswordArg>({
+      query: ({ id, ...body }) => ({
+        url: buildUrl(urls.user.detail, { url: { id } }),
         method: "POST",
         body,
       }),
@@ -155,4 +165,6 @@ export const {
   useLazyRetrieveUserQuery,
   useListUsersQuery,
   useLazyListUsersQuery,
+  useValidatePasswordQuery,
+  useLazyValidatePasswordQuery,
 } = userApi

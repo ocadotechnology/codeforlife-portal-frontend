@@ -4,6 +4,7 @@ import { type FC } from "react"
 import { LinkButton } from "codeforlife/components/router"
 import { Typography } from "@mui/material"
 
+import DeleteAccountForm from "./DeleteAccountForm"
 import UpdateAccountForm from "./UpdateAccountForm"
 import { paths } from "../../router"
 import { useRetrieveUserQuery } from "../../api/user"
@@ -34,7 +35,7 @@ const _StudentAccount: FC<SessionMetadata> = ({ user_type, user_id }) =>
             <LinkButton to={paths.indy.dashboard.joinClass._}>Join</LinkButton>
           </page.Section>
           <page.Section>
-            {/* <DeleteAccountForm userType="independent" /> */}
+            <DeleteAccountForm user={user} />
           </page.Section>
         </>
       )}
