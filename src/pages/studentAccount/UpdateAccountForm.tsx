@@ -91,13 +91,13 @@ const UpdateAccountForm: FC<UpdateAccountFormProps> = ({ user }) => {
             const messages = [
               "Your account details have been changed successfully.",
             ]
-            if (values.email !== initialValues.email) {
+            if (isDirty(values, initialValues, "email")) {
               // TODO: implement this behavior on the backend.
               messages.push(
                 "Your email will be changed once you have verified it, until then you can still log in with your old email.",
               )
             }
-            if (values.password !== initialValues.password) {
+            if (isDirty(values, initialValues, "password")) {
               messages.push(
                 "Going forward, please login using your new password.",
               )
@@ -122,7 +122,7 @@ const UpdateAccountForm: FC<UpdateAccountFormProps> = ({ user }) => {
           let passwordSchema = user.student
             ? studentPasswordSchema()
             : indyPasswordSchema()
-          if (form.values.current_password !== initialValues.current_password) {
+          if (isDirty(form.values, initialValues, "current_password")) {
             passwordSchema = passwordSchema.notOneOf(
               [form.values.current_password],
               "cannot match your current password",
