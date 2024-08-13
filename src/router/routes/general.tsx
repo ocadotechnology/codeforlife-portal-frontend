@@ -2,7 +2,7 @@ import { Route } from "react-router-dom"
 
 import AboutUs from "../../pages/aboutUs/AboutUs"
 import CodingClubs from "../../pages/codingClubs/CodingClubs"
-import GetInvolved from '../../pages/getInvolved/GetInvolved';
+import GetInvolved from "../../pages/getInvolved/GetInvolved"
 import Home from "../../pages/home/Home"
 // import Contribute from '../../pages/contribute/Contribute';
 // import HomeLearning from '../../pages/homeLearning/HomeLearning';
