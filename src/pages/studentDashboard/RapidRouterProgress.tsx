@@ -1,7 +1,8 @@
-import { Button, Stack, Typography } from "@mui/material"
+import { Stack, Typography } from "@mui/material"
 import { ChevronRight as ChevronRightIcon } from "@mui/icons-material"
 import { type FC } from "react"
 import { Image } from "codeforlife/components"
+import { LinkButton } from "codeforlife/components/router"
 
 // import { useRetrieveUserQuery } from "../../api/rapidRouter"
 import RRLogoImage from "../../images/RR_logo.svg"
@@ -40,13 +41,14 @@ const RapidRouterProgress: FC<RapidRouterProgressProps> = () => {
     <Stack alignItems="center" textAlign="center">
       <Image alt={"RR_logo"} src={RRLogoImage} maxWidth="200px" />
       <GetRapidRouterScores />
-      <Button
+      <LinkButton
         style={{ marginTop: 20 }}
         endIcon={<ChevronRightIcon />}
-        href={paths.rapidRouter._}
+        // TODO: link to rapid router microservice.
+        to={paths.rapidRouter.scoreboard._}
       >
         Check scoreboard
-      </Button>
+      </LinkButton>
     </Stack>
   )
 }

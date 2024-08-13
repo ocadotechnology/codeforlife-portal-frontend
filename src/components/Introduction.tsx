@@ -10,7 +10,7 @@ import type { ResponsiveStyleValue } from "@mui/system"
 
 export interface IntroductionProps {
   header: string
-  img: { alt: string; src: string }
+  img: { desc: string; src: string }
   children: ReactNode
   direction?: ResponsiveStyleValue<GridDirection>
 }
@@ -36,7 +36,7 @@ const Introduction: FC<IntroductionProps> = ({
           </Stack>
         </Grid>
         <Grid xs={12} md={6} className="flex-center">
-          <Image alt={img.alt} src={img.src} />
+          <Image alt={img.desc} title={img.desc} src={img.src} />
         </Grid>
       </Grid>
     </>
