@@ -37,7 +37,7 @@ const TeacherForm: FC<TeacherFormProps> = () => {
           },
         }}
         onSubmit={submitForm(createTeacher, {
-          // TODO: exclude: ["user.password_repeat"],
+          exclude: ["user.password_repeat"],
           then: () => {
             navigate(paths.register.emailVerification.userType.teacher._)
           },
