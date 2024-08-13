@@ -13,7 +13,7 @@ const Games: FC<GamesProps> = ({ isStudent }) => {
   return (
     <Stack spacing={4} alignItems="center">
       <Typography variant="h4" textAlign="center">
-        Your {isStudent && "class"} games
+        Your games
       </Typography>
       <Stack direction="row" gap={5}>
         <Card
