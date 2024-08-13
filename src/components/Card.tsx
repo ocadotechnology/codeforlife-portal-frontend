@@ -7,15 +7,13 @@ import {
   CardMedia,
   type CardMediaProps,
   Card as MuiCard,
-  type CardProps as Props,
+  type CardProps as MuiCardProps,
   Typography,
 } from "@mui/material"
 
-export interface CardProps extends Props {
-  text: {
-    title: string
-    content: string
-  }
+export interface CardProps extends MuiCardProps {
+  title: string
+  description: string
   mediaProps: {
     image: NonNullable<CardMediaProps["image"]>
     title: NonNullable<CardMediaProps["title"]>
@@ -24,7 +22,8 @@ export interface CardProps extends Props {
 }
 
 const Card: FC<CardProps> = ({
-  text,
+  title,
+  description,
   mediaProps,
   buttonProps,
   style,
@@ -43,8 +42,8 @@ const Card: FC<CardProps> = ({
     >
       <CardMedia component="img" height={242} {...mediaProps} />
       <CardContent sx={{ flexGrow: 1 }}>
-        <Typography variant="h5">{text.title}</Typography>
-        <Typography mb={0}>{text.content}</Typography>
+        <Typography variant="h5">{title}</Typography>
+        <Typography mb={0}>{description}</Typography>
       </CardContent>
       <CardActions>
         <Button {...buttonProps} />

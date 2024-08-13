@@ -31,11 +31,8 @@ const GetInvolved: FC<GetInvolvedProps> = () => {
         <Grid container spacing={4}>
           <Grid xs={12} md={6} lg={4}>
             <Card
-              text={{
-                title: "Starting a coding club of your own",
-                content:
-                  "Become a Code for Life ambassador by starting up a coding club. Find out more about how you can get involved with this by visiting our coding club page.",
-              }}
+              title="Starting a coding club of your own"
+              description="Become a Code for Life ambassador by starting up a coding club. Find out more about how you can get involved with this by visiting our coding club page."
               mediaProps={{
                 title: "Student showing their work to teacher",
                 image: ClubsImg,
@@ -51,11 +48,8 @@ const GetInvolved: FC<GetInvolvedProps> = () => {
           </Grid>
           <Grid xs={12} md={6} lg={4}>
             <Card
-              text={{
-                title: "Contribute through code",
-                content:
-                  "We welcome volunteers from all backgrounds to help us with our coding adventure. Take a look at our contribution guide to find out how to get involved in our open source projects.",
-              }}
+              title="Contribute through code"
+              description="We welcome volunteers from all backgrounds to help us with our coding adventure. Take a look at our contribution guide to find out how to get involved in our open source projects."
               mediaProps={{ title: "Github repository page", image: GithubImg }}
               buttonProps={{
                 onClick: () => {
@@ -68,11 +62,8 @@ const GetInvolved: FC<GetInvolvedProps> = () => {
           </Grid>
           <Grid xs={12} md={6} lg={4}>
             <Card
-              text={{
-                title: "University partnerships",
-                content:
-                  "Please get in touch at codeforlife@ocado.com if you are interested in working on Code for Life projects with your students including coding, user experience, data analytics and new feature design.",
-              }}
+              title="University partnerships"
+              description="Please get in touch at codeforlife@ocado.com if you are interested in working on Code for Life projects with your students including coding, user experience, data analytics and new feature design."
               mediaProps={{
                 title: "Three students looking at laptops",
                 image: UniversitiesImg,
