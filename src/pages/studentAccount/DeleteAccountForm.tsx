@@ -95,10 +95,7 @@ const DeleteAccountForm: FC<DeleteAccountFormProps> = ({ user }) => {
         If you no longer wish to have a Code for Life account, you can delete it
         by confirming below. You will receive an email to confirm this decision.
       </Typography>
-      <Typography fontWeight="bold">
-        This can&apos;t be reversed. All classes you&apos;ve created will be
-        permanently erased.
-      </Typography>
+      <Typography fontWeight="bold">This can&apos;t be reversed.</Typography>
       <forms.Form
         initialValues={{
           id: user.id,
@@ -122,6 +119,7 @@ const DeleteAccountForm: FC<DeleteAccountFormProps> = ({ user }) => {
             />
           </Grid>
           <Grid xs={12} sm={6}>
+            {/* TODO: only display this checkbox if the user has been added to the newsletter. */}
             <forms.CheckboxField
               name="remove_from_newsletter"
               formControlLabelProps={{
