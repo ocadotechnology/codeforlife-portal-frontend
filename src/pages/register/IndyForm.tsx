@@ -40,6 +40,7 @@ const IndyForm: FC<IndyFormProps> = () => {
           password_repeat: "",
         }}
         onSubmit={submitForm(createIndependentUser, {
+          exclude: ["password_repeat", "meets_criteria"],
           then: () => {
             navigate(paths.register.emailVerification.userType.indy._)
           },

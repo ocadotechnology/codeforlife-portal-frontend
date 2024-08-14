@@ -1,11 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react"
-import Cookies from "js-cookie"
-
+import { getCsrfCookie, logout } from "codeforlife/utils/auth"
 import { tagTypes } from "codeforlife/api"
-
-// https://docs.djangoproject.com/en/3.2/ref/csrf/
-const getCsrfCookie = () =>
-  Cookies.get(`${import.meta.env.VITE_SERVICE_NAME}_csrftoken`)
 
 const fetch = fetchBaseQuery({
   baseUrl: import.meta.env.VITE_API_BASE_URL,
@@ -58,8 +53,7 @@ const api = createApi({
         } catch (error) {
           console.error("Failed to log out...", error)
         } finally {
-          Cookies.remove("session_key")
-          Cookies.remove("session_metadata")
+          logout()
           dispatch(api.util.resetApiState())
         }
       },
