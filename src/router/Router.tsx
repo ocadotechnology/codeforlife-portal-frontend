@@ -2,7 +2,7 @@ import { BrowserRouter, Routes } from "react-router-dom"
 import type { FC } from "react"
 
 // import Header from '../../features/header/Header';
-// import Footer from '../../features/footer/Footer';
+import Footer from "../features/footer/Footer"
 import authentication from "./routes/authentication"
 import error from "./routes/error"
 import general from "./routes/general"
@@ -21,7 +21,7 @@ const Router: FC<RouterProps> = () => (
       {student}
       {error} {/* this must be last */}
     </Routes>
-    {/* <Footer /> */}
+    <Footer />
   </BrowserRouter>
 )
 

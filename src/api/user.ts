@@ -66,6 +66,9 @@ export type CreateIndependentUserArg = CreateArg<
 export type ValidatePasswordResult = null
 export type ValidatePasswordArg = Pick<User, "id" | "password">
 
+export type RegisterToNewsletterResult = null
+export type RegisterToNewsletterArg = { email: string }
+
 const userApi = api.injectEndpoints({
   endpoints: build => ({
     ...getReadUserEndpoints(build),
@@ -148,6 +151,16 @@ const userApi = api.injectEndpoints({
         body,
       }),
     }),
+    registerToNewsletter: build.mutation<
+      RegisterToNewsletterResult,
+      RegisterToNewsletterArg
+    >({
+      query: body => ({
+        url: urls.user.list + "register-to-newsletter/",
+        method: "POST",
+        body,
+      }),
+    }),
   }),
 })
 
@@ -167,4 +180,5 @@ export const {
   useLazyListUsersQuery,
   useValidatePasswordQuery,
   useLazyValidatePasswordQuery,
+  useRegisterToNewsletterMutation,
 } = userApi
