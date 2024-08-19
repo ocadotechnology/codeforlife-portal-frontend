@@ -8,7 +8,7 @@ import { useNavigate } from "codeforlife/hooks"
 
 import { LastNameField, NewPasswordField } from "../../components/form"
 import BaseForm from "./BaseForm"
-import { paths } from "../../router"
+import { paths } from "../../routes"
 import { useCreateTeacherMutation } from "../../api/teacher"
 
 export interface TeacherFormProps {}

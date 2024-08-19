@@ -6,7 +6,7 @@ import { ThemedBox } from "codeforlife/theme"
 
 import EmailForm from "./EmailForm"
 import PasswordForm from "./PasswordForm"
-import { paths } from "../../router"
+import { paths } from "../../routes"
 import { themeOptions } from "../../app/theme"
 
 export interface ResetPasswordProps {}

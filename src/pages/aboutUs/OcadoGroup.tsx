@@ -4,6 +4,7 @@ import { Typography } from "@mui/material"
 
 import AboutUsOcadoImage from "../../images/about_us_ocado.jpg"
 import Introduction from "../../components/Introduction"
+import { LINK_SKILLS_FOR_THE_FUTURE } from "../../app/env"
 
 export interface OcadoGroupProps {}
 
@@ -29,10 +30,7 @@ const OcadoGroup: FC<OcadoGroupProps> = () => {
         e-Commerce, fulfilment and logistic platform.
       </Typography>
       <Typography mb={0}>
-        <Link
-          to={import.meta.env.VITE_LINK_SKILLS_FOR_THE_FUTURE}
-          target="_blank"
-        >
+        <Link to={LINK_SKILLS_FOR_THE_FUTURE} target="_blank">
           Skills for the Future
         </Link>{" "}
         is one of Ocado Group&apos;s core Corporate Responsibility pillars,

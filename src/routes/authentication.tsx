@@ -1,10 +1,10 @@
 import { Route } from "react-router-dom"
 
-import EmailVerification from "../../pages/emailVerification/EmailVerification"
-import Login from "../../pages/login/Login"
-import Register from "../../pages/register/Register"
-import ResetPassword from "../../pages/resetPassword/ResetPassword"
-import paths from "../paths"
+import EmailVerification from "../pages/emailVerification/EmailVerification"
+import Login from "../pages/login/Login"
+import Register from "../pages/register/Register"
+import ResetPassword from "../pages/resetPassword/ResetPassword"
+import paths from "./paths"
 
 const authentication = (
   <>

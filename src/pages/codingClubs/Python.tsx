@@ -3,6 +3,10 @@ import { Download as DownloadIcon } from "@mui/icons-material"
 import { type FC } from "react"
 import { Typography } from "@mui/material"
 
+import {
+  LINK_PYTHON_PACK_DOWNLOAD,
+  LINK_PYTHON_PACK_GITBOOK,
+} from "../../app/env"
 import Introduction from "../../components/Introduction"
 import PythonClubImage from "../../images/coding_club_python_pack.png"
 
@@ -27,10 +31,7 @@ const Python: FC<PythonProps> = () => {
       </Typography>
       <Typography>
         View the resources{" "}
-        <Link
-          to={import.meta.env.VITE_LINK_PYTHON_PACK_GITBOOK}
-          target="_blank"
-        >
+        <Link to={LINK_PYTHON_PACK_GITBOOK} target="_blank">
           online here
         </Link>
         .
@@ -38,7 +39,7 @@ const Python: FC<PythonProps> = () => {
       {/*TODO: Link to GTM for analytics*/}
       <LinkButton
         sx={{ marginTop: "auto" }}
-        to={import.meta.env.VITE_LINK_PYTHON_PACK_DOWNLOAD}
+        to={LINK_PYTHON_PACK_DOWNLOAD}
         target="_blank"
         endIcon={<DownloadIcon />}
       >

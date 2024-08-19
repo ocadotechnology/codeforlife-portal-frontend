@@ -4,8 +4,9 @@ import { Stack, Typography } from "@mui/material"
 import { type FC } from "react"
 import { Send as SendIcon } from "@mui/icons-material"
 
+import { GMAIL_FILTERS_PASSWORD_RESET_REQUEST } from "../../app/env"
 import { OpenInEmailButtons } from "../../components"
-import { paths } from "../../router"
+import { paths } from "../../routes"
 import { useLazyRequestPasswordResetQuery } from "../../api/user"
 
 export interface EmailFormProps {}
@@ -23,9 +24,7 @@ const EmailForm: FC<EmailFormProps> = () => {
         reset your password. Make sure to check your <strong>spam</strong>.
       </Typography>
       <SendIcon color="white" sx={{ fontSize: "100px", marginY: 5 }} />
-      <OpenInEmailButtons
-        gmailFilters={import.meta.env.VITE_GMAIL_FILTERS_PASSWORD_RESET_REQUEST}
-      />
+      <OpenInEmailButtons gmailFilters={GMAIL_FILTERS_PASSWORD_RESET_REQUEST} />
       <Link to={paths._} className="back-to">
         homepage
       </Link>
@@ -44,7 +43,7 @@ const EmailForm: FC<EmailFormProps> = () => {
       <form.Form
         initialValues={{ email: "" }}
         onSubmit={values => {
-          requestPasswordReset(values)
+          void requestPasswordReset(values)
         }}
       >
         <form.EmailField required />

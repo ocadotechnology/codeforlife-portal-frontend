@@ -1,9 +1,9 @@
 import { Route } from "react-router-dom"
 
 // import Student from '../../pages/student/Student';
-import StudentAccount from "../../pages/studentAccount/StudentAccount"
-import StudentDashboard from "../../pages/studentDashboard/StudentDashboard"
-import paths from "../paths"
+import StudentAccount from "../pages/studentAccount/StudentAccount"
+import StudentDashboard from "../pages/studentDashboard/StudentDashboard"
+import paths from "./paths"
 
 const student = (
   <>

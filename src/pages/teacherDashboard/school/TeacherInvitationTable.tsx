@@ -4,11 +4,14 @@ import {
   DoNotDisturb as DoNotDisturbIcon,
   EmailOutlined as EmailOutlinedIcon,
 } from "@mui/icons-material"
+import type {
+  BaseQueryFn,
+  TypedMutationTrigger,
+} from "@reduxjs/toolkit/query/react"
 import { Button, Typography } from "@mui/material"
 import { type FC } from "react"
 import { type SchoolTeacherUser } from "codeforlife/api"
 import { TablePagination } from "codeforlife/components"
-import type { TypedMutationTrigger } from "@reduxjs/toolkit/query/react"
 import { useNavigate } from "codeforlife/hooks"
 
 import * as table from "../../../components/table"
@@ -38,13 +41,14 @@ const TeacherInvitationTable: FC<TeacherInvitationTableProps> = ({
     })
   }
 
-  function handleClickAction(
-    mutationTrigger: TypedMutationTrigger<any, number, any>,
+  function handleClickAction<ResultType, BaseQuery extends BaseQueryFn>(
+    mutationTrigger: TypedMutationTrigger<ResultType, number, BaseQuery>,
     id: number,
     successMessage: string,
     errorMessage: string,
   ) {
     return () => {
+      // @ts-expect-error id is valid type
       mutationTrigger(id)
         .unwrap()
         .then(() => {
@@ -65,7 +69,7 @@ const TeacherInvitationTable: FC<TeacherInvitationTableProps> = ({
         <table.Table
           className="body"
           titles={
-            authUser.teacher!.is_admin
+            authUser.teacher.is_admin
               ? ["Name", "Administrator status", "Actions"]
               : ["Name", "Administrator status"]
           }

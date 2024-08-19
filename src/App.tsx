@@ -1,16 +1,14 @@
-import { CssBaseline, ThemeProvider } from "@mui/material"
-import type { FC } from "react"
+import { type FC } from "react"
+import { App as _ } from "codeforlife/components"
 
-import Router from "./router"
+import routes from "./routes"
+import store from "./app/store"
 import theme from "./app/theme"
 
-const App: FC = () => {
-  return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <Router />
-    </ThemeProvider>
-  )
-}
+export interface AppProps {}
+
+const App: FC<AppProps> = () => (
+  <_ store={store} theme={theme} routes={routes} />
+)
 
 export default App

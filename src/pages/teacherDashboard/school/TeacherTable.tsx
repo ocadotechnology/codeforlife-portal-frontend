@@ -18,7 +18,7 @@ import {
   type RetrieveUserResult,
   useLazyListUsersQuery,
 } from "../../../api/user"
-import { paths } from "../../../router"
+import { paths } from "../../../routes"
 import { useSetTeacherAdminAccessMutation } from "../../../api/teacher"
 
 export interface TeacherTableProps {
@@ -137,6 +137,7 @@ const TeacherTable: FC<TeacherTableProps> = ({ authUser }) => {
                   >
                     Delete
                   </Button>
+                  {/* eslint-disable-next-line no-constant-binary-expression */}
                   {true && ( // TODO check if user has otp enabled
                     <Button
                       endIcon={<DoDisturbOnOutlinedIcon />}

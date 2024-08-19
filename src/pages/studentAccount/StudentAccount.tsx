@@ -1,12 +1,13 @@
 import * as page from "codeforlife/components/page"
-import { type SessionMetadata, useQueryManager } from "codeforlife/hooks"
 import { type FC } from "react"
 import { LinkButton } from "codeforlife/components/router"
+import { type SessionMetadata } from "codeforlife/hooks"
 import { Typography } from "@mui/material"
+import { handleQueryState } from "codeforlife/utils/api"
 
 import DeleteAccountForm from "./DeleteAccountForm"
 import UpdateAccountForm from "./UpdateAccountForm"
-import { paths } from "../../router"
+import { paths } from "../../routes"
 import { useRetrieveUserQuery } from "../../api/user"
 
 export interface StudentAccountProps {
@@ -14,7 +15,7 @@ export interface StudentAccountProps {
 }
 
 const _StudentAccount: FC<SessionMetadata> = ({ user_type, user_id }) =>
-  useQueryManager(useRetrieveUserQuery, user_id, user => (
+  handleQueryState(useRetrieveUserQuery(user_id), user => (
     <>
       <page.Banner
         header={`Welcome, ${user.first_name}`}

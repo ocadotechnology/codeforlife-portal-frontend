@@ -6,7 +6,7 @@ import { Link } from "codeforlife/components/router"
 import ReubenPhoto from "../../images/reuben.png"
 import RobPhoto from "../../images/rob.png"
 import SianPhoto from "../../images/sian.png"
-import { paths } from "../../router"
+import { paths } from "../../routes"
 
 const Column: FC<{
   img: ImageProps

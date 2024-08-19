@@ -70,7 +70,7 @@ const studentApi = api.injectEndpoints({
         method: "PUT",
         body,
       }),
-      invalidatesTags: tagData("User", "user"),
+      invalidatesTags: tagData("User", { id: "user" }),
     }),
     transferStudents: build.mutation<
       TransferStudentsResult,
@@ -81,7 +81,7 @@ const studentApi = api.injectEndpoints({
         method: "PUT",
         body,
       }),
-      invalidatesTags: tagData("User", "user"),
+      invalidatesTags: tagData("User", { id: "user" }),
     }),
     resetStudentsPassword: build.mutation<
       ResetStudentsPasswordResult,
@@ -99,7 +99,7 @@ const studentApi = api.injectEndpoints({
         method: "DELETE",
         body,
       }),
-      invalidatesTags: tagData("User", "user"),
+      invalidatesTags: tagData("User", { id: "user" }),
     }),
   }),
 })

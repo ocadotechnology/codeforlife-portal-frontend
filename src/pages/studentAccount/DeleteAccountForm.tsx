@@ -17,7 +17,7 @@ import {
   useDestroyIndependentUserMutation,
   useLazyValidatePasswordQuery,
 } from "../../api/user"
-import { paths } from "../../router"
+import { paths } from "../../routes"
 
 const ConfirmDialog: FC<{
   open: boolean
@@ -45,7 +45,7 @@ const ConfirmDialog: FC<{
           className="alert"
           endIcon={<DeleteOutlineIcon />}
           onClick={() => {
-            destroyIndyUser(destroyIndyUserArg)
+            void destroyIndyUser(destroyIndyUserArg)
               .unwrap()
               .then(() => {
                 logout()
@@ -103,7 +103,7 @@ const DeleteAccountForm: FC<DeleteAccountFormProps> = ({ user }) => {
           remove_from_newsletter: false,
         }}
         onSubmit={values => {
-          validatePassword({ id: values.id, password: values.password })
+          void validatePassword({ id: values.id, password: values.password })
             .unwrap()
             .then(() => {
               setConfirmDialog({ open: true, destroyIndyUserArg: values })

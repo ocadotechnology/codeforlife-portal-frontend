@@ -6,9 +6,10 @@ import { Image } from "codeforlife/components"
 
 import ControllerIcon from "../../images/icon_controller.png"
 import GlobeIcon from "../../images/icon_globe.png"
+import { LINK_FEMALE_GRADUATES_IN_CS } from "../../app/env"
 import PieChartIcon from "../../images/icon_piechart.png"
 import TicketIcon from "../../images/icon_free.png"
-import { paths } from "../../router"
+import { paths } from "../../routes"
 
 const Column: FC<{
   img: { alt: string; src: string }
@@ -35,10 +36,7 @@ const AboutUs: FC<AboutUsProps> = () => (
       <Typography textAlign="center">
         Just 16% of university computer science graduates (2018/19) in the UK
         were women
-        <Link
-          to={import.meta.env.VITE_LINK_FEMALE_GRADUATES_IN_CS}
-          target="_blank"
-        >
+        <Link to={LINK_FEMALE_GRADUATES_IN_CS} target="_blank">
           *
         </Link>
         , we want to change that.

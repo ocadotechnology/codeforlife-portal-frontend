@@ -6,7 +6,7 @@ import { LinkButton } from "codeforlife/components/router"
 import { submitForm } from "codeforlife/utils/form"
 
 import { NewPasswordField } from "../../components/form"
-import { paths } from "../../router"
+import { paths } from "../../routes"
 import { useResetPasswordMutation } from "../../api/user"
 
 export interface PasswordFormProps {

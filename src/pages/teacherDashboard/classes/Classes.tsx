@@ -10,6 +10,8 @@ export interface ClassesProps {
   view?: "class" | "join-class-request"
 }
 
+// @ts-expect-error unused var
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const Classes: FC<ClassesProps> = ({ authUser, view }) => {
   if (view) {
     return {

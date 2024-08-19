@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom"
 
 import { LastNameField, NewPasswordField } from "../../components/form"
 import BaseForm from "./BaseForm"
-import { paths } from "../../router"
+import { paths } from "../../routes"
 import { useCreateIndependentUserMutation } from "../../api/user"
 
 export interface IndyFormProps {}

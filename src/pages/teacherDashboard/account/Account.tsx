@@ -8,6 +8,8 @@ export interface AccountProps {
   view?: "otp"
 }
 
+// @ts-expect-error unused var
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const Account: FC<AccountProps> = ({ authUser }) => {
   return <>TODO</>
 }

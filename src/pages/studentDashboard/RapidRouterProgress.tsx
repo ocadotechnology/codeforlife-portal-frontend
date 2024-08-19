@@ -6,7 +6,7 @@ import { LinkButton } from "codeforlife/components/router"
 
 // import { useRetrieveUserQuery } from "../../api/rapidRouter"
 import RRLogoImage from "../../images/RR_logo.svg"
-import { paths } from "../../router"
+import { paths } from "../../routes"
 
 const GetRapidRouterScores: React.FC = () => {
   // TODO: get real data from rapid-router endpoint.

@@ -1,11 +1,12 @@
 import * as page from "codeforlife/components/page"
-import { type SessionMetadata, useQueryManager } from "codeforlife/hooks"
 import { type FC } from "react"
 import { Link } from "codeforlife/components/router"
+import { type SessionMetadata } from "codeforlife/hooks"
+import { handleQueryState } from "codeforlife/utils/api"
 
 import Games from "./Games"
 import RapidRouterProgress from "./RapidRouterProgress"
-import { paths } from "../../router"
+import { paths } from "../../routes"
 import { useRetrieveUserQuery } from "../../api/user"
 
 export interface StudentDashboardProps {
@@ -15,7 +16,7 @@ export interface StudentDashboardProps {
 const BaseDashboard: FC<SessionMetadata> = ({ user_id, user_type }) => {
   const isStudent = user_type === "student"
 
-  return useQueryManager(useRetrieveUserQuery, user_id, user => {
+  return handleQueryState(useRetrieveUserQuery(user_id), user => {
     return (
       <>
         <page.Banner
@@ -39,7 +40,7 @@ const BaseDashboard: FC<SessionMetadata> = ({ user_id, user_type }) => {
           )}
         </page.Notification>
         <page.Section>
-          <Games isStudent={isStudent} />
+          <Games />
         </page.Section>
         <page.Section boxProps={{ bgcolor: "info.main" }}>
           <RapidRouterProgress />

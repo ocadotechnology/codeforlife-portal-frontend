@@ -7,7 +7,7 @@ import { submitForm } from "codeforlife/utils/form"
 
 import BaseForm from "../BaseForm"
 import { classIdSchema } from "../../../app/schemas"
-import { paths } from "../../../router"
+import { paths } from "../../../routes"
 import { useLoginAsStudentMutation } from "../../../api/sso"
 
 export interface FirstNameProps {}

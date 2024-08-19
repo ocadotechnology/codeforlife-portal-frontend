@@ -10,7 +10,7 @@ import {
 import * as studentForms from "./studentForms"
 import * as teacherForms from "./teacherForms"
 import IndyForm from "./IndyForm"
-import { paths } from "../../router"
+import { paths } from "../../routes"
 
 export interface LoginProps {
   form:

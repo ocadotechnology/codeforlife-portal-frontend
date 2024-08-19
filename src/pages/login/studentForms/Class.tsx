@@ -8,7 +8,7 @@ import { generatePath } from "react-router-dom"
 
 import BaseForm from "../BaseForm"
 import { classIdSchema } from "../../../app/schemas"
-import { paths } from "../../../router"
+import { paths } from "../../../routes"
 import { useAutoLoginAsStudentMutation } from "../../../api/sso"
 
 export interface ClassProps {}

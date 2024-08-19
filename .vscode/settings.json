@@ -19,6 +19,9 @@
     80
   ],
   "editor.tabSize": 2,
+  "files.exclude": {
+    "**/*.tsbuildinfo": true
+  },
   "javascript.format.semicolons": "remove",
   "javascript.preferences.quoteStyle": "double",
   "prettier.configPath": ".prettierrc.json",

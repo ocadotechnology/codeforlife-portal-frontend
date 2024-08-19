@@ -47,7 +47,7 @@ const teacherApi = api.injectEndpoints({
         }),
         method: "PUT",
       }),
-      invalidatesTags: tagData("User", "user"),
+      invalidatesTags: tagData("User", { id: "user" }),
     }),
     setTeacherAdminAccess: build.mutation<
       SetTeacherAdminAccessResult,
@@ -60,14 +60,14 @@ const teacherApi = api.injectEndpoints({
         method: "PUT",
         body,
       }),
-      invalidatesTags: tagData("User", "user"),
+      invalidatesTags: tagData("User", { id: "user" }),
     }),
     destroyTeacher: build.mutation<DestroyTeacherResult, DestroyTeacherArg>({
       query: id => ({
         url: buildUrl(urls.teacher.detail, { url: { id } }),
         method: "DELETE",
       }),
-      invalidatesTags: tagData("User", "user"),
+      invalidatesTags: tagData("User", { id: "user" }),
     }),
   }),
 })

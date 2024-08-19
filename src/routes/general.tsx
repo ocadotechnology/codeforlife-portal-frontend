@@ -1,14 +1,14 @@
 import { Route } from "react-router-dom"
 
-import AboutUs from "../../pages/aboutUs/AboutUs"
-import CodingClubs from "../../pages/codingClubs/CodingClubs"
-import GetInvolved from "../../pages/getInvolved/GetInvolved"
-import Home from "../../pages/home/Home"
+import AboutUs from "../pages/aboutUs/AboutUs"
+import CodingClubs from "../pages/codingClubs/CodingClubs"
+import GetInvolved from "../pages/getInvolved/GetInvolved"
+import Home from "../pages/home/Home"
 // import Contribute from '../../pages/contribute/Contribute';
 // import HomeLearning from '../../pages/homeLearning/HomeLearning';
 // import PrivacyNotice from '../../pages/privacyNotice/PrivacyNotice';
 // import TermsOfUse from '../../pages/termsOfUse/TermsOfUse';
-import paths from "../paths"
+import paths from "./paths"
 
 const general = (
   <>
