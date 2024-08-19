@@ -14,6 +14,14 @@ import {
 } from "@mui/material"
 import LinkedInIcon from "@mui/icons-material/LinkedIn"
 
+import {
+  LINK_FACEBOOK,
+  LINK_INSTAGRAM,
+  LINK_LINKEDIN,
+  LINK_X,
+  LINK_YOUTUBE,
+} from "../../app/env"
+
 const SocialMediaIcon: FC<{
   href: string
   children: ReactElement<IconProps, typeof Icon>
@@ -41,19 +49,19 @@ const SocialMediaIcons: FC<SocialMediaIconsProps> = () => {
         spacing={{ sm: 2 }}
         justifyContent={{ xs: "space-between", md: "normal" }}
       >
-        <SocialMediaIcon href={import.meta.env.VITE_LINK_FACEBOOK}>
+        <SocialMediaIcon href={LINK_FACEBOOK}>
           <FacebookRoundedIcon />
         </SocialMediaIcon>
-        <SocialMediaIcon href={import.meta.env.VITE_LINK_INSTAGRAM}>
+        <SocialMediaIcon href={LINK_INSTAGRAM}>
           <InstagramIcon />
         </SocialMediaIcon>
-        <SocialMediaIcon href={import.meta.env.VITE_LINK_LINKEDIN}>
+        <SocialMediaIcon href={LINK_LINKEDIN}>
           <LinkedInIcon />
         </SocialMediaIcon>
-        <SocialMediaIcon href={import.meta.env.VITE_LINK_X}>
+        <SocialMediaIcon href={LINK_X}>
           <XIcon />
         </SocialMediaIcon>
-        <SocialMediaIcon href={import.meta.env.VITE_LINK_YOUTUBE}>
+        <SocialMediaIcon href={LINK_YOUTUBE}>
           <YouTubeIcon />
         </SocialMediaIcon>
       </Stack>

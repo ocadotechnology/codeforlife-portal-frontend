@@ -4,6 +4,7 @@ import { Unstable_Grid2 as Grid, Link as MuiLink, Stack } from "@mui/material"
 //   useOneTrustInfoToggle
 // } from 'codeforlife/hooks';
 import { type FC } from "react"
+import { LINK_IMPACT_REPORT_2023 } from "../../app/env"
 import { Link } from "codeforlife/components/router"
 
 import { paths } from "../../routes"
@@ -56,7 +57,7 @@ const Links: FC<LinksProps> = () => {
             Help and support
           </MuiLink>
           <FooterLink
-            href={import.meta.env.VITE_LINK_IMPACT_REPORT_2023}
+            href={LINK_IMPACT_REPORT_2023}
             text={"Impact Report 2023"}
             external={true}
           />
