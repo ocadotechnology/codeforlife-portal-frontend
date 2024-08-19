@@ -5,11 +5,9 @@ import { Card } from "../../components"
 import RRLogoGreenImage from "../../images/RR_logo_green.svg"
 import { paths } from "../../router"
 
-export interface GamesProps {
-  isStudent: boolean
-}
+export interface GamesProps {}
 
-const Games: FC<GamesProps> = ({ isStudent }) => {
+const Games: FC<GamesProps> = () => {
   return (
     <Stack spacing={4} alignItems="center">
       <Typography variant="h4" textAlign="center">

@@ -40,7 +40,7 @@ const BaseDashboard: FC<SessionMetadata> = ({ user_id, user_type }) => {
           )}
         </page.Notification>
         <page.Section>
-          <Games isStudent={isStudent} />
+          <Games />
         </page.Section>
         <page.Section boxProps={{ bgcolor: "info.main" }}>
           <RapidRouterProgress />
