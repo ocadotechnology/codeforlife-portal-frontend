@@ -29,7 +29,7 @@ export type TeacherDashboardProps =
     }
 
 const TeacherDashboard: FC<TeacherDashboardProps> = ({ tab, view }) => {
-  let [retrieveUser, { data: authUser, isError }] = useLazyRetrieveUserQuery()
+  const [retrieveUser, { data: authUser, isError }] = useLazyRetrieveUserQuery()
   const navigate = useNavigate()
 
   const isNonSchoolTeacher = authUser && !authUser.teacher?.school
@@ -45,7 +45,7 @@ const TeacherDashboard: FC<TeacherDashboardProps> = ({ tab, view }) => {
 
   const Tabs: FC<SessionMetadata> = ({ user_id }) => {
     useEffect(() => {
-      if (!authUser) retrieveUser(user_id)
+      if (!authUser) void retrieveUser(user_id)
     }, [user_id])
 
     if (!authUser) return <CircularProgress />

@@ -80,7 +80,7 @@ const InviteTeacherForm: FC<InviteTeacherFormProps> = () => {
               })
             }
 
-            submitForm(createSchoolTeacherInvitation, {
+            void submitForm(createSchoolTeacherInvitation, {
               then: () => {
                 showNotification(false)
               },

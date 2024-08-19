@@ -137,6 +137,7 @@ const TeacherTable: FC<TeacherTableProps> = ({ authUser }) => {
                   >
                     Delete
                   </Button>
+                  {/* eslint-disable-next-line no-constant-binary-expression */}
                   {true && ( // TODO check if user has otp enabled
                     <Button
                       endIcon={<DoDisturbOnOutlinedIcon />}

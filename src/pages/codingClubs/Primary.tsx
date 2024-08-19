@@ -3,6 +3,10 @@ import { Download as DownloadIcon } from "@mui/icons-material"
 import { type FC } from "react"
 import { Typography } from "@mui/material"
 
+import {
+  LINK_PRIMARY_PACK_DOWNLOAD,
+  LINK_PRIMARY_PACK_GITBOOK,
+} from "../../app/env"
 import AboutUsImage from "../../images/about_us.jpg"
 import Introduction from "../../components/Introduction"
 
@@ -26,10 +30,7 @@ const Primary: FC<PrimaryProps> = () => {
       </Typography>
       <Typography>
         View the resources{" "}
-        <Link
-          to={import.meta.env.VITE_LINK_PRIMARY_PACK_GITBOOK}
-          target="_blank"
-        >
+        <Link to={LINK_PRIMARY_PACK_GITBOOK} target="_blank">
           online here
         </Link>
         .
@@ -37,7 +38,7 @@ const Primary: FC<PrimaryProps> = () => {
       {/*TODO: Link to GTM for analytics*/}
       <LinkButton
         sx={{ marginTop: "auto" }}
-        to={import.meta.env.VITE_LINK_PRIMARY_PACK_DOWNLOAD}
+        to={LINK_PRIMARY_PACK_DOWNLOAD}
         target="_blank"
         endIcon={<DownloadIcon />}
       >
