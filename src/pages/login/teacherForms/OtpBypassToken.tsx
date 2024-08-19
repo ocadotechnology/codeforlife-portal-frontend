@@ -7,7 +7,7 @@ import { LinkButton } from "codeforlife/components/router"
 import { submitForm } from "codeforlife/utils/form"
 
 import BaseForm from "../BaseForm"
-import { paths } from "../../../router"
+import { paths } from "../../../routes"
 import { useLoginWithOtpBypassTokenMutation } from "../../../api/sso"
 
 export interface OtpBypassTokenProps {}

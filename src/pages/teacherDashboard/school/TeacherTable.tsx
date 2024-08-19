@@ -18,7 +18,7 @@ import {
   type RetrieveUserResult,
   useLazyListUsersQuery,
 } from "../../../api/user"
-import { paths } from "../../../router"
+import { paths } from "../../../routes"
 import { useSetTeacherAdminAccessMutation } from "../../../api/teacher"
 
 export interface TeacherTableProps {

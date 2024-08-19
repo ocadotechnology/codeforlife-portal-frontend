@@ -17,7 +17,7 @@ import {
   useDestroyIndependentUserMutation,
   useLazyValidatePasswordQuery,
 } from "../../api/user"
-import { paths } from "../../router"
+import { paths } from "../../routes"
 
 const ConfirmDialog: FC<{
   open: boolean

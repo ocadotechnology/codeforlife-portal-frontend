@@ -9,7 +9,7 @@ import ClubsImg from "../../images/clubs.png"
 import GetInvolvedHero from "../../images/get_involved_hero_hexagon.png"
 import GithubImg from "../../images/github.png"
 import UniversitiesImg from "../../images/universities.png"
-import { paths } from "../../router"
+import { paths } from "../../routes"
 
 export interface GetInvolvedProps {}
 

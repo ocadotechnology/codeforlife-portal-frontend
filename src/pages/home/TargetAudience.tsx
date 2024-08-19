@@ -6,7 +6,7 @@ import { type FC } from "react"
 
 import EducateImage from "../../images/dashboard_educate.png"
 import PlayImage from "../../images/dashboard_play.png"
-import { paths } from "../../router"
+import { paths } from "../../routes"
 
 export interface TargetAudienceProps {}
 

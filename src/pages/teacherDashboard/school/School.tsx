@@ -17,7 +17,7 @@ import { type RetrieveUserResult } from "../../../api/user"
 import TeacherInvitationTable from "./TeacherInvitationTable"
 import TeacherTable from "./TeacherTable"
 import UpdateSchoolForm from "./UpdateSchoolForm"
-import { paths } from "../../../router"
+import { paths } from "../../../routes"
 import { useRetrieveSchoolQuery } from "../../../api/school"
 
 export interface SchoolProps {

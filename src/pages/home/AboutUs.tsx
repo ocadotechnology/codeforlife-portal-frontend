@@ -9,7 +9,7 @@ import GlobeIcon from "../../images/icon_globe.png"
 import { LINK_FEMALE_GRADUATES_IN_CS } from "../../app/env"
 import PieChartIcon from "../../images/icon_piechart.png"
 import TicketIcon from "../../images/icon_free.png"
-import { paths } from "../../router"
+import { paths } from "../../routes"
 
 const Column: FC<{
   img: { alt: string; src: string }

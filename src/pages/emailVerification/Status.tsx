@@ -7,7 +7,7 @@ import {
   OpenInEmailButtons,
   type OpenInEmailButtonsProps,
 } from "../../components"
-import { paths } from "../../router"
+import { paths } from "../../routes"
 import { themeOptions } from "../../app/theme"
 
 export interface StatusProps {

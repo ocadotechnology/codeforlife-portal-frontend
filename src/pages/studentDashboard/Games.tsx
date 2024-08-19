@@ -3,7 +3,7 @@ import { type FC } from "react"
 
 import { Card } from "../../components"
 import RRLogoGreenImage from "../../images/RR_logo_green.svg"
-import { paths } from "../../router"
+import { paths } from "../../routes"
 
 export interface GamesProps {}
 

@@ -5,7 +5,7 @@ export interface RowProps extends TableRowProps {}
 
 const Row: FC<RowProps> = ({ sx, ...otherTableRowProps }) => (
   <TableRow
-    // @ts-expect-error
+    // @ts-expect-error has sx prop
     sx={theme => ({
       // hide last border
       "&:last-child td, &:last-child th": {

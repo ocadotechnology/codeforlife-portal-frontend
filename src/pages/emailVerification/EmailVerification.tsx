@@ -10,7 +10,7 @@ import { type SvgIconProps } from "@mui/material"
 
 import { GMAIL_FILTERS_EMAIL_VERIFICATION } from "../../app/env"
 import Status from "./Status"
-import { paths } from "../../router"
+import { paths } from "../../routes"
 
 export interface EmailVerificationProps {}
 

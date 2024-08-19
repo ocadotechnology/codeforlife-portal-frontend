@@ -12,7 +12,7 @@ import {
   useLazyRetrieveUserQuery,
 } from "../../api/user"
 import School, { type SchoolProps } from "./school/School"
-import { paths } from "../../router"
+import { paths } from "../../routes"
 
 export type TeacherDashboardProps =
   | {

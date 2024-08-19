@@ -7,7 +7,7 @@ import { handleQueryState } from "codeforlife/utils/api"
 
 import DeleteAccountForm from "./DeleteAccountForm"
 import UpdateAccountForm from "./UpdateAccountForm"
-import { paths } from "../../router"
+import { paths } from "../../routes"
 import { useRetrieveUserQuery } from "../../api/user"
 
 export interface StudentAccountProps {

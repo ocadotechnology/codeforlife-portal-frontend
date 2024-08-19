@@ -1,11 +1,11 @@
 import { Route } from "react-router-dom"
 
 // import Teacher from "../../pages/teacher/Teacher"
-import TeacherDashboard from "../../pages/teacherDashboard/TeacherDashboard"
+import TeacherDashboard from "../pages/teacherDashboard/TeacherDashboard"
 // import AddedExternalStudent from "../../pages/teacherDashboard/classes/AddedExternalStudent"
 // import StudentCredentials from "../../pages/teacherDashboard/classes/editClass/student/editStudent/StudentCredentials"
 // import TeacherOnboarding from "../../pages/teacherOnboarding/TeacherOnboarding"
-import paths from "../paths"
+import paths from "./paths"
 
 const teacher = (
   <>

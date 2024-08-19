@@ -26,7 +26,7 @@ import {
   useLazyRetrieveUserQuery,
 } from "../../../api/user"
 import { classIdSchema } from "../../../app/schemas"
-import { paths } from "../../../router"
+import { paths } from "../../../routes"
 
 const AddedStudent: FC<{
   klass: RetrieveClassResult
@@ -200,8 +200,8 @@ const JoinClassRequest: FC<JoinClassRequestProps> = () => {
 
   useEffect(() => {
     if (params) {
-      retrieveUser(params.userId)
-      retrieveClass(params.classId)
+      void retrieveUser(params.userId)
+      void retrieveClass(params.classId)
     } else navigate(paths.error.type.pageNotFound._)
   }, [params, navigate, retrieveUser, retrieveClass])
 

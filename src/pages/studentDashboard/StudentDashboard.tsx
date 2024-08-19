@@ -6,7 +6,7 @@ import { handleQueryState } from "codeforlife/utils/api"
 
 import Games from "./Games"
 import RapidRouterProgress from "./RapidRouterProgress"
-import { paths } from "../../router"
+import { paths } from "../../routes"
 import { useRetrieveUserQuery } from "../../api/user"
 
 export interface StudentDashboardProps {

@@ -3,7 +3,7 @@ import { ChevronRight as ChevronRightIcon } from "@mui/icons-material"
 import { type FC } from "react"
 import { LinkButton } from "codeforlife/components/router"
 
-import { paths } from "../../router"
+import { paths } from "../../routes"
 
 export interface CodingClubsProps {}
 
