@@ -6,7 +6,7 @@ import { Unstable_Grid2 as Grid, Link as MuiLink, Stack } from "@mui/material"
 import { type FC } from "react"
 import { Link } from "codeforlife/components/router"
 
-import { paths } from "../../router"
+import { paths } from "../../routes"
 
 const FooterLink: FC<{
   href: string
