@@ -8,8 +8,9 @@ import {
 import { useNavigate, useParams, useSearchParams } from "codeforlife/hooks"
 import { type SvgIconProps } from "@mui/material"
 
+import { GMAIL_FILTERS_EMAIL_VERIFICATION } from "../../app/env"
 import Status from "./Status"
-import { paths } from "../../router"
+import { paths } from "../../routes"
 
 export interface EmailVerificationProps {}
 
@@ -49,8 +50,7 @@ const EmailVerification: FC<EmailVerificationProps> = () => {
             ]}
             icon={<SendIcon {...svgIconProps} />}
             openInEmailButtonsProps={{
-              gmailFilters: import.meta.env
-                .VITE_GMAIL_FILTERS_EMAIL_VERIFICATION,
+              gmailFilters: GMAIL_FILTERS_EMAIL_VERIFICATION,
             }}
           />
         ) : (

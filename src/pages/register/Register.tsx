@@ -5,7 +5,7 @@ import { Unstable_Grid2 as Grid } from "@mui/material"
 
 import IndyForm from "./IndyForm"
 import TeacherForm from "./TeacherForm"
-import { paths } from "../../router"
+import { paths } from "../../routes"
 
 export interface RegisterProps {}
 

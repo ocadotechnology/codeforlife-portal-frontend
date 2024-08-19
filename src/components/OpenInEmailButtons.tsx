@@ -3,6 +3,8 @@ import { LinkButton } from "codeforlife/components/router"
 import { MailOutline as MailOutlineIcon } from "@mui/icons-material"
 import { Stack } from "@mui/material"
 
+import { LINK_OUTLOOK_HOME } from "../app/env"
+
 export interface OpenInEmailButtonsProps {
   gmailFilters: string
 }
@@ -18,7 +20,7 @@ const OpenInEmailButtons: FC<OpenInEmailButtonsProps> = ({ gmailFilters }) => {
         Open in Gmail
       </LinkButton>
       <LinkButton
-        to={import.meta.env.VITE_LINK_OUTLOOK_HOME}
+        to={LINK_OUTLOOK_HOME}
         target="_blank"
         endIcon={<MailOutlineIcon />}
       >

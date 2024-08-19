@@ -23,7 +23,7 @@ const Cell: FC<CellProps> = ({
 }) => {
   return (
     <TableCell
-      // @ts-expect-error
+      // @ts-expect-error has sx prop
       sx={theme => ({
         outline: `1px solid ${theme.palette.common.white}`,
         [`&.${tableCellClasses.head}`]: {

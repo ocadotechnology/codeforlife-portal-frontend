@@ -13,7 +13,7 @@ import {
   useLazyListClassesQuery,
   useUpdateClassesMutation,
 } from "../../../api/klass"
-import { paths } from "../../../router"
+import { paths } from "../../../routes"
 import { useLazyListUsersQuery } from "../../../api/user"
 import { useRemoveTeacherFromSchoolMutation } from "../../../api/teacher"
 

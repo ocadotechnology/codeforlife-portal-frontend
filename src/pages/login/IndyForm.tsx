@@ -6,7 +6,7 @@ import { submitForm } from "codeforlife/utils/form"
 import { useNavigate } from "codeforlife/hooks"
 
 import BaseForm from "./BaseForm"
-import { paths } from "../../router"
+import { paths } from "../../routes"
 import { useLoginWithEmailMutation } from "../../api/sso"
 
 export interface IndyFormProps {}

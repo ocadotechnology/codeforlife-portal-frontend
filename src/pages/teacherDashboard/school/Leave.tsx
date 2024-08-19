@@ -17,7 +17,7 @@ import {
   useLazyListUsersQuery,
   useLazyRetrieveUserQuery,
 } from "../../../api/user"
-import { paths } from "../../../router"
+import { paths } from "../../../routes"
 import { submitForm } from "codeforlife/utils/form"
 import { useRemoveTeacherFromSchoolMutation } from "../../../api/teacher"
 
@@ -50,7 +50,7 @@ const Leave: FC<LeaveProps> = ({ authUserId }) => {
     if (!params) navigate(paths.error.type.pageNotFound._)
     else if (isError)
       navigateToSchoolTabWithErrorNotification("Failed to retrieve user.")
-    else if (!isLoading && !user) retrieveUser(params.userId)
+    else if (!isLoading && !user) void retrieveUser(params.userId)
     else if (user && !user.teacher)
       navigateToSchoolTabWithErrorNotification("This user is not a teacher.")
   }, [params, navigate, isError, isLoading, user, retrieveUser])
@@ -108,7 +108,7 @@ const Leave: FC<LeaveProps> = ({ authUserId }) => {
         </Typography>
         <TablePagination
           useLazyListQuery={useLazyListClassesQuery}
-          filters={{ teacher: user.teacher!.id }}
+          filters={{ teacher: user.teacher.id }}
         >
           {classes => {
             if (!classes.length) {

@@ -6,7 +6,7 @@ import { Stack } from "@mui/material"
 import { submitForm } from "codeforlife/utils/form"
 
 import BaseForm from "../BaseForm"
-import { paths } from "../../../router"
+import { paths } from "../../../routes"
 import { useLoginWithOtpMutation } from "../../../api/sso"
 
 export interface OtpProps {}
