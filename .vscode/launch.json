@@ -18,10 +18,6 @@
       "type": "node"
     },
     {
-      "env": {
-        "VITE_SERVICE_IS_ROOT": "1",
-        "VITE_SERVICE_NAME": "portal"
-      },
       "name": "Vite Server",
       "preLaunchTask": "run",
       "request": "launch",

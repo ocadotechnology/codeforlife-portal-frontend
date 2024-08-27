@@ -1,9 +1,6 @@
 #!/bin/bash
 set -e
 
-cd "${BASH_SOURCE%/*}"
+cd "${BASH_SOURCE%/*}/.."
 
-rm -f ../yarn.lock
-rm -rf ../node_modules
-yarn cache clean codeforlife
-yarn install --production=false
+wget -O - https://raw.githubusercontent.com/ocadotechnology/codeforlife-workspace/main/scripts/frontend/hard-install | bash
