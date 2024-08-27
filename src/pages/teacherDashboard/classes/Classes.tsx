@@ -5,6 +5,7 @@ import { type SchoolTeacherUser } from "codeforlife/api"
 import Class from "./Class"
 import ClassTable from "./ClassTable"
 import JoinClassRequest from "./JoinClassRequest"
+import JoinClassRequestTable from "./JoinClassRequestTable"
 import { type RetrieveUserResult } from "../../../api/user"
 
 export interface ClassesProps {
@@ -25,6 +26,9 @@ const Classes: FC<ClassesProps> = ({ authUser, view }) => {
     <>
       <pages.Section>
         <ClassTable authUser={authUser} />
+      </pages.Section>
+      <pages.Section>
+        <JoinClassRequestTable authUser={authUser} />
       </pages.Section>
     </>
   )
