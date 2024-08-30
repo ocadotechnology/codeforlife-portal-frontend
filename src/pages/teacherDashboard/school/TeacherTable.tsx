@@ -14,7 +14,6 @@ import { useNavigate } from "codeforlife/hooks"
 
 import * as table from "../../../components/table"
 import {
-  type ListUsersResult,
   type RetrieveUserResult,
   useLazyListUsersQuery,
 } from "../../../api/user"
@@ -69,9 +68,7 @@ const TeacherTable: FC<TeacherTableProps> = ({ authUser }) => {
               : ["Name", "Administrator status"]
           }
         >
-          {(
-            users as Array<SchoolTeacherUser<ListUsersResult["data"][number]>>
-          ).map(user => (
+          {users.map(user => (
             <table.Body key={`user-${user.id}`}>
               <table.Cell>
                 <Typography variant="subtitle1">
@@ -85,7 +82,7 @@ const TeacherTable: FC<TeacherTableProps> = ({ authUser }) => {
                 justifyContent="flex-start"
               >
                 <Typography variant="subtitle1">
-                  {user.teacher.is_admin
+                  {user.teacher!.is_admin
                     ? "Teacher Administrator"
                     : "Standard Teacher"}
                 </Typography>
@@ -103,12 +100,12 @@ const TeacherTable: FC<TeacherTableProps> = ({ authUser }) => {
                       Update details
                     </Button>
                   )}
-                  {user.teacher.is_admin ? (
+                  {user.teacher!.is_admin ? (
                     <Button
                       className="alert"
                       endIcon={<DoNotDisturbIcon />}
                       onClick={() => {
-                        handleSetTeacherAdminAccess(user.teacher.id, false)
+                        handleSetTeacherAdminAccess(user.teacher!.id, false)
                       }}
                     >
                       Revoke admin
@@ -117,7 +114,7 @@ const TeacherTable: FC<TeacherTableProps> = ({ authUser }) => {
                     <Button
                       endIcon={<AddIcon />}
                       onClick={() => {
-                        handleSetTeacherAdminAccess(user.teacher.id, true)
+                        handleSetTeacherAdminAccess(user.teacher!.id, true)
                       }}
                     >
                       Make admin
