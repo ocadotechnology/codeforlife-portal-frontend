@@ -17,7 +17,7 @@ const TeacherAutocompleteField: FC<TeacherAutocompleteFieldProps> = ({
   <ApiAutocompleteField
     useLazyListQuery={useLazyListUsersQuery}
     searchKey="name"
-    filterOptions={{ only_teachers: true, _id }}
+    filterOptions={{ type: "teacher", _id }}
     getOptionLabel={({ first_name, last_name }) => `${first_name} ${last_name}`}
     getOptionKey={({ teacher }) => teacher!.id}
     textFieldProps={{ required, name }}
