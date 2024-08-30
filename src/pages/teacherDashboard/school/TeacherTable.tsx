@@ -58,7 +58,7 @@ const TeacherTable: FC<TeacherTableProps> = ({ authUser }) => {
   return (
     <TablePagination
       useLazyListQuery={useLazyListUsersQuery}
-      filters={{ only_teachers: true }}
+      filters={{ type: "teacher" }}
     >
       {users => (
         <table.Table
