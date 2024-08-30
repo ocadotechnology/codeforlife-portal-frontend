@@ -1,7 +1,7 @@
 import * as forms from "codeforlife/components/form"
+import { Stack, Typography } from "@mui/material"
 import { type FC } from "react"
 import { type SchoolTeacherUser } from "codeforlife/api"
-import { Typography } from "@mui/material"
 import { generatePath } from "react-router"
 import { submitForm } from "codeforlife/utils/form"
 import { useNavigate } from "codeforlife/hooks"
@@ -62,19 +62,23 @@ const CreateClassForm: FC<CreateClassFormProps> = ({ authUser }) => {
           },
         })}
       >
-        <ClassNameField required />
-        <forms.ApiAutocompleteField
-          useLazyListQuery={useLazyListUsersQuery}
-          searchKey="name"
-          filterOptions={{ only_teachers: true }}
-          getOptionLabel={({ first_name, last_name }) =>
-            `${first_name} ${last_name}`
-          }
-          getOptionKey={({ teacher }) => teacher!.id}
-          textFieldProps={{ required: true, name: "teacher" }}
-        />
-        <ReadClassmatesDataField />
-        <forms.SubmitButton>Create class</forms.SubmitButton>
+        <Stack gap={2}>
+          <Stack direction={{ sm: "row" }} gap={2}>
+            <ClassNameField required />
+            <forms.ApiAutocompleteField
+              useLazyListQuery={useLazyListUsersQuery}
+              searchKey="name"
+              filterOptions={{ only_teachers: true }}
+              getOptionLabel={({ first_name, last_name }) =>
+                `${first_name} ${last_name}`
+              }
+              getOptionKey={({ teacher }) => teacher!.id}
+              textFieldProps={{ required: true, name: "teacher" }}
+            />
+          </Stack>
+          <ReadClassmatesDataField />
+          <forms.SubmitButton>Create class</forms.SubmitButton>
+        </Stack>
       </forms.Form>
     </>
   )
