@@ -9,11 +9,9 @@ import { useNavigate } from "codeforlife/hooks"
 import {
   ClassNameField,
   ReadClassmatesDataField,
+  TeacherAutocompleteField,
 } from "../../../components/form"
-import {
-  type RetrieveUserResult,
-  useLazyListUsersQuery,
-} from "../../../api/user"
+import { type RetrieveUserResult } from "../../../api/user"
 import { paths } from "../../../routes"
 import { useCreateClassMutation } from "../../../api/klass"
 
@@ -65,16 +63,7 @@ const CreateClassForm: FC<CreateClassFormProps> = ({ authUser }) => {
         <Stack gap={2}>
           <Stack direction={{ sm: "row" }} gap={2}>
             <ClassNameField required />
-            <forms.ApiAutocompleteField
-              useLazyListQuery={useLazyListUsersQuery}
-              searchKey="name"
-              filterOptions={{ only_teachers: true }}
-              getOptionLabel={({ first_name, last_name }) =>
-                `${first_name} ${last_name}`
-              }
-              getOptionKey={({ teacher }) => teacher!.id}
-              textFieldProps={{ required: true, name: "teacher" }}
-            />
+            <TeacherAutocompleteField required />
           </Stack>
           <ReadClassmatesDataField />
           <forms.SubmitButton>Create class</forms.SubmitButton>
