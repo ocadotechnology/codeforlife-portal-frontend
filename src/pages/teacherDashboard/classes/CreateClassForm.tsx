@@ -63,7 +63,7 @@ const CreateClassForm: FC<CreateClassFormProps> = ({ authUser }) => {
         <Stack gap={2}>
           <Stack direction={{ sm: "row" }} gap={2}>
             <ClassNameField required />
-            <TeacherAutocompleteField required />
+            {authUser.teacher.is_admin && <TeacherAutocompleteField required />}
           </Stack>
           <ReadClassmatesDataField />
           <forms.SubmitButton>Create class</forms.SubmitButton>

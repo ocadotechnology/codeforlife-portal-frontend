@@ -21,10 +21,9 @@ const ClassTable: FC<ClassTableProps> = ({ authUser }) => (
       Your classes
     </Typography>
     <Typography>
-      Below is a list of all the classes in your school, including classes of
-      other teachers. You can add a class or edit your existing classes. You can
-      also accept or deny requests from independent students wanting to join one
-      of your classes.
+      {authUser.teacher.is_admin
+        ? "Below is a list of all the classes in your school, including classes of other teachers. You can add a class or edit your existing classes. You can also accept or deny requests from independent students wanting to join one of your classes."
+        : "Below is a list of all your classes. You can add a class or edit your existing classes. You can also accept or deny requests from independent students wanting to join one of your classes."}
     </Typography>
     <TablePagination
       useLazyListQuery={useLazyListClassesQuery}
