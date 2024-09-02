@@ -58,6 +58,7 @@ const TeacherTable: FC<TeacherTableProps> = ({ authUser }) => {
     <TablePagination
       useLazyListQuery={useLazyListUsersQuery}
       filters={{ type: "teacher" }}
+      preferCacheValue
     >
       {users => (
         <table.Table

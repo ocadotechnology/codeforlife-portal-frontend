@@ -26,7 +26,10 @@ const ClassTable: FC<ClassTableProps> = ({ authUser }) => (
       also accept or deny requests from independent students wanting to join one
       of your classes.
     </Typography>
-    <TablePagination useLazyListQuery={useLazyListClassesQuery}>
+    <TablePagination
+      useLazyListQuery={useLazyListClassesQuery}
+      preferCacheValue
+    >
       {classes => (
         <tables.Table
           titles={
