@@ -3,4 +3,4 @@ set -e
 
 cd "${BASH_SOURCE%/*}/.."
 
-wget -O - https://raw.githubusercontent.com/ocadotechnology/codeforlife-workspace/main/scripts/frontend/run | SERVICE_NAME=portal SERVICE_IS_ROOT=1 bash
+wget -O - https://raw.githubusercontent.com/ocadotechnology/codeforlife-workspace/main/scripts/frontend/run | bash
