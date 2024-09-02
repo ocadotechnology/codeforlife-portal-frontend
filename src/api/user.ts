@@ -3,28 +3,64 @@ import {
   type CreateArg,
   type CreateResult,
   type DestroyResult,
+  type ListResult,
+  type RetrieveResult,
   type UpdateArg,
   type UpdateResult,
   buildUrl,
   tagData,
 } from "codeforlife/utils/api"
-import { type User, urls } from "codeforlife/api"
+import {
+  type Class,
+  type SchoolTeacher,
+  type SchoolTeacherUser,
+  type User,
+  urls,
+} from "codeforlife/api"
 import getReadUserEndpoints, {
   type ListUsersArg,
-  type ListUsersResult,
   type RetrieveUserArg,
-  type RetrieveUserResult,
   USER_TAG,
 } from "codeforlife/api/endpoints/user"
 
 import api from "."
 
-export type {
-  ListUsersArg,
-  ListUsersResult,
-  RetrieveUserArg,
-  RetrieveUserResult,
+export type RetrieveUserResult = RetrieveResult<
+  User,
+  | "first_name"
+  | "last_name"
+  | "email"
+  | "is_active"
+  | "date_joined"
+  | "student"
+  | "teacher"
+> & {
+  requesting_to_join_class?: Class & {
+    teacher: SchoolTeacher & {
+      user: Omit<SchoolTeacherUser, "teacher" | "student">
+    }
+  }
 }
+export { RetrieveUserArg }
+
+export type ListUsersResult = ListResult<
+  User,
+  | "first_name"
+  | "last_name"
+  | "email"
+  | "is_active"
+  | "date_joined"
+  | "student"
+  | "teacher",
+  {
+    requesting_to_join_class?: Class & {
+      teacher: SchoolTeacher & {
+        user: Omit<SchoolTeacherUser, "teacher" | "student">
+      }
+    }
+  }
+>
+export { ListUsersArg }
 
 export type HandleJoinClassRequestResult = UpdateResult<User>
 export type HandleJoinClassRequestArg = UpdateArg<User, never, "first_name"> & {
@@ -68,7 +104,12 @@ export type ValidatePasswordArg = Pick<User, "id" | "password">
 
 const userApi = api.injectEndpoints({
   endpoints: build => ({
-    ...getReadUserEndpoints(build),
+    ...getReadUserEndpoints<
+      RetrieveUserResult,
+      RetrieveUserArg,
+      ListUsersResult,
+      ListUsersArg
+    >(build),
     handleJoinClassRequest: build.mutation<
       HandleJoinClassRequestResult,
       HandleJoinClassRequestArg

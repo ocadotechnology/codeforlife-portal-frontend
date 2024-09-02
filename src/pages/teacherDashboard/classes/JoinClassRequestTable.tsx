@@ -40,7 +40,8 @@ const JoinClassRequestTable: FC<JoinClassRequestTableProps> = ({
       </Typography>
       <TablePagination
         useLazyListQuery={useLazyListUsersQuery}
-        // filters={{ only_users_requesting_to_join_class: true }}
+        filters={{ type: "indy" }}
+        preferCacheValue
       >
         {users =>
           users.length ? (
