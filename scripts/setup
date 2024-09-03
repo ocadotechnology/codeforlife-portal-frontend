@@ -1,6 +1,6 @@
 #!/bin/bash
 set -e
 
-cd "${BASH_SOURCE%/*}"
+cd "${BASH_SOURCE%/*}/.."
 
-yarn install --production=false
+wget -O - https://raw.githubusercontent.com/ocadotechnology/codeforlife-workspace/main/scripts/frontend/setup | bash

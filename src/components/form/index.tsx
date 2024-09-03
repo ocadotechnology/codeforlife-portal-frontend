@@ -1,14 +1,12 @@
-import LastNameField, { type LastNameFieldProps } from "./LastNameField"
-import NewPasswordField, {
-  type NewPasswordFieldProps,
-} from "./NewPasswordField"
-import SchoolNameField, { type SchoolNameFieldProps } from "./SchoolNameField"
-
-export {
-  LastNameField,
-  NewPasswordField,
-  type LastNameFieldProps,
-  type NewPasswordFieldProps,
-  SchoolNameField,
-  type SchoolNameFieldProps,
-}
+export * from "./ClassNameField"
+export { default as ClassNameField } from "./ClassNameField"
+export * from "./LastNameField"
+export { default as LastNameField } from "./LastNameField"
+export * from "./NewPasswordField"
+export { default as NewPasswordField } from "./NewPasswordField"
+export * from "./ReadClassmatesDataField"
+export { default as ReadClassmatesDataField } from "./ReadClassmatesDataField"
+export * from "./SchoolNameField"
+export { default as SchoolNameField } from "./SchoolNameField"
+export * from "./TeacherAutocompleteField"
+export { default as TeacherAutocompleteField } from "./TeacherAutocompleteField"
