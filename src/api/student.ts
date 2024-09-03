@@ -6,13 +6,20 @@ import {
   type BulkDestroyResult,
   type BulkUpdateArg,
   type BulkUpdateResult,
+  type Result,
   tagData,
 } from "codeforlife/utils/api"
 import { type Student, type User, urls } from "codeforlife/api"
 
 import api from "."
 
-export type CreateStudentsResult = BulkCreateResult<Student>
+export type CreateStudentsResult = BulkCreateResult<
+  Student,
+  "auto_gen_password",
+  {
+    user: Result<User, "password">
+  }
+>
 export type CreateStudentsArg = BulkCreateArg<
   Student,
   "klass",
@@ -42,7 +49,13 @@ export type TransferStudentsArg = BulkUpdateArg<
   }
 >
 
-export type ResetStudentsPasswordResult = BulkUpdateResult<Student>
+export type ResetStudentsPasswordResult = BulkUpdateResult<
+  Student,
+  "auto_gen_password",
+  {
+    user: Result<User, "password">
+  }
+>
 export type ResetStudentsPasswordArg = BulkUpdateArg<
   Student,
   never,
