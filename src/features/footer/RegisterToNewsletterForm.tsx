@@ -6,9 +6,9 @@ import { useNavigate } from "react-router-dom"
 
 import { useRegisterToNewsletterMutation } from "../../api/user"
 
-export interface NewsletterSignUpProps {}
+export interface RegisterToNewsletterFormProps {}
 
-const NewsletterSignUp: FC<NewsletterSignUpProps> = () => {
+const RegisterToNewsletterForm: FC<RegisterToNewsletterFormProps> = () => {
   const theme = useTheme()
   const onlyXS = useMediaQuery(theme.breakpoints.only("xs"))
   const [registerToNewsletter] = useRegisterToNewsletterMutation()
@@ -84,4 +84,4 @@ const NewsletterSignUp: FC<NewsletterSignUpProps> = () => {
   )
 }
 
-export default NewsletterSignUp
+export default RegisterToNewsletterForm

@@ -1,4 +1,9 @@
-import { Unstable_Grid2 as Grid, Link as MuiLink, Stack } from "@mui/material"
+import {
+  Unstable_Grid2 as Grid,
+  Link as MuiLink,
+  Stack,
+  type SxProps,
+} from "@mui/material"
 // import {
 //   useFreshworksWidget,
 //   useOneTrustInfoToggle
@@ -9,23 +14,21 @@ import { Link } from "codeforlife/components/router"
 
 import { paths } from "../../routes"
 
+const LINK_STYLE: SxProps = {
+  textDecoration: "none",
+  "&:hover": {
+    textDecoration: "underline",
+  },
+}
+
 const FooterLink: FC<{
-  href: string
-  text: string
-  external?: boolean
-}> = ({ href, text, external }) => {
+  to: string
+  children: string
+  newTab?: boolean
+}> = ({ to, children, newTab }) => {
   return (
-    <Link
-      to={href}
-      target={external ? "_blank" : "_self"}
-      sx={{
-        textDecoration: "none",
-        "&:hover": {
-          textDecoration: "underline",
-        },
-      }}
-    >
-      {text}
+    <Link to={to} target={newTab ? "_blank" : "_self"} sx={LINK_STYLE}>
+      {children}
     </Link>
   )
 }
@@ -44,47 +47,27 @@ const Links: FC<LinksProps> = () => {
     >
       <Grid xs={12} sm={4}>
         <Stack spacing={1}>
-          <FooterLink href={paths.aboutUs._} text={"About us"} />
+          <FooterLink to={paths.aboutUs._}>About us</FooterLink>
           {/*TODO: Use Freshdesk hook*/}
-          <MuiLink
-            sx={{
-              textDecoration: "none",
-              "&:hover": {
-                textDecoration: "underline",
-              },
-            }}
-          >
-            Help and support
-          </MuiLink>
-          <FooterLink
-            href={LINK_IMPACT_REPORT_2023}
-            text={"Impact Report 2023"}
-            external={true}
-          />
+          <MuiLink sx={LINK_STYLE}>Help and support</MuiLink>
+          <FooterLink to={LINK_IMPACT_REPORT_2023} newTab={true}>
+            Impact Report 2023
+          </FooterLink>
         </Stack>
       </Grid>
       <Grid xs={12} sm={4}>
         <Stack spacing={1}>
-          <FooterLink href={paths.privacyNotice._} text={"Privacy notice"} />
-          <FooterLink href={paths.termsOfUse._} text={"Terms of use"} />
+          <FooterLink to={paths.privacyNotice._}>Privacy notice</FooterLink>
+          <FooterLink to={paths.termsOfUse._}>Terms of use</FooterLink>
           {/*TODO: Use OneTrust banner hook*/}
-          <MuiLink
-            sx={{
-              textDecoration: "none",
-              "&:hover": {
-                textDecoration: "underline",
-              },
-            }}
-          >
-            Cookie settings
-          </MuiLink>
+          <MuiLink sx={LINK_STYLE}>Cookie settings</MuiLink>
         </Stack>
       </Grid>
       <Grid xs={12} sm={4}>
         <Stack spacing={1}>
-          <FooterLink href={paths.homeLearning._} text={"Home learning"} />
-          <FooterLink href={paths.getInvolved._} text={"Get involved"} />
-          <FooterLink href={paths.codingClubs._} text={"Coding clubs"} />
+          <FooterLink to={paths.homeLearning._}>Home learning</FooterLink>
+          <FooterLink to={paths.getInvolved._}>Get involved</FooterLink>
+          <FooterLink to={paths.codingClubs._}>Coding clubs</FooterLink>
         </Stack>
       </Grid>
     </Grid>

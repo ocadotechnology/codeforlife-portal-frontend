@@ -67,7 +67,7 @@ export type ValidatePasswordResult = null
 export type ValidatePasswordArg = Pick<User, "id" | "password">
 
 export type RegisterToNewsletterResult = null
-export type RegisterToNewsletterArg = { email: string }
+export type RegisterToNewsletterArg = Arg<User, "email">
 
 const userApi = api.injectEndpoints({
   endpoints: build => ({

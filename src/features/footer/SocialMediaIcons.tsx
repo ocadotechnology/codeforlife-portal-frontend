@@ -5,13 +5,8 @@ import {
   X as XIcon,
   YouTube as YouTubeIcon,
 } from "@mui/icons-material"
-import {
-  Unstable_Grid2 as Grid,
-  type Icon,
-  IconButton,
-  type IconProps,
-  Stack,
-} from "@mui/material"
+import { type Icon, type IconProps, Stack } from "@mui/material"
+import { LinkIconButton } from "codeforlife/components/router"
 import LinkedInIcon from "@mui/icons-material/LinkedIn"
 
 import {
@@ -23,18 +18,18 @@ import {
 } from "../../app/env"
 
 const SocialMediaIcon: FC<{
-  href: string
+  to: string
   children: ReactElement<IconProps, typeof Icon>
-}> = ({ href, children }) => {
+}> = ({ to, children }) => {
   return (
-    <IconButton href={href} target="_blank" sx={{ padding: 0 }}>
+    <LinkIconButton to={to} target="_blank" sx={{ padding: 0 }}>
       {cloneElement(children, {
         sx: {
           fontSize: "70px",
           color: "white !important",
         },
       })}
-    </IconButton>
+    </LinkIconButton>
   )
 }
 
@@ -42,30 +37,28 @@ export interface SocialMediaIconsProps {}
 
 const SocialMediaIcons: FC<SocialMediaIconsProps> = () => {
   return (
-    <Grid container xs={12} order={{ xs: 1, md: 2 }}>
-      <Stack
-        direction="row"
-        width="100%"
-        spacing={{ sm: 2 }}
-        justifyContent={{ xs: "space-between", md: "normal" }}
-      >
-        <SocialMediaIcon href={LINK_FACEBOOK}>
-          <FacebookRoundedIcon />
-        </SocialMediaIcon>
-        <SocialMediaIcon href={LINK_INSTAGRAM}>
-          <InstagramIcon />
-        </SocialMediaIcon>
-        <SocialMediaIcon href={LINK_LINKEDIN}>
-          <LinkedInIcon />
-        </SocialMediaIcon>
-        <SocialMediaIcon href={LINK_X}>
-          <XIcon />
-        </SocialMediaIcon>
-        <SocialMediaIcon href={LINK_YOUTUBE}>
-          <YouTubeIcon />
-        </SocialMediaIcon>
-      </Stack>
-    </Grid>
+    <Stack
+      direction="row"
+      width="100%"
+      spacing={{ sm: 2 }}
+      justifyContent={{ xs: "space-between", md: "normal" }}
+    >
+      <SocialMediaIcon to={LINK_FACEBOOK}>
+        <FacebookRoundedIcon />
+      </SocialMediaIcon>
+      <SocialMediaIcon to={LINK_INSTAGRAM}>
+        <InstagramIcon />
+      </SocialMediaIcon>
+      <SocialMediaIcon to={LINK_LINKEDIN}>
+        <LinkedInIcon />
+      </SocialMediaIcon>
+      <SocialMediaIcon to={LINK_X}>
+        <XIcon />
+      </SocialMediaIcon>
+      <SocialMediaIcon to={LINK_YOUTUBE}>
+        <YouTubeIcon />
+      </SocialMediaIcon>
+    </Stack>
   )
 }
 
