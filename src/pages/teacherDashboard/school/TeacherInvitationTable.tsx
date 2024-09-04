@@ -64,6 +64,7 @@ const TeacherInvitationTable: FC<TeacherInvitationTableProps> = ({
   return (
     <TablePagination
       useLazyListQuery={useLazyListSchoolTeacherInvitationsQuery}
+      preferCacheValue
     >
       {schoolTeacherInvitations => (
         <table.Table

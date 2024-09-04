@@ -13,8 +13,8 @@ import {
   useLazyListClassesQuery,
   useUpdateClassesMutation,
 } from "../../../api/klass"
+import { TeacherAutocompleteField } from "../../../components/form"
 import { paths } from "../../../routes"
-import { useLazyListUsersQuery } from "../../../api/user"
 import { useRemoveTeacherFromSchoolMutation } from "../../../api/teacher"
 
 export interface TransferClassesProps {
@@ -110,20 +110,10 @@ const TransferClasses: FC<TransferClassesProps> = ({ authUserId, user }) => {
                         </Typography>
                       </table.Cell>
                       <table.Cell direction="column" alignItems="flex-start">
-                        <form.ApiAutocompleteField
-                          useLazyListQuery={useLazyListUsersQuery}
-                          filterOptions={{ only_teachers: true, _id: user.id }}
-                          getOptionLabel={({ first_name, last_name }) =>
-                            `${first_name} ${last_name}`
-                          }
-                          getOptionKey={({ teacher }) =>
-                            (teacher as SchoolTeacher).id
-                          }
-                          textFieldProps={{
-                            required: true,
-                            name: `${klass.id}.teacher`,
-                          }}
-                          searchKey="name"
+                        <TeacherAutocompleteField
+                          required
+                          name={`${klass.id}.teacher`}
+                          _id={user.id}
                         />
                       </table.Cell>
                     </table.Body>

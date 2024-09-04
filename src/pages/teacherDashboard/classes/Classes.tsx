@@ -1,8 +1,12 @@
+import * as pages from "codeforlife/components/page"
 import { type FC } from "react"
 import { type SchoolTeacherUser } from "codeforlife/api"
 
 import Class from "./Class"
+import ClassTable from "./ClassTable"
+import CreateClassForm from "./CreateClassForm"
 import JoinClassRequest from "./JoinClassRequest"
+import JoinClassRequestTable from "./JoinClassRequestTable"
 import { type RetrieveUserResult } from "../../../api/user"
 
 export interface ClassesProps {
@@ -10,8 +14,6 @@ export interface ClassesProps {
   view?: "class" | "join-class-request"
 }
 
-// @ts-expect-error unused var
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const Classes: FC<ClassesProps> = ({ authUser, view }) => {
   if (view) {
     return {
@@ -20,7 +22,19 @@ const Classes: FC<ClassesProps> = ({ authUser, view }) => {
     }[view]
   }
 
-  return <>Classes</>
+  return (
+    <>
+      <pages.Section>
+        <ClassTable authUser={authUser} />
+      </pages.Section>
+      <pages.Section>
+        <JoinClassRequestTable authUser={authUser} />
+      </pages.Section>
+      <pages.Section boxProps={{ bgcolor: "info.main" }}>
+        <CreateClassForm authUser={authUser} />
+      </pages.Section>
+    </>
+  )
 }
 
 export default Classes
