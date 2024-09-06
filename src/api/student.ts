@@ -61,7 +61,7 @@ export type ResetStudentsPasswordArg = BulkUpdateArg<
   never,
   never,
   {
-    user: Arg<User, never, "password">
+    user?: Arg<User, never, "password">
   }
 >
 
