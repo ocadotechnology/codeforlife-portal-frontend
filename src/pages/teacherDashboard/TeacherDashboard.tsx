@@ -3,7 +3,7 @@ import { type FC, useEffect } from "react"
 import { type SessionMetadata, useNavigate } from "codeforlife/hooks"
 import { type SchoolTeacherUser } from "codeforlife/api"
 import { getParam } from "codeforlife/utils/router"
-import { handleQueryState } from "codeforlife/utils/api"
+import { handleResultState } from "codeforlife/utils/api"
 
 import Account, { type AccountProps } from "./account/Account"
 import Classes, { type ClassesProps } from "./classes/Classes"
@@ -78,7 +78,7 @@ const Tabs: FC<TeacherDashboardProps & SessionMetadata> = ({
     },
   ]
 
-  return handleQueryState(result, authUser => (
+  return handleResultState(result, authUser => (
     <page.TabBar
       header={`Welcome back, ${authUser.first_name} ${authUser.last_name}`}
       originalPath={paths.teacher.dashboard.tab._}
