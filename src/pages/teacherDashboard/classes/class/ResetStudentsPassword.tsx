@@ -47,7 +47,7 @@ const ResetStudentsPassword: FC<ResetStudentsPasswordProps> = () => {
 
   return (
     <pages.Section>
-      {/* TODO: replace delete and replace with component when implemented */}
+      {/* TODO: replace delete and replace with component when implemented. */}
       {classId}
       {studentUsers.map(({ student, ...fields }) =>
         JSON.stringify({
