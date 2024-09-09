@@ -2,12 +2,12 @@ import * as pages from "codeforlife/components/page"
 import { type FC } from "react"
 import { type SchoolTeacherUser } from "codeforlife/api"
 
-import Class from "./Class"
+import Class from "./class/Class"
 import ClassTable from "./ClassTable"
 import CreateClassForm from "./CreateClassForm"
 import JoinClassRequest from "./JoinClassRequest"
 import JoinClassRequestTable from "./JoinClassRequestTable"
-import ResetStudentsPassword from "./ResetStudentsPassword"
+import ResetStudentsPassword from "./class/ResetStudentsPassword"
 import { type RetrieveUserResult } from "../../../api/user"
 
 export interface ClassesProps {
