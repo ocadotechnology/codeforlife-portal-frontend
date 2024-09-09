@@ -29,10 +29,12 @@ const ResetStudentsPasswordDialog: FC<
   return (
     <BaseStudentsDialog {...props}>
       <Typography variant="h5" textAlign="center">
-        Delete students
+        Reset students&apos; password
       </Typography>
       <Typography>
-        These students will be permanently deleted. Are you sure?
+        These students will have their passwords permanently changed. You will
+        be given the option to print out the new passwords. Are you sure that
+        you want to continue?
       </Typography>
       <Stack direction={{ xs: "column", sm: "row" }} spacing={3} mt={5}>
         <Button variant="outlined" className="body" onClick={onClose}>
