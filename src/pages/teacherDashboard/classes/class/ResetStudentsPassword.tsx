@@ -47,6 +47,7 @@ const ResetStudentsPassword: FC<ResetStudentsPasswordProps> = () => {
 
   return (
     <pages.Section>
+      {/* TODO: replace delete and replace with component when implemented */}
       {classId}
       {studentUsers.map(({ student, ...fields }) =>
         JSON.stringify({
@@ -59,16 +60,18 @@ const ResetStudentsPassword: FC<ResetStudentsPasswordProps> = () => {
         }),
       )}
       {/* <StudentCredentialsTable
-          classId={classId}
-          studentUsers={studentUsers.map(({ student, ...fields }) => ({
+        classId={classId}
+        studentUsers={studentUsers.map(({ student, ...fields }) =>
+          JSON.stringify({
             ...fields,
-            password: passwords[student.id].password,
+            password: students[student.id].user.password,
             student: {
               ...student,
-              auto_gen_password: passwords[student.id].auto_gen_password,
+              auto_gen_password: students[student.id].auto_gen_password,
             },
-          }))}
-        /> */}
+          }),
+        )}
+      /> */}
     </pages.Section>
   )
 }
