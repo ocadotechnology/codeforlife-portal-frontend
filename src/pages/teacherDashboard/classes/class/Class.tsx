@@ -48,7 +48,6 @@ const Class: FC<ClassProps> = () => {
       <ResetStudentsPasswordDialog
         open={dialog === "reset-students-password"}
         onClose={closeDialog}
-        maxWidth="xs"
         studentUsers={Object.values(studentUsers)}
       />
     </>
