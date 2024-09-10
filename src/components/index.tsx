@@ -1,11 +1,6 @@
-import Card, { type CardProps } from "./Card"
-import OpenInEmailButtons, {
-  type OpenInEmailButtonsProps,
-} from "./OpenInEmailButtons"
-
-export {
-  OpenInEmailButtons,
-  type OpenInEmailButtonsProps,
-  Card,
-  type CardProps,
-}
+export { default as Card } from "./Card"
+export * from "./Card"
+export { default as OpenInEmailButtons } from "./OpenInEmailButtons"
+export * from "./OpenInEmailButtons"
+export { default as StudentCredentialsTable } from "./StudentCredentialsTable"
+export * from "./StudentCredentialsTable"

@@ -2,7 +2,7 @@ import * as page from "codeforlife/components/page"
 import { type FC } from "react"
 import { Link } from "codeforlife/components/router"
 import { type SessionMetadata } from "codeforlife/hooks"
-import { handleQueryState } from "codeforlife/utils/api"
+import { handleResultState } from "codeforlife/utils/api"
 
 import Games from "./Games"
 import RapidRouterProgress from "./RapidRouterProgress"
@@ -16,7 +16,7 @@ export interface StudentDashboardProps {
 const BaseDashboard: FC<SessionMetadata> = ({ user_id, user_type }) => {
   const isStudent = user_type === "student"
 
-  return handleQueryState(useRetrieveUserQuery(user_id), user => {
+  return handleResultState(useRetrieveUserQuery(user_id), user => {
     return (
       <>
         <page.Banner

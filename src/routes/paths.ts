@@ -33,9 +33,8 @@ const paths = _("", {
               joinRequest: _("/join-request/:userId"),
               additional: _("/additional"),
               students: _("/students", {
-                credentials: _("/credentials"),
+                resetPassword: _("/reset-password"),
                 edit: _("/edit"),
-                reset: _("/reset"),
                 move: _("/move"),
                 release: _("/release"),
               }),
