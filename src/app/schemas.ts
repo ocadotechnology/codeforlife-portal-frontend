@@ -1,16 +1,18 @@
-import { type Schema, type StringSchema, string as YupString } from "yup"
+import * as yup from "yup"
 import CryptoJS from "crypto-js"
 
-type Options<S extends Schema, Extras = {}> = Partial<{ schema: S } & Extras>
+type Options<S extends yup.Schema, Extras = {}> = Partial<
+  { schema: S } & Extras
+>
 
-export function classIdSchema(options?: Options<StringSchema>) {
-  const { schema = YupString() } = options || {}
+export function classIdSchema(options?: Options<yup.StringSchema>) {
+  const { schema = yup.string() } = options || {}
 
   return schema.matches(/^[A-Z0-9]{5}$/, "invalid class code")
 }
 
-export function teacherPasswordSchema(options?: Options<StringSchema>) {
-  const { schema = YupString() } = options || {}
+export function teacherPasswordSchema(options?: Options<yup.StringSchema>) {
+  const { schema = yup.string() } = options || {}
 
   return schema
     .min(10, "password must be at least 10 characters long")
@@ -23,14 +25,14 @@ export function teacherPasswordSchema(options?: Options<StringSchema>) {
     )
 }
 
-export function studentPasswordSchema(options?: Options<StringSchema>) {
-  const { schema = YupString() } = options || {}
+export function studentPasswordSchema(options?: Options<yup.StringSchema>) {
+  const { schema = yup.string() } = options || {}
 
   return schema.min(6, "password must be at least 6 characters long")
 }
 
-export function indyPasswordSchema(options?: Options<StringSchema>) {
-  const { schema = YupString() } = options || {}
+export function indyPasswordSchema(options?: Options<yup.StringSchema>) {
+  const { schema = yup.string() } = options || {}
 
   return schema
     .min(8, "password must be at least 8 characters long")
@@ -40,9 +42,9 @@ export function indyPasswordSchema(options?: Options<StringSchema>) {
 }
 
 export function pwnedPasswordSchema(
-  options?: Options<StringSchema, { onError: (error: unknown) => void }>,
+  options?: Options<yup.StringSchema, { onError: (error: unknown) => void }>,
 ) {
-  const { schema = YupString().required(), onError } = options || {}
+  const { schema = yup.string().required(), onError } = options || {}
 
   return schema.test({
     message: "password is too common",
@@ -78,3 +80,5 @@ export function pwnedPasswordSchema(
     },
   })
 }
+
+export const userIdSchema = yup.number()

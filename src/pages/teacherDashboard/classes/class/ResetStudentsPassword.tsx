@@ -4,14 +4,19 @@ import { useLocation, useNavigate } from "codeforlife/hooks"
 import { type StudentUser } from "codeforlife/api"
 import { generatePath } from "react-router"
 
-import { type ListUsersResult } from "../../../../api/user"
+import {
+  type ListUsersResult,
+  type RetrieveUserResult,
+} from "../../../../api/user"
 import { type ResetStudentsPasswordResult } from "../../../../api/student"
 // import { StudentCredentialsTable } from "../../../components"
 import { paths } from "../../../../routes"
 import { useClassIdParam } from "../../../../app/hooks"
 
 export interface ResetStudentsPasswordState {
-  studentUsers: Array<StudentUser<ListUsersResult["data"][number]>>
+  studentUsers: Array<
+    StudentUser<RetrieveUserResult | ListUsersResult["data"][number]>
+  >
   resetStudentsPasswordResult: ResetStudentsPasswordResult
 }
 
