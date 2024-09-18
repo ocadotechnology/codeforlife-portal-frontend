@@ -41,8 +41,8 @@ const UpdateStudentUserFormsSection: FC<{
       <>
         <pages.Section>
           <Typography align="center" variant="h4" marginBottom={11.5}>
-            Edit student details for {user.first_name}
-            from class {klass.name} ({klass.id})
+            Edit student details for {user.first_name} from class {klass.name} (
+            {klass.id})
           </Typography>
           <Link className="back-to" to={classPath}>
             Class
@@ -53,9 +53,7 @@ const UpdateStudentUserFormsSection: FC<{
           </Typography>
         </pages.Section>
         <pages.Section>
-          <Typography variant="h5" sx={{ mb: 2 }}>
-            Update name
-          </Typography>
+          <Typography variant="h5">Update name</Typography>
           <Typography>
             Remember this is the name they use to log in with, so you should
             tell them what you&apos;ve changed it to.
@@ -79,15 +77,17 @@ const UpdateStudentUserFormsSection: FC<{
               },
             })}
           >
-            <forms.FirstNameField />
+            <forms.FirstNameField
+              required
+              dirty
+              label="First name of student"
+              placeholder="Enter first name of student"
+            />
             <forms.SubmitButton>Update</forms.SubmitButton>
           </forms.Form>
         </pages.Section>
         <pages.Section>
-          {/* TODO: create global fix for margin bottom */}
-          <Typography variant="h5" sx={{ mb: 2 }}>
-            Update password
-          </Typography>
+          <Typography variant="h5">Update password</Typography>
           <Typography>
             You can set this student&apos;s password. Setting the password will
             also regenerate their direct access link. Enter and confirm the
@@ -101,6 +101,7 @@ const UpdateStudentUserFormsSection: FC<{
               },
             }}
             onSubmit={submitForm(resetStudentsPassword, {
+              exclude: [`${user.student!.id}.user.password_repeat`],
               then: resetStudentsPasswordResult => {
                 navigate<ResetStudentsPasswordState>(
                   generatePath(
@@ -121,6 +122,12 @@ const UpdateStudentUserFormsSection: FC<{
             <NewPasswordField
               name={`${user.student!.id}.user.password`}
               userType="student"
+              label="Password of student"
+              placeholder="Enter password of student"
+              repeatFieldProps={{
+                label: "Repeat password of student",
+                placeholder: "Enter password of student again",
+              }}
             />
             <forms.SubmitButton>Update</forms.SubmitButton>
           </forms.Form>
@@ -141,7 +148,7 @@ const UpdateStudentUser: FC<UpdateStudentUserProps> = () => {
   return params ? (
     <UpdateStudentUserFormsSection {...params} />
   ) : (
-    <Navigate to="../.." />
+    <Navigate to={paths.teacher.dashboard.tab.classes._} />
   )
 }
 
