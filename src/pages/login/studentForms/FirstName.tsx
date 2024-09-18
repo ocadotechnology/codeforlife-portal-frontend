@@ -16,7 +16,7 @@ const FirstName: FC<FirstNameProps> = () => {
   const [loginAsStudent] = useLoginAsStudentMutation()
   const navigate = useNavigate()
 
-  const params = useParams({ classId: classIdSchema().required() })
+  const params = useParams({ classId: classIdSchema.required() })
 
   useEffect(() => {
     if (!params) {

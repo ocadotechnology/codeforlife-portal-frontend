@@ -185,7 +185,7 @@ const JoinClassRequest: FC<JoinClassRequestProps> = () => {
   const navigate = useNavigate()
   const [wasAccepted, setWasAccepted] = useState(false)
   const params = useParams({
-    classId: classIdSchema().required(),
+    classId: classIdSchema.required(),
     userId: yup.number().required(),
   })
 

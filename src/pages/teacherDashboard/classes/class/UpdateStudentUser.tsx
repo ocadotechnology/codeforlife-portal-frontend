@@ -141,7 +141,7 @@ export interface UpdateStudentUserProps {}
 
 const UpdateStudentUser: FC<UpdateStudentUserProps> = () => {
   const params = useParams({
-    classId: classIdSchema().required(),
+    classId: classIdSchema.required(),
     studentUserId: userIdSchema.required(),
   })
 

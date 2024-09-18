@@ -1,8 +1,8 @@
 import * as pages from "codeforlife/components/page"
-import { type FC, useEffect } from "react"
-import { useLocation, useNavigate } from "codeforlife/hooks"
+import { Navigate, generatePath } from "react-router-dom"
+import { useLocation, useParams } from "codeforlife/hooks"
+import { type FC } from "react"
 import { type StudentUser } from "codeforlife/api"
-import { generatePath } from "react-router"
 
 import {
   type ListUsersResult,
@@ -10,8 +10,8 @@ import {
 } from "../../../../api/user"
 import { type ResetStudentsPasswordResult } from "../../../../api/student"
 // import { StudentCredentialsTable } from "../../../components"
+import { classIdSchema } from "../../../../app/schemas"
 import { paths } from "../../../../routes"
-import { useClassIdParam } from "../../../../app/hooks"
 
 export interface ResetStudentsPasswordState {
   studentUsers: Array<
@@ -23,24 +23,27 @@ export interface ResetStudentsPasswordState {
 export interface ResetStudentsPasswordProps {}
 
 const ResetStudentsPassword: FC<ResetStudentsPasswordProps> = () => {
-  const { classId } = useClassIdParam()!
+  const params = useParams({ classId: classIdSchema.required() })
   const { state } = useLocation<ResetStudentsPasswordState>()
-  const navigate = useNavigate()
 
   const { studentUsers, resetStudentsPasswordResult } = state || {}
   const validState =
     studentUsers && studentUsers.length && resetStudentsPasswordResult
 
-  useEffect(() => {
-    if (!validState) {
-      navigate(
-        generatePath(paths.teacher.dashboard.tab.classes.class._, { classId }),
-        { replace: true },
-      )
-    }
-  }, [classId, navigate, validState])
+  if (!params)
+    return <Navigate to={paths.teacher.dashboard.tab.classes._} replace />
 
-  if (!validState) return <></>
+  const { classId } = params
+
+  if (!validState)
+    return (
+      <Navigate
+        to={generatePath(paths.teacher.dashboard.tab.classes.class._, {
+          classId,
+        })}
+        replace
+      />
+    )
 
   const students = resetStudentsPasswordResult.reduce(
     (students, student) => ({ ...students, [student.id]: student }),

@@ -75,7 +75,14 @@ const TeacherForm: FC<TeacherFormProps> = () => {
               "Sign up to receive updates about Code for Life games and teaching resources.",
           }}
         />
-        <NewPasswordField name="user.password" userType="teacher" />
+        <NewPasswordField
+          name="user.password"
+          userType="teacher"
+          repeatFieldProps={{
+            label: "Repeat password",
+            placeholder: "Enter your password again",
+          }}
+        />
         <Stack alignItems="end">
           <form.SubmitButton endIcon={<ChevronRightIcon />}>
             Register

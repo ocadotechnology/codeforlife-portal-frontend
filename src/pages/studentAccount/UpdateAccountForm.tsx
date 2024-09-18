@@ -120,8 +120,8 @@ const UpdateAccountForm: FC<UpdateAccountFormProps> = ({ user }) => {
           ])
 
           let passwordSchema = user.student
-            ? studentPasswordSchema()
-            : indyPasswordSchema()
+            ? studentPasswordSchema
+            : indyPasswordSchema
           if (isDirty(form.values, initialValues, "current_password")) {
             passwordSchema = passwordSchema.notOneOf(
               [form.values.current_password],
