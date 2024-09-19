@@ -1,6 +1,5 @@
 import {
   Button,
-  Link,
   Table,
   TableBody,
   TableCell,
@@ -9,6 +8,7 @@ import {
   Typography,
 } from "@mui/material"
 import { type FC } from "react"
+import { Link } from "codeforlife/components/router"
 import { toggleOneTrustInfoDisplay } from "codeforlife/utils/window"
 
 const CustomTableRow: FC<{
@@ -100,13 +100,13 @@ const Cookies: FC<CookiesProps> = () => (
               <Typography>
                 We use third-party web analytics software on our portal (
                 <Link
-                  href="https://developers.google.com/analytics/devguides/collection/analyticsjs/cookie-usage"
+                  to="https://developers.google.com/analytics/devguides/collection/analyticsjs/cookie-usage"
                   target="_blank"
                 >
                   Google Analytics
                 </Link>
                 &nbsp;and&nbsp;
-                <Link href="https://mouseflow.com/legal/gdpr/" target="_blank">
+                <Link to="https://mouseflow.com/legal/gdpr/" target="_blank">
                   Mouseflow
                 </Link>
                 ). We provide further information about these partners below.
@@ -169,7 +169,7 @@ const Cookies: FC<CookiesProps> = () => (
     <Typography>
       We make available a cookie management platform on our portal (provided
       by&nbsp;
-      <Link href="https://www.onetrust.com/" target="_blank">
+      <Link to="https://www.onetrust.com/" target="_blank">
         OneTrust
       </Link>
       ), through which you can turn off non-essential cookies at any time.

@@ -1,5 +1,6 @@
-import { Link, Typography } from "@mui/material"
 import { type FC } from "react"
+import { Link } from "codeforlife/components/router"
+import { Typography } from "@mui/material"
 
 export interface WhoWeShareInfoWithProps {}
 
@@ -31,7 +32,7 @@ const WhoWeShareInfoWith: FC<WhoWeShareInfoWithProps> = () => (
       type, device platform alongside any questions that we may ask you in our
       surveys (for example, the survey may ask your age). You can find out more
       about UsabilityHub&nbsp;
-      <Link href="https://usabilityhub.com/" target="_blank">
+      <Link to="https://usabilityhub.com/" target="_blank">
         here
       </Link>
       .

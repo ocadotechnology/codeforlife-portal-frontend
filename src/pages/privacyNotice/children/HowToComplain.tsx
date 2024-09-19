@@ -1,5 +1,6 @@
-import { Link, Typography } from "@mui/material"
 import { type FC } from "react"
+import { Link } from "codeforlife/components/router"
+import { Typography } from "@mui/material"
 
 export interface HowToComplainProps {}
 
@@ -8,7 +9,7 @@ const HowToComplain: FC<HowToComplainProps> = () => (
     <Typography>
       If you have a complaint about how we’ve used your personal information,
       you can write to our Data Protection Officer at&nbsp;
-      <Link href="mailto:individualrights@ocado.com">
+      <Link to="mailto:individualrights@ocado.com" target="_blank">
         individualrights@ocado.com
       </Link>
       .
@@ -22,7 +23,7 @@ const HowToComplain: FC<HowToComplainProps> = () => (
     <Typography>Telephone: 0303 123 1113</Typography>
     <Typography mb={0}>
       Website:&nbsp;
-      <Link href="https://ico.org.uk/concerns" target="_blank">
+      <Link to="https://ico.org.uk/concerns" target="_blank">
         https://ico.org.uk/concerns
       </Link>
     </Typography>

@@ -1,6 +1,5 @@
 import {
   Button,
-  Link,
   Table,
   TableBody,
   TableCell,
@@ -9,6 +8,7 @@ import {
   Typography,
 } from "@mui/material"
 import { type FC } from "react"
+import { Link } from "codeforlife/components/router"
 import { toggleOneTrustInfoDisplay } from "codeforlife/utils/window"
 
 const CustomTableRow: FC<{
@@ -110,13 +110,13 @@ const Cookies: FC<CookiesProps> = () => (
               <Typography>
                 We use other companies called (
                 <Link
-                  href="https://developers.google.com/analytics/devguides/collection/analyticsjs/cookie-usage"
+                  to="https://developers.google.com/analytics/devguides/collection/analyticsjs/cookie-usage"
                   target="_blank"
                 >
                   Google Analytics
                 </Link>
                 &nbsp;and&nbsp;
-                <Link href="https://mouseflow.com/legal/gdpr/" target="_blank">
+                <Link to="https://mouseflow.com/legal/gdpr/" target="_blank">
                   Mouseflow
                 </Link>
                 ) to help us collect information from these cookies (see the

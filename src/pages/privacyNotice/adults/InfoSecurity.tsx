@@ -1,5 +1,6 @@
-import { Link, Typography } from "@mui/material"
 import { type FC } from "react"
+import { Link } from "codeforlife/components/router"
+import { Typography } from "@mui/material"
 
 export interface InfoSecurityProps {}
 
@@ -17,7 +18,7 @@ const InfoSecurity: FC<InfoSecurityProps> = () => (
       the security of their accounts and we encourage them to do that. You can
       find more details&nbsp;
       <Link
-        href="https://www.getsafeonline.org/personal/articles/passwords/"
+        to="https://www.getsafeonline.org/personal/articles/passwords/"
         target="_blank"
       >
         here
@@ -28,7 +29,7 @@ const InfoSecurity: FC<InfoSecurityProps> = () => (
       If you want detailed information from Get Safe Online on how to protect
       your information and your computers and devices against fraud, identity
       theft, viruses and many other online problems, please visit&nbsp;
-      <Link href="https://www.getsafeonline.org/" target="_blank">
+      <Link to="https://www.getsafeonline.org/" target="_blank">
         www.getsafeonline.org
       </Link>
       . Get Safe Online is supported by HM Government and leading businesses.

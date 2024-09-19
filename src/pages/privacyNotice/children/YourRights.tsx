@@ -1,6 +1,7 @@
-import { Link, ListItemText, Typography } from "@mui/material"
+import { ListItemText, Typography } from "@mui/material"
 import { type FC } from "react"
 import { ItemizedList } from "codeforlife/components"
+import { Link } from "codeforlife/components/router"
 
 export interface YourRightsProps {}
 
@@ -38,7 +39,7 @@ const YourRights: FC<YourRightsProps> = () => (
     <Typography mb={0}>
       If you would like to use any of these rights listed above, please email
       our Data Protection Officer at&nbsp;
-      <Link href="mailto:individualrights@ocado.com">
+      <Link to="mailto:individualrights@ocado.com" target="_blank">
         individualrights@ocado.com
       </Link>
       . Depending on where you live, you may need help from a parent or guardian

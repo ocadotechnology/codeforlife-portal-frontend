@@ -1,5 +1,6 @@
-import { Link, Typography } from "@mui/material"
 import { type FC } from "react"
+import { Link } from "codeforlife/components/router"
+import { Typography } from "@mui/material"
 
 export interface HowToComplainProps {}
 
@@ -17,7 +18,7 @@ const HowToComplain: FC<HowToComplainProps> = () => (
       normally live or where any alleged infringement of data protection laws
       occurred. The data protection authority in the UK is the Information
       Commissioner who may be contacted at&nbsp;
-      <Link href="https://ico.org.uk/concerns/" target="_blank">
+      <Link to="https://ico.org.uk/concerns/" target="_blank">
         https://ico.org.uk/concerns/
       </Link>
       &nbsp;or telephone: +44 303 123 1113.
