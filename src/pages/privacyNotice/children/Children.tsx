@@ -23,7 +23,7 @@ export interface ChildrenProps {}
 
 const Children: FC<ChildrenProps> = () => (
   <pages.Section>
-    <Typography fontWeight="bold">Last Updated: 25th January 2023</Typography>
+    <Typography fontWeight="bold">Last Updated: 11th April 2024</Typography>
     <Typography>
       This Privacy Notice will tell you what information we collect about you,
       how we use it, who we share it with, how long we keep it and how you can

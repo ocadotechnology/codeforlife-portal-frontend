@@ -22,7 +22,7 @@ export interface AdultsProps {}
 
 const Adults: FC<AdultsProps> = () => (
   <pages.Section>
-    <Typography fontWeight="bold">Last Updated: 25th January 2023</Typography>
+    <Typography fontWeight="bold">Last Updated: 11th April 2024</Typography>
     <Typography>
       Please read this notice carefully. This notice contains important
       information on who manages the Code for Life portal, how and why we

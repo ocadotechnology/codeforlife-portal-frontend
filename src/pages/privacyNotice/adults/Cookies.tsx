@@ -156,6 +156,15 @@ const Cookies: FC<CookiesProps> = () => (
       not collect any information on pages where it is not installed, nor does
       it track or collect information outside your web browser.
     </Typography>
+    <Typography>
+      <strong>YouTube.</strong> While embedded YouTube videos on our website do
+      not use cookies, your browser&apos;s Local Storage may be used by the
+      video platform provider to enhance your viewing experience and collect
+      analytics data. This data enables the platform to track your interaction
+      with the video content and may gather information about your device and
+      browsing behavior. The use of Local Storage by embedded video providers is
+      subject to their respective policies.
+    </Typography>
     <Typography variant="h6">6.4 Managing and disabling cookies</Typography>
     <Typography>
       We make available a cookie management platform on our portal (provided

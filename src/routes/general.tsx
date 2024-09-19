@@ -14,8 +14,8 @@ const general = (
   <>
     <Route path={paths._} element={<Home />} />
     <Route path={paths.aboutUs._} element={<AboutUs />} />
-    <Route path={paths.privacyNotice._} element={<PrivacyNotice />} />
-    {/* <Route path={paths.termsOfUse._} element={<TermsOfUse />} /> */}
+    <Route path={paths.privacyNotice.tab._} element={<PrivacyNotice />} />
+    {/* <Route path={paths.termsOfUse.tab._} element={<TermsOfUse />} /> */}
     {/* <Route path={paths.homeLearning._} element={<HomeLearning />} /> */}
     <Route path={paths.getInvolved._} element={<GetInvolved />} />
     <Route path={paths.codingClubs._} element={<CodingClubs />} />
