@@ -3,7 +3,7 @@ import { type FC } from "react"
 import { getParam } from "codeforlife/utils/router"
 
 import Adults from "./adults/Adults"
-// import Children from "./children/Children"
+import Children from "./children/Children"
 import { paths } from "../../routes"
 
 export interface PrivacyNoticeProps {}
@@ -19,11 +19,11 @@ const PrivacyNotice: FC<PrivacyNoticeProps> = () => (
           children: <Adults />,
           path: getParam(paths.privacyNotice.tab.privacyNotice, "tab"),
         },
-        // {
-        //   label: "Child-friendly",
-        //   children: <Children />,
-        //   path: getParam(paths.privacyNotice.tab.childFriendly, "tab"),
-        // },
+        {
+          label: "Child-friendly",
+          children: <Children />,
+          path: getParam(paths.privacyNotice.tab.childFriendly, "tab"),
+        },
       ]}
     />
   </pages.Page>
