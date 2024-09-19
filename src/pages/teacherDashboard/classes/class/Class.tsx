@@ -1,15 +1,20 @@
 import * as pages from "codeforlife/components/page"
 import { type FC, useState } from "react"
 import { Button } from "@mui/material"
+import { Navigate } from "codeforlife/components/router"
 import { SecurityOutlined as SecurityOutlinedIcon } from "@mui/icons-material"
 import { type StudentUser } from "codeforlife/api"
+import { useParams } from "codeforlife/hooks"
 
 import { type ListUsersResult } from "../../../../api/user"
 import ResetStudentsPasswordDialog from "./ResetStudentsPasswordDialog"
+import { classIdSchema } from "../../../../app/schemas"
+import { paths } from "../../../../routes"
 
 export interface ClassProps {}
 
 const Class: FC<ClassProps> = () => {
+  const params = useParams({ classId: classIdSchema.required() })
   const [dialog, setDialog] = useState<"reset-students-password">()
   // @ts-expect-error temp fix until setStudentUsers is used
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -29,6 +34,11 @@ const Class: FC<ClassProps> = () => {
     },
   })
 
+  if (!params)
+    return <Navigate to={paths.teacher.dashboard.tab.classes._} replace />
+
+  const { classId } = params
+
   function closeDialog() {
     setDialog(undefined)
   }
@@ -46,6 +56,7 @@ const Class: FC<ClassProps> = () => {
         </Button>
       </pages.Section>
       <ResetStudentsPasswordDialog
+        classId={classId}
         open={dialog === "reset-students-password"}
         onClose={closeDialog}
         studentUsers={Object.values(studentUsers)}

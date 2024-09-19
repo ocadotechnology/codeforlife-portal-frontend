@@ -9,10 +9,15 @@ import JoinClassRequest from "./JoinClassRequest"
 import JoinClassRequestTable from "./JoinClassRequestTable"
 import ResetStudentsPassword from "./class/ResetStudentsPassword"
 import { type RetrieveUserResult } from "../../../api/user"
+import UpdateStudentUser from "./class/UpdateStudentUser"
 
 export interface ClassesProps {
   authUser: SchoolTeacherUser<RetrieveUserResult>
-  view?: "class" | "join-class-request" | "reset-students-password"
+  view?:
+    | "class"
+    | "join-class-request"
+    | "reset-students-password"
+    | "update-student-user"
 }
 
 const Classes: FC<ClassesProps> = ({ authUser, view }) => {
@@ -21,6 +26,7 @@ const Classes: FC<ClassesProps> = ({ authUser, view }) => {
       class: <Class />,
       "join-class-request": <JoinClassRequest />,
       "reset-students-password": <ResetStudentsPassword />,
+      "update-student-user": <UpdateStudentUser />,
     }[view]
   }
 

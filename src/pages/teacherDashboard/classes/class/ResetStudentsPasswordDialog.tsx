@@ -1,6 +1,6 @@
+import { type Class, type StudentUser } from "codeforlife/api"
 import { type FC } from "react"
-import { type StudentUser } from "codeforlife/api"
-import { generatePath } from "react-router"
+import { generatePath } from "react-router-dom"
 import { useNavigate } from "codeforlife/hooks"
 
 import BaseDialog, { type BaseDialogProps } from "./BaseDialog"
@@ -11,18 +11,18 @@ import {
 import { type ListUsersResult } from "../../../../api/user"
 import { type ResetStudentsPasswordState } from "./ResetStudentsPassword"
 import { paths } from "../../../../routes"
-import { useClassIdParam } from "../../../../app/hooks"
 
 export interface ResetStudentsPasswordDialogProps
   extends Omit<BaseDialogProps, "header" | "body" | "onConfirm"> {
+  classId: Class["id"]
   studentUsers: Array<StudentUser<ListUsersResult["data"][number]>>
 }
 
 const ResetStudentsPasswordDialog: FC<ResetStudentsPasswordDialogProps> = ({
+  classId,
   studentUsers,
   ...baseDialogProps
 }) => {
-  const { classId } = useClassIdParam()!
   const [resetStudentsPassword] = useResetStudentsPasswordMutation()
   const navigate = useNavigate()
 

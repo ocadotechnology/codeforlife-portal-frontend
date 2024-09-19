@@ -8,10 +8,10 @@ import {
 
 import {
   indyPasswordSchema,
-  pwnedPasswordSchema,
   studentPasswordSchema,
   teacherPasswordSchema,
 } from "../../app/schemas"
+import { usePwnedPasswordsApi } from "../../app/hooks"
 
 export interface NewPasswordFieldProps
   extends Omit<
@@ -25,28 +25,20 @@ const NewPasswordField: FC<NewPasswordFieldProps> = ({
   userType,
   ...passwordFieldProps
 }) => {
-  const [pwnedPasswords, setPwnedPasswords] = useState<{
-    online: boolean
-    dialogOpen: boolean
-  }>({ online: true, dialogOpen: false })
+  const [pwnedPasswordsSchema, pwnedPasswordsOnline] = usePwnedPasswordsApi()
+  const [dialogOpen, setDialogOpen] = useState(!pwnedPasswordsOnline)
 
   let schema = {
     teacher: teacherPasswordSchema,
     independent: indyPasswordSchema,
     student: studentPasswordSchema,
-  }[userType]()
+  }[userType]
 
   if (
-    pwnedPasswords.online &&
+    pwnedPasswordsOnline &&
     (userType === "teacher" || userType === "independent")
   ) {
-    schema = pwnedPasswordSchema({
-      schema,
-      onError: () => {
-        // Alert user test couldn't be carried out.
-        setPwnedPasswords({ online: false, dialogOpen: true })
-      },
-    })
+    schema = schema.concat(pwnedPasswordsSchema)
   }
 
   return (
@@ -58,7 +50,7 @@ const NewPasswordField: FC<NewPasswordFieldProps> = ({
         validateOptions={{ abortEarly: false }}
         {...passwordFieldProps}
       />
-      <Dialog open={!pwnedPasswords.online && pwnedPasswords.dialogOpen}>
+      <Dialog open={dialogOpen}>
         <Typography variant="h5" className="no-override">
           Password Vulnerability Check Unavailable
         </Typography>
@@ -70,7 +62,7 @@ const NewPasswordField: FC<NewPasswordFieldProps> = ({
         <Button
           className="no-override"
           onClick={() => {
-            setPwnedPasswords({ online: false, dialogOpen: false })
+            setDialogOpen(false)
           }}
         >
           I understand
