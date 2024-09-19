@@ -1,8 +1,9 @@
 import * as pages from "codeforlife/components/page"
-import { Navigate, generatePath } from "react-router-dom"
 import { useLocation, useParams } from "codeforlife/hooks"
 import { type FC } from "react"
+import { Navigate } from "codeforlife/components/router"
 import { type StudentUser } from "codeforlife/api"
+import { generatePath } from "react-router-dom"
 
 import {
   type ListUsersResult,

@@ -1,7 +1,7 @@
 import * as pages from "codeforlife/components/page"
 import { type FC, useState } from "react"
 import { Button } from "@mui/material"
-import { Navigate } from "react-router-dom"
+import { Navigate } from "codeforlife/components/router"
 import { SecurityOutlined as SecurityOutlinedIcon } from "@mui/icons-material"
 import { type StudentUser } from "codeforlife/api"
 import { useParams } from "codeforlife/hooks"
