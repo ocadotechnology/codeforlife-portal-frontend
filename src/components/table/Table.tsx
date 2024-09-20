@@ -2,6 +2,7 @@ import {
   Table as MuiTable,
   TableBody,
   TableContainer,
+  type TableContainerProps,
   TableHead,
 } from "@mui/material"
 import { type FC } from "react"
@@ -13,11 +14,17 @@ export interface TableProps {
   titles: string[]
   children: React.ReactNode
   className?: string
+  containerProps?: TableContainerProps
 }
 
-const Table: FC<TableProps> = ({ titles, children, className }) => {
+const Table: FC<TableProps> = ({
+  titles,
+  children,
+  className,
+  containerProps,
+}) => {
   return (
-    <TableContainer>
+    <TableContainer {...containerProps}>
       <MuiTable className={className} style={{ display: "table" }}>
         <TableHead>
           <Row>
