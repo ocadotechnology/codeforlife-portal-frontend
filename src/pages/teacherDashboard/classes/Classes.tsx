@@ -10,7 +10,7 @@ import JoinClassRequestTable from "./JoinClassRequestTable"
 import ResetStudentsPassword from "./resetStudentsPassword/ResetStudentsPassword"
 import { type RetrieveUserResult } from "../../../api/user"
 import TransferStudents from "./transferStudents/TransferStudents"
-import UpdateStudentUser from "./class/UpdateStudentUser"
+import UpdateStudentUser from "./updateStudentUser/UpdateStudentUser"
 
 export interface ClassesProps {
   authUser: SchoolTeacherUser<RetrieveUserResult>
