@@ -40,7 +40,7 @@ const StudentTable: FC<StudentTableProps> = ({ classId }) => {
 
   return (
     <>
-      <Stack className="button-row">
+      <Stack direction="row" gap={2}>
         <Button
           onClick={() => {
             setDialog("reset-students-password")

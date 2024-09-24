@@ -96,7 +96,7 @@ const TransferStudentsForm: FC<TransferStudentsFormProps> = ({
             </tables.BodyRow>
           ))}
         </tables.Table>
-        <Stack className="form-buttons" justifyContent="end">
+        <Stack direction="row" gap={2} justifyContent="end">
           <LinkButton to={classPath} variant="outlined">
             Cancel
           </LinkButton>

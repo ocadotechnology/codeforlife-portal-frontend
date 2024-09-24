@@ -29,7 +29,7 @@ const SelectClassForm: FC<SelectClassFormProps> = ({
       }}
     >
       <ClassAutocompleteField required _id={classId} />
-      <Stack className="form-buttons">
+      <Stack direction="row" gap={2}>
         <LinkButton to={classPath} variant="outlined">
           Cancel
         </LinkButton>
