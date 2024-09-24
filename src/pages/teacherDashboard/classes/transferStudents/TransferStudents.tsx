@@ -41,7 +41,7 @@ const NewClassSections: FC<
     </>
   ))
 
-const _TransferStudentsClass: FC<
+const _TransferStudents: FC<
   TransferStudentsState & {
     classId: Class["id"]
     classPath: string
@@ -55,13 +55,7 @@ const _TransferStudentsClass: FC<
         <Typography align="center" variant="h4">
           Move students from class {klass.name} ({klass.id})
         </Typography>
-        <Link
-          className="back-to"
-          to={classPath}
-          // marginBottom={
-          //   newClassName === undefined ? undefined : "0px !important"
-          // }
-        >
+        <Link className="back-to" to={classPath}>
           Class
         </Link>
       </pages.Section>
@@ -107,7 +101,7 @@ const TransferStudents: FC<TransferStudentsProps> = () => {
   return !state || !state.studentUsers || !state.studentUsers.length ? (
     <Navigate to={classPath} replace />
   ) : (
-    <_TransferStudentsClass
+    <_TransferStudents
       classId={classId}
       classPath={classPath}
       studentUsers={state.studentUsers}

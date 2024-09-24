@@ -16,7 +16,7 @@ const ClassAutocompleteField: FC<ClassAutocompleteFieldProps> = ({
 }) => (
   <ApiAutocompleteField
     useLazyListQuery={useLazyListClassesQuery}
-    searchKey="name"
+    searchKey="id_or_name"
     filterOptions={{ _id }}
     getOptionLabel={({ name, id, teacher }) =>
       `${name} (${id}), ${teacher.user.first_name} ${teacher.user.last_name}`
