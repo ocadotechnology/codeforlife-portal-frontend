@@ -1,3 +1,4 @@
+import * as tables from "codeforlife/components/table"
 import {
   Add as AddIcon,
   DoNotDisturb as DoNotDisturbIcon,
@@ -10,7 +11,6 @@ import { TablePagination } from "codeforlife/components"
 import { generatePath } from "react-router"
 import { useNavigate } from "codeforlife/hooks"
 
-import * as tables from "../../../components/table"
 import {
   useHandleJoinClassRequestMutation,
   useLazyListUsersQuery,
@@ -47,10 +47,10 @@ const JoinClassRequestTable: FC<JoinClassRequestTableProps> = ({
           users.length ? (
             <tables.Table
               className="body"
-              titles={["Name", "Email address", "Class", "Actions"]}
+              headers={["Name", "Email address", "Class", "Actions"]}
             >
               {users.map(user => (
-                <tables.Body key={`user-${user.id}`}>
+                <tables.BodyRow key={`user-${user.id}`}>
                   <tables.Cell>
                     <Typography>
                       {user.first_name} {user.last_name}
@@ -66,7 +66,7 @@ const JoinClassRequestTable: FC<JoinClassRequestTableProps> = ({
                       ? ""
                       : ` (${user.requesting_to_join_class!.teacher.user.first_name} ${user.requesting_to_join_class!.teacher.user.last_name})`}
                   </tables.Cell>
-                  <tables.Cell justifyContent="center">
+                  <tables.CellStack alignItems="center">
                     <LinkButton
                       to={generatePath(
                         paths.teacher.dashboard.tab.classes.class.joinRequest._,
@@ -106,8 +106,8 @@ const JoinClassRequestTable: FC<JoinClassRequestTableProps> = ({
                     >
                       Reject
                     </Button>
-                  </tables.Cell>
-                </tables.Body>
+                  </tables.CellStack>
+                </tables.BodyRow>
               ))}
             </tables.Table>
           ) : (

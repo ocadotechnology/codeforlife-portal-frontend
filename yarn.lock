@@ -2711,7 +2711,7 @@ clsx@^2.1.0, clsx@^2.1.1:
 
 "codeforlife@github:ocadotechnology/codeforlife-package-javascript#portal-frontend-52":
   version "2.3.5"
-  resolved "https://codeload.github.com/ocadotechnology/codeforlife-package-javascript/tar.gz/1879a14448c1e38a5c47f616c075e24785e1a241"
+  resolved "https://codeload.github.com/ocadotechnology/codeforlife-package-javascript/tar.gz/899a7ecd78b29aa41dc70d816b7df57e74277053"
   dependencies:
     "@emotion/react" "^11.10.6"
     "@emotion/styled" "^11.10.6"

@@ -1,8 +1,8 @@
+import * as tables from "codeforlife/components/table"
 import { type FC } from "react"
 import { TablePagination } from "codeforlife/components"
 import { Typography } from "@mui/material"
 
-import * as tables from "../../../../components/table"
 import { type RetrieveClassResult } from "../../../../api/klass"
 import { useLazyListUsersQuery } from "../../../../api/user"
 
@@ -27,7 +27,7 @@ const StudentTable: FC<StudentTableProps> = ({ klass, newClass }) => (
     >
       {users => (
         <tables.Table
-          titles={["Student name"]}
+          headers={["Student name"]}
           containerProps={{
             sx: {
               margin: "auto",
@@ -37,14 +37,14 @@ const StudentTable: FC<StudentTableProps> = ({ klass, newClass }) => (
         >
           {users.length ? (
             users.map(user => (
-              <tables.Body key={`user-${user.id}`}>
+              <tables.BodyRow key={`user-${user.id}`}>
                 <tables.Cell>{user.first_name}</tables.Cell>
-              </tables.Body>
+              </tables.BodyRow>
             ))
           ) : (
-            <tables.Body>
+            <tables.BodyRow>
               <tables.Cell>(no students)</tables.Cell>
-            </tables.Body>
+            </tables.BodyRow>
           )}
         </tables.Table>
       )}

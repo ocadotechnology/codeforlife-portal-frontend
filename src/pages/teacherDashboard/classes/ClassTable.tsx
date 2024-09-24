@@ -1,3 +1,4 @@
+import * as tables from "codeforlife/components/table"
 import { CopyIconButton, TablePagination } from "codeforlife/components"
 import { Create as CreateIcon } from "@mui/icons-material"
 import { type FC } from "react"
@@ -6,7 +7,6 @@ import { type SchoolTeacherUser } from "codeforlife/api"
 import { Typography } from "@mui/material"
 import { generatePath } from "react-router"
 
-import * as tables from "../../../components/table"
 import { type RetrieveUserResult } from "../../../api/user"
 import { paths } from "../../../routes"
 import { useLazyListClassesQuery } from "../../../api/klass"
@@ -31,19 +31,23 @@ const ClassTable: FC<ClassTableProps> = ({ authUser }) => (
     >
       {classes => (
         <tables.Table
-          titles={
+          headers={
             authUser.teacher.is_admin
               ? ["Class name", "Access code", "Teacher", "Action"]
               : ["Class name", "Access code", "Action"]
           }
         >
           {classes.map(klass => (
-            <tables.Body key={`klass-${klass.id}`}>
+            <tables.BodyRow key={`klass-${klass.id}`}>
               <tables.Cell>{klass.name}</tables.Cell>
-              <tables.Cell justifyContent="space-between" alignItems="center">
+              <tables.CellStack
+                direction="row"
+                justifyContent="space-between"
+                alignItems="center"
+              >
                 {klass.id}
                 <CopyIconButton content={klass.id} />
-              </tables.Cell>
+              </tables.CellStack>
               {authUser.teacher.is_admin && (
                 <tables.Cell>
                   {klass.teacher.id === authUser.teacher.id
@@ -51,7 +55,7 @@ const ClassTable: FC<ClassTableProps> = ({ authUser }) => (
                     : `${klass.teacher.user.first_name} ${klass.teacher.user.last_name}`}
                 </tables.Cell>
               )}
-              <tables.Cell justifyContent="center">
+              <tables.CellStack alignItems="center">
                 <LinkButton
                   to={generatePath(
                     paths.teacher.dashboard.tab.classes.class._,
@@ -63,8 +67,8 @@ const ClassTable: FC<ClassTableProps> = ({ authUser }) => (
                 >
                   Edit details
                 </LinkButton>
-              </tables.Cell>
-            </tables.Body>
+              </tables.CellStack>
+            </tables.BodyRow>
           ))}
         </tables.Table>
       )}

@@ -1,4 +1,5 @@
 import * as forms from "codeforlife/components/form"
+import * as tables from "codeforlife/components/table"
 import { Stack, Typography } from "@mui/material"
 import { type FC } from "react"
 import { LinkButton } from "codeforlife/components/router"
@@ -6,7 +7,6 @@ import { type StudentUser } from "codeforlife/api"
 import { submitForm } from "codeforlife/utils/form"
 import { useNavigate } from "codeforlife/hooks"
 
-import * as tables from "../../../../components/table"
 import {
   type TransferStudentsArg,
   useTransferStudentsMutation,
@@ -81,9 +81,9 @@ const TransferStudentsForm: FC<TransferStudentsFormProps> = ({
           },
         })}
       >
-        <tables.Table titles={["Existing name", "New student name"]}>
+        <tables.Table headers={["Existing name", "New student name"]}>
           {studentUsers.map(studentUser => (
-            <tables.Body key={`user-${studentUser.id}`}>
+            <tables.BodyRow key={`user-${studentUser.id}`}>
               <tables.Cell>{studentUser.first_name}</tables.Cell>
               <tables.Cell>
                 <forms.FirstNameField
@@ -93,7 +93,7 @@ const TransferStudentsForm: FC<TransferStudentsFormProps> = ({
                   placeholder={`Enter a name for ${studentUser.first_name}`}
                 />
               </tables.Cell>
-            </tables.Body>
+            </tables.BodyRow>
           ))}
         </tables.Table>
         <Stack className="form-buttons" justifyContent="end">
