@@ -17,7 +17,7 @@ import {
 } from "../../../../api/user"
 import { classIdSchema, userIdSchema } from "../../../../app/schemas"
 import { NewPasswordField } from "../../../../components/form"
-import { type ResetStudentsPasswordState } from "./ResetStudentsPassword"
+import { type ResetStudentsPasswordState } from "../resetStudentsPassword/ResetStudentsPassword"
 import { paths } from "../../../../routes"
 import { useResetStudentsPasswordMutation } from "../../../../api/student"
 import { useRetrieveClassQuery } from "../../../../api/klass"
