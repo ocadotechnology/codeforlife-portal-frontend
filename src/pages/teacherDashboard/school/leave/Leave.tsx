@@ -13,11 +13,11 @@ import { submitForm } from "codeforlife/utils/form"
 import {
   useLazyListClassesQuery,
   useUpdateClassesMutation,
-} from "../../../api/klass"
-import { TeacherAutocompleteField } from "../../../components/form"
-import { paths } from "../../../routes"
-import { useLazyRetrieveUserQuery } from "../../../api/user"
-import { useRemoveTeacherFromSchoolMutation } from "../../../api/teacher"
+} from "../../../../api/klass"
+import { TeacherAutocompleteField } from "../../../../components/form"
+import { paths } from "../../../../routes"
+import { useLazyRetrieveUserQuery } from "../../../../api/user"
+import { useRemoveTeacherFromSchoolMutation } from "../../../../api/teacher"
 
 export interface LeaveProps {
   authUserId: User["id"]
