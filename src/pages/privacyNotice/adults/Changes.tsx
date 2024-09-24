@@ -1,12 +1,14 @@
 import { type FC } from "react"
 import { Typography } from "@mui/material"
 
-export interface ChangesProps {}
+export interface ChangesProps {
+  lastUpdated: string
+}
 
-const Changes: FC<ChangesProps> = () => (
+const Changes: FC<ChangesProps> = ({ lastUpdated }) => (
   <>
     <Typography>
-      This Privacy Notice was last updated on 25th January 2023.
+      This Privacy Notice was last updated on {lastUpdated}.
     </Typography>
     <Typography mb={0}>
       We may change this Privacy Notice from time to time and you should check

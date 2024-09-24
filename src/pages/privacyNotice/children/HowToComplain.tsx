@@ -20,7 +20,7 @@ const HowToComplain: FC<HowToComplainProps> = () => (
       use your personal information fairly and keep it safe. You may contact the
       ICO by telephoning them on the number below or by visiting their website.
     </Typography>
-    <Typography>Telephone: 0303 123 1113</Typography>
+    <Typography>Telephone: +44 303 123 1113</Typography>
     <Typography mb={0}>
       Website:&nbsp;
       <Link to="https://ico.org.uk/concerns" target="_blank">
