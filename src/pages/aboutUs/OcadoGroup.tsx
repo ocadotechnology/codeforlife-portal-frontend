@@ -31,14 +31,14 @@ const OcadoGroup: FC<OcadoGroupProps> = () => {
       </Typography>
       <Typography mb={0}>
         <Link to={LINK_SKILLS_FOR_THE_FUTURE} target="_blank">
-          Skills for the Future
+          Our People and Skills for the Future
         </Link>{" "}
-        is one of Ocado Group&apos;s core Corporate Responsibility pillars,
-        which is part of the Ocado Unlimited strategy (alongside Natural
-        Resources and Responsible Sourcing). For Ocado Group, Skills for the
-        Future means championing digital literacy. We want to inspire the next
-        generation of STEM leaders, so that everyone can fully participate in
-        society.
+        is one of Ocado Group&apos;s core Sustainability pillars alongside
+        Environment and Natural Resources and Platform Resilience and
+        Innovation). For Ocado Group, Our People and Skills for the Future means
+        accelerating the development of our people and championing digital
+        literacy. We want to inspire the next generation of STEM leaders, so
+        that everyone can fully participate in society.
       </Typography>
     </Introduction>
   )
