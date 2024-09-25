@@ -27,6 +27,9 @@ const ClassTable: FC<ClassTableProps> = ({ authUser }) => (
     </Typography>
     <TablePagination
       useLazyListQuery={useLazyListClassesQuery}
+      filters={
+        authUser.teacher.is_admin ? undefined : { teacher: authUser.teacher.id }
+      }
       preferCacheValue
     >
       {classes => (
