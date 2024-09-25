@@ -57,8 +57,12 @@ const Links: FC<LinksProps> = () => {
       </Grid>
       <Grid xs={12} sm={4}>
         <Stack spacing={1}>
-          <FooterLink to={paths.privacyNotice._}>Privacy notice</FooterLink>
-          <FooterLink to={paths.termsOfUse._}>Terms of use</FooterLink>
+          <FooterLink to={paths.privacyNotice.tab.privacyNotice._}>
+            Privacy notice
+          </FooterLink>
+          <FooterLink to={paths.termsOfUse.tab.termsOfUse._}>
+            Terms of use
+          </FooterLink>
           {/*TODO: Use OneTrust banner hook*/}
           <MuiLink sx={LINK_STYLE}>Cookie settings</MuiLink>
         </Stack>
