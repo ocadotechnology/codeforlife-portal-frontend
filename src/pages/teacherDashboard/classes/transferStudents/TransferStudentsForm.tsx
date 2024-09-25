@@ -89,7 +89,8 @@ const TransferStudentsForm: FC<TransferStudentsFormProps> = ({
                 <forms.FirstNameField
                   required
                   name={`${studentUser.student.id}.user.first_name`}
-                  label={undefined}
+                  label={null}
+                  variant="outlined"
                   placeholder={`Enter a name for ${studentUser.first_name}`}
                 />
               </tables.Cell>
