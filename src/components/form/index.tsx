@@ -1,3 +1,5 @@
+export * from "./ClassAutocompleteField"
+export { default as ClassAutocompleteField } from "./ClassAutocompleteField"
 export * from "./ClassNameField"
 export { default as ClassNameField } from "./ClassNameField"
 export * from "./LastNameField"

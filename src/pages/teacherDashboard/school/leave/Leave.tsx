@@ -1,5 +1,6 @@
 import * as form from "codeforlife/components/form"
 import * as page from "codeforlife/components/page"
+import * as tables from "codeforlife/components/table"
 import * as yup from "yup"
 import { CircularProgress, Stack, Typography } from "@mui/material"
 import { type FC, useEffect } from "react"
@@ -9,15 +10,14 @@ import { TablePagination } from "codeforlife/components"
 import { type User } from "codeforlife/api"
 import { submitForm } from "codeforlife/utils/form"
 
-import * as table from "../../../components/table"
 import {
   useLazyListClassesQuery,
   useUpdateClassesMutation,
-} from "../../../api/klass"
-import { TeacherAutocompleteField } from "../../../components/form"
-import { paths } from "../../../routes"
-import { useLazyRetrieveUserQuery } from "../../../api/user"
-import { useRemoveTeacherFromSchoolMutation } from "../../../api/teacher"
+} from "../../../../api/klass"
+import { TeacherAutocompleteField } from "../../../../components/form"
+import { paths } from "../../../../routes"
+import { useLazyRetrieveUserQuery } from "../../../../api/user"
+import { useRemoveTeacherFromSchoolMutation } from "../../../../api/teacher"
 
 export interface LeaveProps {
   authUserId: User["id"]
@@ -125,27 +125,27 @@ const Leave: FC<LeaveProps> = ({ authUserId }) => {
                 )}
                 onSubmit={submitForm(updateClasses)}
               >
-                <table.Table
+                <tables.Table
                   className="body"
-                  titles={["Class name", "New teacher"]}
+                  headers={["Class name", "New teacher"]}
                 >
                   {classes.map(klass => (
-                    <table.Body key={klass.id}>
-                      <table.Cell>
+                    <tables.BodyRow key={klass.id}>
+                      <tables.Cell>
                         <Typography variant="subtitle1">
                           {klass.name}
                         </Typography>
-                      </table.Cell>
-                      <table.Cell direction="column" alignItems="flex-start">
+                      </tables.Cell>
+                      <tables.CellStack alignItems="flex-start">
                         <TeacherAutocompleteField
                           required
                           name={`${klass.id}.teacher`}
                           _id={user.id}
                         />
-                      </table.Cell>
-                    </table.Body>
+                      </tables.CellStack>
+                    </tables.BodyRow>
                   ))}
-                </table.Table>
+                </tables.Table>
                 <Stack direction="row" spacing={2}>
                   <LinkButton
                     variant="outlined"

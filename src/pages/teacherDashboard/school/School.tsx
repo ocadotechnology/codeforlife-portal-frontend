@@ -12,7 +12,7 @@ import { generatePath } from "react-router"
 import { useNavigate } from "codeforlife/hooks"
 
 import InviteTeacherForm from "./InviteTeacherForm"
-import Leave from "./Leave"
+import Leave from "./leave/Leave"
 import { type RetrieveUserResult } from "../../../api/user"
 import TeacherInvitationTable from "./TeacherInvitationTable"
 import TeacherTable from "./TeacherTable"

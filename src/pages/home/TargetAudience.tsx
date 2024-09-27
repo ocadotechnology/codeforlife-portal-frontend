@@ -38,7 +38,7 @@ const TargetAudience: FC<TargetAudienceProps> = () => {
     "Helping teachers and families to inspire the next generation of computer scientists.",
     "Anyone can learn how to code. We will help you learn how. It's fun, free and easy.",
   ]
-  const linkButtons: LinkButtonProps[] = [
+  const linkButtons: LinkButtonProps<"to">[] = [
     {
       children: "Learn more",
       to: paths.teacher._,

@@ -1,5 +1,6 @@
 import * as form from "codeforlife/components/form"
 import * as page from "codeforlife/components/page"
+import * as tables from "codeforlife/components/table"
 import { Link, LinkButton } from "codeforlife/components/router"
 import { type SchoolTeacher, type User } from "codeforlife/api"
 import { Stack, Typography } from "@mui/material"
@@ -8,7 +9,6 @@ import { TablePagination } from "codeforlife/components"
 import { submitForm } from "codeforlife/utils/form"
 import { useNavigate } from "codeforlife/hooks"
 
-import * as table from "../../../components/table"
 import {
   useLazyListClassesQuery,
   useUpdateClassesMutation,
@@ -98,27 +98,27 @@ const TransferClasses: FC<TransferClassesProps> = ({ authUserId, user }) => {
                 )}
                 onSubmit={submitForm(updateClasses)}
               >
-                <table.Table
+                <tables.Table
                   className="body"
-                  titles={["Class name", "New teacher"]}
+                  headers={["Class name", "New teacher"]}
                 >
                   {classes.map(klass => (
-                    <table.Body key={klass.id}>
-                      <table.Cell>
+                    <tables.BodyRow key={klass.id}>
+                      <tables.Cell>
                         <Typography variant="subtitle1">
                           {klass.name}
                         </Typography>
-                      </table.Cell>
-                      <table.Cell direction="column" alignItems="flex-start">
+                      </tables.Cell>
+                      <tables.CellStack alignItems="flex-start">
                         <TeacherAutocompleteField
                           required
                           name={`${klass.id}.teacher`}
                           _id={user.id}
                         />
-                      </table.Cell>
-                    </table.Body>
+                      </tables.CellStack>
+                    </tables.BodyRow>
                   ))}
-                </table.Table>
+                </tables.Table>
                 <Stack direction="row" spacing={2}>
                   <LinkButton
                     variant="outlined"

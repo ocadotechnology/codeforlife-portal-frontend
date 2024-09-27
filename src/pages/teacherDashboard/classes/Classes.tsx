@@ -5,11 +5,12 @@ import { type SchoolTeacherUser } from "codeforlife/api"
 import Class from "./class/Class"
 import ClassTable from "./ClassTable"
 import CreateClassForm from "./CreateClassForm"
-import JoinClassRequest from "./JoinClassRequest"
+import JoinClassRequest from "./joinClassRequest/JoinClassRequest"
 import JoinClassRequestTable from "./JoinClassRequestTable"
-import ResetStudentsPassword from "./class/ResetStudentsPassword"
+import ResetStudentsPassword from "./resetStudentsPassword/ResetStudentsPassword"
 import { type RetrieveUserResult } from "../../../api/user"
-import UpdateStudentUser from "./class/UpdateStudentUser"
+import TransferStudents from "./transferStudents/TransferStudents"
+import UpdateStudentUser from "./updateStudentUser/UpdateStudentUser"
 
 export interface ClassesProps {
   authUser: SchoolTeacherUser<RetrieveUserResult>
@@ -18,6 +19,7 @@ export interface ClassesProps {
     | "join-class-request"
     | "reset-students-password"
     | "update-student-user"
+    | "transfer-students"
 }
 
 const Classes: FC<ClassesProps> = ({ authUser, view }) => {
@@ -27,6 +29,7 @@ const Classes: FC<ClassesProps> = ({ authUser, view }) => {
       "join-class-request": <JoinClassRequest />,
       "reset-students-password": <ResetStudentsPassword />,
       "update-student-user": <UpdateStudentUser />,
+      "transfer-students": <TransferStudents />,
     }[view]
   }
 

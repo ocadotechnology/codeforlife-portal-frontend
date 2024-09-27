@@ -45,7 +45,7 @@ export type TransferStudentsArg = BulkUpdateArg<
   "klass",
   never,
   {
-    user: Arg<User, never, "first_name">
+    user?: Arg<User, never, "first_name">
   }
 >
 
