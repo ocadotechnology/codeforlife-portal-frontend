@@ -34,6 +34,10 @@ const teacher = (
       element={<TeacherDashboard tab="classes" view="update-student-user" />}
     />
     <Route
+      path={paths.teacher.dashboard.tab.classes.class.students.transfer._}
+      element={<TeacherDashboard tab="classes" view="transfer-students" />}
+    />
+    <Route
       path={paths.teacher.dashboard.tab.classes.class._}
       element={<TeacherDashboard tab="classes" view="class" />}
     />
@@ -41,22 +45,10 @@ const teacher = (
       path={paths.teacher.dashboard.tab.classes._}
       element={<TeacherDashboard tab="classes" />}
     />
-    {/* <Route
-      path={`${paths.teacher.dashboard.classes._}/:accessCode?/:view?`}
-      element={<TeacherDashboard tab={1} />}
-    /> */}
-    {/* <Route
-      path={paths.teacher.dashboard.tab.classes.editClass.studentCredentials._}
-      element={<StudentCredentials />}
-    /> */}
     <Route
       path={paths.teacher.dashboard.tab.account._}
       element={<TeacherDashboard tab="account" />}
     />
-    {/* <Route
-      path={`${paths.teacher.dashboard.tab.account._}/:view?`}
-      element={<TeacherDashboard tab={2} />}
-    /> */}
   </>
 )
 

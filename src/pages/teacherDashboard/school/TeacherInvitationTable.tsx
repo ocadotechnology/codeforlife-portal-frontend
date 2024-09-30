@@ -1,3 +1,4 @@
+import * as tables from "codeforlife/components/table"
 import {
   Add as AddIcon,
   DeleteOutline as DeleteOutlineIcon,
@@ -14,7 +15,6 @@ import { type SchoolTeacherUser } from "codeforlife/api"
 import { TablePagination } from "codeforlife/components"
 import { useNavigate } from "codeforlife/hooks"
 
-import * as table from "../../../components/table"
 import {
   useDestroySchoolTeacherInvitationMutation,
   useLazyListSchoolTeacherInvitationsQuery,
@@ -67,9 +67,9 @@ const TeacherInvitationTable: FC<TeacherInvitationTableProps> = ({
       preferCacheValue
     >
       {schoolTeacherInvitations => (
-        <table.Table
+        <tables.Table
           className="body"
-          titles={
+          headers={
             authUser.teacher.is_admin
               ? ["Name", "Administrator status", "Actions"]
               : ["Name", "Administrator status"]
@@ -84,17 +84,16 @@ const TeacherInvitationTable: FC<TeacherInvitationTableProps> = ({
               invited_teacher_email,
               expires_at,
             }) => (
-              <table.Body key={`school-teacher-invitation-${id}`}>
-                <table.Cell>
+              <tables.BodyRow key={`school-teacher-invitation-${id}`}>
+                <tables.Cell>
                   <Typography variant="subtitle1">
                     {invited_teacher_first_name} {invited_teacher_last_name}{" "}
                     <strong>
                       ({expires_at < new Date() ? "expired" : "pending"})
                     </strong>
                   </Typography>
-                </table.Cell>
-                <table.Cell
-                  direction="column"
+                </tables.Cell>
+                <tables.CellStack
                   alignItems="flex-start"
                   justifyContent="flex-start"
                 >
@@ -106,9 +105,9 @@ const TeacherInvitationTable: FC<TeacherInvitationTableProps> = ({
                   <Typography variant="subtitle1">
                     ({invited_teacher_email})
                   </Typography>
-                </table.Cell>
+                </tables.CellStack>
                 {authUser.teacher.is_admin && (
-                  <table.Cell justifyContent="center">
+                  <tables.CellStack alignItems="center">
                     {invited_teacher_is_admin ? (
                       <Button
                         className="alert"
@@ -152,12 +151,12 @@ const TeacherInvitationTable: FC<TeacherInvitationTableProps> = ({
                     >
                       Delete
                     </Button>
-                  </table.Cell>
+                  </tables.CellStack>
                 )}
-              </table.Body>
+              </tables.BodyRow>
             ),
           )}
-        </table.Table>
+        </tables.Table>
       )}
     </TablePagination>
   )

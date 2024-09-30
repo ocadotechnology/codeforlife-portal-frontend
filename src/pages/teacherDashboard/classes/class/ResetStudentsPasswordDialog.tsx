@@ -9,7 +9,7 @@ import {
   useResetStudentsPasswordMutation,
 } from "../../../../api/student"
 import { type ListUsersResult } from "../../../../api/user"
-import { type ResetStudentsPasswordState } from "./ResetStudentsPassword"
+import { type ResetStudentsPasswordState } from "../resetStudentsPassword/ResetStudentsPassword"
 import { paths } from "../../../../routes"
 
 export interface ResetStudentsPasswordDialogProps

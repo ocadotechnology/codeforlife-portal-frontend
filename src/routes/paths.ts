@@ -35,7 +35,7 @@ const paths = _("", {
               students: _("/students", {
                 studentUser: _("/:studentUserId"),
                 resetPassword: _("/reset-password"),
-                move: _("/move"),
+                transfer: _("/transfer"),
                 release: _("/release"),
               }),
             }),

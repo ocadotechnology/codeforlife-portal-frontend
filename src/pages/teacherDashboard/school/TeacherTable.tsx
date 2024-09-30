@@ -1,3 +1,4 @@
+import * as tables from "codeforlife/components/table"
 import {
   Add as AddIcon,
   Create as CreateIcon,
@@ -12,7 +13,6 @@ import { TablePagination } from "codeforlife/components"
 import { generatePath } from "react-router"
 import { useNavigate } from "codeforlife/hooks"
 
-import * as table from "../../../components/table"
 import {
   type RetrieveUserResult,
   useLazyListUsersQuery,
@@ -61,24 +61,23 @@ const TeacherTable: FC<TeacherTableProps> = ({ authUser }) => {
       preferCacheValue
     >
       {users => (
-        <table.Table
+        <tables.Table
           className="body"
-          titles={
+          headers={
             authUser.teacher.is_admin
               ? ["Name", "Administrator status", "Actions"]
               : ["Name", "Administrator status"]
           }
         >
           {users.map(user => (
-            <table.Body key={`user-${user.id}`}>
-              <table.Cell>
+            <tables.BodyRow key={`user-${user.id}`}>
+              <tables.Cell>
                 <Typography variant="subtitle1">
                   {user.first_name} {user.last_name}
                   {user.id === authUser.id ? <strong> (you)</strong> : ""}
                 </Typography>
-              </table.Cell>
-              <table.Cell
-                direction="column"
+              </tables.Cell>
+              <tables.CellStack
                 alignItems="flex-start"
                 justifyContent="flex-start"
               >
@@ -88,9 +87,9 @@ const TeacherTable: FC<TeacherTableProps> = ({ authUser }) => {
                     : "Standard Teacher"}
                 </Typography>
                 <Typography variant="subtitle1">({user.email})</Typography>
-              </table.Cell>
+              </tables.CellStack>
               {authUser.teacher.is_admin && (
-                <table.Cell justifyContent="center">
+                <tables.CellStack alignItems="center">
                   {authUser.id === user.id && (
                     <Button
                       endIcon={<CreateIcon />}
@@ -144,11 +143,11 @@ const TeacherTable: FC<TeacherTableProps> = ({ authUser }) => {
                       Disable 2FA
                     </Button>
                   )}
-                </table.Cell>
+                </tables.CellStack>
               )}
-            </table.Body>
+            </tables.BodyRow>
           ))}
-        </table.Table>
+        </tables.Table>
       )}
     </TablePagination>
   )
