@@ -33,7 +33,7 @@ const OcadoGroup: FC<OcadoGroupProps> = () => {
         <Link to={LINK_SKILLS_FOR_THE_FUTURE} target="_blank">
           Our People and Skills for the Future
         </Link>{" "}
-        is one of Ocado Group&apos;s core Sustainability pillars alongside
+        is one of Ocado Group&apos;s core Sustainability pillars (alongside
         Environment and Natural Resources and Platform Resilience and
         Innovation). For Ocado Group, Our People and Skills for the Future means
         accelerating the development of our people and championing digital
