@@ -20,51 +20,45 @@ const _ReleaseStudents: FC<
   }
 > = ({ classId, classPath, ...state }) =>
   handleResultState(useRetrieveClassQuery(classId), klass => (
-    <>
-      <pages.Section>
-        <Typography align="center" variant="h4">
-          Release students from class {klass.name} ({klass.id})
-        </Typography>
-        <Link className="back-to" to={classPath}>
-          Class
+    <pages.Section>
+      <Typography align="center" variant="h4">
+        Release students from class {klass.name} ({klass.id})
+      </Typography>
+      <Link className="back-to" to={classPath}>
+        Class
+      </Link>
+      <Typography>Convert students into independent students.</Typography>
+      <Typography variant="h5">Students to release from school</Typography>
+      <Typography>
+        You are about to remove students from your class and set them up as
+        independent students. Neither you nor your school will be able to manage
+        them once you have submitted this request.
+      </Typography>
+      <Typography>
+        Email addresses are required for independent student accounts. If a
+        student is too young to own an email address, a parent or
+        guardian&apos;s email address will be required.
+      </Typography>
+      <Typography>
+        The email address will have to be validated through a verification email
+        before the student can log in. The email has to be unique and not used
+        for other accounts in Code for Life.{" "}
+        <strong>
+          Make sure you type the correct email, as otherwise we may not be able
+          to recover the account
+        </strong>
+        .
+      </Typography>
+      <Typography>
+        The students will then log in with their email via the{" "}
+        <Link className="body" to={paths.login.indy._}>
+          independent student login
         </Link>
-        <Typography mb={0}>
-          Convert students into independent students.
-        </Typography>
-      </pages.Section>
-      <pages.Section>
-        <Typography variant="h5">Students to release from school</Typography>
-        <Typography>
-          You are about to remove students from your class and set them up as
-          independent students. Neither you nor your school will be able to
-          manage them once you have submitted this request.
-        </Typography>
-        <Typography>
-          Email addresses are required for independent student accounts. If a
-          student is too young to own an email address, a parent or
-          guardian&apos;s email address will be required.
-        </Typography>
-        <Typography>
-          The email address will have to be validated through a verification
-          email before the student can log in. The email has to be unique and
-          not used for other accounts in Code for Life.{" "}
-          <strong>
-            Make sure you type the correct email, as otherwise we may not be
-            able to recover the account
-          </strong>
-          .
-        </Typography>
-        <Typography>
-          The students will then log in with their email via the{" "}
-          <Link className="body" to={paths.login.indy._}>
-            independent student login
-          </Link>
-          . Their passwords will stay the same. Independent students do not need
-          to provide a class access code.
-        </Typography>
-        <ReleaseStudentsForm classPath={classPath} {...state} />
-      </pages.Section>
-    </>
+        . Their passwords will stay the same. Independent students do not need
+        to provide a class access code.
+      </Typography>
+      <ReleaseStudentsForm classPath={classPath} {...state} />
+    </pages.Section>
   ))
 
 export interface ReleaseStudentsState {

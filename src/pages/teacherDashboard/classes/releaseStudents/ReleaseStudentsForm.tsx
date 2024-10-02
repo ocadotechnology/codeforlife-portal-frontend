@@ -83,8 +83,8 @@ const ReleaseStudentsForm: FC<ReleaseStudentsFormProps> = ({
       })}
     >
       {studentUsers.map(studentUser => (
-        <Stack key={`user-${studentUser.id}`}>
-          <Stack direction="row">
+        <Stack key={`user-${studentUser.id}`} gap={2}>
+          <Stack direction="row" gap={2}>
             <forms.FirstNameField
               disabled
               name={`${studentUser.student.id}.user.original_first_name`}
@@ -98,7 +98,7 @@ const ReleaseStudentsForm: FC<ReleaseStudentsFormProps> = ({
               placeholder="Enter student address"
             />
           </Stack>
-          <Stack direction="row">
+          <Stack direction="row" gap={2}>
             <forms.EmailField
               required
               name={`${studentUser.student.id}.user.email`}
