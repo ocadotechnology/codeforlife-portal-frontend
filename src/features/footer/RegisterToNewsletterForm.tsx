@@ -58,6 +58,7 @@ const RegisterToNewsletterForm: FC<RegisterToNewsletterFormProps> = () => {
       >
         <Stack spacing={2}>
           <forms.EmailField
+            id="newsletter-email" // Avoid duplicate IDs on pages which have forms with an email field
             FormHelperTextProps={{ style: { color: "white" } }}
             required
           />
