@@ -1,12 +1,12 @@
 import { type FC } from "react"
 
-import Level from "./Level"
+import Levels from "./Levels"
 import RRIntermediateImage from "../../images/rr_intermediate.png"
 
 export interface IntermediateProps {}
 
 const Intermediate: FC<IntermediateProps> = () => (
-  <Level
+  <Levels
     direction="row-reverse"
     banner={{
       difficulty: "Intermediate",

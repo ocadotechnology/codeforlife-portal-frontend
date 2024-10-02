@@ -10,7 +10,7 @@ import { OpenInNew as OpenInNewIcon } from "@mui/icons-material"
 
 import { Card, type CardProps } from "../../components"
 
-export interface LevelProps extends Pick<Grid2Props, "direction"> {
+export interface LevelsProps extends Pick<Grid2Props, "direction"> {
   banner: {
     difficulty: string
     color: string
@@ -30,7 +30,7 @@ export interface LevelProps extends Pick<Grid2Props, "direction"> {
   }
 }
 
-const Level: FC<LevelProps> = ({ direction, banner, cardProps, text }) => {
+const Levels: FC<LevelsProps> = ({ direction, banner, cardProps, text }) => {
   return (
     <>
       <pages.Section
@@ -86,4 +86,4 @@ const Level: FC<LevelProps> = ({ direction, banner, cardProps, text }) => {
   )
 }
 
-export default Level
+export default Levels

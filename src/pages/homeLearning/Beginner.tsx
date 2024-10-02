@@ -1,12 +1,12 @@
 import { type FC } from "react"
 
-import Level from "./Level"
+import Levels from "./Levels"
 import RRBeginnerImage from "../../images/rr_beginner.png"
 
 export interface BeginnerProps {}
 
 const Beginner: FC<BeginnerProps> = () => (
-  <Level
+  <Levels
     banner={{
       difficulty: "Beginner",
       color: "White",
