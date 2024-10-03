@@ -23,7 +23,7 @@
     "✅ Do add `devDependencies` below that are `peerDependencies` in the CFL package."
   ],
   "dependencies": {
-    "codeforlife": "github:ocadotechnology/codeforlife-package-javascript#portal-frontend-53",
+    "codeforlife": "github:ocadotechnology/codeforlife-package-javascript#v2.3.8",
     "crypto-js": "^4.2.0"
   },
   "devDependencies": {
