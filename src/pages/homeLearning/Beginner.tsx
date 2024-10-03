@@ -1,5 +1,6 @@
 import { type FC } from "react"
 
+import { LINK_HOME_LEARNING_BEGINNER } from "../../app/env"
 import Levels from "./Levels"
 import RRBeginnerImage from "../../images/rr_beginner.png"
 
@@ -10,18 +11,14 @@ const Beginner: FC<BeginnerProps> = () => (
     banner={{
       difficulty: "Beginner",
       color: "White",
-      bgcolor: theme.palette.tertiary.main,
+      bgcolor: "tertiary.main",
     }}
     cardProps={{
       mediaProps: { title: "RR beginner image", image: RRBeginnerImage },
-      text: {
-        title: "Beginner",
-        content:
-          "Teach your child about problem-solving and logical reasoning as they play. They'll explore algorithms, and learn how to create and debug simple programs. Designed for children aged 5-7, but start here if you've never played Rapid Router.",
-      },
-      buttonProps: {
-        href: process.env.REACT_APP_INDEPENDENT_BEGINNER_HREF as string,
-      },
+      title: "Beginner",
+      description:
+        "Teach your child about problem-solving and logical reasoning as they play. They'll explore algorithms, and learn how to create and debug simple programs. Designed for children aged 5-7, but start here if you've never played Rapid Router.",
+      linkButtonProps: { to: LINK_HOME_LEARNING_BEGINNER },
     }}
     text={{
       levels: "1-16",

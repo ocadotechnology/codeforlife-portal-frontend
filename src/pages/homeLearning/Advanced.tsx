@@ -1,5 +1,6 @@
 import { type FC } from "react"
 
+import { LINK_HOME_LEARNING_ADVANCED } from "../../app/env"
 import Levels from "./Levels"
 import RRAdvancedImage from "../../images/rr_advanced.png"
 
@@ -10,18 +11,14 @@ const Advanced: FC<AdvancedProps> = () => (
     banner={{
       difficulty: "Advanced",
       color: "White",
-      bgcolor: theme.palette.primary.main,
+      bgcolor: "primary.main",
     }}
     cardProps={{
       mediaProps: { title: "RR advanced image", image: RRAdvancedImage },
-      text: {
-        title: "Advanced",
-        content:
-          "Let's get advanced! Learn about repeat loops and selection, variables, and how to create efficient code. Designed for children aged 12-14, but open to all.",
-      },
-      buttonProps: {
-        href: process.env.REACT_APP_INDEPENDENT_ADVANCED_HREF as string,
-      },
+      title: "Advanced",
+      description:
+        "Let's get advanced! Learn about repeat loops and selection, variables, and how to create efficient code. Designed for children aged 12-14, but open to all.",
+      linkButtonProps: { to: LINK_HOME_LEARNING_ADVANCED },
     }}
     text={{
       levels: "29-109",

@@ -16,11 +16,7 @@ export interface LevelsProps extends Pick<Grid2Props, "direction"> {
     color: string
     bgcolor: string
   }
-  cardProps: Omit<CardProps, "buttonProps"> & {
-    buttonProps: {
-      href: NonNullable<CardProps["buttonProps"]["href"]>
-    }
-  }
+  cardProps: CardProps<"to">
   text: {
     levels: string
     sessions: Array<{
@@ -55,11 +51,11 @@ const Levels: FC<LevelsProps> = ({ direction, banner, cardProps, text }) => {
                 ...cardProps.style,
                 minHeight: "auto",
               }}
-              buttonProps={{
+              linkButtonProps={{
                 children: "Go to lessons",
                 endIcon: <OpenInNewIcon />,
                 target: "_blank",
-                ...cardProps.buttonProps,
+                ...cardProps.linkButtonProps,
               }}
             />
           </Grid>

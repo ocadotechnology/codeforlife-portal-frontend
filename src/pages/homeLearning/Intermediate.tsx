@@ -1,5 +1,6 @@
 import { type FC } from "react"
 
+import { LINK_HOME_LEARNING_INTERMEDIATE } from "../../app/env"
 import Levels from "./Levels"
 import RRIntermediateImage from "../../images/rr_intermediate.png"
 
@@ -11,21 +12,17 @@ const Intermediate: FC<IntermediateProps> = () => (
     banner={{
       difficulty: "Intermediate",
       color: "Black",
-      bgcolor: theme.palette.secondary.main,
+      bgcolor: "secondary.main",
     }}
     cardProps={{
       mediaProps: {
         title: "RR intermediate image",
         image: RRIntermediateImage,
       },
-      text: {
-        title: "Intermediate",
-        content:
-          "Children confident with coding can move up to the next challenge — more complex maps and new programming constructs. Designed for children aged 8-11, but anyone can progress here if ready.",
-      },
-      buttonProps: {
-        href: process.env.REACT_APP_INDEPENDENT_INTERMEDIATE_HREF as string,
-      },
+      title: "Intermediate",
+      description:
+        "Children confident with coding can move up to the next challenge — more complex maps and new programming constructs. Designed for children aged 8-11, but anyone can progress here if ready.",
+      linkButtonProps: { to: LINK_HOME_LEARNING_INTERMEDIATE },
     }}
     text={{
       levels: "17-28",
