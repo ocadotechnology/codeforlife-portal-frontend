@@ -89,7 +89,6 @@ const ReleaseStudentsForm: FC<ReleaseStudentsFormProps> = ({
               disabled
               name={`${studentUser.student.id}.user.original_first_name`}
               label="Original student name"
-              sx={{ backgroundColor: "info.main" }}
             />
             <forms.FirstNameField
               required
