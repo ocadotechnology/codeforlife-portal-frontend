@@ -82,53 +82,55 @@ const ReleaseStudentsForm: FC<ReleaseStudentsFormProps> = ({
         },
       })}
     >
-      {studentUsers.map(studentUser => (
-        <Stack key={`user-${studentUser.id}`} gap={2}>
-          <Stack direction="row" gap={2}>
-            <forms.FirstNameField
-              disabled
-              name={`${studentUser.student.id}.user.original_first_name`}
-              label="Original student name"
-            />
-            <forms.FirstNameField
-              required
-              name={`${studentUser.student.id}.user.first_name`}
-              label="New student name"
-              placeholder="Enter student address"
-            />
+      <Stack gap={6}>
+        {studentUsers.map(studentUser => (
+          <Stack key={`user-${studentUser.id}`} gap={2}>
+            <Stack direction="row" gap={2}>
+              <forms.FirstNameField
+                disabled
+                name={`${studentUser.student.id}.user.original_first_name`}
+                label="Original student name"
+              />
+              <forms.FirstNameField
+                required
+                name={`${studentUser.student.id}.user.first_name`}
+                label="New student name"
+                placeholder="Enter student address"
+              />
+            </Stack>
+            <Stack direction="row" gap={2}>
+              <forms.EmailField
+                required
+                name={`${studentUser.student.id}.user.email`}
+                label="New email address"
+                placeholder="Enter email address"
+              />
+              <forms.RepeatField
+                name={`${studentUser.student.id}.user.email`}
+                label="Repeat email address"
+                placeholder="Repeat email address"
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <EmailOutlinedIcon />
+                    </InputAdornment>
+                  ),
+                }}
+              />
+            </Stack>
           </Stack>
-          <Stack direction="row" gap={2}>
-            <forms.EmailField
-              required
-              name={`${studentUser.student.id}.user.email`}
-              label="New email address"
-              placeholder="Enter email address"
-            />
-            <forms.RepeatField
-              name={`${studentUser.student.id}.user.email`}
-              label="Repeat email address"
-              placeholder="Repeat email address"
-              InputProps={{
-                endAdornment: (
-                  <InputAdornment position="end">
-                    <EmailOutlinedIcon />
-                  </InputAdornment>
-                ),
-              }}
-            />
-          </Stack>
+        ))}
+        <Stack direction="row" gap={2}>
+          <LinkButton to={classPath} variant="outlined">
+            Cancel
+          </LinkButton>
+          <forms.SubmitButton
+            className="alert"
+            endIcon={<PersonRemoveAlt1OutlinedIcon />}
+          >
+            Remove students
+          </forms.SubmitButton>
         </Stack>
-      ))}
-      <Stack direction="row" gap={2}>
-        <LinkButton to={classPath} variant="outlined">
-          Cancel
-        </LinkButton>
-        <forms.SubmitButton
-          className="alert"
-          endIcon={<PersonRemoveAlt1OutlinedIcon />}
-        >
-          Remove students
-        </forms.SubmitButton>
       </Stack>
     </forms.Form>
   )
