@@ -38,6 +38,10 @@ const teacher = (
       element={<TeacherDashboard tab="classes" view="transfer-students" />}
     />
     <Route
+      path={paths.teacher.dashboard.tab.classes.class.students.release._}
+      element={<TeacherDashboard tab="classes" view="release-students" />}
+    />
+    <Route
       path={paths.teacher.dashboard.tab.classes.class._}
       element={<TeacherDashboard tab="classes" view="class" />}
     />

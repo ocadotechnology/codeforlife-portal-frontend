@@ -6,6 +6,7 @@ import { SecurityOutlined as SecurityOutlinedIcon } from "@mui/icons-material"
 import { generatePath } from "react-router-dom"
 
 import { type ListUsersResult } from "../../../../api/user"
+import { type ReleaseStudentsState } from "../releaseStudents/ReleaseStudents"
 import ResetStudentsPasswordDialog from "./ResetStudentsPasswordDialog"
 import { type TransferStudentsState } from "../transferStudents/TransferStudents"
 import { paths } from "../../../../routes"
@@ -53,6 +54,14 @@ const StudentTable: FC<StudentTableProps> = ({ classId }) => {
           children: "Move",
           to: generatePath(
             paths.teacher.dashboard.tab.classes.class.students.transfer._,
+            { classId },
+          ),
+          state: { studentUsers: Object.values(studentUsers) },
+        })}
+        {LinkButton<ReleaseStudentsState>({
+          children: "Release",
+          to: generatePath(
+            paths.teacher.dashboard.tab.classes.class.students.release._,
             { classId },
           ),
           state: { studentUsers: Object.values(studentUsers) },
