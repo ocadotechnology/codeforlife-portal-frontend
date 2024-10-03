@@ -11,7 +11,7 @@ const Advanced: FC<AdvancedProps> = () => (
     banner={{
       difficulty: "Advanced",
       color: "White",
-      bgcolor: "primary.main",
+      bgcolor: "teacher.main",
     }}
     cardProps={{
       mediaProps: { title: "RR advanced image", image: RRAdvancedImage },

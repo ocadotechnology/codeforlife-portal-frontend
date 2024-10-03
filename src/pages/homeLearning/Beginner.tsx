@@ -11,7 +11,7 @@ const Beginner: FC<BeginnerProps> = () => (
     banner={{
       difficulty: "Beginner",
       color: "White",
-      bgcolor: "tertiary.main",
+      bgcolor: "student.main",
     }}
     cardProps={{
       mediaProps: { title: "RR beginner image", image: RRBeginnerImage },

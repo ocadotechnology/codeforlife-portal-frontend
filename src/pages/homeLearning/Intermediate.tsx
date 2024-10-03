@@ -12,7 +12,7 @@ const Intermediate: FC<IntermediateProps> = () => (
     banner={{
       difficulty: "Intermediate",
       color: "Black",
-      bgcolor: "secondary.main",
+      bgcolor: "indy.main",
     }}
     cardProps={{
       mediaProps: {
