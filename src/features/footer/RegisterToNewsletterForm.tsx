@@ -15,7 +15,7 @@ const RegisterToNewsletterForm: FC<RegisterToNewsletterFormProps> = () => {
   const navigate = useNavigate()
 
   return (
-    <Stack>
+    <Stack id="register-to-newsletter-form">
       <FormHelperText>
         Sign up to receive updates about Code for Life games and teaching
         resources.

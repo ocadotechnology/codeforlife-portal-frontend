@@ -1,7 +1,4 @@
-import { type AnchorHTMLAttributes, type FC } from "react"
 import {
-  Button,
-  type ButtonProps,
   CardActions,
   CardContent,
   CardMedia,
@@ -10,25 +7,34 @@ import {
   type CardProps as MuiCardProps,
   Typography,
 } from "@mui/material"
+import { LinkButton, type LinkButtonProps } from "codeforlife/components/router"
 
-export interface CardProps extends MuiCardProps {
+export type CardProps<
+  Override extends "delta" | "to",
+  State extends Record<string, unknown> = Record<string, unknown>,
+> = MuiCardProps & {
   title: string
   description: string
   mediaProps: {
     image: NonNullable<CardMediaProps["image"]>
     title: NonNullable<CardMediaProps["title"]>
   }
-  buttonProps: ButtonProps & AnchorHTMLAttributes<HTMLAnchorElement>
+  linkButtonProps: LinkButtonProps<Override, State>
 }
 
-const Card: FC<CardProps> = ({
+const Card: {
+  (props: CardProps<"delta">): JSX.Element
+  <State extends Record<string, unknown> = Record<string, unknown>>(
+    props: CardProps<"to", State>,
+  ): JSX.Element
+} = ({
   title,
   description,
   mediaProps,
-  buttonProps,
+  linkButtonProps,
   style,
   ...otherCardProps
-}) => {
+}: CardProps<"delta"> | CardProps<"to">) => {
   return (
     <MuiCard
       style={{
@@ -46,7 +52,8 @@ const Card: FC<CardProps> = ({
         <Typography mb={0}>{description}</Typography>
       </CardContent>
       <CardActions>
-        <Button {...buttonProps} />
+        {/* @ts-expect-error props */}
+        <LinkButton {...linkButtonProps} />
       </CardActions>
     </MuiCard>
   )

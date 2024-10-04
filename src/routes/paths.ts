@@ -107,6 +107,7 @@ const paths = _("", {
   rapidRouter: _("/rapid-router", {
     scoreboard: _("/scoreboard"),
   }),
+  pythonDen: _("/python-den"),
 })
 
 export default paths
