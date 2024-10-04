@@ -2,7 +2,9 @@ import { type FC } from "react"
 
 import { LINK_HOME_LEARNING_ADVANCED } from "../../app/env"
 import Levels from "./Levels"
+import { Link } from "codeforlife/components/router"
 import RRAdvancedImage from "../../images/rr_advanced.png"
+import { paths } from "../../routes"
 
 export interface AdvancedProps {}
 
@@ -21,7 +23,7 @@ const Advanced: FC<AdvancedProps> = () => (
       linkButtonProps: { to: LINK_HOME_LEARNING_ADVANCED },
     }}
     text={{
-      levels: "29-109",
+      levels: "29-67",
       sessions: [
         {
           ids: [1],
@@ -36,8 +38,19 @@ const Advanced: FC<AdvancedProps> = () => (
           body: "Extra tasks for children who want a challenge! Watch the if...do video to learn about selection statements. Ask your child to explain how their finished program works!",
         },
         {
+          ids: [5],
+          body: "Learn more about if...else through traffic lights. In the Traffic Lights levels in Rapid Router, traffic light is a variable that either contains red or green.",
+        },
+        {
           ids: "Extended",
-          body: "Build on everything learned so far with traffic lights, limited blocks, procedures and brain teasers. Older children might even like to start learning to program using the Python language using levels 80 onwards.",
+          body: (
+            <>
+              Build on everything learned so far with traffic lights, limited
+              blocks, procedures and brain teasers. Older children might even
+              like to start learning to program using the Python language using{" "}
+              <Link to={paths.pythonDen._}>Python Den</Link>.
+            </>
+          ),
         },
       ],
     }}

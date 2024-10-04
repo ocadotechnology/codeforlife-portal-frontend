@@ -5,7 +5,7 @@ import {
   type Grid2Props,
   Typography,
 } from "@mui/material"
-import { type FC } from "react"
+import { type FC, type ReactNode } from "react"
 import { OpenInNew as OpenInNewIcon } from "@mui/icons-material"
 
 import { Card, type CardProps } from "../../components"
@@ -21,7 +21,7 @@ export interface LevelsProps extends Pick<Grid2Props, "direction"> {
     levels: string
     sessions: Array<{
       ids: number[] | string
-      body: string
+      body: ReactNode
     }>
   }
 }

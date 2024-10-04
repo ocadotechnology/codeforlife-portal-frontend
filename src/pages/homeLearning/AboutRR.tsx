@@ -16,7 +16,8 @@ const AboutRR: FC<AboutRRProps> = () => (
     <Grid xs={12} md={6}>
       <Typography>
         Rapid Router is our shopping delivery game that teaches children aged
-        5-14 to learn how to code using Blockly and Python.
+        5-14 to learn how to code using Blockly. The pupils can then progress to
+        Python Den to continue to build up their skills.
       </Typography>
       <Typography>
         The game and lessons support the English National Curriculum Computing
