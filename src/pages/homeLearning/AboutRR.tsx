@@ -1,6 +1,7 @@
 import { Unstable_Grid2 as Grid, Typography } from "@mui/material"
 import { type FC } from "react"
 import { LinkButton } from "codeforlife/components/router"
+import { ScrollIntoViewLink } from "codeforlife/components"
 
 import { paths } from "../../routes"
 
@@ -21,7 +22,7 @@ const AboutRR: FC<AboutRRProps> = () => (
       </Typography>
       <Typography>
         The game and lessons support the English National Curriculum Computing
-        strand, and Teachers across the world love them.
+        strand, and teachers across the world love them.
       </Typography>
       <Typography>
         Now, we&apos;ve made lessons available for parents and caregivers to
@@ -37,7 +38,14 @@ const AboutRR: FC<AboutRRProps> = () => (
       </Typography>
       <Typography>
         If you would like to keep updated on our products and receive emails
-        about Code for Life, please sign up to our updates.
+        about Code for Life, please{" "}
+        <ScrollIntoViewLink
+          elementId="register-to-newsletter-form"
+          options={{ behavior: "smooth" }}
+        >
+          sign up to our updates
+        </ScrollIntoViewLink>
+        .
       </Typography>
     </Grid>
     <Grid xs={12} className="flex-end-x">
