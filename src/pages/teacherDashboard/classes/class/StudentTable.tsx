@@ -76,11 +76,11 @@ const StudentTable: FC<StudentTableProps> = ({ classId }) => {
               "Action",
             ]}
           >
-            {users ? (
+            {users.length ? (
               users.map(user => (
                 <tables.BodyRow key={`user-${user.id}`}>
-                  <tables.Cell>{user.first_name}</tables.Cell>
-                  <tables.Cell>
+                  <tables.Cell width="70%">{user.first_name}</tables.Cell>
+                  <tables.Cell align="center">
                     <Checkbox
                       onChange={event => {
                         setStudentUsers(
@@ -98,7 +98,7 @@ const StudentTable: FC<StudentTableProps> = ({ classId }) => {
                       }}
                     />
                   </tables.Cell>
-                  <tables.Cell>
+                  <tables.Cell align="center">
                     <LinkButton
                       to={generatePath(
                         paths.teacher.dashboard.tab.classes.class.students
@@ -120,7 +120,7 @@ const StudentTable: FC<StudentTableProps> = ({ classId }) => {
           </tables.Table>
         )}
       </TablePagination>
-      <Stack direction="row" gap={2}>
+      <Stack direction="row" gap={2} justifyContent="end">
         {LinkButton<ReleaseStudentsState>({
           children: "Release",
           to: generatePath(
