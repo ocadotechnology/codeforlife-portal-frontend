@@ -60,20 +60,25 @@ const StudentTable: FC<StudentTableProps> = ({ classId }) => {
           <tables.Table
             headers={[
               "Student details",
-              <Checkbox
-                key="all-student-users-checkbox"
-                onChange={event => {
-                  setStudentUsers(
-                    event.target.checked
-                      ? users.reduce(
-                          (users, user) => ({ ...users, [user.id]: user }),
-                          {} as typeof studentUsers,
-                        )
-                      : {},
-                  )
-                }}
-              />,
-              "Action",
+              {
+                align: "center",
+                children: (
+                  <Checkbox
+                    key="all-student-users-checkbox"
+                    onChange={event => {
+                      setStudentUsers(
+                        event.target.checked
+                          ? users.reduce(
+                              (users, user) => ({ ...users, [user.id]: user }),
+                              {} as typeof studentUsers,
+                            )
+                          : {},
+                      )
+                    }}
+                  />
+                ),
+              },
+              { align: "center", children: "Action" },
             ]}
           >
             {users.length ? (
@@ -146,6 +151,7 @@ const StudentTable: FC<StudentTableProps> = ({ classId }) => {
           Reset password and login link
         </Button>
         <Button
+          className="alert"
           onClick={() => {
             setDialog("delete-students")
           }}
