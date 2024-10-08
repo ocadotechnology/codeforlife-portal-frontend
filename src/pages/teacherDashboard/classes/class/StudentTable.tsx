@@ -27,12 +27,14 @@ const StudentTable: FC<StudentTableProps> = ({ classId }) => {
   const [dialog, setDialog] = useState<
     "reset-students-password" | "delete-students"
   >()
-  const [studentUsers, setStudentUsers] = useState<
+  const [selectedStudentUsers, setSelectedStudentUsers] = useState<
     Record<
       ListUsersResult["data"][number]["id"],
       StudentUser<ListUsersResult["data"][number]>
     >
   >({})
+
+  const selectButtonDisabled = !Object.keys(selectedStudentUsers).length
 
   function closeDialog() {
     setDialog(undefined)
@@ -56,7 +58,9 @@ const StudentTable: FC<StudentTableProps> = ({ classId }) => {
         }}
       >
         {/* @ts-expect-error users are student-users */}
-        {(users: Array<StudentUser<ListUsersResult["data"][number]>>) => (
+        {(
+          studentUsers: Array<StudentUser<ListUsersResult["data"][number]>>,
+        ) => (
           <tables.Table
             headers={[
               "Student details",
@@ -65,12 +69,18 @@ const StudentTable: FC<StudentTableProps> = ({ classId }) => {
                 children: (
                   <Checkbox
                     key="all-student-users-checkbox"
+                    checked={studentUsers.every(
+                      studentUser => studentUser.id in selectedStudentUsers,
+                    )}
                     onChange={event => {
-                      setStudentUsers(
+                      setSelectedStudentUsers(
                         event.target.checked
-                          ? users.reduce(
-                              (users, user) => ({ ...users, [user.id]: user }),
-                              {} as typeof studentUsers,
+                          ? studentUsers.reduce(
+                              (selectedStudentUsers, studentUser) => ({
+                                ...selectedStudentUsers,
+                                [studentUser.id]: studentUser,
+                              }),
+                              {} as typeof selectedStudentUsers,
                             )
                           : {},
                       )
@@ -81,23 +91,28 @@ const StudentTable: FC<StudentTableProps> = ({ classId }) => {
               { align: "center", children: "Action" },
             ]}
           >
-            {users.length ? (
-              users.map(user => (
-                <tables.BodyRow key={`user-${user.id}`}>
-                  <tables.Cell width="70%">{user.first_name}</tables.Cell>
+            {studentUsers.length ? (
+              studentUsers.map(studentUser => (
+                <tables.BodyRow key={`user-${studentUser.id}`}>
+                  <tables.Cell width="70%">
+                    {studentUser.first_name}
+                  </tables.Cell>
                   <tables.Cell align="center">
                     <Checkbox
+                      checked={studentUser.id in selectedStudentUsers}
                       onChange={event => {
-                        setStudentUsers(
+                        setSelectedStudentUsers(
                           event.target.checked
-                            ? previousStudentUsers => ({
-                                ...previousStudentUsers,
-                                [user.id]: user,
+                            ? previousSelectedStudentUsers => ({
+                                ...previousSelectedStudentUsers,
+                                [studentUser.id]: studentUser,
                               })
-                            : previousStudentUsers => {
-                                const studentUsers = { ...previousStudentUsers }
-                                delete studentUsers[user.id]
-                                return studentUsers
+                            : previousSelectedStudentUsers => {
+                                const selectedStudentUsers = {
+                                  ...previousSelectedStudentUsers,
+                                }
+                                delete selectedStudentUsers[studentUser.id]
+                                return selectedStudentUsers
                               },
                         )
                       }}
@@ -108,7 +123,7 @@ const StudentTable: FC<StudentTableProps> = ({ classId }) => {
                       to={generatePath(
                         paths.teacher.dashboard.tab.classes.class.students
                           .studentUser._,
-                        { classId, studentUserId: user.id },
+                        { classId, studentUserId: studentUser.id },
                       )}
                       endIcon={<EditIcon />}
                     >
@@ -128,21 +143,24 @@ const StudentTable: FC<StudentTableProps> = ({ classId }) => {
       <Stack direction="row" gap={2} justifyContent="end">
         {LinkButton<ReleaseStudentsState>({
           children: "Release",
+          disabled: selectButtonDisabled,
           to: generatePath(
             paths.teacher.dashboard.tab.classes.class.students.release._,
             { classId },
           ),
-          state: { studentUsers: Object.values(studentUsers) },
+          state: { studentUsers: Object.values(selectedStudentUsers) },
         })}
         {LinkButton<TransferStudentsState>({
           children: "Move",
+          disabled: selectButtonDisabled,
           to: generatePath(
             paths.teacher.dashboard.tab.classes.class.students.transfer._,
             { classId },
           ),
-          state: { studentUsers: Object.values(studentUsers) },
+          state: { studentUsers: Object.values(selectedStudentUsers) },
         })}
         <Button
+          disabled={selectButtonDisabled}
           onClick={() => {
             setDialog("reset-students-password")
           }}
@@ -152,6 +170,7 @@ const StudentTable: FC<StudentTableProps> = ({ classId }) => {
         </Button>
         <Button
           className="alert"
+          disabled={selectButtonDisabled}
           onClick={() => {
             setDialog("delete-students")
           }}
@@ -164,12 +183,12 @@ const StudentTable: FC<StudentTableProps> = ({ classId }) => {
         classId={classId}
         open={dialog === "reset-students-password"}
         onClose={closeDialog}
-        studentUsers={Object.values(studentUsers)}
+        studentUsers={Object.values(selectedStudentUsers)}
       />
       <DeleteStudentsDialog
         open={dialog === "delete-students"}
         onClose={closeDialog}
-        studentUsers={Object.values(studentUsers)}
+        studentUsers={Object.values(selectedStudentUsers)}
       />
     </>
   )
