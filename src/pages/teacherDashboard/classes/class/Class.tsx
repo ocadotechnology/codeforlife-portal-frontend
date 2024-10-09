@@ -7,6 +7,7 @@ import { Typography } from "@mui/material"
 import { handleResultState } from "codeforlife/utils/api"
 import { useParams } from "codeforlife/hooks"
 
+import CreateStudentsForm from "./CreateStudentsForm"
 import StudentTable from "./StudentTable"
 import { classIdSchema } from "../../../../app/schemas"
 import { paths } from "../../../../routes"
@@ -31,6 +32,9 @@ const _Class: FC<{ classId: Class["id"] }> = ({ classId }) => {
       </pages.Section>
       <pages.Section>
         <StudentTable classId={classId} />
+      </pages.Section>
+      <pages.Section>
+        <CreateStudentsForm classId={classId} />
       </pages.Section>
     </>
   ))

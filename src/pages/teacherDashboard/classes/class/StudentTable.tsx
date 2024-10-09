@@ -45,10 +45,12 @@ const StudentTable: FC<StudentTableProps> = ({ classId }) => {
       <Typography variant="h5">Current students</Typography>
       <Typography>
         Select an individual student to change their details, including their
-        name and password. Select multiple students using the checkboxes to
-        reset their passwords, move them to another class, release them from
-        your school and make them an independent Code for Life user, or delete
-        them permanently.
+        name and password.
+      </Typography>
+      <Typography>
+        Select multiple students using the checkboxes to reset their passwords,
+        move them to another class, release them from your school and make them
+        an independent Code for Life user, or delete them permanently.
       </Typography>
       <TablePagination
         useLazyListQuery={useLazyListUsersQuery}
