@@ -1,15 +1,9 @@
 import * as forms from "codeforlife/components/form"
 import { Add as AddIcon, Upload as UploadIcon } from "@mui/icons-material"
-import {
-  type FC,
-  type MutableRefObject,
-  useEffect,
-  useRef,
-  useState,
-} from "react"
+import { type FC, type MutableRefObject, useEffect, useRef } from "react"
+import { Stack, Typography } from "@mui/material"
 import { type Class } from "codeforlife/api"
 import { InputFileButton } from "codeforlife/components"
-import { Typography } from "@mui/material"
 import { firstNameSchema } from "codeforlife/schemas/user"
 import { generatePath } from "react-router-dom"
 import { useNavigate } from "codeforlife/hooks"
@@ -26,19 +20,11 @@ export interface CreateStudentsFormProps {
 }
 
 const CreateStudentsForm: FC<CreateStudentsFormProps> = ({ classId }) => {
-  const [initialValues, setInitialValues] = useState({
-    first_names: [] as string[],
-  })
   const fileInput = useRef<HTMLInputElement>()
   const navigate = useNavigate()
 
-  const split = /\r\n|\n|\r|,/
-
   const reader = new FileReader()
-  reader.onload = () => {
-    const result = reader.result as string
-    setInitialValues({ first_names: result.split(split) })
-  }
+  const split = /\r\n|\n|\r|,/
 
   useEffect(() => {
     if (fileInput.current?.files && fileInput.current.files.length) {
@@ -68,17 +54,16 @@ const CreateStudentsForm: FC<CreateStudentsFormProps> = ({ classId }) => {
         Import CSV file
       </InputFileButton>
       <forms.Form
-        initialValues={initialValues}
+        initialValues={{ first_names: [] as string[] }}
         useMutation={useCreateStudentsMutation}
         submitOptions={{
           clean: ({ first_names }) =>
-            first_names.reduce(
-              (arg, first_name) => [
-                ...arg,
-                { klass: classId, user: { first_name } },
-              ],
-              [] as CreateStudentsArg,
-            ),
+            first_names.reduce((arg, first_name) => {
+              first_name = first_name.trim()
+              return first_name
+                ? [...arg, { klass: classId, user: { first_name } }]
+                : arg
+            }, [] as CreateStudentsArg),
           then: result => {
             navigate<ResetStudentsPasswordState>(
               generatePath(
@@ -106,19 +91,34 @@ const CreateStudentsForm: FC<CreateStudentsFormProps> = ({ classId }) => {
           },
         }}
       >
-        {/* <forms.TextField
-          name="first_names"
-          required
-          split={split}
-          multiline
-          rows={5}
-          className="resize-vertical"
-          placeholder="You can import names from a .CSV file, or copy and paste them from a spreadsheet directly into this text box"
-          schema={firstNameSchema}
-        /> */}
-        <forms.SubmitButton endIcon={<AddIcon />}>
-          Add students
-        </forms.SubmitButton>
+        {({ setFieldValue }) => {
+          reader.onload = () => {
+            void setFieldValue("first_names", reader.result, true)
+          }
+
+          return (
+            <Stack
+              gap={3}
+              alignItems="end"
+              direction={{ xs: "column", md: "row" }}
+              width={{ xs: "100%", md: "75%" }}
+            >
+              <forms.TextField
+                name="first_names"
+                required
+                split={split}
+                multiline
+                rows={5}
+                className="resize-vertical"
+                placeholder="You can import names from a .CSV file, or copy and paste them from a spreadsheet directly into this text box"
+                schema={firstNameSchema}
+              />
+              <forms.SubmitButton endIcon={<AddIcon />}>
+                Add students
+              </forms.SubmitButton>
+            </Stack>
+          )
+        }}
       </forms.Form>
     </>
   )
