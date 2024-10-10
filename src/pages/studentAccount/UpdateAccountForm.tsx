@@ -1,6 +1,6 @@
 import * as forms from "codeforlife/components/form"
 import { Stack, Typography } from "@mui/material"
-import { getDirty, isDirty, submitForm } from "codeforlife/utils/form"
+import { getDirty, isDirty } from "codeforlife/utils/form"
 import { type FC } from "react"
 import { LinkButton } from "codeforlife/components/router"
 import { useNavigate } from "codeforlife/hooks"
@@ -8,6 +8,7 @@ import { useNavigate } from "codeforlife/hooks"
 import {
   type RetrieveUserResult,
   type UpdateUserArg,
+  type UpdateUserResult,
   useUpdateUserMutation,
 } from "../../api/user"
 import { indyPasswordSchema, studentPasswordSchema } from "../../app/schemas"
@@ -18,7 +19,6 @@ export interface UpdateAccountFormProps {
 }
 
 const UpdateAccountForm: FC<UpdateAccountFormProps> = ({ user }) => {
-  const [updateUser] = useUpdateUserMutation()
   const navigate = useNavigate()
 
   const initialValues = user.student
@@ -69,7 +69,8 @@ const UpdateAccountForm: FC<UpdateAccountFormProps> = ({ user }) => {
       )}
       <forms.Form
         initialValues={initialValues}
-        onSubmit={submitForm(updateUser, {
+        useMutation={useUpdateUserMutation}
+        submitOptions={{
           exclude: ["password_repeat"],
           clean: (values: typeof initialValues) => {
             const arg: UpdateUserArg = { id: values.id }
@@ -87,7 +88,7 @@ const UpdateAccountForm: FC<UpdateAccountFormProps> = ({ user }) => {
 
             return arg
           },
-          then: (_, values) => {
+          then: (_: UpdateUserResult, values: typeof initialValues) => {
             const messages = [
               "Your account details have been changed successfully.",
             ]
@@ -111,7 +112,7 @@ const UpdateAccountForm: FC<UpdateAccountFormProps> = ({ user }) => {
               },
             })
           },
-        })}
+        }}
       >
         {form => {
           const dirty = getDirty(form.values, initialValues, [

@@ -4,7 +4,6 @@ import { ChevronRight as ChevronRightIcon } from "@mui/icons-material"
 import { type FC } from "react"
 import { Link } from "codeforlife/components/router"
 import dayjs from "dayjs"
-import { submitForm } from "codeforlife/utils/form"
 import { useNavigate } from "react-router-dom"
 
 import { LastNameField, NewPasswordField } from "../../components/form"
@@ -16,7 +15,6 @@ export interface IndyFormProps {}
 
 const IndyForm: FC<IndyFormProps> = () => {
   const navigate = useNavigate()
-  const [createIndependentUser] = useCreateIndependentUserMutation()
 
   const EmailApplicableAge = 13
   const ReceiveUpdateAge = 18
@@ -39,12 +37,13 @@ const IndyForm: FC<IndyFormProps> = () => {
           password: "",
           password_repeat: "",
         }}
-        onSubmit={submitForm(createIndependentUser, {
+        useMutation={useCreateIndependentUserMutation}
+        submitOptions={{
           exclude: ["password_repeat", "meets_criteria"],
           then: () => {
             navigate(paths.register.emailVerification.userType.indy._)
           },
-        })}
+        }}
       >
         {form => {
           const yearsOfAge = form.values.date_of_birth

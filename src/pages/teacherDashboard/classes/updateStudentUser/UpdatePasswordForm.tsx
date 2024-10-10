@@ -3,7 +3,6 @@ import { type Class, type StudentUser } from "codeforlife/api"
 import { type FC } from "react"
 import { Typography } from "@mui/material"
 import { generatePath } from "react-router-dom"
-import { submitForm } from "codeforlife/utils/form"
 import { useNavigate } from "codeforlife/hooks"
 
 import { NewPasswordField } from "../../../../components/form"
@@ -18,7 +17,6 @@ export interface UpdatePasswordFormProps {
 }
 
 const UpdatePasswordForm: FC<UpdatePasswordFormProps> = ({ classId, user }) => {
-  const [resetStudentsPassword] = useResetStudentsPasswordMutation()
   const navigate = useNavigate()
 
   return (
@@ -36,7 +34,8 @@ const UpdatePasswordForm: FC<UpdatePasswordFormProps> = ({ classId, user }) => {
             user: { password: "", password_repeat: "" },
           },
         }}
-        onSubmit={submitForm(resetStudentsPassword, {
+        useMutation={useResetStudentsPasswordMutation}
+        submitOptions={{
           exclude: [`${user.student.id}.user.password_repeat`],
           then: ([student]) => {
             navigate<StudentsCredentialsState>(
@@ -60,7 +59,7 @@ const UpdatePasswordForm: FC<UpdatePasswordFormProps> = ({ classId, user }) => {
               },
             )
           },
-        })}
+        }}
       >
         <NewPasswordField
           name={`${user.student.id}.user.password`}

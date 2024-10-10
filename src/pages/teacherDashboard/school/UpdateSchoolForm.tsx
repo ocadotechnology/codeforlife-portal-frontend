@@ -1,7 +1,6 @@
 import * as forms from "codeforlife/components/form"
 import { Stack, Typography } from "@mui/material"
 import { type FC } from "react"
-import { submitForm } from "codeforlife/utils/form"
 import { useNavigate } from "codeforlife/hooks"
 
 import {
@@ -16,7 +15,6 @@ export interface UpdateSchoolFormProps {
 
 const UpdateSchoolForm: FC<UpdateSchoolFormProps> = ({ school }) => {
   const navigate = useNavigate()
-  const [updateSchool] = useUpdateSchoolMutation()
 
   return (
     <>
@@ -25,7 +23,8 @@ const UpdateSchoolForm: FC<UpdateSchoolFormProps> = ({ school }) => {
       </Typography>
       <forms.Form
         initialValues={school}
-        onSubmit={submitForm(updateSchool, {
+        useMutation={useUpdateSchoolMutation}
+        submitOptions={{
           then: () => {
             navigate(".", {
               state: {
@@ -55,7 +54,7 @@ const UpdateSchoolForm: FC<UpdateSchoolFormProps> = ({ school }) => {
               },
             })
           },
-        })}
+        }}
       >
         {form => (
           <>

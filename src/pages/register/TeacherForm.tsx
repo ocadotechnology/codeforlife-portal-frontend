@@ -3,7 +3,6 @@ import { ChevronRight as ChevronRightIcon } from "@mui/icons-material"
 import { type FC } from "react"
 import { Link } from "codeforlife/components/router"
 import { Stack } from "@mui/material"
-import { submitForm } from "codeforlife/utils/form"
 import { useNavigate } from "codeforlife/hooks"
 
 import { LastNameField, NewPasswordField } from "../../components/form"
@@ -15,7 +14,6 @@ export interface TeacherFormProps {}
 
 const TeacherForm: FC<TeacherFormProps> = () => {
   const navigate = useNavigate()
-  const [createTeacher] = useCreateTeacherMutation()
 
   return (
     <BaseForm
@@ -36,12 +34,13 @@ const TeacherForm: FC<TeacherFormProps> = () => {
             meets_criteria: false,
           },
         }}
-        onSubmit={submitForm(createTeacher, {
+        useMutation={useCreateTeacherMutation}
+        submitOptions={{
           exclude: ["user.password_repeat", "user.meets_criteria"],
           then: () => {
             navigate(paths.register.emailVerification.userType.teacher._)
           },
-        })}
+        }}
       >
         <form.FirstNameField name="user.first_name" required />
         <LastNameField name="user.last_name" />

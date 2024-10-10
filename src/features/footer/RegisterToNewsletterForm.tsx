@@ -1,7 +1,6 @@
 import * as forms from "codeforlife/components/form"
 import { FormHelperText, Stack, useMediaQuery, useTheme } from "@mui/material"
 import { type FC } from "react"
-import { submitForm } from "codeforlife/utils/form"
 import { useNavigate } from "react-router-dom"
 
 import { useRegisterToNewsletterMutation } from "../../api/user"
@@ -11,7 +10,6 @@ export interface RegisterToNewsletterFormProps {}
 const RegisterToNewsletterForm: FC<RegisterToNewsletterFormProps> = () => {
   const theme = useTheme()
   const onlyXS = useMediaQuery(theme.breakpoints.only("xs"))
-  const [registerToNewsletter] = useRegisterToNewsletterMutation()
   const navigate = useNavigate()
 
   return (
@@ -25,7 +23,8 @@ const RegisterToNewsletterForm: FC<RegisterToNewsletterFormProps> = () => {
           email: "",
           over18: false,
         }}
-        onSubmit={submitForm(registerToNewsletter, {
+        useMutation={useRegisterToNewsletterMutation}
+        submitOptions={{
           exclude: ["over18"],
           then: () => {
             navigate(".", {
@@ -54,7 +53,7 @@ const RegisterToNewsletterForm: FC<RegisterToNewsletterFormProps> = () => {
               },
             })
           },
-        })}
+        }}
       >
         <Stack spacing={2}>
           <forms.EmailField

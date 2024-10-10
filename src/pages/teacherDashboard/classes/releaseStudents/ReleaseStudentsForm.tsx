@@ -7,7 +7,6 @@ import { InputAdornment, Stack } from "@mui/material"
 import { type FC } from "react"
 import { LinkButton } from "codeforlife/components/router"
 import { type StudentUser } from "codeforlife/api"
-import { submitForm } from "codeforlife/utils/form"
 import { useNavigate } from "codeforlife/hooks"
 
 import {
@@ -25,7 +24,6 @@ const ReleaseStudentsForm: FC<ReleaseStudentsFormProps> = ({
   studentUsers,
   classPath,
 }) => {
-  const [releaseStudents] = useReleaseStudentsMutation()
   const navigate = useNavigate()
 
   return (
@@ -44,7 +42,8 @@ const ReleaseStudentsForm: FC<ReleaseStudentsFormProps> = ({
         }),
         {} as ReleaseStudentsArg,
       )}
-      onSubmit={submitForm(releaseStudents, {
+      useMutation={useReleaseStudentsMutation}
+      submitOptions={{
         exclude: studentUsers.reduce(
           (exclude, studentUser) => [
             ...exclude,
@@ -80,7 +79,7 @@ const ReleaseStudentsForm: FC<ReleaseStudentsFormProps> = ({
             },
           })
         },
-      })}
+      }}
     >
       <Stack gap={6}>
         {studentUsers.map(studentUser => (

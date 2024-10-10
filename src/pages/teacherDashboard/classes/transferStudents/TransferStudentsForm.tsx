@@ -4,7 +4,6 @@ import { Stack, Typography } from "@mui/material"
 import { type FC } from "react"
 import { LinkButton } from "codeforlife/components/router"
 import { type StudentUser } from "codeforlife/api"
-import { submitForm } from "codeforlife/utils/form"
 import { useNavigate } from "codeforlife/hooks"
 
 import {
@@ -27,7 +26,6 @@ const TransferStudentsForm: FC<TransferStudentsFormProps> = ({
   classPath,
   newClass,
 }) => {
-  const [transferStudents] = useTransferStudentsMutation()
   const navigate = useNavigate()
 
   return (
@@ -50,7 +48,8 @@ const TransferStudentsForm: FC<TransferStudentsFormProps> = ({
           }),
           {} as TransferStudentsArg,
         )}
-        onSubmit={submitForm(transferStudents, {
+        useMutation={useTransferStudentsMutation}
+        submitOptions={{
           then: () => {
             navigate(classPath, {
               state: {
@@ -79,7 +78,7 @@ const TransferStudentsForm: FC<TransferStudentsFormProps> = ({
               },
             })
           },
-        })}
+        }}
       >
         <tables.Table headers={["Existing name", "New student name"]}>
           {studentUsers.map(studentUser => (

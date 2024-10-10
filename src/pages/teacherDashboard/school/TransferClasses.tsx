@@ -6,7 +6,6 @@ import { type SchoolTeacher, type User } from "codeforlife/api"
 import { Stack, Typography } from "@mui/material"
 import { type FC } from "react"
 import { TablePagination } from "codeforlife/components"
-import { submitForm } from "codeforlife/utils/form"
 import { useNavigate } from "codeforlife/hooks"
 
 import {
@@ -25,7 +24,6 @@ export interface TransferClassesProps {
 }
 
 const TransferClasses: FC<TransferClassesProps> = ({ authUserId, user }) => {
-  const [updateClasses] = useUpdateClassesMutation()
   const [removeTeacherFromSchool] = useRemoveTeacherFromSchoolMutation()
   const navigate = useNavigate()
 
@@ -96,7 +94,7 @@ const TransferClasses: FC<TransferClassesProps> = ({ authUserId, user }) => {
                   }),
                   {},
                 )}
-                onSubmit={submitForm(updateClasses)}
+                useMutation={useUpdateClassesMutation}
               >
                 <tables.Table
                   className="body"
