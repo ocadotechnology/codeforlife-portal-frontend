@@ -17,7 +17,7 @@ export type CreateStudentsResult = BulkCreateResult<
   Student,
   "auto_gen_password",
   {
-    user: Result<User, "password">
+    user: Result<User, "first_name" | "password">
   }
 >
 export type CreateStudentsArg = BulkCreateArg<

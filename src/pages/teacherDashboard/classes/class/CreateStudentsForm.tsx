@@ -64,15 +64,14 @@ const CreateStudentsForm: FC<CreateStudentsFormProps> = ({ classId }) => {
                 ? [...arg, { klass: classId, user: { first_name } }]
                 : arg
             }, [] as CreateStudentsArg),
-          then: result => {
+          then: students => {
             navigate<ResetStudentsPasswordState>(
               generatePath(
                 paths.teacher.dashboard.tab.classes.class.students.resetPassword
                   ._,
                 { classId },
               ),
-              // TODO: pass in correct state.
-              { state: { studentUsers: result } },
+              { state: { students } },
             )
           },
           catch: () => {
