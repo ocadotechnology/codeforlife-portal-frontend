@@ -7,8 +7,8 @@ import { submitForm } from "codeforlife/utils/form"
 import { useNavigate } from "codeforlife/hooks"
 
 import { NewPasswordField } from "../../../../components/form"
-import { type ResetStudentsPasswordState } from "../resetStudentsPassword/ResetStudentsPassword"
 import { type RetrieveUserResult } from "../../../../api/user"
+import { type StudentsCredentialsState } from "../studentsCredentials/StudentsCredentials"
 import { paths } from "../../../../routes"
 import { useResetStudentsPasswordMutation } from "../../../../api/student"
 
@@ -38,17 +38,24 @@ const UpdatePasswordForm: FC<UpdatePasswordFormProps> = ({ classId, user }) => {
         }}
         onSubmit={submitForm(resetStudentsPassword, {
           exclude: [`${user.student.id}.user.password_repeat`],
-          then: resetStudentsPasswordResult => {
-            navigate<ResetStudentsPasswordState>(
+          then: ([student]) => {
+            navigate<StudentsCredentialsState>(
               generatePath(
-                paths.teacher.dashboard.tab.classes.class.students.resetPassword
+                paths.teacher.dashboard.tab.classes.class.students.credentials
                   ._,
                 { classId },
               ),
               {
                 state: {
-                  studentUsers: [user],
-                  resetStudentsPasswordResult,
+                  students: [
+                    {
+                      ...student,
+                      user: {
+                        ...student.user,
+                        first_name: user.first_name,
+                      },
+                    },
+                  ],
                 },
               },
             )

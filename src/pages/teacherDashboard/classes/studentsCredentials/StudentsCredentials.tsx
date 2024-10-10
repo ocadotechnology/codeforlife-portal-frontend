@@ -9,7 +9,7 @@ import { generatePath } from "react-router-dom"
 import { classIdSchema } from "../../../../app/schemas"
 import { paths } from "../../../../routes"
 
-export interface ResetStudentsPasswordState {
+export interface StudentsCredentialsState {
   students: Array<
     Pick<Student, "id" | "auto_gen_password"> & {
       user: Pick<User, "id" | "first_name" | "password">
@@ -17,11 +17,11 @@ export interface ResetStudentsPasswordState {
   >
 }
 
-export interface ResetStudentsPasswordProps {}
+export interface StudentsCredentialsProps {}
 
-const ResetStudentsPassword: FC<ResetStudentsPasswordProps> = () => {
+const StudentsCredentials: FC<StudentsCredentialsProps> = () => {
   const params = useParams({ classId: classIdSchema.required() })
-  const { state } = useLocation<ResetStudentsPasswordState>()
+  const { state } = useLocation<StudentsCredentialsState>()
 
   if (!params)
     return <Navigate to={paths.teacher.dashboard.tab.classes._} replace />
@@ -50,4 +50,4 @@ const ResetStudentsPassword: FC<ResetStudentsPasswordProps> = () => {
   )
 }
 
-export default ResetStudentsPassword
+export default StudentsCredentials
