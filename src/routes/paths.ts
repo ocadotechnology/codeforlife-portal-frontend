@@ -32,7 +32,6 @@ const paths = _("", {
             class: _("/:classId", {
               edit: _("/edit"),
               joinRequest: _("/join-request/:userId"),
-              additional: _("/additional"),
               students: _("/students", {
                 studentUser: _("/:studentUserId"),
                 credentials: _("/credentials"),
