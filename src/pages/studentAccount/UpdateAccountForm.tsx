@@ -71,7 +71,7 @@ const UpdateAccountForm: FC<UpdateAccountFormProps> = ({ user }) => {
         initialValues={initialValues}
         onSubmit={submitForm(updateUser, {
           exclude: ["password_repeat"],
-          clean: values => {
+          clean: (values: typeof initialValues) => {
             const arg: UpdateUserArg = { id: values.id }
             if (user.student || isDirty(values, initialValues, "password")) {
               arg.password = values.password
