@@ -12,7 +12,7 @@ import {
   type CreateStudentsArg,
   useCreateStudentsMutation,
 } from "../../../../api/student"
-import { type StudentCredentialsState } from "../studentCredentials/StudentCredentials"
+import { type StudentsCredentialsState } from "../studentsCredentials/StudentsCredentials"
 import { paths } from "../../../../routes"
 
 export interface CreateStudentsFormProps {
@@ -65,7 +65,7 @@ const CreateStudentsForm: FC<CreateStudentsFormProps> = ({ classId }) => {
                 : arg
             }, [] as CreateStudentsArg),
           then: students => {
-            navigate<StudentCredentialsState>(
+            navigate<StudentsCredentialsState>(
               generatePath(
                 paths.teacher.dashboard.tab.classes.class.students.credentials
                   ._,
