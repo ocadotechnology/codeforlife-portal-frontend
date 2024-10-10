@@ -1,22 +1,30 @@
 import { Form, type FormProps } from "codeforlife/components/form"
 import { Stack, Typography, useTheme } from "@mui/material"
 import { ThemedBox, type ThemedBoxProps } from "codeforlife/theme"
-import { type FormikValues } from "formik"
+import { type FormValues } from "codeforlife/utils/form"
 
 import { themeOptions } from "../../app/theme"
 
-export interface BaseFormProps<Values> extends FormProps<Values> {
+export type BaseFormProps<
+  Values extends FormValues,
+  QueryArg extends FormValues,
+  ResultType,
+> = FormProps<Values, QueryArg, ResultType> & {
   themedBoxProps: Omit<ThemedBoxProps, "withShapes">
   header: string
   subheader?: string
 }
 
-const BaseForm = <Values extends FormikValues = FormikValues>({
+const BaseForm = <
+  Values extends FormValues = FormValues,
+  QueryArg extends FormValues = FormValues,
+  ResultType = unknown,
+>({
   themedBoxProps,
   header,
   subheader,
   ...formProps
-}: BaseFormProps<Values>): JSX.Element => {
+}: BaseFormProps<Values, QueryArg, ResultType>): JSX.Element => {
   const theme = useTheme()
 
   return (
@@ -35,6 +43,7 @@ const BaseForm = <Values extends FormikValues = FormikValues>({
             {subheader}
           </Typography>
         )}
+        {/* @ts-expect-error props */}
         <Form {...formProps} />
       </Stack>
     </ThemedBox>
