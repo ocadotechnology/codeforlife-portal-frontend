@@ -1,8 +1,16 @@
 import * as forms from "codeforlife/components/form"
-import { Button, Typography } from "@mui/material"
+import { Add as AddIcon, Upload as UploadIcon } from "@mui/icons-material"
+import {
+  type FC,
+  type MutableRefObject,
+  useEffect,
+  useRef,
+  useState,
+} from "react"
 import { type Class } from "codeforlife/api"
-import { type FC } from "react"
-import { Upload as UploadIcon } from "@mui/icons-material"
+import { InputFileButton } from "codeforlife/components"
+import { Typography } from "@mui/material"
+import { firstNameSchema } from "codeforlife/schemas/user"
 import { generatePath } from "react-router-dom"
 import { useNavigate } from "codeforlife/hooks"
 
@@ -18,7 +26,25 @@ export interface CreateStudentsFormProps {
 }
 
 const CreateStudentsForm: FC<CreateStudentsFormProps> = ({ classId }) => {
+  const [initialValues, setInitialValues] = useState({
+    first_names: [] as string[],
+  })
+  const fileInput = useRef<HTMLInputElement>()
   const navigate = useNavigate()
+
+  const split = /\r\n|\n|\r|,/
+
+  const reader = new FileReader()
+  reader.onload = () => {
+    const result = reader.result as string
+    setInitialValues({ first_names: result.split(split) })
+  }
+
+  useEffect(() => {
+    if (fileInput.current?.files && fileInput.current.files.length) {
+      reader.readAsText(fileInput.current.files[0])
+    }
+  }, [fileInput.current?.files]) // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <>
@@ -30,11 +56,19 @@ const CreateStudentsForm: FC<CreateStudentsFormProps> = ({ classId }) => {
       <Typography>
         Student names and the class access code are required to sign in.
       </Typography>
-      <Button endIcon={<UploadIcon />} variant="outlined" className="body">
+      <InputFileButton
+        endIcon={<UploadIcon />}
+        variant="outlined"
+        className="body"
+        inputProps={{
+          ref: fileInput as MutableRefObject<HTMLInputElement>,
+          accept: ".csv",
+        }}
+      >
         Import CSV file
-      </Button>
+      </InputFileButton>
       <forms.Form
-        initialValues={{ first_names: [] as string[] }}
+        initialValues={initialValues}
         useMutation={useCreateStudentsMutation}
         submitOptions={{
           clean: ({ first_names }) =>
@@ -72,7 +106,19 @@ const CreateStudentsForm: FC<CreateStudentsFormProps> = ({ classId }) => {
           },
         }}
       >
-        {/* <forms.MutiTextField name="first_names" delimiter="," newline /> */}
+        {/* <forms.TextField
+          name="first_names"
+          required
+          split={split}
+          multiline
+          rows={5}
+          className="resize-vertical"
+          placeholder="You can import names from a .CSV file, or copy and paste them from a spreadsheet directly into this text box"
+          schema={firstNameSchema}
+        /> */}
+        <forms.SubmitButton endIcon={<AddIcon />}>
+          Add students
+        </forms.SubmitButton>
       </forms.Form>
     </>
   )
