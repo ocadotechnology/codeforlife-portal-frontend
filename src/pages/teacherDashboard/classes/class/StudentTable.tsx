@@ -42,7 +42,7 @@ const StudentTable: FC<StudentTableProps> = ({ classId }) => {
 
   return (
     <>
-      <Typography variant="h5">Current students</Typography>
+      <Typography variant="h4">Current students</Typography>
       <Typography>
         Select an individual student to change their details, including their
         name and password.

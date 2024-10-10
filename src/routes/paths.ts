@@ -30,6 +30,7 @@ const paths = _("", {
           { tab: "classes" },
           {
             class: _("/:classId", {
+              edit: _("/edit"),
               joinRequest: _("/join-request/:userId"),
               additional: _("/additional"),
               students: _("/students", {
