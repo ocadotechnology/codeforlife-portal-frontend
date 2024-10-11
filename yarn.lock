@@ -1801,9 +1801,9 @@
   integrity sha512-7i+zxXdPD0T4cKDuxCUXJ4wHcsJLwENa6Z3dCu8cfCK743OGy5Nu1RmAGqDPsoTDINVEcdXKRvR/zre+P2Ku1A==
 
 "@types/react-dom@^18.0.0", "@types/react-dom@^18.2.18":
-  version "18.3.0"
-  resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-18.3.0.tgz#0cbc818755d87066ab6ca74fbedb2547d74a82b0"
-  integrity sha512-EhwApuTmMBmXuFOikhQLIBUn6uFg81SwLMOAUgodJF14SOBOCMdU04gDoYi0WOJJHD144TL32z4yDqCW3dnkQg==
+  version "18.3.1"
+  resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-18.3.1.tgz#1e4654c08a9cdcfb6594c780ac59b55aad42fe07"
+  integrity sha512-qW1Mfv8taImTthu4KoXgDfLuk4bydU6Q/TkADnDWWHwi4NX4BR+LWfTp2sVmTqRrsHvyDDTelgelxJ+SsejKKQ==
   dependencies:
     "@types/react" "*"
 
@@ -2600,9 +2600,9 @@ clsx@^2.1.0, clsx@^2.1.1:
   resolved "https://registry.yarnpkg.com/clsx/-/clsx-2.1.1.tgz#eed397c9fd8bd882bfb18deab7102049a2f32999"
   integrity sha512-eYm0QWBtUrBWZWG0d386OGAw16Z995PiOVo2B7bjWSbHedGl5e0ZWaq65kOGgUSNesEIDkB9ISbTg/JK9dhCZA==
 
-"codeforlife@github:ocadotechnology/codeforlife-package-javascript#portal-frontend-58":
-  version "2.3.10"
-  resolved "https://codeload.github.com/ocadotechnology/codeforlife-package-javascript/tar.gz/7683de061dba4bcb87630ee5a6c3298d86d51c0b"
+"codeforlife@github:ocadotechnology/codeforlife-package-javascript#v2.4.0":
+  version "2.4.0"
+  resolved "https://codeload.github.com/ocadotechnology/codeforlife-package-javascript/tar.gz/49962f222bc684bd4c434ae6ded19ef8c9fe9f44"
   dependencies:
     "@emotion/react" "^11.10.6"
     "@emotion/styled" "^11.10.6"
