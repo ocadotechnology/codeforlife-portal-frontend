@@ -84,7 +84,10 @@ const classApi = api.injectEndpoints({
         method: "PATCH",
         body,
       }),
-      invalidatesTags: tagData(CLASS_TAG, { includeListTag: true }),
+      invalidatesTags: tagData(CLASS_TAG, {
+        argKeysAreIds: true,
+        includeListTag: true,
+      }),
     }),
   }),
 })

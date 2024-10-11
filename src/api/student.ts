@@ -91,6 +91,7 @@ const studentApi = api.injectEndpoints({
       }),
       invalidatesTags: tagData("User", {
         id: STUDENT_ID,
+        argKeysAreIds: true,
         includeListTag: true,
       }),
     }),
@@ -105,6 +106,7 @@ const studentApi = api.injectEndpoints({
       }),
       invalidatesTags: tagData("User", {
         id: STUDENT_ID,
+        argKeysAreIds: true,
         includeListTag: true,
       }),
     }),
