@@ -40,6 +40,10 @@ const StudentTable: FC<StudentTableProps> = ({ classId }) => {
     setDialog(undefined)
   }
 
+  function deselectAllStudentUsers() {
+    setSelectedStudentUsers({})
+  }
+
   return (
     <>
       <Typography variant="h4">Current students</Typography>
@@ -55,9 +59,8 @@ const StudentTable: FC<StudentTableProps> = ({ classId }) => {
       <TablePagination
         useLazyListQuery={useLazyListUsersQuery}
         filters={{ students_in_class: classId }}
-        onChange={() => {
-          console.log("TODO: setStudentUsers({})")
-        }}
+        onPageChange={deselectAllStudentUsers}
+        onRowsPerPageChange={deselectAllStudentUsers}
       >
         {/* @ts-expect-error users are student-users */}
         {(
@@ -75,17 +78,17 @@ const StudentTable: FC<StudentTableProps> = ({ classId }) => {
                       studentUser => studentUser.id in selectedStudentUsers,
                     )}
                     onChange={event => {
-                      setSelectedStudentUsers(
-                        event.target.checked
-                          ? studentUsers.reduce(
-                              (selectedStudentUsers, studentUser) => ({
-                                ...selectedStudentUsers,
-                                [studentUser.id]: studentUser,
-                              }),
-                              {} as typeof selectedStudentUsers,
-                            )
-                          : {},
-                      )
+                      if (event.target.checked) {
+                        setSelectedStudentUsers(
+                          studentUsers.reduce(
+                            (selectedStudentUsers, studentUser) => ({
+                              ...selectedStudentUsers,
+                              [studentUser.id]: studentUser,
+                            }),
+                            {} as typeof selectedStudentUsers,
+                          ),
+                        )
+                      } else deselectAllStudentUsers()
                     }}
                   />
                 ),

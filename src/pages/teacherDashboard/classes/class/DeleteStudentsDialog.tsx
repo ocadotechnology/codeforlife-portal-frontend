@@ -13,27 +13,30 @@ export interface DeleteStudentsDialogProps
 
 const DeleteStudentsDialog: FC<DeleteStudentsDialogProps> = ({
   studentUsers,
-  ...baseDialogProps
+  onClose,
+  ...otherBaseDialogProps
 }) => {
   const [destroyStudents] = useDestroyStudentsMutation()
   const navigate = useNavigate()
 
   return (
     <BaseDialog
-      {...baseDialogProps}
+      {...otherBaseDialogProps}
+      onClose={onClose}
       header="Delete students"
       body="These students will be permanently deleted. Are you sure?"
       onConfirm={() => {
         destroyStudents(studentUsers.map(({ student: { id } }) => id))
           .unwrap()
           .then(() => {
+            onClose()
             navigate(".", {
               replace: true,
               state: {
                 notifications: [
                   {
                     props: {
-                      children: "Successfully delete students from class.",
+                      children: "Successfully deleted students from class.",
                     },
                   },
                 ],
