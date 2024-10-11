@@ -98,7 +98,9 @@ const schoolTeacherInvitationApi = api.injectEndpoints({
         method: "DELETE",
         body,
       }),
-      invalidatesTags: tagData("SchoolTeacherInvitation"),
+      invalidatesTags: tagData("SchoolTeacherInvitation", {
+        includeListTag: true,
+      }),
     }),
     rejectSchoolTeacherInvitation: build.mutation<
       RejectSchoolTeacherInvitationResult,
@@ -108,7 +110,9 @@ const schoolTeacherInvitationApi = api.injectEndpoints({
         url: buildUrl(detailUrl + "reject/", { url: { id } }),
         method: "DELETE",
       }),
-      invalidatesTags: tagData("SchoolTeacherInvitation"),
+      invalidatesTags: tagData("SchoolTeacherInvitation", {
+        includeListTag: true,
+      }),
     }),
     refreshSchoolTeacherInvitation: build.mutation<
       RefreshSchoolTeacherInvitationResult,
@@ -118,7 +122,9 @@ const schoolTeacherInvitationApi = api.injectEndpoints({
         url: buildUrl(detailUrl, { url: { id } }),
         method: "PUT",
       }),
-      invalidatesTags: tagData("SchoolTeacherInvitation"),
+      invalidatesTags: tagData("SchoolTeacherInvitation", {
+        includeListTag: true,
+      }),
     }),
     createSchoolTeacherInvitation: build.mutation<
       CreateSchoolTeacherInvitationResult,
@@ -129,6 +135,9 @@ const schoolTeacherInvitationApi = api.injectEndpoints({
         method: "POST",
         body,
       }),
+      invalidatesTags: tagData("SchoolTeacherInvitation", {
+        includeListTag: true,
+      }),
     }),
     destroySchoolTeacherInvitation: build.mutation<
       DestroySchoolTeacherInvitationResult,
@@ -138,7 +147,9 @@ const schoolTeacherInvitationApi = api.injectEndpoints({
         url: buildUrl(detailUrl, { url: { id } }),
         method: "DELETE",
       }),
-      invalidatesTags: tagData("SchoolTeacherInvitation"),
+      invalidatesTags: tagData("SchoolTeacherInvitation", {
+        includeListTag: true,
+      }),
     }),
     retrieveSchoolTeacherInvitation: build.query<
       RetrieveSchoolTeacherInvitationResult,
@@ -158,7 +169,9 @@ const schoolTeacherInvitationApi = api.injectEndpoints({
         url: buildUrl(listUrl, { search }),
         method: "GET",
       }),
-      providesTags: tagData("SchoolTeacherInvitation"),
+      providesTags: tagData("SchoolTeacherInvitation", {
+        includeListTag: true,
+      }),
     }),
   }),
 })

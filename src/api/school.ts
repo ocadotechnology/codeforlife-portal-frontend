@@ -36,6 +36,7 @@ const schoolApi = api.injectEndpoints({
         method: "POST",
         body,
       }),
+      invalidatesTags: tagData(SCHOOL_TAG, { includeListTag: true }),
     }),
     updateSchool: build.mutation<UpdateSchoolResult, UpdateSchoolArg>({
       query: ({ id, ...body }) => ({
@@ -43,7 +44,7 @@ const schoolApi = api.injectEndpoints({
         method: "PATCH",
         body,
       }),
-      invalidatesTags: tagData(SCHOOL_TAG),
+      invalidatesTags: tagData(SCHOOL_TAG, { includeListTag: true }),
     }),
   }),
 })

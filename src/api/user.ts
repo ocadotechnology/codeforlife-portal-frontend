@@ -124,7 +124,7 @@ const userApi = api.injectEndpoints({
         method: "PUT",
         body,
       }),
-      invalidatesTags: tagData(USER_TAG),
+      invalidatesTags: tagData(USER_TAG, { includeListTag: true }),
     }),
     requestPasswordReset: build.query<
       RequestPasswordResetResult,
@@ -161,7 +161,7 @@ const userApi = api.injectEndpoints({
         method: "PATCH",
         body,
       }),
-      invalidatesTags: tagData(USER_TAG),
+      invalidatesTags: tagData(USER_TAG, { includeListTag: true }),
     }),
     destroyIndependentUser: build.mutation<
       DestroyIndependentUserResult,
@@ -172,7 +172,7 @@ const userApi = api.injectEndpoints({
         method: "DELETE",
         body,
       }),
-      invalidatesTags: tagData(USER_TAG),
+      invalidatesTags: tagData(USER_TAG, { includeListTag: true }),
     }),
     createIndependentUser: build.mutation<
       CreateIndependentUserResult,
@@ -183,6 +183,7 @@ const userApi = api.injectEndpoints({
         method: "POST",
         body,
       }),
+      invalidatesTags: tagData(USER_TAG, { includeListTag: true }),
     }),
     // TODO: create action on the backend.
     validatePassword: build.query<ValidatePasswordResult, ValidatePasswordArg>({

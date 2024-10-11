@@ -13,6 +13,8 @@ import { type Student, type User, urls } from "codeforlife/api"
 
 import api from "."
 
+export const STUDENT_ID = "user.id"
+
 export type CreateStudentsResult = BulkCreateResult<
   Student,
   "auto_gen_password",
@@ -76,6 +78,10 @@ const studentApi = api.injectEndpoints({
         method: "POST",
         body,
       }),
+      invalidatesTags: tagData("User", {
+        id: STUDENT_ID,
+        includeListTag: true,
+      }),
     }),
     releaseStudents: build.mutation<ReleaseStudentsResult, ReleaseStudentsArg>({
       query: body => ({
@@ -83,7 +89,10 @@ const studentApi = api.injectEndpoints({
         method: "PUT",
         body,
       }),
-      invalidatesTags: tagData("User", { id: "user" }),
+      invalidatesTags: tagData("User", {
+        id: STUDENT_ID,
+        includeListTag: true,
+      }),
     }),
     transferStudents: build.mutation<
       TransferStudentsResult,
@@ -94,7 +103,10 @@ const studentApi = api.injectEndpoints({
         method: "PUT",
         body,
       }),
-      invalidatesTags: tagData("User", { id: "user" }),
+      invalidatesTags: tagData("User", {
+        id: STUDENT_ID,
+        includeListTag: true,
+      }),
     }),
     resetStudentsPassword: build.mutation<
       ResetStudentsPasswordResult,
@@ -112,7 +124,10 @@ const studentApi = api.injectEndpoints({
         method: "DELETE",
         body,
       }),
-      invalidatesTags: tagData("User", { id: "user" }),
+      invalidatesTags: tagData("User", {
+        id: STUDENT_ID,
+        includeListTag: true,
+      }),
     }),
   }),
 })
