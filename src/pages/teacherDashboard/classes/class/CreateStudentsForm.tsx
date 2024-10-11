@@ -102,6 +102,7 @@ const CreateStudentsForm: FC<CreateStudentsFormProps> = ({ classId }) => {
               direction={{ xs: "column", md: "row" }}
               width={{ xs: "100%", md: "75%" }}
             >
+              {/* TODO: show errors from backend */}
               <forms.TextField
                 name="first_names"
                 required

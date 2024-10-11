@@ -18,6 +18,7 @@ const DeleteClassDialog: FC<DeleteClassDialogProps> = ({
   const [destroyClass] = useDestroyClassMutation()
   const navigate = useNavigate()
 
+  // TODO: check if the class has students and handle if true
   return (
     <BaseDialog
       {...baseDialogProps}
