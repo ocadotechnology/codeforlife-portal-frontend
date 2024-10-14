@@ -36,8 +36,7 @@ const CreateStudentsForm: FC<CreateStudentsFormProps> = ({ classId }) => {
     <>
       <Typography variant="h4">Add new students</Typography>
       <Typography>
-        Add the student names to the box with one name per line or separated by
-        a comma.
+        Add the student names to the box and separate them with a comma.
       </Typography>
       <Typography>
         Student names and the class access code are required to sign in.

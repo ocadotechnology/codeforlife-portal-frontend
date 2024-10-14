@@ -25,7 +25,7 @@ const AdditionalClassDetails: FC<AdditionalClassDetailsProps> = ({
       <Typography variant="h4">Additional class details</Typography>
       <Typography>
         Here you can change settings and permissions for the class and the
-        students accessing it. You can also delete classes and change level
+        students accessing it. You can also delete your class and change level
         access.
       </Typography>
       <Stack direction="row" columnGap={3}>

@@ -32,7 +32,7 @@ const DeleteClassDialog: FC<DeleteClassDialogProps> = ({
               replace: true,
               state: {
                 notifications: [
-                  { props: { children: "Successfully delete class." } },
+                  { props: { children: "Successfully deleted class." } },
                 ],
               },
             })
