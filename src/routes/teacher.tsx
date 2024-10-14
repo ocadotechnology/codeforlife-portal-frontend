@@ -24,10 +24,8 @@ const teacher = (
       element={<TeacherDashboard tab="classes" view="join-class-request" />}
     />
     <Route
-      path={paths.teacher.dashboard.tab.classes.class.students.resetPassword._}
-      element={
-        <TeacherDashboard tab="classes" view="reset-students-password" />
-      }
+      path={paths.teacher.dashboard.tab.classes.class.students.credentials._}
+      element={<TeacherDashboard tab="classes" view="students-credentials" />}
     />
     <Route
       path={paths.teacher.dashboard.tab.classes.class.students.studentUser._}

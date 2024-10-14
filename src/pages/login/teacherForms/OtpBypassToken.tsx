@@ -4,7 +4,6 @@ import { Stack, Typography, useTheme } from "@mui/material"
 import { useNavigate, useSession } from "codeforlife/hooks"
 import type { FC } from "react"
 import { LinkButton } from "codeforlife/components/router"
-import { submitForm } from "codeforlife/utils/form"
 
 import BaseForm from "../BaseForm"
 import { paths } from "../../../routes"
@@ -13,7 +12,6 @@ import { useLoginWithOtpBypassTokenMutation } from "../../../api/sso"
 export interface OtpBypassTokenProps {}
 
 const OtpBypassToken: FC<OtpBypassTokenProps> = () => {
-  const [loginWithOtpBypassToken] = useLoginWithOtpBypassTokenMutation()
   const navigate = useNavigate()
   const theme = useTheme()
 
@@ -22,11 +20,12 @@ const OtpBypassToken: FC<OtpBypassTokenProps> = () => {
       themedBoxProps={{ userType: "teacher" }}
       header="Welcome"
       initialValues={{ token: "" }}
-      onSubmit={submitForm(loginWithOtpBypassToken, {
+      useMutation={useLoginWithOtpBypassTokenMutation}
+      submitOptions={{
         then: () => {
           navigate(paths.teacher.dashboard.tab.school._)
         },
-      })}
+      }}
     >
       <Typography marginBottom={theme.spacing(6)}>
         Use this form for entering backup tokens for logging in. These tokens

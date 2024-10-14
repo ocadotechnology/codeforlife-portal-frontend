@@ -3,7 +3,6 @@ import { type FC, useEffect } from "react"
 import { useNavigate, useParams } from "codeforlife/hooks"
 import { ChevronRight as ChevronRightIcon } from "@mui/icons-material"
 import { Stack } from "@mui/material"
-import { submitForm } from "codeforlife/utils/form"
 
 import BaseForm from "../BaseForm"
 import { classIdSchema } from "../../../app/schemas"
@@ -13,7 +12,6 @@ import { useLoginAsStudentMutation } from "../../../api/sso"
 export interface FirstNameProps {}
 
 const FirstName: FC<FirstNameProps> = () => {
-  const [loginAsStudent] = useLoginAsStudentMutation()
   const navigate = useNavigate()
 
   const params = useParams({ classId: classIdSchema.required() })
@@ -47,11 +45,12 @@ const FirstName: FC<FirstNameProps> = () => {
             password: "",
             class_id: params.classId,
           }}
-          onSubmit={submitForm(loginAsStudent, {
+          useMutation={useLoginAsStudentMutation}
+          submitOptions={{
             then: () => {
               navigate(paths.student.dashboard._)
             },
-          })}
+          }}
         >
           <form.FirstNameField required />
           <form.PasswordField required />

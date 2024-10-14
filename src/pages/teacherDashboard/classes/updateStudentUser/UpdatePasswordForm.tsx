@@ -3,12 +3,11 @@ import { type Class, type StudentUser } from "codeforlife/api"
 import { type FC } from "react"
 import { Typography } from "@mui/material"
 import { generatePath } from "react-router-dom"
-import { submitForm } from "codeforlife/utils/form"
 import { useNavigate } from "codeforlife/hooks"
 
 import { NewPasswordField } from "../../../../components/form"
-import { type ResetStudentsPasswordState } from "../resetStudentsPassword/ResetStudentsPassword"
 import { type RetrieveUserResult } from "../../../../api/user"
+import { type StudentsCredentialsState } from "../studentsCredentials/StudentsCredentials"
 import { paths } from "../../../../routes"
 import { useResetStudentsPasswordMutation } from "../../../../api/student"
 
@@ -18,7 +17,6 @@ export interface UpdatePasswordFormProps {
 }
 
 const UpdatePasswordForm: FC<UpdatePasswordFormProps> = ({ classId, user }) => {
-  const [resetStudentsPassword] = useResetStudentsPasswordMutation()
   const navigate = useNavigate()
 
   return (
@@ -36,24 +34,32 @@ const UpdatePasswordForm: FC<UpdatePasswordFormProps> = ({ classId, user }) => {
             user: { password: "", password_repeat: "" },
           },
         }}
-        onSubmit={submitForm(resetStudentsPassword, {
+        useMutation={useResetStudentsPasswordMutation}
+        submitOptions={{
           exclude: [`${user.student.id}.user.password_repeat`],
-          then: resetStudentsPasswordResult => {
-            navigate<ResetStudentsPasswordState>(
+          then: ([student]) => {
+            navigate<StudentsCredentialsState>(
               generatePath(
-                paths.teacher.dashboard.tab.classes.class.students.resetPassword
+                paths.teacher.dashboard.tab.classes.class.students.credentials
                   ._,
                 { classId },
               ),
               {
                 state: {
-                  studentUsers: [user],
-                  resetStudentsPasswordResult,
+                  students: [
+                    {
+                      ...student,
+                      user: {
+                        ...student.user,
+                        first_name: user.first_name,
+                      },
+                    },
+                  ],
                 },
               },
             )
           },
-        })}
+        }}
       >
         <NewPasswordField
           name={`${user.student.id}.user.password`}

@@ -1,4 +1,4 @@
-import { type Class, type StudentUser } from "codeforlife/api"
+import { type Class, type Student, type StudentUser } from "codeforlife/api"
 import { type FC } from "react"
 import { generatePath } from "react-router-dom"
 import { useNavigate } from "codeforlife/hooks"
@@ -9,7 +9,7 @@ import {
   useResetStudentsPasswordMutation,
 } from "../../../../api/student"
 import { type ListUsersResult } from "../../../../api/user"
-import { type ResetStudentsPasswordState } from "../resetStudentsPassword/ResetStudentsPassword"
+import { type StudentsCredentialsState } from "../studentsCredentials/StudentsCredentials"
 import { paths } from "../../../../routes"
 
 export interface ResetStudentsPasswordDialogProps
@@ -32,21 +32,45 @@ const ResetStudentsPasswordDialog: FC<ResetStudentsPasswordDialogProps> = ({
       header="Reset students' password"
       body="These students will have their passwords permanently changed. You will be given the option to print out the new passwords. Are you sure that you want to continue?"
       onConfirm={() => {
-        const resetStudentsPasswordArg = studentUsers.reduce(
+        const arg = studentUsers.reduce(
           (arg, { student: { id } }) => ({ ...arg, [id]: {} }),
           {} as ResetStudentsPasswordArg,
         )
 
-        void resetStudentsPassword(resetStudentsPasswordArg)
+        void resetStudentsPassword(arg)
           .unwrap()
-          .then(resetStudentsPasswordResult => {
-            navigate<ResetStudentsPasswordState>(
+          .then(result => {
+            const first_names = studentUsers.reduce(
+              (first_names, { first_name, student: { id } }) => ({
+                ...first_names,
+                [id]: first_name,
+              }),
+              {} as Record<Student["id"], StudentUser["first_name"]>,
+            )
+
+            navigate<StudentsCredentialsState>(
               generatePath(
-                paths.teacher.dashboard.tab.classes.class.students.resetPassword
+                paths.teacher.dashboard.tab.classes.class.students.credentials
                   ._,
                 { classId },
               ),
-              { state: { studentUsers, resetStudentsPasswordResult } },
+              {
+                state: {
+                  students: result.reduce(
+                    (students, student) => [
+                      ...students,
+                      {
+                        ...student,
+                        user: {
+                          ...student.user,
+                          first_name: first_names[student.id],
+                        },
+                      },
+                    ],
+                    [] as StudentsCredentialsState["students"],
+                  ),
+                },
+              },
             )
           })
           .catch(() => {

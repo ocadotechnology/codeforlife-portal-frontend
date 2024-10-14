@@ -62,9 +62,7 @@ const ClassTable: FC<ClassTableProps> = ({ authUser }) => (
                 <LinkButton
                   to={generatePath(
                     paths.teacher.dashboard.tab.classes.class._,
-                    {
-                      classId: klass.id,
-                    },
+                    { classId: klass.id },
                   )}
                   endIcon={<CreateIcon />}
                 >

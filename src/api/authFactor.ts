@@ -35,6 +35,7 @@ const authFactorApi = api.injectEndpoints({
         method: "POST",
         body,
       }),
+      invalidatesTags: tagData(AUTH_FACTOR_TAG, { includeListTag: true }),
     }),
     destroyAuthFactor: build.mutation<
       DestroyAuthFactorResult,
@@ -44,7 +45,7 @@ const authFactorApi = api.injectEndpoints({
         url: buildUrl(urls.authFactor.detail, { url: { id } }),
         method: "DELETE",
       }),
-      invalidatesTags: tagData(AUTH_FACTOR_TAG),
+      invalidatesTags: tagData(AUTH_FACTOR_TAG, { includeListTag: true }),
     }),
   }),
 })

@@ -2,7 +2,6 @@ import * as form from "codeforlife/components/form"
 import { Stack, Typography } from "@mui/material"
 import type { FC } from "react"
 import { Link } from "codeforlife/components/router"
-import { submitForm } from "codeforlife/utils/form"
 import { useNavigate } from "codeforlife/hooks"
 
 import BaseForm from "../BaseForm"
@@ -12,7 +11,6 @@ import { useLoginWithEmailMutation } from "../../../api/sso"
 export interface EmailProps {}
 
 const Email: FC<EmailProps> = () => {
-  const [loginWithEmail] = useLoginWithEmailMutation()
   const navigate = useNavigate()
 
   return (
@@ -21,7 +19,8 @@ const Email: FC<EmailProps> = () => {
       header="Welcome"
       subheader="Please enter your login details."
       initialValues={{ email: "", password: "" }}
-      onSubmit={submitForm(loginWithEmail, {
+      useMutation={useLoginWithEmailMutation}
+      submitOptions={{
         then: ({ auth_factors }) => {
           navigate(
             auth_factors.includes("otp")
@@ -29,7 +28,7 @@ const Email: FC<EmailProps> = () => {
               : paths.teacher.dashboard.tab.school._,
           )
         },
-      })}
+      }}
     >
       <form.EmailField required />
       <form.PasswordField required />

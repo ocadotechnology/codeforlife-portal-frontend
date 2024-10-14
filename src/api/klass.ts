@@ -61,13 +61,14 @@ const classApi = api.injectEndpoints({
         method: "POST",
         body,
       }),
+      invalidatesTags: tagData(CLASS_TAG, { includeListTag: true }),
     }),
     destroyClass: build.mutation<DestroyClassResult, DestroyClassArg>({
       query: id => ({
         url: buildUrl(urls.class.detail, { url: { id } }),
         method: "DELETE",
       }),
-      invalidatesTags: tagData(CLASS_TAG),
+      invalidatesTags: tagData(CLASS_TAG, { includeListTag: true }),
     }),
     updateClass: build.mutation<UpdateClassResult, UpdateClassArg>({
       query: ({ id, ...body }) => ({
@@ -75,7 +76,7 @@ const classApi = api.injectEndpoints({
         method: "PATCH",
         body,
       }),
-      invalidatesTags: tagData(CLASS_TAG),
+      invalidatesTags: tagData(CLASS_TAG, { includeListTag: true }),
     }),
     updateClasses: build.mutation<UpdateClassesResult, UpdateClassesArg>({
       query: body => ({
@@ -83,7 +84,10 @@ const classApi = api.injectEndpoints({
         method: "PATCH",
         body,
       }),
-      invalidatesTags: tagData(CLASS_TAG),
+      invalidatesTags: tagData(CLASS_TAG, {
+        argKeysAreIds: true,
+        includeListTag: true,
+      }),
     }),
   }),
 })

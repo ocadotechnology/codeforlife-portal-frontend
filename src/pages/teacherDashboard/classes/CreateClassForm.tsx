@@ -3,7 +3,6 @@ import { Stack, Typography } from "@mui/material"
 import { type FC } from "react"
 import { type SchoolTeacherUser } from "codeforlife/api"
 import { generatePath } from "react-router"
-import { submitForm } from "codeforlife/utils/form"
 import { useNavigate } from "codeforlife/hooks"
 
 import {
@@ -20,7 +19,6 @@ export interface CreateClassFormProps {
 }
 
 const CreateClassForm: FC<CreateClassFormProps> = ({ authUser }) => {
-  const [createClass] = useCreateClassMutation()
   const navigate = useNavigate()
 
   return (
@@ -39,7 +37,8 @@ const CreateClassForm: FC<CreateClassFormProps> = ({ authUser }) => {
           teacher: authUser.teacher.id,
           read_classmates_data: false,
         }}
-        onSubmit={submitForm(createClass, {
+        useMutation={useCreateClassMutation}
+        submitOptions={{
           then: ({ id }, { name }) => {
             navigate(
               generatePath(paths.teacher.dashboard.tab.classes.class._, {
@@ -58,7 +57,7 @@ const CreateClassForm: FC<CreateClassFormProps> = ({ authUser }) => {
               },
             )
           },
-        })}
+        }}
       >
         <Stack gap={2}>
           <Stack direction={{ sm: "row" }} gap={2}>

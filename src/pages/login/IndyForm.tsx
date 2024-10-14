@@ -2,7 +2,6 @@ import * as form from "codeforlife/components/form"
 import { Stack, Typography } from "@mui/material"
 import type { FC } from "react"
 import { Link } from "codeforlife/components/router"
-import { submitForm } from "codeforlife/utils/form"
 import { useNavigate } from "codeforlife/hooks"
 
 import BaseForm from "./BaseForm"
@@ -12,7 +11,6 @@ import { useLoginWithEmailMutation } from "../../api/sso"
 export interface IndyFormProps {}
 
 const IndyForm: FC<IndyFormProps> = () => {
-  const [loginWithEmail] = useLoginWithEmailMutation()
   const navigate = useNavigate()
 
   return (
@@ -21,11 +19,12 @@ const IndyForm: FC<IndyFormProps> = () => {
       header="Welcome"
       subheader="Please enter your login details."
       initialValues={{ email: "", password: "" }}
-      onSubmit={submitForm(loginWithEmail, {
+      useMutation={useLoginWithEmailMutation}
+      submitOptions={{
         then: () => {
           navigate(paths.indy.dashboard._)
         },
-      })}
+      }}
     >
       <form.EmailField required />
       <form.PasswordField required />

@@ -8,7 +8,6 @@ import { Link, LinkButton } from "codeforlife/components/router"
 import { useNavigate, useParams } from "codeforlife/hooks"
 import { TablePagination } from "codeforlife/components"
 import { type User } from "codeforlife/api"
-import { submitForm } from "codeforlife/utils/form"
 
 import {
   useLazyListClassesQuery,
@@ -24,7 +23,6 @@ export interface LeaveProps {
 }
 
 const Leave: FC<LeaveProps> = ({ authUserId }) => {
-  const [updateClasses] = useUpdateClassesMutation()
   const [removeTeacherFromSchool] = useRemoveTeacherFromSchoolMutation()
   const [retrieveUser, { data: user, isLoading, isError }] =
     useLazyRetrieveUserQuery()
@@ -123,7 +121,7 @@ const Leave: FC<LeaveProps> = ({ authUserId }) => {
                   }),
                   {},
                 )}
-                onSubmit={submitForm(updateClasses)}
+                useMutation={useUpdateClassesMutation}
               >
                 <tables.Table
                   className="body"

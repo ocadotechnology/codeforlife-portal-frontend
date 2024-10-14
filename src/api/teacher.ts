@@ -12,6 +12,8 @@ import { type Teacher, type User, urls } from "codeforlife/api"
 
 import api from "."
 
+export const TEACHER_ID = "user.id"
+
 export type CreateTeacherResult = CreateResult<Teacher>
 export type CreateTeacherArg = {
   user: Arg<User, "first_name" | "last_name" | "password" | "email"> & {
@@ -36,6 +38,10 @@ const teacherApi = api.injectEndpoints({
         method: "POST",
         body,
       }),
+      invalidatesTags: tagData("User", {
+        id: TEACHER_ID,
+        includeListTag: true,
+      }),
     }),
     removeTeacherFromSchool: build.mutation<
       RemoveTeacherFromSchoolResult,
@@ -47,7 +53,10 @@ const teacherApi = api.injectEndpoints({
         }),
         method: "PUT",
       }),
-      invalidatesTags: tagData("User", { id: "user" }),
+      invalidatesTags: tagData("User", {
+        id: TEACHER_ID,
+        includeListTag: true,
+      }),
     }),
     setTeacherAdminAccess: build.mutation<
       SetTeacherAdminAccessResult,
@@ -60,14 +69,20 @@ const teacherApi = api.injectEndpoints({
         method: "PUT",
         body,
       }),
-      invalidatesTags: tagData("User", { id: "user" }),
+      invalidatesTags: tagData("User", {
+        id: TEACHER_ID,
+        includeListTag: true,
+      }),
     }),
     destroyTeacher: build.mutation<DestroyTeacherResult, DestroyTeacherArg>({
       query: id => ({
         url: buildUrl(urls.teacher.detail, { url: { id } }),
         method: "DELETE",
       }),
-      invalidatesTags: tagData("User", { id: "user" }),
+      invalidatesTags: tagData("User", {
+        id: TEACHER_ID,
+        includeListTag: true,
+      }),
     }),
   }),
 })

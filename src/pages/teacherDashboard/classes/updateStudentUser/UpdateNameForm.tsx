@@ -2,7 +2,6 @@ import * as forms from "codeforlife/components/form"
 import { type FC } from "react"
 import { Typography } from "@mui/material"
 import { type User } from "codeforlife/api"
-import { submitForm } from "codeforlife/utils/form"
 import { useNavigate } from "codeforlife/hooks"
 
 import { useUpdateUserMutation } from "../../../../api/user"
@@ -16,7 +15,6 @@ const UpdateNameForm: FC<UpdateNameFormProps> = ({
   classPath,
   studentUser,
 }) => {
-  const [updateUser] = useUpdateUserMutation()
   const navigate = useNavigate()
 
   return (
@@ -28,7 +26,8 @@ const UpdateNameForm: FC<UpdateNameFormProps> = ({
       </Typography>
       <forms.Form
         initialValues={studentUser}
-        onSubmit={submitForm(updateUser, {
+        useMutation={useUpdateUserMutation}
+        submitOptions={{
           then: () => {
             navigate(classPath, {
               state: {
@@ -43,7 +42,7 @@ const UpdateNameForm: FC<UpdateNameFormProps> = ({
               },
             })
           },
-        })}
+        }}
       >
         <forms.FirstNameField
           required
