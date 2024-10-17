@@ -70,7 +70,7 @@ const CreateStudentsForm: FC<CreateStudentsFormProps> = ({ classId }) => {
                   ._,
                 { classId },
               ),
-              { state: { students } },
+              { state: { flow: "create", students } },
             )
           },
           catch: () => {
