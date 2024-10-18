@@ -1,11 +1,13 @@
 import { Link, LinkButton } from "codeforlife/components/router"
+import { Stack, Typography } from "@mui/material"
 import { Download as DownloadIcon } from "@mui/icons-material"
 import { type FC } from "react"
-import { Typography } from "@mui/material"
 
 import {
-  LINK_PYTHON_PACK_DOWNLOAD,
+  LINK_COBRA_SNAKES_CLUB_PACK,
+  LINK_GRASS_SNAKES_CLUB_PACK,
   LINK_PYTHON_PACK_GITBOOK,
+  LINK_TIGER_SNAKES_CLUB_PACK,
 } from "../../app/env"
 import Introduction from "../../components/Introduction"
 import PythonClubImage from "../../images/coding_club_python_pack.png"
@@ -23,11 +25,11 @@ const Python: FC<PythonProps> = () => {
       direction="row-reverse"
     >
       <Typography>
-        Download your FREE coding club pack for students aged 12 and above. This
-        pack is a fast paced introduction to Python. It is aimed at students
-        already interested in learning coding, individuals looking to learn and
-        run their own club, or adults wanting to try coding out. It is designed
-        to be used in face-to-face or online clubs.
+        Download your FREE club packs for students aged 12 and above. These
+        packs provide a variety of challenges for different abilities. They are
+        aimed at students already interested in learning coding, individuals
+        looking to learn and run their own club, or adults wanting to try coding
+        out. They are designed to be used in face-to-face or online clubs.
       </Typography>
       <Typography>
         View the resources{" "}
@@ -37,14 +39,33 @@ const Python: FC<PythonProps> = () => {
         .
       </Typography>
       {/*TODO: Link to GTM for analytics*/}
-      <LinkButton
-        sx={{ marginTop: "auto" }}
-        to={LINK_PYTHON_PACK_DOWNLOAD}
-        target="_blank"
-        endIcon={<DownloadIcon />}
+      <Stack
+        direction={{ sm: "row", md: "column", lg: "row" }}
+        gap={2}
+        marginTop="auto"
       >
-        Download the Python coding club pack
-      </LinkButton>
+        <LinkButton
+          to={LINK_GRASS_SNAKES_CLUB_PACK}
+          target="_blank"
+          endIcon={<DownloadIcon />}
+        >
+          Lvl 1: Grass Snakes
+        </LinkButton>
+        <LinkButton
+          to={LINK_TIGER_SNAKES_CLUB_PACK}
+          target="_blank"
+          endIcon={<DownloadIcon />}
+        >
+          Lvl 2: Tiger Snakes
+        </LinkButton>
+        <LinkButton
+          to={LINK_COBRA_SNAKES_CLUB_PACK}
+          target="_blank"
+          endIcon={<DownloadIcon />}
+        >
+          Lvl 3: Cobra Snakes
+        </LinkButton>
+      </Stack>
     </Introduction>
   )
 }
