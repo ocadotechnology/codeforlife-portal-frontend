@@ -16,7 +16,7 @@ const CodingClubs: FC<CodingClubsProps> = () => (
       Take a look at our two club packs that we have put together using our
       Rapid Router resources. These are fast-paced, session based clubs that can
       be run by anyone keen to help people learn to code. There are guides and
-      resource links with printable cerificates for those that complete the
+      resource links with printable certificates for those that complete the
       course.
     </Typography>
     <Stack direction="row" justifyContent="end">

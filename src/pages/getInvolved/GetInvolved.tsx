@@ -4,10 +4,10 @@ import { type FC } from "react"
 import { Unstable_Grid2 as Grid } from "@mui/material"
 
 import Card from "../../components/Card"
-import ClubsImg from "../../images/clubs.png"
-import GetInvolvedHero from "../../images/get_involved_hero_hexagon.png"
-import GithubImg from "../../images/github.png"
-import UniversitiesImg from "../../images/universities.png"
+import ClubsImage from "../../images/clubs.png"
+import GetInvolvedHeroImage from "../../images/get_involved_hero_hexagon.png"
+import GithubImage from "../../images/github.png"
+import UniversitiesImage from "../../images/universities.png"
 import { paths } from "../../routes"
 
 export interface GetInvolvedProps {}
@@ -20,7 +20,7 @@ const GetInvolved: FC<GetInvolvedProps> = () => (
       imageProps={{
         title: "Adult teaching two children",
         alt: "Adult teaching two children",
-        src: GetInvolvedHero,
+        src: GetInvolvedHeroImage,
       }}
     />
     <page.Section>
@@ -31,7 +31,7 @@ const GetInvolved: FC<GetInvolvedProps> = () => (
             description="Become a Code for Life ambassador by starting up a coding club. Find out more about how you can get involved with this by visiting our coding club page."
             mediaProps={{
               title: "Student showing their work to teacher",
-              image: ClubsImg,
+              image: ClubsImage,
             }}
             linkButtonProps={{
               to: paths.codingClubs._,
@@ -44,7 +44,7 @@ const GetInvolved: FC<GetInvolvedProps> = () => (
           <Card
             title="Contribute through code"
             description="We welcome volunteers from all backgrounds to help us with our coding adventure. Take a look at our contribution guide to find out how to get involved in our open source projects."
-            mediaProps={{ title: "Github repository page", image: GithubImg }}
+            mediaProps={{ title: "Github repository page", image: GithubImage }}
             linkButtonProps={{
               to: paths.contribute._,
               children: "Read more",
@@ -58,7 +58,7 @@ const GetInvolved: FC<GetInvolvedProps> = () => (
             description="Please get in touch at codeforlife@ocado.com if you are interested in working on Code for Life projects with your students including coding, user experience, data analytics and new feature design."
             mediaProps={{
               title: "Three students looking at laptops",
-              image: UniversitiesImg,
+              image: UniversitiesImage,
             }}
             linkButtonProps={{
               to: "mailto:codeforlife@ocado.com",

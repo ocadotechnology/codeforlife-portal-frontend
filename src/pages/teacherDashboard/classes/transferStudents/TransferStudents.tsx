@@ -98,14 +98,14 @@ const TransferStudents: FC<TransferStudentsProps> = () => {
     classId,
   })
 
-  return !state || !state.studentUsers || !state.studentUsers.length ? (
-    <Navigate to={classPath} replace />
-  ) : (
+  return state && state.studentUsers && state.studentUsers.length ? (
     <_TransferStudents
       classId={classId}
       classPath={classPath}
       studentUsers={state.studentUsers}
     />
+  ) : (
+    <Navigate to={classPath} replace />
   )
 }
 

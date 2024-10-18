@@ -9,12 +9,12 @@ import { Image } from "codeforlife/components"
 import { ThemedBox } from "codeforlife/theme"
 import { primary } from "codeforlife/theme/colors"
 
-import CflLogoPowered from "../../images/logo_cfl_powered.svg"
+import CFLPoweredLogoImage from "../../images/logo_cfl_powered.svg"
 import { LINK_SKILLS_FOR_THE_FUTURE } from "../../app/env"
 import Links from "./Links"
 import RegisterToNewsletterForm from "./RegisterToNewsletterForm.tsx"
 import SocialMediaIcons from "./SocialMediaIcons"
-import TenYearAnniversary from "../../images/10_years_anniversary.png"
+import TenYearAnniversaryImage from "../../images/10_years_anniversary.png"
 import { themeOptions } from "../../app/theme"
 
 export interface FooterProps {}
@@ -45,13 +45,13 @@ const Footer: FC<FooterProps> = () => {
             >
               <Image
                 alt="Code for Life and Ocado Group logos"
-                src={CflLogoPowered}
+                src={CFLPoweredLogoImage}
                 href={LINK_SKILLS_FOR_THE_FUTURE}
                 hrefInNewTab
               />
               <Image
                 alt="10 year anniversary"
-                src={TenYearAnniversary}
+                src={TenYearAnniversaryImage}
                 maxWidth={{ xs: "60%", sm: "85%" }}
               />
             </Stack>

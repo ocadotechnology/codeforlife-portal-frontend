@@ -56,6 +56,7 @@ const ResetStudentsPasswordDialog: FC<ResetStudentsPasswordDialogProps> = ({
               ),
               {
                 state: {
+                  flow: "reset-multiple",
                   students: result.reduce(
                     (students, student) => [
                       ...students,

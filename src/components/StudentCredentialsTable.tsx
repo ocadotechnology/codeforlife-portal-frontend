@@ -1,280 +1,224 @@
-// Disable error checking until component is implemented.
-/* eslint-disable */
-// @ts-nocheck
-
-// import { Print as PrintIcon, SaveAlt as SaveAltIcon } from "@mui/icons-material"
+import * as tables from "codeforlife/components/table"
+import { Button, Stack, type SxProps, Typography } from "@mui/material"
+import { type Class, type Student, type User } from "codeforlife/api"
 import {
-  Box,
-  Stack,
-  Table,
-  TableBody,
-  TableCell,
-  type TableCellProps,
-  TableHead,
-  TableRow,
-  type TableRowProps,
-  Typography,
-  typographyClasses,
-  useTheme,
-} from "@mui/material"
-import { type Class, type Student, type StudentUser } from "codeforlife/api"
+  Document,
+  Image,
+  Page,
+  StyleSheet,
+  Text,
+  View,
+  pdf,
+} from "@react-pdf/renderer"
+import { type FC, useRef } from "react"
+import { Print as PrintIcon, SaveAlt as SaveAltIcon } from "@mui/icons-material"
 import { CopyIconButton } from "codeforlife/components"
-import { type FC } from "react"
 import { generatePath } from "react-router-dom"
-import { primary } from "codeforlife/theme/colors"
 
-import { type ListUsersResult } from "../api/user"
+import CflLogoImage from "../images/logo_cfl.png"
 import { paths } from "../routes"
 
-// import React from "react"
-// import {
-//   Document,
-//   Image,
-//   Page,
-//   StyleSheet,
-//   Text,
-//   View,
-// } from "@react-pdf/renderer"
-// import CflLogo from "../../images/cfl_logo.png"
+function makeAutoLoginLink(
+  classLoginLink: string,
+  student: StudentCredentialsTableProps["students"][number],
+) {
+  return (
+    `${classLoginLink}?` +
+    new URLSearchParams({
+      id: String(student.id),
+      agp: student.auto_gen_password,
+    }).toString()
+  )
+}
 
-// const styles = StyleSheet.create({
-//   mainView: {
-//     border: "2px solid black",
-//     display: "flex",
-//     flexDirection: "row",
-//     gap: 5,
-//     padding: 10,
-//   },
-//   page: {
-//     padding: 20,
-//   },
-//   text: {
-//     marginBottom: 5,
-//     fontSize: 12,
-//   },
-//   image: {
-//     width: 100,
-//     height: 100,
-//   },
-// })
+const StudentCredentialsPDF: FC<{
+  students: StudentCredentialsTableProps["students"]
+  classLoginLink: string
+}> = ({ students, classLoginLink }) => {
+  const pdfStyles = StyleSheet.create({
+    mainView: {
+      border: "2px solid black",
+      display: "flex",
+      flexDirection: "row",
+      gap: 5,
+      padding: 10,
+    },
+    page: {
+      padding: 20,
+    },
+    text: {
+      textAlign: "justify",
+      marginBottom: 5,
+      fontSize: 12,
+    },
+    image: {
+      width: 85,
+      height: 70,
+    },
+  })
 
-// interface StudentInfo {
-//   name: string
-//   password: string
-//   classLoginLink: string
-//   loginUrl: string
-// }
-// const MyDocument: React.FC<{
-//   studentsInfo: StudentInfo[]
-//   classLoginLink: string
-// }> = ({ studentsInfo, classLoginLink }) => (
-//   <Document>
-//     <Page size="A4" style={styles.page}>
-//       {studentsInfo.map((student: StudentInfo) => (
-//         <View key={`${student.name}-pdf`} style={styles.mainView}>
-//           <View>
-//             <Image source={CflLogo} style={styles.image} />
-//           </View>
-//           <View>
-//             <Text style={styles.text}>
-//               Please ensure students keep login details in a secure place
-//             </Text>
-//             <Text style={styles.text}>
-//               Directly login with {student.loginUrl}
-//             </Text>
-//             <Text style={styles.text}>OR class link: {classLoginLink}</Text>
-//             <Text style={styles.text}>Name: {student.name}</Text>
-//             <Text style={styles.text}>Password: {student.password}</Text>
-//           </View>
-//         </View>
-//       ))}
-//     </Page>
-//   </Document>
-// )
+  return (
+    <Document>
+      <Page size="A4" style={pdfStyles.page}>
+        <Text style={pdfStyles.text}>
+          Please ensure students keep login details in a secure place
+        </Text>
+        {students.map(student => (
+          <View
+            key={`${student.user.first_name}-pdf`}
+            style={pdfStyles.mainView}
+          >
+            <Image
+              source={CflLogoImage}
+              src={CflLogoImage}
+              style={pdfStyles.image}
+            />
+            <View>
+              {/*TODO: Improve overall styles for this.*/}
+              <Text style={pdfStyles.text}>
+                Directly log in with:{"\n"}
+                {makeAutoLoginLink(classLoginLink, student)}
+              </Text>
+              <Text style={pdfStyles.text}>
+                OR class link: {classLoginLink}
+              </Text>
+              <Text style={pdfStyles.text}>
+                Name: {student.user.first_name} Password:{" "}
+                {student.user.password}
+              </Text>
+            </View>
+          </View>
+        ))}
+      </Page>
+    </Document>
+  )
+}
 
-// interface StudentInfo {
-//   name: string
-//   password: string
-//   classLoginLink: string
-//   loginUrl: string
-// }
+export interface DownloadButtonProps {
+  classLoginLink: string
+  students: StudentCredentialsTableProps["students"]
+}
 
-// const DownloadButtonCSV: React.FC = () => {
-//   const generateCSV: (
-//     studentsInfo: StudentInfo[],
-//     classLoginLink: string,
-//   ) => string = (studentsInfo, classLoginLink) => {
-//     let csvContent = "Name,Password,Class Link,Login URL\n"
-//     studentsInfo.forEach(student => {
-//       csvContent += `${student.name},${student.password},${classLoginLink},${student.loginUrl}\n`
-//     })
-//     return csvContent
-//   }
-//   const location = useLocation()
-//   const { studentsInfo } = location.state.updatedStudentCredentials
-//   const { classLoginLink } = location.state.updatedStudentCredentials
+const DownloadPDFButton: FC<DownloadButtonProps> = ({
+  classLoginLink,
+  students,
+}) => {
+  const linkRef = useRef<HTMLAnchorElement | null>(null)
 
-//   const downloadCSV: () => void = () => {
-//     const csvContent = generateCSV(studentsInfo, classLoginLink)
-//     const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" })
-//     const url = URL.createObjectURL(blob)
-//     const linkRef = React.useRef<HTMLAnchorElement | null>(null)
-//     if (linkRef.current) {
-//       linkRef.current.href = url
-//       linkRef.current.download = "data.csv"
-//       linkRef.current.click()
-//     }
-//     URL.revokeObjectURL(url)
-//   }
+  const downloadPdf = async (): Promise<void> => {
+    try {
+      const blob = await pdf(
+        <StudentCredentialsPDF
+          classLoginLink={classLoginLink}
+          students={students}
+        />,
+      ).toBlob()
+      const url = URL.createObjectURL(blob)
 
-//   return (
-//     <Button endIcon={<SaveAltIcon />} className="body" onClick={downloadCSV}>
-//       Download CSV
-//     </Button>
-//   )
-// }
+      if (linkRef.current) {
+        linkRef.current.href = url
+        linkRef.current.click()
+      }
+      URL.revokeObjectURL(url)
+    } catch (error) {
+      console.error(error)
+    }
+  }
 
-// export const DownloadButtonPDF: FC<{ isButtonBanner?: boolean }> = ({
-//   isButtonBanner,
-// }) => {
-//   const location = useLocation()
-//   const { studentsInfo, classLoginLink } = location.state.updatedStudentCredentials
-//   const linkRef = React.useRef<HTMLAnchorElement | null>(null)
+  return (
+    <>
+      <Button
+        endIcon={<PrintIcon />}
+        onClick={() => {
+          void downloadPdf()
+        }}
+        className="body"
+      >
+        Print password reminder cards
+      </Button>
+      {/* Invisible anchor tag to trigger the download */}
+      <a ref={linkRef} target="_blank" style={{ display: "none" }}></a>
+    </>
+  )
+}
 
-//   const downloadPdf = async (): Promise<void> => {
-//     try {
-//       const blob = await pdf(
-//         <MyDocument classLoginLink={classLoginLink} studentsInfo={studentsInfo} />,
-//       ).toBlob()
-//       const url = URL.createObjectURL(blob)
+const DownloadCSVButton: FC<DownloadButtonProps> = ({
+  classLoginLink,
+  students,
+}) => {
+  const generateCSV: () => string = () => {
+    const lines = [["Name", "Password", "Class Link", "Login URL"].join(",")]
+    students.forEach(student => {
+      lines.push(
+        [
+          student.user.first_name,
+          student.user.password,
+          classLoginLink,
+          makeAutoLoginLink(classLoginLink, student),
+        ].join(","),
+      )
+    })
+    return lines.join("\n")
+  }
+  const linkRef = useRef<HTMLAnchorElement | null>(null)
 
-//       if (linkRef.current) {
-//         linkRef.current.href = url
-//         linkRef.current.download = "document.pdf"
-//         linkRef.current.click()
-//         URL.revokeObjectURL(url)
-//       }
-//     } catch (error) {
-//       console.error(error)
-//     }
-//   }
-//   const buttonStyles = !isButtonBanner
-//     ? {}
-//     : {
-//         sx: {
-//           border: "2px solid black",
-//           "&:hover": {
-//             border: "2px solid black",
-//           },
-//         },
-//       }
+  const downloadCSV: () => void = () => {
+    const csvContent = generateCSV()
+    const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" })
+    const url = URL.createObjectURL(blob)
 
-//   return (
-//     <>
-//       <Button
-//         endIcon={<PrintIcon />}
-//         onClick={() => {
-//           void downloadPdf()
-//         }}
-//         className="body"
-//         {...buttonStyles}
-//       >
-//         Print password reminder cards
-//       </Button>
-//       {/* Invisible anchor tag to trigger the download */}
-//       <a ref={linkRef} style={{ display: "none" }}></a>
-//     </>
-//   )
-// }
+    if (linkRef.current) {
+      linkRef.current.href = url
+      linkRef.current.download = "data.csv"
+      linkRef.current.click()
+    }
+    URL.revokeObjectURL(url)
+  }
 
-const WhiteTableCell: React.FC<TableCellProps> = ({
-  style,
-  ...otherTableCellProps
-}) => (
-  <TableCell
-    style={{
-      ...style,
-      backgroundColor: "white",
-    }}
-    {...otherTableCellProps}
-  />
-)
-
-const HeadRowTableCell: React.FC<TableRowProps> = props => (
-  <TableCell padding="none">
-    <Table
-      style={{
-        marginBottom: 0,
-        tableLayout: "fixed",
-        height: "100%",
-      }}
-    >
-      <TableHead className="light">
-        <TableRow {...props} />
-      </TableHead>
-    </Table>
-  </TableCell>
-)
-
-const BodyRowTableCell: React.FC<TableRowProps> = props => (
-  <TableCell padding="none">
-    <Table
-      style={{
-        marginBottom: 0,
-        tableLayout: "fixed",
-        height: "100%",
-      }}
-    >
-      <TableBody>
-        <TableRow {...props} />
-      </TableBody>
-    </Table>
-  </TableCell>
-)
+  return (
+    <>
+      <Button endIcon={<SaveAltIcon />} className="body" onClick={downloadCSV}>
+        Download CSV
+      </Button>
+      {/* Invisible anchor tag to trigger the download */}
+      <a ref={linkRef} target="_blank" style={{ display: "none" }}></a>
+    </>
+  )
+}
 
 export interface StudentCredentialsTableProps {
   classId: Class["id"]
-  studentUsers: Array<
-    Pick<StudentUser, "id" | "first_name" | "password"> & {
-      student: Pick<Student, "id" | "auto_gen_password">
+  students: Array<
+    Pick<Student, "id" | "auto_gen_password"> & {
+      user: Pick<User, "id" | "first_name" | "password">
     }
   >
 }
 
 const StudentCredentialsTable: FC<StudentCredentialsTableProps> = ({
   classId,
-  studentUsers,
+  students,
 }) => {
   const classLoginLink = generatePath(paths.login.student.class._, { classId })
 
-  const nameCellWidth = "40%"
-  const passwordCellWidth = "60%"
+  const headerCellSx: SxProps = {
+    background: "#9a9c9e",
+    color: "white !important",
+  }
 
   return (
-    <Table
-      sx={{
-        height: "100%",
-        tableLayout: "fixed",
-        [`.${typographyClasses.root}`]: {
-          marginBottom: 0,
-        },
-      }}
-      className="body"
-    >
-      <TableHead>
-        <TableRow>
-          <TableCell width="45%">
-            <Typography>Option 1 Login details</Typography>
-          </TableCell>
-          <WhiteTableCell width="10%" />
-          <TableCell width="45%">
-            <Typography>Option 2 Login links</Typography>
-          </TableCell>
-        </TableRow>
-      </TableHead>
-      <TableBody>
-        <TableRow>
-          <TableCell>
+    <>
+      <tables.Table
+        sx={{ tableLayout: "fixed" }}
+        className="body"
+        headers={[
+          { colSpan: 2, children: "Option 1 Login details", width: "46%" },
+          { sx: { background: "white" }, children: "", width: "8%" },
+          "Option 2 Login links",
+        ]}
+      >
+        <tables.BodyRow>
+          <tables.Cell colSpan={2}>
             <Stack direction="row" width="100%" alignItems="center">
               <Typography marginRight={2}>Class link:</Typography>
               <Typography className="nowrap-ellipsis">
@@ -285,87 +229,64 @@ const StudentCredentialsTable: FC<StudentCredentialsTableProps> = ({
                 sx={{ marginLeft: "auto" }}
               />
             </Stack>
-          </TableCell>
-          <WhiteTableCell>
+          </tables.Cell>
+          <tables.Cell sx={{ background: "white" }}>
             <Typography
-              style={{
-                color: "white",
-                backgroundColor: primary[500],
+              sx={{
+                color: "white !important",
+                backgroundColor: "primary.main",
                 borderRadius: "50%",
-                padding: 10,
+                padding: 1.25,
                 width: "fit-content",
                 margin: "auto",
               }}
             >
               OR
             </Typography>
-          </WhiteTableCell>
-          <TableCell>
-            <Typography fontWeight="bold">
-              No class code or password required
-            </Typography>
-          </TableCell>
-        </TableRow>
-        <TableRow>
-          <HeadRowTableCell>
-            <TableCell width={nameCellWidth}>
-              <Typography>Name</Typography>
-            </TableCell>
-            <TableCell width={passwordCellWidth}>
-              <Typography>Password</Typography>
-            </TableCell>
-          </HeadRowTableCell>
-          <WhiteTableCell />
-          <HeadRowTableCell>
-            <TableCell>
-              <Typography>
-                Copy the links below and share with the student
-              </Typography>
-            </TableCell>
-          </HeadRowTableCell>
-        </TableRow>
-        {studentUsers.map(studentUser => {
-          const autoLoginLink =
-            `${classLoginLink}?` +
-            new URLSearchParams({
-              id: String(studentUser.id),
-              agp: studentUser.student.auto_gen_password,
-            }).toString()
+          </tables.Cell>
+          <tables.Cell sx={{ fontWeight: "bold" }}>
+            No class code or password required
+          </tables.Cell>
+        </tables.BodyRow>
+        <tables.BodyRow>
+          <tables.Cell sx={headerCellSx}>Name</tables.Cell>
+          <tables.Cell sx={headerCellSx}>Password</tables.Cell>
+          <tables.Cell sx={{ background: "white" }}></tables.Cell>
+          <tables.Cell sx={headerCellSx}>
+            Copy the links below and share with the student
+          </tables.Cell>
+        </tables.BodyRow>
+        {students.map(student => {
+          const autoLoginLink = makeAutoLoginLink(classLoginLink, student)
 
           return (
-            <TableRow key={`user-${studentUser.id}`}>
-              <BodyRowTableCell>
-                <TableCell width={nameCellWidth}>
-                  <Typography>{studentUser.first_name}</Typography>
-                </TableCell>
-                <TableCell width={passwordCellWidth}>
-                  <Typography>{studentUser.password}</Typography>
-                </TableCell>
-              </BodyRowTableCell>
-              <WhiteTableCell />
-              <BodyRowTableCell>
-                <TableCell>
-                  <Stack direction="row" width="100%" alignItems="center">
-                    <Typography className="nowrap-ellipsis">
-                      {autoLoginLink}
-                    </Typography>
-                    <CopyIconButton
-                      content={autoLoginLink}
-                      sx={{ marginLeft: "auto" }}
-                    />
-                  </Stack>
-                </TableCell>
-              </BodyRowTableCell>
-            </TableRow>
+            <tables.BodyRow key={`user-${student.id}`}>
+              <tables.Cell>{student.user.first_name}</tables.Cell>
+              <tables.Cell>{student.user.password}</tables.Cell>
+              <tables.Cell sx={{ background: "white" }}></tables.Cell>
+              <tables.Cell>
+                <Stack direction="row" width="100%" alignItems="center">
+                  <Typography className="nowrap-ellipsis">
+                    {autoLoginLink}
+                  </Typography>
+                  <CopyIconButton content={autoLoginLink} />
+                </Stack>
+              </tables.Cell>
+            </tables.BodyRow>
           )
         })}
-      </TableBody>
-    </Table>
-    // TODO: fix margin bottom
-    // <Stack direction="row" justifyContent="space-between">
-    //   <DownloadButtonPDF />
-    //   <DownloadButtonCSV />
-    // </Stack>
+      </tables.Table>
+      <Stack direction="row" justifyContent="space-between">
+        <DownloadPDFButton
+          classLoginLink={classLoginLink}
+          students={students}
+        />
+        <DownloadCSVButton
+          classLoginLink={classLoginLink}
+          students={students}
+        />
+      </Stack>
+    </>
   )
 }
 
