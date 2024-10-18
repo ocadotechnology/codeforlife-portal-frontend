@@ -3,9 +3,9 @@ import { Image, type ImageProps } from "codeforlife/components"
 import { type FC } from "react"
 import { Link } from "codeforlife/components/router"
 
-import ReubenPhoto from "../../images/ReubenImage.png"
-import RobPhoto from "../../images/RobImage.png"
-import SianPhoto from "../../images/SianImage.png"
+import ReubenPhoto from "../../images/reuben.png"
+import RobPhoto from "../../images/rob.png"
+import SianPhoto from "../../images/sian.png"
 import { paths } from "../../routes"
 
 const Column: FC<{

@@ -71,7 +71,7 @@ const _StudentsCredentials: FC<
       <Link
         className="back-to"
         to={generatePath(paths.teacher.dashboard.tab.classes.class._, {
-          classId,
+          classId: classId,
         })}
       >
         class
@@ -100,18 +100,18 @@ const StudentsCredentials: FC<StudentsCredentialsProps> = () => {
 
   const { classId } = params
 
-  return state && state.students && state.students.length && state.flow ? (
-    <_StudentsCredentials
-      classId={classId}
-      flow={state.flow}
-      students={state.students}
-    />
-  ) : (
+  return !(state && state.students && state.students.length && state.flow) ? (
     <Navigate
       to={generatePath(paths.teacher.dashboard.tab.classes.class._, {
         classId,
       })}
       replace
+    />
+  ) : (
+    <_StudentsCredentials
+      classId={classId}
+      flow={state.flow}
+      students={state.students}
     />
   )
 }

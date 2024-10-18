@@ -2,7 +2,7 @@ import { type FC } from "react"
 import { Link } from "codeforlife/components/router"
 import { Typography } from "@mui/material"
 
-import AboutUsOcadoImage from "../../images/AboutUsOcadoImage.jpg"
+import AboutUsOcadoImage from "../../images/about_us_ocado.jpg"
 import Introduction from "../../components/Introduction"
 import { LINK_SKILLS_FOR_THE_FUTURE } from "../../app/env"
 

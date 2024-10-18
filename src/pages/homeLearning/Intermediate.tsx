@@ -2,7 +2,7 @@ import { type FC } from "react"
 
 import { LINK_HOME_LEARNING_INTERMEDIATE } from "../../app/env"
 import Levels from "./Levels"
-import RRIntermediateImage from "../../images/RRIntermediateImage.png"
+import RRIntermediateImage from "../../images/rr_intermediate.png"
 
 export interface IntermediateProps {}
 
