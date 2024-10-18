@@ -67,7 +67,11 @@ const StudentCredentialsPDF: FC<{
             key={`${student.user.first_name}-pdf`}
             style={pdfStyles.mainView}
           >
-            <Image source={CflLogoImage} src={CflLogoImage} style={pdfStyles.image} />
+            <Image
+              source={CflLogoImage}
+              src={CflLogoImage}
+              style={pdfStyles.image}
+            />
             <View>
               {/*TODO: Auto login link is too long and doesn't fit in PDF.*/}
               <Text style={pdfStyles.text}>
@@ -115,8 +119,8 @@ const DownloadPDFButton: FC<DownloadButtonProps> = ({
       if (linkRef.current) {
         linkRef.current.href = url
         linkRef.current.click()
-        URL.revokeObjectURL(url)
       }
+      URL.revokeObjectURL(url)
     } catch (error) {
       console.error(error)
     }
@@ -143,10 +147,7 @@ const DownloadCSVButton: FC<DownloadButtonProps> = ({
   classLoginLink,
   students,
 }) => {
-  const generateCSV: (
-    students: StudentCredentialsTableProps["students"],
-    classLoginLink: string,
-  ) => string = (students, classLoginLink) => {
+  const generateCSV: () => string = () => {
     let csvContent = "Name,Password,Class Link,Login URL\n"
     students.forEach(student => {
       csvContent += `${student.user.first_name},${student.user.password},${classLoginLink},${makeAutoLoginLink(classLoginLink, student)}\n`
@@ -156,7 +157,7 @@ const DownloadCSVButton: FC<DownloadButtonProps> = ({
   const linkRef = useRef<HTMLAnchorElement | null>(null)
 
   const downloadCSV: () => void = () => {
-    const csvContent = generateCSV(students, classLoginLink)
+    const csvContent = generateCSV()
     const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" })
     const url = URL.createObjectURL(blob)
 
