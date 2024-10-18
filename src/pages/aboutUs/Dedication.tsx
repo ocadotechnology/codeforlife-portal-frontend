@@ -2,7 +2,7 @@ import { Stack, Typography } from "@mui/material"
 import { type FC } from "react"
 import { Image } from "codeforlife/components"
 
-import SharonHarrisonImage from "../../images/sharon_harrison.jpg"
+import SharonHarrisonImage from "../../images/SharonHarrisonImage.jpg"
 
 export interface DedicationProps {}
 

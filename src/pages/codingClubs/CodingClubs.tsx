@@ -3,7 +3,7 @@ import { type FC } from "react"
 import { useTheme } from "@mui/material"
 
 import ClubAim from "./ClubAim"
-import CodeClubHeroImage from "../../images/coding_club_hero_hexagon.png"
+import CodeClubHeroImage from "../../images/CodingClubHeroHexagonImage.png"
 import Primary from "./Primary"
 import Python from "./Python"
 

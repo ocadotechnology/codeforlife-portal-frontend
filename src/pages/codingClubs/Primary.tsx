@@ -7,7 +7,7 @@ import {
   LINK_PRIMARY_PACK_DOWNLOAD,
   LINK_PRIMARY_PACK_GITBOOK,
 } from "../../app/env"
-import AboutUsImage from "../../images/about_us.jpg"
+import AboutUsImage from "../../images/AboutUsImage.jpg"
 import Introduction from "../../components/Introduction"
 
 export interface PrimaryProps {}

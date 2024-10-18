@@ -15,7 +15,7 @@ import { Print as PrintIcon, SaveAlt as SaveAltIcon } from "@mui/icons-material"
 import { CopyIconButton } from "codeforlife/components"
 import { generatePath } from "react-router-dom"
 
-import CflLogo from "../images/logo_cfl.png"
+import CflLogo from "../images/CFLLogoImage.png"
 import { paths } from "../routes"
 
 function makeAutoLoginLink(

@@ -4,8 +4,8 @@ import { Stack, type SxProps, Typography, useTheme } from "@mui/material"
 import { ChevronRight as ChevronRightIcon } from "@mui/icons-material"
 import { type FC } from "react"
 
-import EducateImage from "../../images/dashboard_educate.png"
-import PlayImage from "../../images/dashboard_play.png"
+import EducateImage from "../../images/DashboardEducateImage.png"
+import PlayImage from "../../images/DashboardPlayImage.png"
 import { paths } from "../../routes"
 
 export interface TargetAudienceProps {}

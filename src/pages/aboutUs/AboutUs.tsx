@@ -1,7 +1,7 @@
 import * as page from "codeforlife/components/page"
 import { type FC } from "react"
 
-import AboutUsHeroImage from "../../images/about_us_hero_hexagon.png"
+import AboutUsHeroImage from "../../images/AboutUsHeroHexagonImage.png"
 import CodeForLife from "./CodeForLife"
 import Dedication from "./Dedication"
 import OcadoGroup from "./OcadoGroup"

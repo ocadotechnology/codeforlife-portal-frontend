@@ -80,14 +80,14 @@ const ReleaseStudents: FC<ReleaseStudentsProps> = () => {
     classId,
   })
 
-  return !(state && state.studentUsers && state.studentUsers.length) ? (
-    <Navigate to={classPath} replace />
-  ) : (
+  return state && state.studentUsers && state.studentUsers.length ? (
     <_ReleaseStudents
       classId={classId}
       classPath={classPath}
       studentUsers={state.studentUsers}
     />
+  ) : (
+    <Navigate to={classPath} replace />
   )
 }
 

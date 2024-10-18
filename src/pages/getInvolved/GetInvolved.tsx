@@ -4,10 +4,10 @@ import { type FC } from "react"
 import { Unstable_Grid2 as Grid } from "@mui/material"
 
 import Card from "../../components/Card"
-import ClubsImg from "../../images/clubs.png"
-import GetInvolvedHero from "../../images/get_involved_hero_hexagon.png"
-import GithubImg from "../../images/github.png"
-import UniversitiesImg from "../../images/universities.png"
+import ClubsImg from "../../images/ClubsImage.png"
+import GetInvolvedHero from "../../images/GetInvolvedHeroHexagonImage.png"
+import GithubImg from "../../images/GithubImage.png"
+import UniversitiesImg from "../../images/UniversitiesImage.png"
 import { paths } from "../../routes"
 
 export interface GetInvolvedProps {}

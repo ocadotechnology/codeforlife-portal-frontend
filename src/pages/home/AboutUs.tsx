@@ -4,11 +4,11 @@ import { ChevronRight as ChevronRightIcon } from "@mui/icons-material"
 import { type FC } from "react"
 import { Image } from "codeforlife/components"
 
-import ControllerIcon from "../../images/icon_controller.png"
-import GlobeIcon from "../../images/icon_globe.png"
+import ControllerIcon from "../../images/ControllerIconImage.png"
+import GlobeIcon from "../../images/GlobeIconImage.png"
 import { LINK_FEMALE_GRADUATES_IN_CS } from "../../app/env"
-import PieChartIcon from "../../images/icon_piechart.png"
-import TicketIcon from "../../images/icon_free.png"
+import PieChartIcon from "../../images/PiechartIconImage.png"
+import TicketIcon from "../../images/FreeIconImage.png"
 import { paths } from "../../routes"
 
 const Column: FC<{
