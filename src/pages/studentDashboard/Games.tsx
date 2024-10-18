@@ -2,7 +2,7 @@ import { Stack, Typography } from "@mui/material"
 import { type FC } from "react"
 
 import { Card } from "../../components"
-import RRLogoGreenImage from "../../images/RR_logo_green.svg"
+import RRLogoGreenImage from "../../images/RRGreenLogoImage.svg"
 import { paths } from "../../routes"
 
 export interface GamesProps {}
