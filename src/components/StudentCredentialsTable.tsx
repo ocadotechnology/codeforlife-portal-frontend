@@ -1,5 +1,5 @@
 import * as tables from "codeforlife/components/table"
-import { Button, Stack, SxProps, Typography } from "@mui/material"
+import { Button, Stack, type SxProps, Typography } from "@mui/material"
 import { type Class, type Student, type User } from "codeforlife/api"
 import {
   Document,
