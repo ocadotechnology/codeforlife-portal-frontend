@@ -100,7 +100,7 @@ const StudentsCredentials: FC<StudentsCredentialsProps> = () => {
 
   const { classId } = params
 
-  return !state || !state.students || !state.students.length || !state.flow ? (
+  return !(state && state.students && state.students.length && state.flow) ? (
     <Navigate
       to={generatePath(paths.teacher.dashboard.tab.classes.class._, {
         classId,
