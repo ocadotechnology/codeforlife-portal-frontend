@@ -4,11 +4,11 @@ import { ChevronRight as ChevronRightIcon } from "@mui/icons-material"
 import { type FC } from "react"
 import { Image } from "codeforlife/components"
 
-import ControllerIcon from "../../images/ControllerIconImage.png"
-import GlobeIcon from "../../images/GlobeIconImage.png"
+import ControllerIconImage from "../../images/icon_controller.png"
+import FreeIconImage from "../../images/icon_free.png"
+import GlobeIconImage from "../../images/icon_globe.png"
 import { LINK_FEMALE_GRADUATES_IN_CS } from "../../app/env"
-import PieChartIcon from "../../images/PiechartIconImage.png"
-import TicketIcon from "../../images/FreeIconImage.png"
+import PieChartIconImage from "../../images/icon_piechart.png"
 import { paths } from "../../routes"
 
 const Column: FC<{
@@ -32,7 +32,7 @@ const AboutUs: FC<AboutUsProps> = () => (
         Giving everyone the ability to shape technology&apos;s future
       </Typography>
     </Grid>
-    <Column img={{ alt: "pie chart", src: PieChartIcon }}>
+    <Column img={{ alt: "pie chart", src: PieChartIconImage }}>
       <Typography textAlign="center">
         Just 16% of university computer science graduates (2018/19) in the UK
         were women
@@ -42,18 +42,18 @@ const AboutUs: FC<AboutUsProps> = () => (
         , we want to change that.
       </Typography>
     </Column>
-    <Column img={{ alt: "game controller", src: ControllerIcon }}>
+    <Column img={{ alt: "game controller", src: ControllerIconImage }}>
       <Typography textAlign="center">
         Gamification helps children learn whilst having fun!
       </Typography>
     </Column>
-    <Column img={{ alt: "free ticket", src: TicketIcon }}>
+    <Column img={{ alt: "free ticket", src: FreeIconImage }}>
       <Typography textAlign="center">
         That&apos;s right, free forever: our gift to you! We&apos;re also Open
         Source.
       </Typography>
     </Column>
-    <Column img={{ alt: "earth", src: GlobeIcon }}>
+    <Column img={{ alt: "earth", src: GlobeIconImage }}>
       <Typography textAlign="center">
         Code for Life has over 660,000 registered users across the world.
       </Typography>

@@ -15,7 +15,7 @@ import { Print as PrintIcon, SaveAlt as SaveAltIcon } from "@mui/icons-material"
 import { CopyIconButton } from "codeforlife/components"
 import { generatePath } from "react-router-dom"
 
-import CflLogo from "../images/CFLLogoImage.png"
+import CflLogoImage from "../images/logo_cfl.png"
 import { paths } from "../routes"
 
 function makeAutoLoginLink(
@@ -67,7 +67,7 @@ const StudentCredentialsPDF: FC<{
             key={`${student.user.first_name}-pdf`}
             style={pdfStyles.mainView}
           >
-            <Image source={CflLogo} src={CflLogo} style={pdfStyles.image} />
+            <Image source={CflLogoImage} src={CflLogoImage} style={pdfStyles.image} />
             <View>
               {/*TODO: Auto login link is too long and doesn't fit in PDF.*/}
               <Text style={pdfStyles.text}>

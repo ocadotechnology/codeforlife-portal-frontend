@@ -8,7 +8,7 @@ import {
   LINK_PYTHON_PACK_GITBOOK,
 } from "../../app/env"
 import Introduction from "../../components/Introduction"
-import PythonClubImage from "../../images/CodingClubPythonPackImage.png"
+import PythonClubImage from "../../images/coding_club_python_pack.png"
 
 export interface PythonProps {}
 

@@ -3,9 +3,9 @@ import { Image, type ImageProps } from "codeforlife/components"
 import { type FC } from "react"
 import { Link } from "codeforlife/components/router"
 
-import ReubenPhoto from "../../images/ReubenImage.png"
-import RobPhoto from "../../images/RobImage.png"
-import SianPhoto from "../../images/SianImage.png"
+import ReubenImage from "../../images/reuben.png"
+import RobImage from "../../images/rob.png"
+import SianImage from "../../images/sian.png"
 import { paths } from "../../routes"
 
 const Column: FC<{
@@ -56,17 +56,17 @@ const Quotes: FC<QuotesProps> = () => (
       </Typography>
     </Grid>
     <Column
-      img={{ alt: "Reuben", src: ReubenPhoto }}
+      img={{ alt: "Reuben", src: ReubenImage }}
       quote="My year 10's have been using Rapid Router to develop their Python skills and it has been a great transition into the Python IDE."
       person={{ name: "Reuben", title: "Computer Science teacher" }}
     />
     <Column
-      img={{ alt: "Sian", src: SianPhoto }}
+      img={{ alt: "Sian", src: SianImage }}
       quote="I like the slow build of layers of block coding that allows students to work at their own pace and fully embed their understanding of the different blocks."
       person={{ name: "Sian", title: "Head of ICT" }}
     />
     <Column
-      img={{ alt: "Rob", src: RobPhoto }}
+      img={{ alt: "Rob", src: RobImage }}
       quote="You can hit all of the computing curriculum, in a structured way. It is perfect for teachers who are struggling."
       person={{ name: "Rob", title: "ICT teacher" }}
     />

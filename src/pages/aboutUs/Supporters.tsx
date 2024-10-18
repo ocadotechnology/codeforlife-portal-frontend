@@ -4,14 +4,14 @@ import { Image } from "codeforlife/components"
 import { Link } from "codeforlife/components/router"
 
 import { LINK_CFL_DOCS, LINK_PORTAL_GITHUB } from "../../app/env"
-import BarefootImage from "../../images/BarefootLogoImage.png"
-import BcsImage from "../../images/BCSLogoImage.png"
-import GLAImage from "../../images/GLALogoImage.png"
-import HOPEImage from "../../images/HopeLogoImage.png"
-import IclImage from "../../images/ICLLogoImage.png"
-import Logo10xImage from "../../images/10xLogoImage.png"
-import MCSaatchiImage from "../../images/MCSaatchiLogoImage.png"
-import PressureCookerImage from "../../images/PressureCookerLogoImage.png"
+import BarefootImage from "../../images/barefoot_logo.png"
+import BcsImage from "../../images/bcs_logo.png"
+import GLAImage from "../../images/gla_logo.png"
+import HOPEImage from "../../images/hope_logo.png"
+import IclImage from "../../images/icl_logo.png"
+import Logo10xImage from "../../images/10x_logo.png"
+import MCSaatchiImage from "../../images/mc_saatchi_logo.png"
+import PressureCookerImage from "../../images/pressure_cooker_logo.png"
 
 const Supporter: FC<{
   desc: string

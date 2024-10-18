@@ -5,10 +5,10 @@ import { Image } from "codeforlife/components"
 import { LinkButton } from "codeforlife/components/router"
 
 // import { useRetrieveUserQuery } from "../../api/rapidRouter"
-import RRLogoImage from "../../images/RRLogoImage.svg"
+import RRLogoImage from "../../images/RR_logo.svg"
 import { paths } from "../../routes"
 
-const GetRapidRouterScores: React.FC = () => {
+const GetRapidRouterScores: FC = () => {
   // TODO: get real data from rapid-router endpoint.
   // useRetrieveUserQuery()
   const stats = {

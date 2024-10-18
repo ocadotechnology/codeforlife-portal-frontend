@@ -3,7 +3,7 @@ import { type FC } from "react"
 import { LINK_HOME_LEARNING_ADVANCED } from "../../app/env"
 import Levels from "./Levels"
 import { Link } from "codeforlife/components/router"
-import RRAdvancedImage from "../../images/RRAdvancedImage.png"
+import RRAdvancedImage from "../../images/rr_advanced.png"
 import { paths } from "../../routes"
 
 export interface AdvancedProps {}

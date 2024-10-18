@@ -1,7 +1,7 @@
 import { type FC } from "react"
 import { Typography } from "@mui/material"
 
-import AboutUsCFLImage from "../../images/AboutUsImage.jpg"
+import AboutUsCFLImage from "../../images/about_us.jpg"
 import Introduction from "../../components/Introduction"
 
 export interface CodeForLifeProps {}
