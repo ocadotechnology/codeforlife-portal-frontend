@@ -46,7 +46,7 @@ const UpdatePasswordForm: FC<UpdatePasswordFormProps> = ({ classId, user }) => {
               ),
               {
                 state: {
-                  flow: "reset-unique",
+                  flow: "reset-single",
                   students: [
                     {
                       ...student,
