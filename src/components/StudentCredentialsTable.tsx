@@ -47,6 +47,7 @@ const StudentCredentialsPDF: FC<{
       padding: 20,
     },
     text: {
+      textAlign: "justify",
       marginBottom: 5,
       fontSize: 12,
     },
@@ -73,19 +74,17 @@ const StudentCredentialsPDF: FC<{
               style={pdfStyles.image}
             />
             <View>
-              {/*TODO: Auto login link is too long and doesn't fit in PDF.*/}
+              {/*TODO: Improve overall styles for this.*/}
               <Text style={pdfStyles.text}>
-                Directly log in with{" "}
+                Directly log in with:{"\n"}
                 {makeAutoLoginLink(classLoginLink, student)}
               </Text>
               <Text style={pdfStyles.text}>
                 OR class link: {classLoginLink}
               </Text>
               <Text style={pdfStyles.text}>
-                Name: {student.user.first_name}
-              </Text>
-              <Text style={pdfStyles.text}>
-                Password: {student.user.password}
+                Name: {student.user.first_name} Password:{" "}
+                {student.user.password}
               </Text>
             </View>
           </View>
@@ -148,11 +147,18 @@ const DownloadCSVButton: FC<DownloadButtonProps> = ({
   students,
 }) => {
   const generateCSV: () => string = () => {
-    let csvContent = "Name,Password,Class Link,Login URL\n"
+    const lines = [["Name", "Password", "Class Link", "Login URL"].join(",")]
     students.forEach(student => {
-      csvContent += `${student.user.first_name},${student.user.password},${classLoginLink},${makeAutoLoginLink(classLoginLink, student)}\n`
+      lines.push(
+        [
+          student.user.first_name,
+          student.user.password,
+          classLoginLink,
+          makeAutoLoginLink(classLoginLink, student),
+        ].join(","),
+      )
     })
-    return csvContent
+    return lines.join("\n")
   }
   const linkRef = useRef<HTMLAnchorElement | null>(null)
 
