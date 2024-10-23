@@ -1,6 +1,6 @@
 import { type FC } from "react"
 
-import { LINK_HOME_LEARNING_BEGINNER } from "../../app/env"
+import { LINK_HOME_LEARNING_BEGINNER } from "../../app/settings"
 import Levels from "./Levels"
 import RRBeginnerImage from "../../images/rr_beginner.png"
 

@@ -10,7 +10,7 @@ import { ThemedBox } from "codeforlife/theme"
 import { primary } from "codeforlife/theme/colors"
 
 import CFLPoweredLogoImage from "../../images/logo_cfl_powered.svg"
-import { LINK_SKILLS_FOR_THE_FUTURE } from "../../app/env"
+import { LINK_SKILLS_FOR_THE_FUTURE } from "../../app/settings.ts"
 import Links from "./Links"
 import RegisterToNewsletterForm from "./RegisterToNewsletterForm.tsx"
 import SocialMediaIcons from "./SocialMediaIcons"

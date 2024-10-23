@@ -3,7 +3,7 @@ import { type FC } from "react"
 import { Image } from "codeforlife/components"
 import { Link } from "codeforlife/components/router"
 
-import { LINK_CFL_DOCS, LINK_PORTAL_GITHUB } from "../../app/env"
+import { LINK_CFL_DOCS, LINK_PORTAL_GITHUB } from "../../app/settings"
 import BarefootImage from "../../images/barefoot_logo.png"
 import BcsImage from "../../images/bcs_logo.png"
 import GLAImage from "../../images/gla_logo.png"

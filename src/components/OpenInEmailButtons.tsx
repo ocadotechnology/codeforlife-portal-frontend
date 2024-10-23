@@ -3,7 +3,7 @@ import { LinkButton } from "codeforlife/components/router"
 import { MailOutline as MailOutlineIcon } from "@mui/icons-material"
 import { Stack } from "@mui/material"
 
-import { LINK_OUTLOOK_HOME } from "../app/env"
+import { LINK_OUTLOOK_HOME } from "../app/settings"
 
 export interface OpenInEmailButtonsProps {
   gmailFilters: string

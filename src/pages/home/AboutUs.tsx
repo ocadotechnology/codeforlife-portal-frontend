@@ -7,7 +7,7 @@ import { Image } from "codeforlife/components"
 import ControllerIconImage from "../../images/icon_controller.png"
 import FreeIconImage from "../../images/icon_free.png"
 import GlobeIconImage from "../../images/icon_globe.png"
-import { LINK_FEMALE_GRADUATES_IN_CS } from "../../app/env"
+import { LINK_FEMALE_GRADUATES_IN_CS } from "../../app/settings"
 import PieChartIconImage from "../../images/icon_piechart.png"
 import { paths } from "../../routes"
 
