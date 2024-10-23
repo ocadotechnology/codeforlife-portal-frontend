@@ -4,7 +4,7 @@ import { Stack, Typography } from "@mui/material"
 import { type FC } from "react"
 import { Send as SendIcon } from "@mui/icons-material"
 
-import { GMAIL_FILTERS_PASSWORD_RESET_REQUEST } from "../../app/env"
+import { GMAIL_FILTERS_PASSWORD_RESET_REQUEST } from "../../app/settings"
 import { OpenInEmailButtons } from "../../components"
 import { paths } from "../../routes"
 import { useLazyRequestPasswordResetQuery } from "../../api/user"

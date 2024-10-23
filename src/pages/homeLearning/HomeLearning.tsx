@@ -8,7 +8,7 @@ import Advanced from "./Advanced"
 import Beginner from "./Beginner"
 import HomeLearningHeroImage from "../../images/home_learning_hero_hexagon.png"
 import Intermediate from "./Intermediate"
-import { LINK_IDEAS_BOX } from "../../app/env"
+import { LINK_IDEAS_BOX } from "../../app/settings"
 import { paths } from "../../routes"
 
 export interface HomeLearningProps {}

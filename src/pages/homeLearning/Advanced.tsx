@@ -1,6 +1,6 @@
 import { type FC } from "react"
 
-import { LINK_HOME_LEARNING_ADVANCED } from "../../app/env"
+import { LINK_HOME_LEARNING_ADVANCED } from "../../app/settings"
 import Levels from "./Levels"
 import { Link } from "codeforlife/components/router"
 import RRAdvancedImage from "../../images/rr_advanced.png"

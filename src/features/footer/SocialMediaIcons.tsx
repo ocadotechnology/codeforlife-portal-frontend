@@ -15,7 +15,7 @@ import {
   LINK_LINKEDIN,
   LINK_X,
   LINK_YOUTUBE,
-} from "../../app/env"
+} from "../../app/settings"
 
 const SocialMediaIcon: FC<{
   to: string

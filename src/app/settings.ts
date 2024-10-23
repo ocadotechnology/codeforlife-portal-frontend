@@ -1,6 +1,6 @@
-import env from "codeforlife/env"
+import env from "codeforlife/settings"
 
-export * from "codeforlife/env"
+export * from "codeforlife/settings"
 
 // Gmail.
 export const GMAIL_FILTERS_PASSWORD_RESET_REQUEST =

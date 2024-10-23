@@ -8,7 +8,7 @@ import {
 import { useNavigate, useParams, useSearchParams } from "codeforlife/hooks"
 import { type SvgIconProps } from "@mui/material"
 
-import { GMAIL_FILTERS_EMAIL_VERIFICATION } from "../../app/env"
+import { GMAIL_FILTERS_EMAIL_VERIFICATION } from "../../app/settings"
 import Status from "./Status"
 import { paths } from "../../routes"
 

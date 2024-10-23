@@ -6,7 +6,7 @@ import { Typography } from "@mui/material"
 import {
   LINK_PRIMARY_PACK_DOWNLOAD,
   LINK_PRIMARY_PACK_GITBOOK,
-} from "../../app/env"
+} from "../../app/settings"
 import AboutUsImage from "../../images/about_us.jpg"
 import Introduction from "../../components/Introduction"
 

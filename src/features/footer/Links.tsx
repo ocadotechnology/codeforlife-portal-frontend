@@ -9,7 +9,7 @@ import {
 //   useOneTrustInfoToggle
 // } from 'codeforlife/hooks';
 import { type FC } from "react"
-import { LINK_IMPACT_REPORT_2023 } from "../../app/env"
+import { LINK_IMPACT_REPORT_2023 } from "../../app/settings"
 import { Link } from "codeforlife/components/router"
 
 import { paths } from "../../routes"

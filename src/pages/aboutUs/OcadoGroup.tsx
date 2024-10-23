@@ -4,7 +4,7 @@ import { Typography } from "@mui/material"
 
 import AboutUsOcadoImage from "../../images/about_us_ocado.jpg"
 import Introduction from "../../components/Introduction"
-import { LINK_SKILLS_FOR_THE_FUTURE } from "../../app/env"
+import { LINK_SKILLS_FOR_THE_FUTURE } from "../../app/settings"
 
 export interface OcadoGroupProps {}
 

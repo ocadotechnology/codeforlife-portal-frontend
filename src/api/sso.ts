@@ -8,6 +8,7 @@ import {
 } from "codeforlife/api"
 import { type Arg } from "codeforlife/utils/api"
 import { type SessionMetadata } from "codeforlife/hooks"
+import { buildLoginEndpoint } from "codeforlife/api/endpoints"
 
 import api from "."
 
@@ -35,47 +36,26 @@ export type AutoLoginAsStudentArg = {
 
 const ssoApi = api.injectEndpoints({
   endpoints: build => ({
-    loginWithEmail: build.mutation<LoginWithEmailResult, LoginWithEmailArg>({
-      query: body => ({
-        url: baseUrl + "login-with-email/",
-        method: "POST",
-        body,
-      }),
-    }),
-    loginWithOtp: build.mutation<LoginWithOtpResult, LoginWithOtpArg>({
-      query: body => ({
-        url: baseUrl + "login-with-otp/",
-        method: "POST",
-        body,
-      }),
-    }),
-    loginWithOtpBypassToken: build.mutation<
+    loginWithEmail: buildLoginEndpoint<LoginWithEmailResult, LoginWithEmailArg>(
+      build,
+      baseUrl + "login-with-email/",
+    ),
+    loginWithOtp: buildLoginEndpoint<LoginWithOtpResult, LoginWithOtpArg>(
+      build,
+      baseUrl + "login-with-otp/",
+    ),
+    loginWithOtpBypassToken: buildLoginEndpoint<
       LoginWithOtpBypassTokenResult,
       LoginWithOtpBypassTokenArg
-    >({
-      query: body => ({
-        url: baseUrl + "login-with-otp-bypass-token/",
-        method: "POST",
-        body,
-      }),
-    }),
-    loginAsStudent: build.mutation<LoginAsStudentResult, LoginAsStudentArg>({
-      query: body => ({
-        url: baseUrl + "login-as-student/",
-        method: "POST",
-        body,
-      }),
-    }),
-    autoLoginAsStudent: build.mutation<
+    >(build, baseUrl + "login-with-otp-bypass-token/"),
+    loginAsStudent: buildLoginEndpoint<LoginAsStudentResult, LoginAsStudentArg>(
+      build,
+      baseUrl + "login-as-student/",
+    ),
+    autoLoginAsStudent: buildLoginEndpoint<
       AutoLoginAsStudentResult,
       AutoLoginAsStudentArg
-    >({
-      query: body => ({
-        url: baseUrl + "auto-login-as-student/",
-        method: "POST",
-        body,
-      }),
-    }),
+    >(build, baseUrl + "auto-login-as-student/"),
   }),
 })
 
