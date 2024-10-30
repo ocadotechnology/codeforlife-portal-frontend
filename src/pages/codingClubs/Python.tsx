@@ -8,7 +8,7 @@ import {
   LINK_GRASS_SNAKES_CLUB_PACK,
   LINK_PYTHON_PACK_GITBOOK,
   LINK_TIGER_SNAKES_CLUB_PACK,
-} from "../../app/env"
+} from "../../app/settings"
 import Introduction from "../../components/Introduction"
 import PythonClubImage from "../../images/coding_club_python_pack.png"
 
