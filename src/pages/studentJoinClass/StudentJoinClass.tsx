@@ -1,13 +1,12 @@
-import * as forms from "codeforlife/components/form"
 import * as page from "codeforlife/components/page"
 import { Button, Stack, Typography } from "@mui/material"
 import { type FC } from "react"
 import type { SessionMetadata } from "codeforlife/hooks"
+import { handleResultState } from "codeforlife/utils/api.tsx"
 import { useNavigate } from "react-router-dom"
 
 import { useRetrieveUserQuery, useUpdateUserMutation } from "../../api/user"
-import { classIdSchema } from "../../app/schemas"
-import { handleResultState } from "codeforlife/utils/api.tsx"
+import UpdateRequestingToJoinClassForm from "./UpdateRequestingToJoinClassForm.tsx"
 
 const _StudentJoinClass: FC<SessionMetadata> = ({ user_id }) => {
   const navigate = useNavigate()
@@ -22,7 +21,6 @@ const _StudentJoinClass: FC<SessionMetadata> = ({ user_id }) => {
         {user.requesting_to_join_class ? (
           <>
             <Typography variant="h5">Request pending</Typography>
-            {/* TODO: Fetch actual values from backend. */}
             <Typography>
               Your request to join class {user.requesting_to_join_class.id} in
               the school or club Code for Life School is still pending.
@@ -102,47 +100,12 @@ const _StudentJoinClass: FC<SessionMetadata> = ({ user_id }) => {
               details.
             </Typography>
 
-            <forms.Form
-              initialValues={user}
-              useMutation={useUpdateUserMutation}
-              submitOptions={{
-                then: () => {
-                  navigate(".", {
-                    state: {
-                      notifications: [
-                        {
-                          index: 1,
-                          props: {
-                            children:
-                              "Your request to join a school has been received successfully.",
-                          },
-                        },
-                      ],
-                    },
-                  })
-                },
+            <UpdateRequestingToJoinClassForm
+              indyUser={{
+                id: user_id,
+                requesting_to_join_class: user.requesting_to_join_class,
               }}
-            >
-              <forms.TextField
-                placeholder="Class code"
-                name="requesting_to_join_class"
-                sx={{ width: { xs: "100%", sm: "50%" } }}
-                schema={classIdSchema}
-                required
-              />
-
-              <Stack direction="row" spacing={2} paddingY={3}>
-                <Button
-                  variant="outlined"
-                  onClick={() => {
-                    navigate(-1)
-                  }}
-                >
-                  Cancel
-                </Button>
-                <forms.SubmitButton>Request</forms.SubmitButton>
-              </Stack>
-            </forms.Form>
+            />
           </>
         )}
       </page.Section>
