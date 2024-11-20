@@ -16,7 +16,7 @@ const RequestPending: FC<RequestPendingProps> = ({ user }) => {
   const result = useRetrieveSchoolQuery(user.requesting_to_join_class!.school)
   const school = result.data
 
-  if (!school) return <></>
+  if (!school) return <CircularProgress />
 
   return (
     <>
