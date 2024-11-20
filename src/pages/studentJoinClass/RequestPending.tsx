@@ -1,4 +1,4 @@
-import { Button, Stack, Typography } from "@mui/material"
+import { Button, CircularProgress, Stack, Typography } from "@mui/material"
 import { type FC } from "react"
 import { type IndependentUser } from "codeforlife/api"
 import { useNavigate } from "react-router-dom"
