@@ -56,7 +56,7 @@ const _StudentJoinClass: FC<SessionMetadata> = ({ user_id }) => {
                 onClick={() => {
                   void updateUser({
                     id: user_id,
-                    requesting_to_join_class: "",
+                    requesting_to_join_class: null,
                   })
                     .unwrap()
                     .then(() => {
