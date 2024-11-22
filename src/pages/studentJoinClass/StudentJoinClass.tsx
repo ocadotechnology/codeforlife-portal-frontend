@@ -3,11 +3,11 @@ import { type FC } from "react"
 import type { IndependentUser } from "codeforlife/api"
 import type { SessionMetadata } from "codeforlife/hooks"
 import { Typography } from "@mui/material"
-import { handleResultState } from "codeforlife/utils/api.tsx"
+import { handleResultState } from "codeforlife/utils/api"
 
 import { type RetrieveUserResult, useRetrieveUserQuery } from "../../api/user"
 import RequestPending from "./RequestPending.tsx"
-import UpdateRequestingToJoinClassForm from "./UpdateRequestingToJoinClassForm.tsx"
+import RequestToJoinClassForm from "./RequestToJoinClassForm.tsx"
 
 const _StudentJoinClass: FC<SessionMetadata> = ({ user_id }) => {
   return handleResultState(useRetrieveUserQuery(user_id), authUser => {
@@ -40,13 +40,7 @@ const _StudentJoinClass: FC<SessionMetadata> = ({ user_id }) => {
               If successful, the teacher will contact you with your new login
               details.
             </Typography>
-
-            <UpdateRequestingToJoinClassForm
-              indyUser={{
-                id: user_id,
-                requesting_to_join_class: user.requesting_to_join_class,
-              }}
-            />
+            <RequestToJoinClassForm indyUser={user} />
           </>
         )}
       </page.Section>
