@@ -40,7 +40,12 @@ const _StudentJoinClass: FC<SessionMetadata> = ({ user_id }) => {
               If successful, the teacher will contact you with your new login
               details.
             </Typography>
-            <RequestToJoinClassForm indyUser={user} />
+            <RequestToJoinClassForm
+              indyUser={{
+                id: user.id,
+                requesting_to_join_class: user.requesting_to_join_class!.id,
+              }}
+            />
           </>
         )}
       </page.Section>
