@@ -11,8 +11,12 @@ import {
   type UpdateUserResult,
   useUpdateUserMutation,
 } from "../../api/user"
-import { indyPasswordSchema, studentPasswordSchema } from "../../app/schemas"
-import { LastNameField } from "../../components/form"
+import {
+  indyPasswordSchema,
+  studentPasswordSchema,
+  teacherPasswordSchema,
+} from "../../app/schemas"
+import { LastNameField } from "./index"
 
 export interface UpdateAccountFormProps {
   user: RetrieveUserResult
@@ -42,9 +46,7 @@ const UpdateAccountForm: FC<UpdateAccountFormProps> = ({ user }) => {
     <>
       {user.student ? (
         <>
-          <Typography align="center" variant="h4">
-            Update your password
-          </Typography>
+          <Typography variant="h5">Update your password</Typography>
           <Typography>
             You may edit your password below. It must be long enough and hard
             enough to stop your friends guessing it and stealing all of your
@@ -56,9 +58,7 @@ const UpdateAccountForm: FC<UpdateAccountFormProps> = ({ user }) => {
         </>
       ) : (
         <>
-          <Typography align="center" variant="h4">
-            Update your account details
-          </Typography>
+          <Typography variant="h5">Update your account details</Typography>
           <Typography>You can update your account details below.</Typography>
           <Typography>
             Please note: If you change your email address, you will need to
@@ -120,9 +120,14 @@ const UpdateAccountForm: FC<UpdateAccountFormProps> = ({ user }) => {
             "password",
           ])
 
-          let passwordSchema = user.student
-            ? studentPasswordSchema
-            : indyPasswordSchema
+          let passwordSchema = indyPasswordSchema
+
+          if (user.student) {
+            passwordSchema = studentPasswordSchema
+          } else if (user.teacher) {
+            passwordSchema = teacherPasswordSchema
+          }
+
           if (isDirty(form.values, initialValues, "current_password")) {
             passwordSchema = passwordSchema.notOneOf(
               [form.values.current_password],

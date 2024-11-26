@@ -16,7 +16,7 @@ import {
   type RetrieveUserResult,
   useDestroyIndependentUserMutation,
   useLazyValidatePasswordQuery,
-} from "../../api/user"
+} from "../../api/user.ts"
 import { paths } from "../../routes"
 
 const ConfirmDialog: FC<{
