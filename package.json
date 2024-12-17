@@ -4,10 +4,12 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "start": "serve -s dist",
-    "build": "tsc && vite build",
-    "preview": "vite preview",
+    "dev:server": "node server",
+    "dev:client": "vite",
+    "start": "NODE_ENV=production node server",
+    "build": "npm run build:client && npm run build:server",
+    "build:client": "vite build --outDir dist/client",
+    "build:server": "vite build --ssr src/entry-server.tsx --outDir dist/server",
     "test": "vitest run",
     "test:coverage": "vitest run --coverage",
     "test:verbose": "vitest run --reporter=verbose --coverage.thresholds.lines=90 --coverage.thresholds.functions=90 --coverage.thresholds.branches=90 --coverage.thresholds.statements=90",
@@ -16,14 +18,14 @@
     "format:check": "prettier --check --write=false .",
     "lint": "eslint --max-warnings=0 .",
     "lint:fix": "eslint --fix .",
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --build tsconfig.json"
   },
   "//": [
     "🚫 Don't add `dependencies` below that are inherited from the CFL package.",
     "✅ Do add `devDependencies` below that are `peerDependencies` in the CFL package."
   ],
   "dependencies": {
-    "codeforlife": "github:ocadotechnology/codeforlife-package-javascript#v2.5.2",
+    "codeforlife": "2.6.1",
     "crypto-js": "^4.2.0"
   },
   "devDependencies": {
