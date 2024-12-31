@@ -122,8 +122,7 @@ const Manage2FAForm: FC<Manage2FAFormProps> = ({ user }) => {
     )
   }
 
-  for (const authFactor of authFactors.data) {
-    console.log(authFactor)
+  authFactors.data.forEach(authFactor => {
     if (authFactor.user === user && authFactor.type === "otp") {
       return (
         <Stack>
@@ -131,7 +130,7 @@ const Manage2FAForm: FC<Manage2FAFormProps> = ({ user }) => {
         </Stack>
       )
     }
-  }
+  })
 
   return (
     <Stack>
