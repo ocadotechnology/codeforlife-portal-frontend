@@ -1,14 +1,17 @@
-import React from "react"
-import { type SchoolTeacherUser } from "codeforlife/api"
-
-import { type RetrieveUserResult } from "../../../api/user"
-import { useNavigate } from "react-router-dom"
 import { Button, Grid, Stack, Typography, useTheme } from "@mui/material"
 import { ErrorOutlineOutlined } from "@mui/icons-material"
-import { paths } from "../../../app/router"
-import { useDisable2faMutation, useTeacherHas2faQuery } from "../../../app/api"
+import { type FC } from "react"
+import { type SchoolTeacherUser } from "codeforlife/api"
+import { generatePath } from "react-router"
+import { useNavigate } from "react-router-dom"
 
-const UserDoesNotHave2fa: React.FC = () => {
+import { type RetrieveUserResult } from "../../../api/user"
+import { paths } from "../../../routes"
+import { useListAuthFactorsQuery } from "../../../api/authFactor"
+
+const Setup2FAForm: FC<{ user: SchoolTeacherUser<RetrieveUserResult> }> = ({
+  user,
+}) => {
   const navigate = useNavigate()
   const theme = useTheme()
   return (
@@ -20,7 +23,11 @@ const UserDoesNotHave2fa: React.FC = () => {
       </Typography>
       <Button
         onClick={() => {
-          navigate(paths.teacher.dashboard.account.setup2FA._)
+          navigate(
+            generatePath(paths.teacher.dashboard.tab.account.setup2FA._, {
+              user: user,
+            }),
+          )
         }}
         sx={{ marginTop: theme.spacing(3) }}
       >
@@ -30,24 +37,22 @@ const UserDoesNotHave2fa: React.FC = () => {
   )
 }
 
-export interface AccountProps {
-  authUser: SchoolTeacherUser<RetrieveUserResult>
-  view?: "otp"
-}
-
-const UserHas2fa: React.FC = () => {
+const Edit2FAForm: FC<{ user: SchoolTeacherUser<RetrieveUserResult> }> = ({
+  user,
+}) => {
   const theme = useTheme()
   const navigate = useNavigate()
-  const [disable2fa] = useDisable2faMutation()
-  const { refetch } = useTeacherHas2faQuery(null)
-  const handleDisable2fa: () => void = () => {
-    disable2fa(null)
-      .unwrap()
-      .then(refetch)
-      .catch(error => {
-        console.error(error)
-      })
-  }
+  // TODO: Uncomment when implementing 2FA disabling
+  // const [disable2fa] = useDisable2faMutation()
+  // const { refetch } = useTeacherHas2faQuery(null)
+  // const handleDisable2fa: () => void = () => {
+  //   disable2fa(null)
+  //     .unwrap()
+  //     .then(refetch)
+  //     .catch(error => {
+  //       console.error(error)
+  //     })
+  // }
   return (
     <Grid container>
       <Grid sm={6} marginTop={theme.spacing(4)}>
@@ -61,7 +66,11 @@ const UserHas2fa: React.FC = () => {
         <Button
           className="body"
           onClick={() => {
-            navigate(paths.teacher.dashboard.account.backupTokens._)
+            navigate(
+              generatePath(paths.teacher.dashboard.tab.account.backupTokens._, {
+                user: user,
+              }),
+            )
           }}
           sx={{ marginTop: theme.spacing(3) }}
         >
@@ -87,7 +96,7 @@ const UserHas2fa: React.FC = () => {
         </Typography>
         <Button
           // TODO: call backend and show confirmation popup
-          onClick={handleDisable2fa}
+          // onClick={handleDisable2fa}
           className="alert"
           endIcon={<ErrorOutlineOutlined />}
           sx={{ marginTop: theme.spacing(3) }}
@@ -99,12 +108,38 @@ const UserHas2fa: React.FC = () => {
   )
 }
 
-const Manage2FAForm: React.FC = () => {
-  const { data = { has2fa: false }, isLoading } = useTeacherHas2faQuery(null)
-  const { has2fa } = data
+export interface Manage2FAFormProps {
+  user: SchoolTeacherUser<RetrieveUserResult>
+}
+
+const Manage2FAForm: FC<Manage2FAFormProps> = ({ user }) => {
+  const { data: authFactors } = useListAuthFactorsQuery({
+    limit: 50,
+    offset: 0,
+  })
+
+  if (!authFactors || authFactors.count === 0) {
+    return (
+      <Stack>
+        <Setup2FAForm user={user} />
+      </Stack>
+    )
+  }
+
+  for (const authFactor of authFactors.data) {
+    console.log(authFactor)
+    if (authFactor.user === user && authFactor.type === "otp") {
+      return (
+        <Stack>
+          <Edit2FAForm user={user} />
+        </Stack>
+      )
+    }
+  }
+
   return (
     <Stack>
-      {isLoading ? null : has2fa ? <UserHas2fa /> : <UserDoesNotHave2fa />}
+      <Setup2FAForm user={user} />
     </Stack>
   )
 }
