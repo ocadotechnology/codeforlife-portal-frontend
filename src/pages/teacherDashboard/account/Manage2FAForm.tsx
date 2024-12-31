@@ -1,4 +1,4 @@
-import { Button, Grid, Stack, Typography, useTheme } from "@mui/material"
+import { Button, Grid, Typography, useTheme } from "@mui/material"
 import { ErrorOutlineOutlined } from "@mui/icons-material"
 import { type FC } from "react"
 import { type SchoolTeacherUser } from "codeforlife/api"
@@ -116,26 +116,26 @@ const Manage2FAForm: FC<Manage2FAFormProps> = ({ user }) => {
 
   if (!authFactors || authFactors.count === 0) {
     return (
-      <Stack>
+      <>
         <Setup2FAForm user={user} />
-      </Stack>
+      </>
     )
   }
 
   authFactors.data.forEach(authFactor => {
     if (authFactor.user === user && authFactor.type === "otp") {
       return (
-        <Stack>
+        <>
           <Edit2FAForm user={user} />
-        </Stack>
+        </>
       )
     }
   })
 
   return (
-    <Stack>
+    <>
       <Setup2FAForm user={user} />
-    </Stack>
+    </>
   )
 }
 
