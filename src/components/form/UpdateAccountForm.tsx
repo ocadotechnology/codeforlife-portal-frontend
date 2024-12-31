@@ -1,8 +1,7 @@
 import * as forms from "codeforlife/components/form"
-import { Stack, Typography } from "@mui/material"
 import { getDirty, isDirty } from "codeforlife/utils/form"
 import { type FC } from "react"
-import { LinkButton } from "codeforlife/components/router"
+import { Typography } from "@mui/material"
 import { useNavigate } from "codeforlife/hooks"
 
 import {
@@ -159,12 +158,11 @@ const UpdateAccountForm: FC<UpdateAccountFormProps> = ({ user }) => {
                   placeholder="Enter your current password"
                 />
               )}
-              <Stack direction="row" spacing={2} paddingY={3}>
-                <LinkButton variant="outlined" to={-1}>
-                  Cancel
-                </LinkButton>
-                <forms.SubmitButton>Update details</forms.SubmitButton>
-              </Stack>
+              <forms.SubmitButton
+                sx={theme => ({ marginTop: theme.spacing(3) })}
+              >
+                Update details
+              </forms.SubmitButton>
             </>
           )
         }}

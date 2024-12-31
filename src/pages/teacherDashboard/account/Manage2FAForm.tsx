@@ -16,11 +16,6 @@ const Setup2FAForm: FC<{ user: SchoolTeacherUser<RetrieveUserResult> }> = ({
   const theme = useTheme()
   return (
     <>
-      <Typography variant="h5">Two factor authentication</Typography>
-      <Typography>
-        Use your smartphone or tablet to enhance your account&apos;s security by
-        using an authenticator app.
-      </Typography>
       <Button
         onClick={() => {
           navigate(
@@ -57,6 +52,7 @@ const Edit2FAForm: FC<{ user: SchoolTeacherUser<RetrieveUserResult> }> = ({
     <Grid container>
       <Grid sm={6} marginTop={theme.spacing(4)}>
         <Typography variant="h6">Backup tokens</Typography>
+        {/*TODO: Update text to show the actual number of backup tokens*/}
         <Typography>
           If you don&apos;t have your smartphone or tablet with you, you can
           access your account using backup tokens. You have 0 backup tokens

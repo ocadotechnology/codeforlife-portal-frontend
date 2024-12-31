@@ -17,8 +17,8 @@ export interface AccountProps {
 const Account: FC<AccountProps> = ({ authUser, view }) => {
   if (view) {
     return {
-      otp: <Setup2FA authUser={authUser} />,
-      backupTokens: <BackupTokens authUser={authUser} />,
+      otp: <Setup2FA user={authUser} />,
+      backupTokens: <BackupTokens user={authUser} />,
     }[view]
   }
 
@@ -31,6 +31,11 @@ const Account: FC<AccountProps> = ({ authUser, view }) => {
         <forms.UpdateAccountForm user={authUser} />
       </page.Section>
       <page.Section boxProps={{ bgcolor: "info.main" }}>
+        <Typography variant="h5">Two factor authentication</Typography>
+        <Typography>
+          Use your smartphone or tablet to enhance your account&apos;s security
+          by using an authenticator app.
+        </Typography>
         <Manage2FAForm user={authUser} />
       </page.Section>
       <page.Section>
