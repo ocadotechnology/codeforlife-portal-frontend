@@ -2,6 +2,7 @@ import * as forms from "codeforlife/components/form"
 import { getDirty, isDirty } from "codeforlife/utils/form"
 import { type FC } from "react"
 import { Typography } from "@mui/material"
+import { generatePath } from "react-router"
 import { useNavigate } from "codeforlife/hooks"
 
 import {
@@ -12,10 +13,13 @@ import {
 } from "../../api/user"
 import {
   indyPasswordSchema,
+  nullableSchema,
   studentPasswordSchema,
   teacherPasswordSchema,
 } from "../../app/schemas"
 import { LastNameField } from "./index"
+import { paths } from "../../routes"
+import { useLogoutMutation } from "../../api"
 
 export interface UpdateAccountFormProps {
   user: RetrieveUserResult
@@ -23,6 +27,7 @@ export interface UpdateAccountFormProps {
 
 const UpdateAccountForm: FC<UpdateAccountFormProps> = ({ user }) => {
   const navigate = useNavigate()
+  const [logout] = useLogoutMutation()
 
   const initialValues = user.student
     ? {
@@ -88,22 +93,32 @@ const UpdateAccountForm: FC<UpdateAccountFormProps> = ({ user }) => {
             return arg
           },
           then: (_: UpdateUserResult, values: typeof initialValues) => {
+            let redirectPath = generatePath(".")
             const messages = [
               "Your account details have been changed successfully.",
             ]
             if (isDirty(values, initialValues, "email")) {
-              // TODO: implement this behavior on the backend.
-              messages.push(
-                "Your email will be changed once you have verified it, until then you can still log in with your old email.",
-              )
+              redirectPath = generatePath(paths.login.teacher._)
+              void logout(null)
+                .unwrap()
+                .then(() => {
+                  messages.push(
+                    "Your email will be changed once you have verified it, until then you can still log in with your old email.",
+                  )
+                })
             }
             if (isDirty(values, initialValues, "password")) {
-              messages.push(
-                "Going forward, please login using your new password.",
-              )
+              redirectPath = generatePath(paths.login.teacher._)
+              void logout(null)
+                .unwrap()
+                .then(() => {
+                  messages.push(
+                    "Going forward, please log in using your new password.",
+                  )
+                })
             }
 
-            navigate(".", {
+            navigate(redirectPath, {
               state: {
                 notifications: messages.map(message => ({
                   props: { children: message },
@@ -119,12 +134,12 @@ const UpdateAccountForm: FC<UpdateAccountFormProps> = ({ user }) => {
             "password",
           ])
 
-          let passwordSchema = indyPasswordSchema
+          let passwordSchema = indyPasswordSchema.concat(nullableSchema)
 
           if (user.student) {
             passwordSchema = studentPasswordSchema
           } else if (user.teacher) {
-            passwordSchema = teacherPasswordSchema
+            passwordSchema = teacherPasswordSchema.concat(nullableSchema)
           }
 
           if (isDirty(form.values, initialValues, "current_password")) {

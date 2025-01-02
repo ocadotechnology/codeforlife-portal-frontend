@@ -27,3 +27,12 @@ export const indyPasswordSchema = yup
   .matches(/[A-Z]/, "password must contain at least one uppercase letter")
   .matches(/[a-z]/, "password must contain at least one lowercase letter")
   .matches(/[0-9]/, "password must contain at least one digit")
+
+// A nullable schema allowing for empty values. Use when needing to apply a
+// schema to an optional field, e.g. the new password field in the account form.
+// Apply to any other schema using .concat().
+// TODO: Reassess the need for this after we split the account details form
+export const nullableSchema = yup
+  .string()
+  .nullable()
+  .transform((curr: string, orig: string) => (orig === "" ? null : curr))
