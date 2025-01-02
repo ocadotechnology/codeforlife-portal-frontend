@@ -1,8 +1,8 @@
 import * as forms from "codeforlife/components/form"
-import { Stack, Typography } from "@mui/material"
 import { getDirty, isDirty } from "codeforlife/utils/form"
 import { type FC } from "react"
-import { LinkButton } from "codeforlife/components/router"
+import { Typography } from "@mui/material"
+import { generatePath } from "react-router"
 import { useNavigate } from "codeforlife/hooks"
 
 import {
@@ -11,8 +11,15 @@ import {
   type UpdateUserResult,
   useUpdateUserMutation,
 } from "../../api/user"
-import { indyPasswordSchema, studentPasswordSchema } from "../../app/schemas"
-import { LastNameField } from "../../components/form"
+import {
+  indyPasswordSchema,
+  nullableSchema,
+  studentPasswordSchema,
+  teacherPasswordSchema,
+} from "../../app/schemas"
+import { LastNameField } from "./index"
+import { paths } from "../../routes"
+import { useLogoutMutation } from "../../api"
 
 export interface UpdateAccountFormProps {
   user: RetrieveUserResult
@@ -20,6 +27,7 @@ export interface UpdateAccountFormProps {
 
 const UpdateAccountForm: FC<UpdateAccountFormProps> = ({ user }) => {
   const navigate = useNavigate()
+  const [logout] = useLogoutMutation()
 
   const initialValues = user.student
     ? {
@@ -42,9 +50,7 @@ const UpdateAccountForm: FC<UpdateAccountFormProps> = ({ user }) => {
     <>
       {user.student ? (
         <>
-          <Typography align="center" variant="h4">
-            Update your password
-          </Typography>
+          <Typography variant="h5">Update your password</Typography>
           <Typography>
             You may edit your password below. It must be long enough and hard
             enough to stop your friends guessing it and stealing all of your
@@ -56,9 +62,7 @@ const UpdateAccountForm: FC<UpdateAccountFormProps> = ({ user }) => {
         </>
       ) : (
         <>
-          <Typography align="center" variant="h4">
-            Update your account details
-          </Typography>
+          <Typography variant="h5">Update your account details</Typography>
           <Typography>You can update your account details below.</Typography>
           <Typography>
             Please note: If you change your email address, you will need to
@@ -89,22 +93,32 @@ const UpdateAccountForm: FC<UpdateAccountFormProps> = ({ user }) => {
             return arg
           },
           then: (_: UpdateUserResult, values: typeof initialValues) => {
+            let redirectPath = generatePath(".")
             const messages = [
               "Your account details have been changed successfully.",
             ]
             if (isDirty(values, initialValues, "email")) {
-              // TODO: implement this behavior on the backend.
-              messages.push(
-                "Your email will be changed once you have verified it, until then you can still log in with your old email.",
-              )
+              redirectPath = generatePath(paths.login.teacher._)
+              void logout(null)
+                .unwrap()
+                .then(() => {
+                  messages.push(
+                    "Your email will be changed once you have verified it, until then you can still log in with your old email.",
+                  )
+                })
             }
             if (isDirty(values, initialValues, "password")) {
-              messages.push(
-                "Going forward, please login using your new password.",
-              )
+              redirectPath = generatePath(paths.login.teacher._)
+              void logout(null)
+                .unwrap()
+                .then(() => {
+                  messages.push(
+                    "Going forward, please log in using your new password.",
+                  )
+                })
             }
 
-            navigate(".", {
+            navigate(redirectPath, {
               state: {
                 notifications: messages.map(message => ({
                   props: { children: message },
@@ -120,9 +134,14 @@ const UpdateAccountForm: FC<UpdateAccountFormProps> = ({ user }) => {
             "password",
           ])
 
-          let passwordSchema = user.student
-            ? studentPasswordSchema
-            : indyPasswordSchema
+          let passwordSchema = indyPasswordSchema.concat(nullableSchema)
+
+          if (user.student) {
+            passwordSchema = studentPasswordSchema
+          } else if (user.teacher) {
+            passwordSchema = teacherPasswordSchema.concat(nullableSchema)
+          }
+
           if (isDirty(form.values, initialValues, "current_password")) {
             passwordSchema = passwordSchema.notOneOf(
               [form.values.current_password],
@@ -154,12 +173,11 @@ const UpdateAccountForm: FC<UpdateAccountFormProps> = ({ user }) => {
                   placeholder="Enter your current password"
                 />
               )}
-              <Stack direction="row" spacing={2} paddingY={3}>
-                <LinkButton variant="outlined" to={-1}>
-                  Cancel
-                </LinkButton>
-                <forms.SubmitButton>Update details</forms.SubmitButton>
-              </Stack>
+              <forms.SubmitButton
+                sx={theme => ({ marginTop: theme.spacing(3) })}
+              >
+                Update details
+              </forms.SubmitButton>
             </>
           )
         }}
