@@ -5,9 +5,10 @@ import { MobileStepper, Typography, mobileStepperClasses } from "@mui/material"
 import { type SessionMetadata } from "codeforlife/hooks"
 import { handleResultState } from "codeforlife/utils/api"
 
-import BulkCreateStudentsForm from "./BulkCreateStudentsForm"
 import CreateClassForm from "./CreateClassForm"
 import CreateSchoolForm from "./CreateSchoolForm"
+import { CreateStudentsForm } from "../../components/form"
+import { type CreateStudentsResult } from "../../api/student"
 import StudentCredentialsTable from "./StudentCredentialsTable"
 import { useRetrieveUserQuery } from "../../api/user"
 
@@ -16,13 +17,11 @@ export interface TeacherOnboardingProps {}
 const _TeacherOnboarding: FC<TeacherOnboardingProps & SessionMetadata> = ({
   user_id,
 }) => {
-  const result = useRetrieveUserQuery(user_id)
-
   const [activeStep, setActiveStep] = useState<{
     index: number
     schoolId?: School["id"]
     classId?: Class["id"]
-    // users?: BulkCreateResult<User>
+    students?: CreateStudentsResult
   }>({ index: 0 })
 
   function onSubmit(state: Omit<typeof activeStep, "index">): void {
@@ -66,12 +65,14 @@ const _TeacherOnboarding: FC<TeacherOnboardingProps & SessionMetadata> = ({
     {
       header: "Add students to class",
       element: (
-        <BulkCreateStudentsForm
+        <CreateStudentsForm
           key={generateKey(2)}
-          // classId={activeStep.classId as number}
-          // onSubmit={users => {
-          //   onSubmit({ users })
-          // }}
+          classId={activeStep.classId as string}
+          submitOptions={{
+            then: students => {
+              onSubmit({ students })
+            },
+          }}
         />
       ),
     },
@@ -87,7 +88,7 @@ const _TeacherOnboarding: FC<TeacherOnboardingProps & SessionMetadata> = ({
     },
   ]
 
-  return handleResultState(result, authUser => (
+  return handleResultState(useRetrieveUserQuery(user_id), authUser => (
     <>
       <pages.Banner
         header={`Welcome, ${authUser.first_name} ${authUser.last_name}`}
