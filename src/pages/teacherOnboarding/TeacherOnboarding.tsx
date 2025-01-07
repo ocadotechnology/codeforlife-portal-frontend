@@ -81,8 +81,8 @@ const _TeacherOnboarding: FC<TeacherOnboardingProps & SessionMetadata> = ({
       element: (
         <StudentCredentialsTable
           key={generateKey(3)}
-          // accessCode={activeStep.classAccessCode as string}
-          // users={activeStep.users as BulkCreateResult<User>}
+          classId={activeStep.classId as string}
+          students={activeStep.students as CreateStudentsResult}
         />
       ),
     },
