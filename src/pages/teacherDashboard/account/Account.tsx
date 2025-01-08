@@ -4,21 +4,21 @@ import { type SchoolTeacherUser } from "codeforlife/api"
 import { Typography } from "@mui/material"
 
 import * as forms from "../../../components/form"
-import BackupTokens from "./BackupTokens"
-import Manage2FAForm from "./Manage2FAForm"
+import OtpBypassTokens from "./OtpBypassTokens.tsx"
+import ManageOtpForm from "./ManageOtpForm.tsx"
 import { type RetrieveUserResult } from "../../../api/user"
-import Setup2FA from "./Setup2FA.tsx"
+import SetupOtp from "./SetupOtp.tsx"
 
 export interface AccountProps {
   authUser: SchoolTeacherUser<RetrieveUserResult>
-  view?: "otp" | "backupTokens"
+  view?: "otp" | "otp-bypass-tokens"
 }
 
 const Account: FC<AccountProps> = ({ authUser, view }) => {
   if (view) {
     return {
-      otp: <Setup2FA user={authUser} />,
-      backupTokens: <BackupTokens user={authUser} />,
+      otp: <SetupOtp authUser={authUser} />,
+      backupTokens: <OtpBypassTokens authUser={authUser} />,
     }[view]
   }
 
@@ -28,7 +28,7 @@ const Account: FC<AccountProps> = ({ authUser, view }) => {
         <Typography align="center" variant="h4">
           Your account
         </Typography>
-        <forms.UpdateAccountForm user={authUser} />
+        <forms.UpdateAccountForm authUser={authUser} />
       </page.Section>
       <page.Section boxProps={{ bgcolor: "info.main" }}>
         <Typography variant="h5">Two factor authentication</Typography>
@@ -36,10 +36,10 @@ const Account: FC<AccountProps> = ({ authUser, view }) => {
           Use your smartphone or tablet to enhance your account&apos;s security
           by using an authenticator app.
         </Typography>
-        <Manage2FAForm user={authUser} />
+        <ManageOtpForm authUser={authUser} />
       </page.Section>
       <page.Section>
-        <forms.DeleteAccountForm user={authUser} />
+        <forms.DeleteAccountForm authUser={authUser} />
       </page.Section>
     </>
   )

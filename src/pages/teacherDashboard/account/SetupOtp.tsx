@@ -2,12 +2,12 @@ import { type FC } from "react"
 import { type RetrieveUserResult } from "../../../api/user"
 import { type SchoolTeacherUser } from "codeforlife/api"
 
-export interface BackupTokensProps {
-  user: SchoolTeacherUser<RetrieveUserResult>
+export interface SetupOtpProps {
+  authUser: SchoolTeacherUser<RetrieveUserResult>
 }
 
-const BackupTokens: FC<BackupTokensProps> = () => {
+const SetupOtp: FC<SetupOtpProps> = () => {
   return <>TODO</>
 }
 
-export default BackupTokens
+export default SetupOtp

@@ -71,10 +71,10 @@ const ConfirmDialog: FC<{
 }
 
 export interface DeleteAccountFormProps {
-  user: RetrieveUserResult
+  authUser: RetrieveUserResult
 }
 
-const DeleteAccountForm: FC<DeleteAccountFormProps> = ({ user }) => {
+const DeleteAccountForm: FC<DeleteAccountFormProps> = ({ authUser }) => {
   const [confirmDialog, setConfirmDialog] = useState<{
     open: boolean
     destroyIndyUserArg?: DestroyIndependentUserArg
@@ -98,7 +98,7 @@ const DeleteAccountForm: FC<DeleteAccountFormProps> = ({ user }) => {
       <Typography fontWeight="bold">This can&apos;t be reversed.</Typography>
       <forms.Form
         initialValues={{
-          id: user.id,
+          id: authUser.id,
           password: "",
           remove_from_newsletter: false,
         }}

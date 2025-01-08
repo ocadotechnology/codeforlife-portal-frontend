@@ -22,34 +22,34 @@ import { paths } from "../../routes"
 import { useLogoutMutation } from "../../api"
 
 export interface UpdateAccountFormProps {
-  user: RetrieveUserResult
+  authUser: RetrieveUserResult
 }
 
 // TODO: Split this form into two or three forms. Needs UX work
-const UpdateAccountForm: FC<UpdateAccountFormProps> = ({ user }) => {
+const UpdateAccountForm: FC<UpdateAccountFormProps> = ({ authUser }) => {
   const navigate = useNavigate()
   const [logout] = useLogoutMutation()
 
-  const initialValues = user.student
+  const initialValues = authUser.student
     ? {
-        id: user.id,
+        id: authUser.id,
         password: "",
         password_repeat: "",
         current_password: "",
       }
     : {
-        id: user.id,
+        id: authUser.id,
         password: "",
         password_repeat: "",
         current_password: "",
-        first_name: user.first_name,
-        last_name: user.last_name,
-        email: user.email,
+        first_name: authUser.first_name,
+        last_name: authUser.last_name,
+        email: authUser.email,
       }
 
   return (
     <>
-      {user.student ? (
+      {authUser.student ? (
         <>
           <Typography variant="h5">Update your password</Typography>
           <Typography>
@@ -79,15 +79,18 @@ const UpdateAccountForm: FC<UpdateAccountFormProps> = ({ user }) => {
           exclude: ["password_repeat"],
           clean: (values: typeof initialValues) => {
             const arg: UpdateUserArg = { id: values.id }
-            if (user.student || isDirty(values, initialValues, "password")) {
+            if (isDirty(values, initialValues, "password")) {
               arg.password = values.password
               arg.current_password = values.current_password
-            } else if (isDirty(values, initialValues, "email")) {
+            }
+            if (isDirty(values, initialValues, "email")) {
               arg.email = values.email
               arg.current_password = values.current_password
-            } else if (isDirty(values, initialValues, "first_name")) {
+            }
+            if (isDirty(values, initialValues, "first_name")) {
               arg.first_name = values.first_name
-            } else if (isDirty(values, initialValues, "last_name")) {
+            }
+            if (isDirty(values, initialValues, "last_name")) {
               arg.last_name = values.last_name
             }
 
@@ -185,9 +188,9 @@ const UpdateAccountForm: FC<UpdateAccountFormProps> = ({ user }) => {
 
           let passwordSchema = indyPasswordSchema.concat(nullableSchema)
 
-          if (user.student) {
+          if (authUser.student) {
             passwordSchema = studentPasswordSchema
-          } else if (user.teacher) {
+          } else if (authUser.teacher) {
             passwordSchema = teacherPasswordSchema.concat(nullableSchema)
           }
 
@@ -200,7 +203,7 @@ const UpdateAccountForm: FC<UpdateAccountFormProps> = ({ user }) => {
 
           return (
             <>
-              {!user.student && (
+              {!authUser.student && (
                 <>
                   <forms.FirstNameField />
                   <LastNameField />
@@ -208,13 +211,13 @@ const UpdateAccountForm: FC<UpdateAccountFormProps> = ({ user }) => {
                 </>
               )}
               <forms.PasswordField
-                required={Boolean(user.student)}
+                required={Boolean(authUser.student)}
                 label="New password"
                 repeatFieldProps={{ label: "Repeat new password" }}
-                withRepeatField={Boolean(user.student) || dirty.password}
+                withRepeatField={Boolean(authUser.student) || dirty.password}
                 schema={passwordSchema}
               />
-              {(Boolean(user.student) || dirty.email || dirty.password) && (
+              {(Boolean(authUser.student) || dirty.email || dirty.password) && (
                 <forms.PasswordField
                   required
                   name="current_password"

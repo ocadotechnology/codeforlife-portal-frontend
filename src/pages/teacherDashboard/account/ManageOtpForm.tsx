@@ -1,43 +1,37 @@
-import { Button, Grid, Typography, useTheme } from "@mui/material"
+import { Button, Grid, Typography } from "@mui/material"
 import { ErrorOutlineOutlined } from "@mui/icons-material"
 import { type FC } from "react"
+import { LinkButton } from "codeforlife/components/router"
 import { type SchoolTeacherUser } from "codeforlife/api"
 import { generatePath } from "react-router"
-import { useNavigate } from "react-router-dom"
 
 import { type RetrieveUserResult } from "../../../api/user"
 import { paths } from "../../../routes"
 import { useListAuthFactorsQuery } from "../../../api/authFactor"
 
-const Setup2FAForm: FC<{ user: SchoolTeacherUser<RetrieveUserResult> }> = ({
-  user,
+const SetupOtpForm: FC<{ authUser: SchoolTeacherUser<RetrieveUserResult> }> = ({
+  authUser,
 }) => {
-  const navigate = useNavigate()
-  const theme = useTheme()
   return (
     <>
-      <Button
-        onClick={() => {
-          navigate(
-            generatePath(paths.teacher.dashboard.tab.account.setup2FA._, {
-              user: user,
-            }),
-          )
-        }}
-        sx={{ marginTop: theme.spacing(3) }}
+      <LinkButton
+        to={
+          generatePath(paths.teacher.dashboard.tab.account.setup2FA._, {
+            authUser: authUser,
+          })
+        }
+        mt={3}
       >
         Setup two factor authentication
-      </Button>
+      </LinkButton>
     </>
   )
 }
 
-const Edit2FAForm: FC<{ user: SchoolTeacherUser<RetrieveUserResult> }> = ({
-  user,
+const EditOtpForm: FC<{ authUser: SchoolTeacherUser<RetrieveUserResult> }> = ({
+  authUser,
 }) => {
-  const theme = useTheme()
-  const navigate = useNavigate()
-  // TODO: Uncomment when implementing 2FA disabling
+  // TODO: Uncomment when implementing Otp disabling
   // const [disable2fa] = useDisable2faMutation()
   // const { refetch } = useTeacherHas2faQuery(null)
   // const handleDisable2fa: () => void = () => {
@@ -50,7 +44,7 @@ const Edit2FAForm: FC<{ user: SchoolTeacherUser<RetrieveUserResult> }> = ({
   // }
   return (
     <Grid container>
-      <Grid sm={6} marginTop={theme.spacing(4)}>
+      <Grid sm={6} mt={4}>
         <Typography variant="h6">Backup tokens</Typography>
         {/*TODO: Update text to show the actual number of backup tokens*/}
         <Typography>
@@ -59,30 +53,28 @@ const Edit2FAForm: FC<{ user: SchoolTeacherUser<RetrieveUserResult> }> = ({
           remaining.
         </Typography>
         <Typography>View and create backup tokens for your account.</Typography>
-        <Button
+        <LinkButton
           className="body"
-          onClick={() => {
-            navigate(
-              generatePath(paths.teacher.dashboard.tab.account.backupTokens._, {
-                user: user,
-              }),
-            )
-          }}
-          sx={{ marginTop: theme.spacing(3) }}
+          to={
+            generatePath(paths.teacher.dashboard.tab.account.backupTokens._, {
+              authUser: authUser,
+            })
+          }
+          mt={4}
         >
           Manage backup tokens
-        </Button>
+        </LinkButton>
         <Typography
           variant="body2"
           fontWeight="bold"
           color="error"
           mb={0}
-          sx={{ marginTop: theme.spacing(3) }}
+          mt={3}
         >
           Note: Please make that you store any login details in a secure place.
         </Typography>
       </Grid>
-      <Grid sm={6} marginTop={theme.spacing(4)}>
+      <Grid sm={6} mt={4}>
         <Typography variant="h6">
           Disable two factor authentication (2FA)
         </Typography>
@@ -95,7 +87,7 @@ const Edit2FAForm: FC<{ user: SchoolTeacherUser<RetrieveUserResult> }> = ({
           // onClick={handleDisable2fa}
           className="alert"
           endIcon={<ErrorOutlineOutlined />}
-          sx={{ marginTop: theme.spacing(3) }}
+          mt={3}
         >
           Disable 2FA
         </Button>
@@ -104,11 +96,11 @@ const Edit2FAForm: FC<{ user: SchoolTeacherUser<RetrieveUserResult> }> = ({
   )
 }
 
-export interface Manage2FAFormProps {
-  user: SchoolTeacherUser<RetrieveUserResult>
+export interface ManageOtpFormProps {
+  authUser: SchoolTeacherUser<RetrieveUserResult>
 }
 
-const Manage2FAForm: FC<Manage2FAFormProps> = ({ user }) => {
+const ManageOtpForm: FC<ManageOtpFormProps> = ({ authUser }) => {
   const { data: authFactors } = useListAuthFactorsQuery({
     limit: 50,
     offset: 0,
@@ -117,16 +109,16 @@ const Manage2FAForm: FC<Manage2FAFormProps> = ({ user }) => {
   if (!authFactors || authFactors.count === 0) {
     return (
       <>
-        <Setup2FAForm user={user} />
+        <SetupOtpForm authUser={authUser} />
       </>
     )
   }
 
   authFactors.data.forEach(authFactor => {
-    if (authFactor.user === user && authFactor.type === "otp") {
+    if (authFactor.user === authUser && authFactor.type === "otp") {
       return (
         <>
-          <Edit2FAForm user={user} />
+          <EditOtpForm authUser={authUser} />
         </>
       )
     }
@@ -134,9 +126,9 @@ const Manage2FAForm: FC<Manage2FAFormProps> = ({ user }) => {
 
   return (
     <>
-      <Setup2FAForm user={user} />
+      <SetupOtpForm authUser={authUser} />
     </>
   )
 }
 
-export default Manage2FAForm
+export default ManageOtpForm
