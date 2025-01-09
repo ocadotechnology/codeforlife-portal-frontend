@@ -1,7 +1,8 @@
 import * as pages from "codeforlife/components/page"
-import { type Class, type School } from "codeforlife/api"
 import { type FC, type ReactNode, useState } from "react"
 import { MobileStepper, Typography, mobileStepperClasses } from "@mui/material"
+import { type Class } from "codeforlife/api"
+import { Navigate } from "codeforlife/components/router"
 import { type SessionMetadata } from "codeforlife/hooks"
 import { handleResultState } from "codeforlife/utils/api"
 
@@ -10,6 +11,7 @@ import CreateSchoolForm from "./CreateSchoolForm"
 import { CreateStudentsForm } from "../../components/form"
 import { type CreateStudentsResult } from "../../api/student"
 import StudentCredentialsTable from "./StudentCredentialsTable"
+import { paths } from "../../routes"
 import { useRetrieveUserQuery } from "../../api/user"
 
 export interface TeacherOnboardingProps {}
@@ -19,14 +21,14 @@ const _TeacherOnboarding: FC<TeacherOnboardingProps & SessionMetadata> = ({
 }) => {
   const [activeStep, setActiveStep] = useState<{
     index: number
-    schoolId?: School["id"]
     classId?: Class["id"]
     students?: CreateStudentsResult
   }>({ index: 0 })
 
   function onSubmit(state: Omit<typeof activeStep, "index">): void {
-    setActiveStep(previousState => ({
-      index: previousState.index + 1,
+    setActiveStep(({ index, ...previous }) => ({
+      index: index + 1,
+      ...previous,
       ...state,
     }))
   }
@@ -42,8 +44,8 @@ const _TeacherOnboarding: FC<TeacherOnboardingProps & SessionMetadata> = ({
         <CreateSchoolForm
           key={generateKey(0)}
           submitOptions={{
-            then: school => {
-              onSubmit({ schoolId: school.id })
+            then: () => {
+              onSubmit({})
             },
           }}
         />
@@ -88,35 +90,41 @@ const _TeacherOnboarding: FC<TeacherOnboardingProps & SessionMetadata> = ({
     },
   ]
 
-  return handleResultState(useRetrieveUserQuery(user_id), authUser => (
-    <>
-      <pages.Banner
-        header={`Welcome, ${authUser.first_name} ${authUser.last_name}`}
-        subheader="Everything you need to start coding with your class is here. Let's set you up."
-      />
-      <Typography variant="h4">{steps[activeStep.index].header}</Typography>
-      <Typography>
-        Progress &lt; {activeStep.index + 1} of {steps.length} &gt;
-      </Typography>
-      <MobileStepper
-        variant="progress"
-        position="static"
-        steps={steps.length + 1}
-        activeStep={activeStep.index + 1}
-        nextButton={undefined}
-        backButton={undefined}
-        sx={{
-          padding: 0,
-          marginBottom: 3,
-          [`.${mobileStepperClasses.progress}`]: {
-            width: "100%",
-            height: "7px",
-          },
-        }}
-      />
-      {steps[activeStep.index].element}
-    </>
-  ))
+  return handleResultState(useRetrieveUserQuery(user_id), authUser =>
+    authUser.teacher!.school ? (
+      <Navigate to={paths.teacher.dashboard.tab.school._} />
+    ) : (
+      <>
+        <pages.Banner
+          header={`Welcome, ${authUser.first_name} ${authUser.last_name}`}
+          subheader="Everything you need to start coding with your class is here. Let's set you up."
+        />
+        <pages.Section>
+          <Typography variant="h4">{steps[activeStep.index].header}</Typography>
+          <Typography>
+            Progress &lt; {activeStep.index + 1} of {steps.length} &gt;
+          </Typography>
+          <MobileStepper
+            variant="progress"
+            position="static"
+            steps={steps.length + 1}
+            activeStep={activeStep.index + 1}
+            nextButton={undefined}
+            backButton={undefined}
+            sx={{
+              padding: 0,
+              marginBottom: 3,
+              [`.${mobileStepperClasses.progress}`]: {
+                width: "100%",
+                height: "7px",
+              },
+            }}
+          />
+          {steps[activeStep.index].element}
+        </pages.Section>
+      </>
+    ),
+  )
 }
 
 const TeacherOnboarding: FC<TeacherOnboardingProps> = props => (

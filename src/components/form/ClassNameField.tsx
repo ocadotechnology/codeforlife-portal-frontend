@@ -12,7 +12,7 @@ export type ClassNameFieldProps = Omit<
 
 const ClassNameField: FC<ClassNameFieldProps> = ({
   name = "name",
-  label = "Last name",
+  label = "Class name",
   placeholder = "Enter a class name",
   InputProps = {},
   ...otherTextFieldProps
