@@ -31,55 +31,60 @@ const Tabs: FC<TeacherDashboardProps & SessionMetadata> = ({
   view,
   user_id,
 }) =>
-  handleResultState(useRetrieveUserQuery(user_id), authUser => {
-    if (!authUser.teacher!.school) {
-      return <Navigate to={paths.teacher.onboarding._} />
-    }
+  handleResultState(
+    useRetrieveUserQuery(user_id, { refetchOnMountOrArgChange: true }),
+    authUser => {
+      if (!authUser.teacher!.school) {
+        return <Navigate to={paths.teacher.onboarding._} />
+      }
 
-    const authSchoolTeacherUser = authUser as SchoolTeacherUser<typeof authUser>
+      const authSchoolTeacherUser = authUser as SchoolTeacherUser<
+        typeof authUser
+      >
 
-    const tabs: page.TabBarProps["tabs"] = [
-      {
-        label: "Your school",
-        children: (
-          <School
-            authUser={authSchoolTeacherUser}
-            view={view as SchoolProps["view"]}
-          />
-        ),
-        path: getParam(paths.teacher.dashboard.tab.school, "tab"),
-      },
-      {
-        label: "Your classes",
-        children: (
-          <Classes
-            authUser={authSchoolTeacherUser}
-            view={view as ClassesProps["view"]}
-          />
-        ),
-        path: getParam(paths.teacher.dashboard.tab.classes, "tab"),
-      },
-      {
-        label: "Your account",
-        children: (
-          <Account
-            authUser={authSchoolTeacherUser}
-            view={view as AccountProps["view"]}
-          />
-        ),
-        path: getParam(paths.teacher.dashboard.tab.account, "tab"),
-      },
-    ]
+      const tabs: page.TabBarProps["tabs"] = [
+        {
+          label: "Your school",
+          children: (
+            <School
+              authUser={authSchoolTeacherUser}
+              view={view as SchoolProps["view"]}
+            />
+          ),
+          path: getParam(paths.teacher.dashboard.tab.school, "tab"),
+        },
+        {
+          label: "Your classes",
+          children: (
+            <Classes
+              authUser={authSchoolTeacherUser}
+              view={view as ClassesProps["view"]}
+            />
+          ),
+          path: getParam(paths.teacher.dashboard.tab.classes, "tab"),
+        },
+        {
+          label: "Your account",
+          children: (
+            <Account
+              authUser={authSchoolTeacherUser}
+              view={view as AccountProps["view"]}
+            />
+          ),
+          path: getParam(paths.teacher.dashboard.tab.account, "tab"),
+        },
+      ]
 
-    return (
-      <page.TabBar
-        header={`Welcome back, ${authUser.first_name} ${authUser.last_name}`}
-        originalPath={paths.teacher.dashboard.tab._}
-        value={tabs.findIndex(t => t.path === tab)}
-        tabs={tabs}
-      />
-    )
-  })
+      return (
+        <page.TabBar
+          header={`Welcome back, ${authUser.first_name} ${authUser.last_name}`}
+          originalPath={paths.teacher.dashboard.tab._}
+          value={tabs.findIndex(t => t.path === tab)}
+          tabs={tabs}
+        />
+      )
+    },
+  )
 
 const TeacherDashboard: FC<TeacherDashboardProps> = props => (
   <page.Page session={{ userType: "teacher" }}>
