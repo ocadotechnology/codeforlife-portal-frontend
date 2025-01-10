@@ -2942,9 +2942,10 @@ clsx@^2.0.0, clsx@^2.1.0, clsx@^2.1.1:
   resolved "https://registry.yarnpkg.com/clsx/-/clsx-2.1.1.tgz#eed397c9fd8bd882bfb18deab7102049a2f32999"
   integrity sha512-eYm0QWBtUrBWZWG0d386OGAw16Z995PiOVo2B7bjWSbHedGl5e0ZWaq65kOGgUSNesEIDkB9ISbTg/JK9dhCZA==
 
-"codeforlife@github:ocadotechnology/codeforlife-package-javascript#portal-frontend-44":
-  version "2.6.3"
-  resolved "https://codeload.github.com/ocadotechnology/codeforlife-package-javascript/tar.gz/5a456d142ab617226bed209cb1c34aa0baad3483"
+codeforlife@2.6.4:
+  version "2.6.4"
+  resolved "https://registry.yarnpkg.com/codeforlife/-/codeforlife-2.6.4.tgz#109e81e8448e45d319c147b5f4a965462dd77b27"
+  integrity sha512-R/IbtLCC2wgkH+uS1QKIV7Cdmlse82xc+Vh8MMWpy4i6JLnYbPVTwBTMMqDjr+wXwBr8osMgaO3/TKYsZU8A1Q==
   dependencies:
     "@emotion/react" "^11.10.6"
     "@emotion/styled" "^11.10.6"
