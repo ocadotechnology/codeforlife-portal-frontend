@@ -15,7 +15,7 @@ const SetupOtpForm: FC<{ authUser: SchoolTeacherUser<RetrieveUserResult> }> = ({
   return (
     <>
       <LinkButton
-        to={generatePath(paths.teacher.dashboard.tab.account.setup2FA._, {
+        to={generatePath(paths.teacher.dashboard.tab.account.setupOtp._, {
           authUser: authUser,
         })}
         mt={3}
@@ -53,9 +53,12 @@ const EditOtpForm: FC<{ authUser: SchoolTeacherUser<RetrieveUserResult> }> = ({
         <Typography>View and create backup tokens for your account.</Typography>
         <LinkButton
           className="body"
-          to={generatePath(paths.teacher.dashboard.tab.account.backupTokens._, {
-            authUser: authUser,
-          })}
+          to={generatePath(
+            paths.teacher.dashboard.tab.account.otpBypassTokens._,
+            {
+              authUser: authUser,
+            },
+          )}
           mt={4}
         >
           Manage backup tokens
