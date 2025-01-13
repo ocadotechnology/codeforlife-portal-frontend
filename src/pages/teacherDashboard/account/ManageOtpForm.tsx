@@ -18,7 +18,7 @@ const SetupOtpForm: FC<{ authUser: SchoolTeacherUser<RetrieveUserResult> }> = ({
         to={generatePath(paths.teacher.dashboard.tab.account.setupOtp._, {
           authUser: authUser,
         })}
-        mt={3}
+        sx={{ marginTop: 3 }}
       >
         Setup two factor authentication
       </LinkButton>
@@ -59,7 +59,7 @@ const EditOtpForm: FC<{ authUser: SchoolTeacherUser<RetrieveUserResult> }> = ({
               authUser: authUser,
             },
           )}
-          mt={4}
+          sx={{ marginTop: 4 }}
         >
           Manage backup tokens
         </LinkButton>
