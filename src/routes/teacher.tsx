@@ -51,6 +51,14 @@ const teacher = (
       path={paths.teacher.dashboard.tab.account._}
       element={<TeacherDashboard tab="account" />}
     />
+    <Route
+      path={paths.teacher.dashboard.tab.account.setupOtp._}
+      element={<TeacherDashboard tab="account" view="otp" />}
+    />
+    <Route
+      path={paths.teacher.dashboard.tab.account.otpBypassTokens._}
+      element={<TeacherDashboard tab="account" view="otp-bypass-tokens" />}
+    />
   </>
 )
 
