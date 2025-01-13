@@ -104,7 +104,14 @@ const UpdateAccountForm: FC<UpdateAccountFormProps> = ({ authUser }) => {
             ]
 
             if (isEmailDirty || isPasswordDirty) {
-              const teacherLoginPath = generatePath(paths.login.teacher._)
+              let loginPath = generatePath(paths.login.indy._)
+
+              if (authUser.student) {
+                loginPath = generatePath(paths.login.student._)
+              } else if (authUser.teacher) {
+                loginPath = generatePath(paths.login.teacher._)
+              }
+
               if (isEmailDirty) {
                 void logout(null)
                   .unwrap()
@@ -112,7 +119,7 @@ const UpdateAccountForm: FC<UpdateAccountFormProps> = ({ authUser }) => {
                     messages.push(
                       "Your email will be changed once you have verified it, until then you can still log in with your old email.",
                     )
-                    navigate(teacherLoginPath, {
+                    navigate(loginPath, {
                       state: {
                         notifications: messages.map(message => ({
                           props: { children: message },
@@ -144,7 +151,7 @@ const UpdateAccountForm: FC<UpdateAccountFormProps> = ({ authUser }) => {
                     messages.push(
                       "Going forward, please log in using your new password.",
                     )
-                    navigate(teacherLoginPath, {
+                    navigate(loginPath, {
                       state: {
                         notifications: messages.map(message => ({
                           props: { children: message },

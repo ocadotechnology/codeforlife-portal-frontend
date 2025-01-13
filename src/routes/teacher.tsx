@@ -52,11 +52,11 @@ const teacher = (
       element={<TeacherDashboard tab="account" />}
     />
     <Route
-      path={paths.teacher.dashboard.tab.account.setup2FA._}
+      path={paths.teacher.dashboard.tab.account.setupOtp._}
       element={<TeacherDashboard tab="account" view="otp" />}
     />
     <Route
-      path={paths.teacher.dashboard.tab.account.backupTokens._}
+      path={paths.teacher.dashboard.tab.account.otpBypassTokens._}
       element={<TeacherDashboard tab="account" view="backupTokens" />}
     />
   </>

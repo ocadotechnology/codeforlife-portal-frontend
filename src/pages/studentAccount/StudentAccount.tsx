@@ -14,15 +14,15 @@ export interface StudentAccountProps {
 }
 
 const _StudentAccount: FC<SessionMetadata> = ({ user_type, user_id }) =>
-  handleResultState(useRetrieveUserQuery(user_id), user => (
+  handleResultState(useRetrieveUserQuery(user_id), authUser => (
     <>
       <page.Banner
-        header={`Welcome, ${user.first_name}`}
+        header={`Welcome, ${authUser.first_name}`}
         textAlign="center"
         bgcolor={user_type === "student" ? "tertiary" : "secondary"}
       />
       <page.Section>
-        <forms.UpdateAccountForm user={user} />
+        <forms.UpdateAccountForm authUser={authUser} />
       </page.Section>
       {user_type === "indy" && (
         <>
@@ -35,7 +35,7 @@ const _StudentAccount: FC<SessionMetadata> = ({ user_type, user_id }) =>
             <LinkButton to={paths.indy.dashboard.joinClass._}>Join</LinkButton>
           </page.Section>
           <page.Section>
-            <forms.DeleteAccountForm user={user} />
+            <forms.DeleteAccountForm authUser={authUser} />
           </page.Section>
         </>
       )}
