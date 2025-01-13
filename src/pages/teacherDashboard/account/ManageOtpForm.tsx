@@ -86,7 +86,7 @@ const EditOtpForm: FC<{ authUser: SchoolTeacherUser<RetrieveUserResult> }> = ({
           // onClick={handleDisable2fa}
           className="alert"
           endIcon={<ErrorOutlineOutlined />}
-          mt={3}
+          sx={{ marginTop: 3 }}
         >
           Disable 2FA
         </Button>
