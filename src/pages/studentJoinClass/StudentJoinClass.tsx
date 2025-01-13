@@ -34,8 +34,8 @@ const _StudentJoinClass: FC<SessionMetadata> = ({ user_id }) => {
               <Typography>
                 If you want to link your Code For Life account with a school or
                 club, ask a teacher to enable external requests and provide you
-                with the Class Access Code for the class you want to join. Simply
-                add the Class Access Code to the form below and submit.
+                with the Class Access Code for the class you want to join.
+                Simply add the Class Access Code to the form below and submit.
               </Typography>
               <Typography>
                 <strong>Warning:</strong> once the teacher accepts you to their
@@ -55,8 +55,7 @@ const _StudentJoinClass: FC<SessionMetadata> = ({ user_id }) => {
   })
 }
 
-export interface StudentJoinClassProps {
-}
+export interface StudentJoinClassProps {}
 
 const StudentJoinClass: FC<StudentJoinClassProps> = () => (
   <page.Page session={{ userType: "indy" }}>{_StudentJoinClass}</page.Page>
