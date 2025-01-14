@@ -1,151 +1,26 @@
 import * as tables from "codeforlife/components/table"
 import { Button, Stack, type SxProps, Typography } from "@mui/material"
 import { type Class, type Student, type User } from "codeforlife/api"
-import {
-  Document,
-  Image,
-  Page,
-  StyleSheet,
-  Text,
-  View,
-  pdf,
-} from "@react-pdf/renderer"
 import { type FC, useRef } from "react"
-import { Print as PrintIcon, SaveAlt as SaveAltIcon } from "@mui/icons-material"
 import { CopyIconButton } from "codeforlife/components"
+import { SaveAlt as SaveAltIcon } from "@mui/icons-material"
 import { generatePath } from "react-router-dom"
 
-import CflLogoImage from "../images/logo_cfl.png"
+import { default as DownloadPDFButton } from "./PrintPasswordReminderCardsButton"
+import { makeAutoLoginLink } from "../utils/student"
 import { paths } from "../routes"
 
-function makeAutoLoginLink(
-  classLoginLink: string,
-  student: StudentCredentialsTableProps["students"][number],
-) {
-  return (
-    `${classLoginLink}?` +
-    new URLSearchParams({
-      id: String(student.id),
-      agp: student.auto_gen_password,
-    }).toString()
-  )
-}
-
-const StudentCredentialsPDF: FC<{
-  students: StudentCredentialsTableProps["students"]
-  classLoginLink: string
-}> = ({ students, classLoginLink }) => {
-  const pdfStyles = StyleSheet.create({
-    mainView: {
-      border: "2px solid black",
-      display: "flex",
-      flexDirection: "row",
-      gap: 5,
-      padding: 10,
-    },
-    page: {
-      padding: 20,
-    },
-    text: {
-      textAlign: "justify",
-      marginBottom: 5,
-      fontSize: 12,
-    },
-    image: {
-      width: 85,
-      height: 70,
-    },
-  })
-
-  return (
-    <Document>
-      <Page size="A4" style={pdfStyles.page}>
-        <Text style={pdfStyles.text}>
-          Please ensure students keep login details in a secure place
-        </Text>
-        {students.map(student => (
-          <View
-            key={`${student.user.first_name}-pdf`}
-            style={pdfStyles.mainView}
-          >
-            <Image
-              source={CflLogoImage}
-              src={CflLogoImage}
-              style={pdfStyles.image}
-            />
-            <View>
-              {/*TODO: Improve overall styles for this.*/}
-              <Text style={pdfStyles.text}>
-                Directly log in with:{"\n"}
-                {makeAutoLoginLink(classLoginLink, student)}
-              </Text>
-              <Text style={pdfStyles.text}>
-                OR class link: {classLoginLink}
-              </Text>
-              <Text style={pdfStyles.text}>
-                Name: {student.user.first_name} Password:{" "}
-                {student.user.password}
-              </Text>
-            </View>
-          </View>
-        ))}
-      </Page>
-    </Document>
-  )
-}
-
-export interface DownloadButtonProps {
+export interface DownloadCSVButtonProps {
   classLoginLink: string
   students: StudentCredentialsTableProps["students"]
 }
 
-const DownloadPDFButton: FC<DownloadButtonProps> = ({
+const DownloadCSVButton: FC<DownloadCSVButtonProps> = ({
   classLoginLink,
   students,
 }) => {
   const linkRef = useRef<HTMLAnchorElement | null>(null)
 
-  const downloadPdf = async (): Promise<void> => {
-    try {
-      const blob = await pdf(
-        <StudentCredentialsPDF
-          classLoginLink={classLoginLink}
-          students={students}
-        />,
-      ).toBlob()
-      const url = URL.createObjectURL(blob)
-
-      if (linkRef.current) {
-        linkRef.current.href = url
-        linkRef.current.click()
-      }
-      URL.revokeObjectURL(url)
-    } catch (error) {
-      console.error(error)
-    }
-  }
-
-  return (
-    <>
-      <Button
-        endIcon={<PrintIcon />}
-        onClick={() => {
-          void downloadPdf()
-        }}
-        className="body"
-      >
-        Print password reminder cards
-      </Button>
-      {/* Invisible anchor tag to trigger the download */}
-      <a ref={linkRef} target="_blank" style={{ display: "none" }}></a>
-    </>
-  )
-}
-
-const DownloadCSVButton: FC<DownloadButtonProps> = ({
-  classLoginLink,
-  students,
-}) => {
   const generateCSV: () => string = () => {
     const lines = [["Name", "Password", "Class Link", "Login URL"].join(",")]
     students.forEach(student => {
@@ -158,9 +33,9 @@ const DownloadCSVButton: FC<DownloadButtonProps> = ({
         ].join(","),
       )
     })
+
     return lines.join("\n")
   }
-  const linkRef = useRef<HTMLAnchorElement | null>(null)
 
   const downloadCSV: () => void = () => {
     const csvContent = generateCSV()
@@ -172,6 +47,7 @@ const DownloadCSVButton: FC<DownloadButtonProps> = ({
       linkRef.current.download = "data.csv"
       linkRef.current.click()
     }
+
     URL.revokeObjectURL(url)
   }
 
@@ -277,10 +153,7 @@ const StudentCredentialsTable: FC<StudentCredentialsTableProps> = ({
         })}
       </tables.Table>
       <Stack direction="row" justifyContent="space-between">
-        <DownloadPDFButton
-          classLoginLink={classLoginLink}
-          students={students}
-        />
+        <DownloadPDFButton classId={classId} students={students} />
         <DownloadCSVButton
           classLoginLink={classLoginLink}
           students={students}

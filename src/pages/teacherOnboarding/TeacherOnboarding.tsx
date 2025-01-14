@@ -12,6 +12,7 @@ import { CreateClassForm } from "../../components/form"
 import CreateSchoolForm from "./CreateSchoolForm"
 import { CreateStudentsForm } from "../../components/form"
 import { type CreateStudentsResult } from "../../api/student"
+import { PrintStudentCredentialsNotification } from "../../components"
 import StudentCredentialsTable from "./StudentCredentialsTable"
 import { paths } from "../../routes"
 
@@ -103,6 +104,12 @@ const _TeacherOnboarding: FC<TeacherOnboardingProps & SessionMetadata> = ({
           header={`Welcome, ${schoolTeacherUser.first_name} ${schoolTeacherUser.last_name}`}
           subheader="Everything you need to start coding with your class is here. Let's set you up."
         />
+        {activeStep.classId && activeStep.students && (
+          <PrintStudentCredentialsNotification
+            classId={activeStep.classId}
+            students={activeStep.students}
+          />
+        )}
         <pages.Section>
           <Typography variant="h4">{steps[activeStep.index].header}</Typography>
           <Typography>
