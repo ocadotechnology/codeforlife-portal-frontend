@@ -114,7 +114,7 @@ const PrintPasswordReminderCardsButton: FC<
         className="body"
         {...buttonProps}
       >
-        Print password reminder cards
+        Print reminder cards
       </Button>
       {/* Invisible anchor tag to trigger the download */}
       <a ref={linkRef} target="_blank" style={{ display: "none" }}></a>

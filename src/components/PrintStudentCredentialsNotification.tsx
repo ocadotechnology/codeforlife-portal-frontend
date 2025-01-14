@@ -23,6 +23,7 @@ const PrintStudentCredentialsNotification: FC<
       <PrintPasswordReminderCardsButton
         {...props}
         style={{ marginLeft: "auto" }}
+        variant="outlined"
       />
     </Stack>
   </Section>
