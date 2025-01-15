@@ -53,6 +53,9 @@ const Links: FC<LinksProps> = () => {
           <FooterLink to={LINK_IMPACT_REPORT_2023} newTab={true}>
             Impact Report 2023
           </FooterLink>
+          <FooterLink to={LINK_IMPACT_REPORT_2024} newTab={true}>
+            Impact Report 2024
+          </FooterLink>
         </Stack>
       </Grid>
       <Grid xs={12} sm={4}>
