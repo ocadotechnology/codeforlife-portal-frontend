@@ -9,12 +9,12 @@ import {
 //   useOneTrustInfoToggle
 // } from 'codeforlife/hooks';
 import { type FC } from "react"
+import { Link } from "codeforlife/components/router"
+
 import {
   LINK_IMPACT_REPORT_2023,
   LINK_IMPACT_REPORT_2024,
 } from "../../app/settings"
-import { Link } from "codeforlife/components/router"
-
 import { paths } from "../../routes"
 
 const LINK_STYLE: SxProps = {
