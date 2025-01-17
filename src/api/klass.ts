@@ -28,7 +28,7 @@ export type {
   RetrieveClassResult,
 }
 
-export type CreateClassResult = CreateResult<Class>
+export type CreateClassResult = CreateResult<Class, "name">
 export type CreateClassArg = CreateArg<
   Class,
   "name" | "read_classmates_data",

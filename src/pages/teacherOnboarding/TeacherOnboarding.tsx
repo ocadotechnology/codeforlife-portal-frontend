@@ -1,7 +1,6 @@
 import * as pages from "codeforlife/components/page"
 import { type FC, type ReactNode, useState } from "react"
 import { MobileStepper, Typography, mobileStepperClasses } from "@mui/material"
-import { type Class } from "codeforlife/api"
 import { Navigate } from "codeforlife/components/router"
 import { type SchoolTeacherUser } from "codeforlife/api"
 import { type SessionMetadata } from "codeforlife/hooks"
@@ -9,6 +8,7 @@ import { handleResultState } from "codeforlife/utils/api"
 
 import { type RetrieveUserResult, useRetrieveUserQuery } from "../../api/user"
 import { CreateClassForm } from "../../components/form"
+import { type CreateClassResult } from "../../api/klass"
 import CreateSchoolForm from "./CreateSchoolForm"
 import { CreateStudentsForm } from "../../components/form"
 import { type CreateStudentsResult } from "../../api/student"
@@ -23,7 +23,7 @@ const _TeacherOnboarding: FC<TeacherOnboardingProps & SessionMetadata> = ({
 }) => {
   const [activeStep, setActiveStep] = useState<{
     index: number
-    classId?: Class["id"]
+    klass?: CreateClassResult
     students?: CreateStudentsResult
   }>({ index: 0 })
 
@@ -64,7 +64,7 @@ const _TeacherOnboarding: FC<TeacherOnboardingProps & SessionMetadata> = ({
             authUser={schoolTeacherUser}
             submitOptions={{
               then: klass => {
-                onSubmit({ classId: klass.id })
+                onSubmit({ klass })
               },
             }}
           />
@@ -75,7 +75,7 @@ const _TeacherOnboarding: FC<TeacherOnboardingProps & SessionMetadata> = ({
         element: (
           <CreateStudentsForm
             key={generateKey(2)}
-            classId={activeStep.classId as string}
+            classId={(activeStep.klass as CreateClassResult).id}
             submitOptions={{
               then: students => {
                 onSubmit({ students })
@@ -89,7 +89,8 @@ const _TeacherOnboarding: FC<TeacherOnboardingProps & SessionMetadata> = ({
         element: (
           <StudentCredentialsTable
             key={generateKey(3)}
-            classId={activeStep.classId as string}
+            flow="create"
+            klass={activeStep.klass as CreateClassResult}
             students={activeStep.students as CreateStudentsResult}
           />
         ),
@@ -104,9 +105,9 @@ const _TeacherOnboarding: FC<TeacherOnboardingProps & SessionMetadata> = ({
           header={`Welcome, ${schoolTeacherUser.first_name} ${schoolTeacherUser.last_name}`}
           subheader="Everything you need to start coding with your class is here. Let's set you up."
         />
-        {activeStep.classId && activeStep.students && (
+        {activeStep.klass && activeStep.students && (
           <PrintStudentCredentialsNotification
-            classId={activeStep.classId}
+            classId={activeStep.klass.id}
             students={activeStep.students}
           />
         )}

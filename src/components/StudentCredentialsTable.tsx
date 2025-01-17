@@ -63,7 +63,8 @@ const DownloadCSVButton: FC<DownloadCSVButtonProps> = ({
 }
 
 export interface StudentCredentialsTableProps {
-  classId: Class["id"]
+  flow: "create" | "reset-single" | "reset-multiple"
+  klass: Pick<Class, "id" | "name">
   students: Array<
     Pick<Student, "id" | "auto_gen_password"> & {
       user: Pick<User, "id" | "first_name" | "password">
@@ -72,10 +73,13 @@ export interface StudentCredentialsTableProps {
 }
 
 const StudentCredentialsTable: FC<StudentCredentialsTableProps> = ({
-  classId,
+  flow,
+  klass,
   students,
 }) => {
-  const classLoginLink = generatePath(paths.login.student.class._, { classId })
+  const classLoginLink = generatePath(paths.login.student.class._, {
+    classId: klass.id,
+  })
 
   const headerCellSx: SxProps = {
     background: "#9a9c9e",
@@ -84,6 +88,52 @@ const StudentCredentialsTable: FC<StudentCredentialsTableProps> = ({
 
   return (
     <>
+      {
+        {
+          create: (
+            <>
+              <Typography>
+                The following credentials have been created for {klass.name} (
+                {klass.id}). When they log in for the first time, you may want
+                students to change their passwords to something more memorable.
+                You can reset these details for them at any time.
+              </Typography>
+              <Typography>
+                To log on, they will need to enter their name and passwords.
+                Alternatively, you can provide them with a direct access link
+                from the table below.
+              </Typography>
+              <Typography fontWeight="bold" color="error.main">
+                You will not be shown this page again, so please make sure you
+                retain a copy of the passwords for your records. You can print
+                the reminder cards from the button below. Please ensure you
+                share student passwords securely.
+              </Typography>
+            </>
+          ),
+          "reset-single": (
+            <>
+              <Typography variant="h5">
+                Student password reset for class {klass.name} ({klass.id})
+              </Typography>
+              <Typography>
+                The following student has had their password reset:
+              </Typography>
+            </>
+          ),
+          "reset-multiple": (
+            <>
+              <Typography variant="h5">
+                Students&apos; passwords reset for class {klass.name} (
+                {klass.id})
+              </Typography>
+              <Typography>
+                The following students have had their passwords reset:
+              </Typography>
+            </>
+          ),
+        }[flow]
+      }
       <tables.Table
         sx={{ tableLayout: "fixed" }}
         className="body"
@@ -153,7 +203,7 @@ const StudentCredentialsTable: FC<StudentCredentialsTableProps> = ({
         })}
       </tables.Table>
       <Stack direction="row" justifyContent="space-between">
-        <DownloadPDFButton classId={classId} students={students} />
+        <DownloadPDFButton classId={klass.id} students={students} />
         <DownloadCSVButton
           classLoginLink={classLoginLink}
           students={students}
