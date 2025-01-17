@@ -23,6 +23,9 @@ export type CreateAuthFactorArg = CreateArg<AuthFactor, "type">
 export type DestroyAuthFactorResult = DestroyResult
 export type DestroyAuthFactorArg = DestroyArg<AuthFactor>
 
+export type GenerateOtpProvisioningUriResult = string
+export type GenerateOtpProvisioningUriArg = null
+
 const authFactorApi = api.injectEndpoints({
   endpoints: build => ({
     ...getReadAuthFactorEndpoints(build),
@@ -47,6 +50,15 @@ const authFactorApi = api.injectEndpoints({
       }),
       invalidatesTags: tagData(AUTH_FACTOR_TAG, { includeListTag: true }),
     }),
+    generateOtpProvisioningUri: build.query<
+      GenerateOtpProvisioningUriResult,
+      GenerateOtpProvisioningUriArg
+    >({
+      query: () => ({
+        url: urls.authFactor.list + "generate-otp-provisioning-uri/",
+        method: "POST",
+      }),
+    }),
   }),
 })
 
@@ -56,4 +68,5 @@ export const {
   useDestroyAuthFactorMutation,
   useListAuthFactorsQuery,
   useLazyListAuthFactorsQuery,
+  useGenerateOtpProvisioningUriQuery,
 } = authFactorApi
