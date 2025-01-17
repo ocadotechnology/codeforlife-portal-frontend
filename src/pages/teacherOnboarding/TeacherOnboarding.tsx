@@ -75,7 +75,7 @@ const _TeacherOnboarding: FC<TeacherOnboardingProps & SessionMetadata> = ({
         element: (
           <CreateStudentsForm
             key={generateKey(2)}
-            classId={(activeStep.klass as CreateClassResult).id}
+            classId={((activeStep.klass || {}) as CreateClassResult).id}
             submitOptions={{
               then: students => {
                 onSubmit({ students })
