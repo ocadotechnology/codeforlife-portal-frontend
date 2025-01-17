@@ -1,20 +1,24 @@
 import * as pages from "codeforlife/components/page"
+import { useNavigate, useParams } from "codeforlife/hooks"
 import { type Class } from "codeforlife/api"
 import { type FC } from "react"
 import { Link } from "codeforlife/components/router"
 import { Navigate } from "codeforlife/components/router"
 import { Typography } from "@mui/material"
+import { generatePath } from "react-router-dom"
 import { handleResultState } from "codeforlife/utils/api"
-import { useParams } from "codeforlife/hooks"
 
 import AdditionalClassDetails from "./AdditionalClassDetails"
-import CreateStudentsForm from "./CreateStudentsForm"
+import { CreateStudentsForm } from "../../../../components/form"
 import StudentTable from "./StudentTable"
+import { type StudentsCredentialsState } from "../studentsCredentials/StudentsCredentials"
 import { classIdSchema } from "../../../../app/schemas"
 import { paths } from "../../../../routes"
 import { useRetrieveClassQuery } from "../../../../api/klass"
 
 const _Class: FC<{ classId: Class["id"] }> = ({ classId }) => {
+  const navigate = useNavigate()
+
   return handleResultState(useRetrieveClassQuery(classId), klass => (
     <>
       <pages.Section>
@@ -35,7 +39,21 @@ const _Class: FC<{ classId: Class["id"] }> = ({ classId }) => {
         <StudentTable classId={classId} />
       </pages.Section>
       <pages.Section boxProps={{ bgcolor: "info.main" }}>
-        <CreateStudentsForm classId={classId} />
+        <CreateStudentsForm
+          classId={classId}
+          submitOptions={{
+            then: students => {
+              navigate<StudentsCredentialsState>(
+                generatePath(
+                  paths.teacher.dashboard.tab.classes.class.students.credentials
+                    ._,
+                  { classId },
+                ),
+                { state: { flow: "create", students } },
+              )
+            },
+          }}
+        />
       </pages.Section>
       <pages.Section>
         <AdditionalClassDetails classId={classId} />

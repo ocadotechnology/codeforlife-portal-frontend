@@ -1,11 +1,8 @@
 import * as page from "codeforlife/components/page"
 import * as yup from "yup"
-import { type FC, useEffect } from "react"
-import {
-  useNavigate,
-  useSearchParams,
-  useSessionMetadata,
-} from "codeforlife/hooks"
+import { useSearchParams, useSessionMetadata } from "codeforlife/hooks"
+import { type FC } from "react"
+import { Navigate } from "codeforlife/components/router"
 
 import * as studentForms from "./studentForms"
 import * as teacherForms from "./teacherForms"
@@ -24,32 +21,35 @@ export interface LoginProps {
 
 const Login: FC<LoginProps> = ({ form }) => {
   const sessionMetadata = useSessionMetadata()
-  const navigate = useNavigate()
   const searchParams = useSearchParams({
     verifyEmail: yup.boolean().default(false),
   })
 
-  useEffect(() => {
-    if (sessionMetadata) {
-      if (
-        sessionMetadata.user_type === "teacher" &&
-        sessionMetadata.auth_factors.includes("otp") &&
-        form !== "teacher-otp" &&
-        form !== "teacher-otp-bypass-token"
-      ) {
-        navigate(paths.login.teacher.otp._, { replace: true })
-      } else {
-        navigate(
+  if (sessionMetadata) {
+    const { user_type, auth_factors } = sessionMetadata
+
+    if (
+      user_type === "teacher" &&
+      auth_factors.includes("otp") &&
+      form !== "teacher-otp" &&
+      form !== "teacher-otp-bypass-token"
+    ) {
+      return <Navigate to={paths.login.teacher.otp._} replace />
+    }
+
+    return (
+      <Navigate
+        to={
           {
             teacher: paths.teacher.dashboard.tab.school._,
             student: paths.student.dashboard._,
             indy: paths.indy.dashboard._,
-          }[sessionMetadata.user_type],
-          { replace: true },
-        )
-      }
-    }
-  }, [sessionMetadata, navigate, form])
+          }[user_type]
+        }
+        replace
+      />
+    )
+  }
 
   return (
     <page.Page>
