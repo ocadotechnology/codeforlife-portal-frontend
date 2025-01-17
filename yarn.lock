@@ -2942,9 +2942,10 @@ clsx@^2.0.0, clsx@^2.1.0, clsx@^2.1.1:
   resolved "https://registry.yarnpkg.com/clsx/-/clsx-2.1.1.tgz#eed397c9fd8bd882bfb18deab7102049a2f32999"
   integrity sha512-eYm0QWBtUrBWZWG0d386OGAw16Z995PiOVo2B7bjWSbHedGl5e0ZWaq65kOGgUSNesEIDkB9ISbTg/JK9dhCZA==
 
-"codeforlife@github:ocadotechnology/codeforlife-package-javascript#portal-frontend-44":
-  version "2.6.4"
-  resolved "https://codeload.github.com/ocadotechnology/codeforlife-package-javascript/tar.gz/b65993d26c55b08014738eedb1ba008bf3dde008"
+codeforlife@2.6.5:
+  version "2.6.5"
+  resolved "https://registry.yarnpkg.com/codeforlife/-/codeforlife-2.6.5.tgz#f741a5a6ae8a616d4a5162f0c5da218be39756d5"
+  integrity sha512-D0P5eUytyryHRskK5sx0YPqauJoYNhKxiaYxaaAtoUGTrdjEs46XAb+oRuWQ6cDrPS4GquNRhw6+rQllsZ7Wag==
   dependencies:
     "@emotion/react" "^11.10.6"
     "@emotion/styled" "^11.10.6"
@@ -5581,9 +5582,9 @@ pathe@^1.1.1:
   integrity sha512-whLdWMYL2TwI08hn8/ZqAbrVemu0LNaNNJZX73O6qaIdCTfXutsLhMkjdENX0qhsQ9uIimo4/aQOmXkoon2nDQ==
 
 pathe@^2.0.1:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/pathe/-/pathe-2.0.1.tgz#ee1e6965c5ccfc98dc5a4b366a6ba6dd624a33d6"
-  integrity sha512-6jpjMpOth5S9ITVu5clZ7NOgHNsv5vRQdheL9ztp2vZmM6fRbLvyua1tiBIL4lk8SAe3ARzeXEly6siXCjDHDw==
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/pathe/-/pathe-2.0.2.tgz#5ed86644376915b3c7ee4d00ac8c348d671da3a5"
+  integrity sha512-15Ztpk+nov8DR524R4BF7uEuzESgzUEAV4Ah7CUMNGXdE5ELuvxElxGXndBl32vMSsWa1jpNf22Z+Er3sKwq+w==
 
 pathval@^1.1.1:
   version "1.1.1"
