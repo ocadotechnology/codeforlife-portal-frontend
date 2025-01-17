@@ -107,6 +107,7 @@ const CreateStudentsForm: FC<CreateStudentsFormProps> = ({
                 name="first_names"
                 required
                 split={split}
+                uniqueCaseInsensitive
                 multiline
                 rows={5}
                 className="resize-vertical"
