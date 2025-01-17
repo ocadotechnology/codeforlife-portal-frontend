@@ -9,9 +9,12 @@ import {
 //   useOneTrustInfoToggle
 // } from 'codeforlife/hooks';
 import { type FC } from "react"
-import { LINK_IMPACT_REPORT_2023 } from "../../app/settings"
 import { Link } from "codeforlife/components/router"
 
+import {
+  LINK_IMPACT_REPORT_2023,
+  LINK_IMPACT_REPORT_2024,
+} from "../../app/settings"
 import { paths } from "../../routes"
 
 const LINK_STYLE: SxProps = {
@@ -52,6 +55,9 @@ const Links: FC<LinksProps> = () => {
           <MuiLink sx={LINK_STYLE}>Help and support</MuiLink>
           <FooterLink to={LINK_IMPACT_REPORT_2023} newTab={true}>
             Impact Report 2023
+          </FooterLink>
+          <FooterLink to={LINK_IMPACT_REPORT_2024} newTab={true}>
+            Impact Report 2024
           </FooterLink>
         </Stack>
       </Grid>
