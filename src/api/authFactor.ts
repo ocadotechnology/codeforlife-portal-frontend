@@ -18,7 +18,9 @@ import api from "."
 export type { ListAuthFactorsArg, ListAuthFactorsResult }
 
 export type CreateAuthFactorResult = CreateResult<AuthFactor>
-export type CreateAuthFactorArg = CreateArg<AuthFactor, "type">
+export type CreateAuthFactorArg = CreateArg<AuthFactor, "type"> & {
+  otp?: string
+}
 
 export type DestroyAuthFactorResult = DestroyResult
 export type DestroyAuthFactorArg = DestroyArg<AuthFactor>

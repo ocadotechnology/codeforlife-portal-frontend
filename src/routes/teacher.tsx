@@ -48,6 +48,10 @@ const teacher = (
       element={<TeacherDashboard tab="classes" />}
     />
     <Route
+      path={paths.teacher.dashboard.tab.account.otp.setup._}
+      element={<TeacherDashboard tab="account" view="setup-otp" />}
+    />
+    <Route
       path={paths.teacher.dashboard.tab.account._}
       element={<TeacherDashboard tab="account" />}
     />

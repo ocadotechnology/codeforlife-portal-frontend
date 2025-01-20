@@ -44,8 +44,10 @@ const paths = _("", {
         account: _(
           { tab: "account" },
           {
-            setup2FA: _("/setup-2fa"),
-            backupTokens: _("/backup-tokens"),
+            otp: _("/otp", {
+              setup: _("/setup"),
+              bypassTokens: _("/bypass-tokens"),
+            }),
           },
         ),
       }),
