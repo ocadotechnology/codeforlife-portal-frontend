@@ -1,21 +1,22 @@
-import { type AuthFactor, urls } from "codeforlife/api"
+import { type AuthFactor, type User, urls } from "codeforlife/api"
 import {
   type CreateArg,
   type CreateResult,
   type DestroyArg,
   type DestroyResult,
+  type ListArg,
+  type ListResult,
   buildUrl,
   tagData,
 } from "codeforlife/utils/api"
 import getReadAuthFactorEndpoints, {
   AUTH_FACTOR_TAG,
-  type ListAuthFactorsArg,
-  type ListAuthFactorsResult,
 } from "codeforlife/api/endpoints/authFactor"
 
 import api from "."
 
-export type { ListAuthFactorsArg, ListAuthFactorsResult }
+export type ListAuthFactorsResult = ListResult<AuthFactor, "type">
+export type ListAuthFactorsArg = ListArg<{ user: User["id"] }>
 
 export type CreateAuthFactorResult = CreateResult<AuthFactor>
 export type CreateAuthFactorArg = CreateArg<AuthFactor, "type"> & {
@@ -30,7 +31,9 @@ export type GenerateOtpProvisioningUriArg = null
 
 const authFactorApi = api.injectEndpoints({
   endpoints: build => ({
-    ...getReadAuthFactorEndpoints(build),
+    ...getReadAuthFactorEndpoints<ListAuthFactorsResult, ListAuthFactorsArg>(
+      build,
+    ),
     createAuthFactor: build.mutation<
       CreateAuthFactorResult,
       CreateAuthFactorArg

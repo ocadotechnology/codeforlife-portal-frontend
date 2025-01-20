@@ -17,7 +17,7 @@ const SetupOtp: FC<SetupOtpProps> = ({ authUserId }) => {
   const [completed, setCompleted] = useState(false)
 
   return handleResultState(
-    useListAuthFactorsQuery({ offset: 0, limit: 150, teacher: authUserId }),
+    useListAuthFactorsQuery({ offset: 0, limit: 150, user: authUserId }),
     authFactors =>
       authFactors.data.some(({ type }) => type === "otp") ? (
         <Navigate

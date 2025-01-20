@@ -1,20 +1,36 @@
 import * as forms from "codeforlife/components/form"
-import { type FC } from "react"
+import { type FC, useRef } from "react"
 import { Typography } from "@mui/material"
+import { handleResultState } from "codeforlife/utils/api"
+import qrcode from "qrcode"
 
-import { useCreateAuthFactorMutation } from "../../../../api/authFactor"
+import {
+  useCreateAuthFactorMutation,
+  useGenerateOtpProvisioningUriQuery,
+} from "../../../../api/authFactor"
 
 export interface SetupPendingProps {
   onSetup: () => void
 }
 
-const SetupPending: FC<SetupPendingProps> = ({ onSetup }) => {
+const _SetupPending: FC<SetupPendingProps & { otpProvisioningUri: string }> = ({
+  onSetup,
+  otpProvisioningUri,
+}) => {
+  const canvasRef = useRef<HTMLCanvasElement | null>(null)
+
+  if (canvasRef.current) {
+    qrcode.toCanvas(canvasRef.current, otpProvisioningUri, error => {
+      if (error) console.error(error)
+    })
+  }
+
   return (
     <>
       <Typography align="center" variant="h4" marginBottom={5}>
         Enable two-factor authentication
       </Typography>
-      <>QRCode HERE</>
+      <canvas ref={canvasRef}></canvas>
       <Typography>
         Alternatively you can use the following secret to manually set up TOTP
         in your authenticator or password manager.
@@ -36,5 +52,13 @@ const SetupPending: FC<SetupPendingProps> = ({ onSetup }) => {
     </>
   )
 }
+
+const SetupPending: FC<SetupPendingProps> = props =>
+  handleResultState(
+    useGenerateOtpProvisioningUriQuery(null),
+    otpProvisioningUri => (
+      <_SetupPending otpProvisioningUri={otpProvisioningUri} {...props} />
+    ),
+  )
 
 export default SetupPending
