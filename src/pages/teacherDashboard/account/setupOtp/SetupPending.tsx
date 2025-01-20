@@ -1,6 +1,6 @@
 import * as forms from "codeforlife/components/form"
+import { Box, Stack, Typography } from "@mui/material"
 import { type FC, useEffect, useRef, useState } from "react"
-import { Stack, Typography } from "@mui/material"
 import { handleResultState } from "codeforlife/utils/api"
 import qrcode from "qrcode"
 
@@ -49,10 +49,15 @@ const _SetupPending: FC<SetupPendingProps & { otpProvisioningUri: string }> = ({
           Failed to render QR Code. Please manually enter secret below.
         </Typography>
       ) : (
-        <canvas ref={canvasRef}></canvas>
+        <>
+          <Typography>
+            To start using a token generator, please use your smartphone to scan
+            the QR code below. For example, use Google Authenticator.
+          </Typography>
+          <Box component="canvas" ref={canvasRef} marginBottom={2} />
+        </>
       )}
-
-      <Typography marginTop={2}>
+      <Typography>
         Alternatively you can use the following secret to manually set up TOTP
         in your authenticator or password manager.
       </Typography>
