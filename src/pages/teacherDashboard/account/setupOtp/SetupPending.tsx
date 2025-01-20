@@ -1,6 +1,6 @@
 import * as forms from "codeforlife/components/form"
-import { type FC, useRef } from "react"
-import { Typography } from "@mui/material"
+import { type FC, useEffect, useRef, useState } from "react"
+import { Stack, Typography } from "@mui/material"
 import { handleResultState } from "codeforlife/utils/api"
 import qrcode from "qrcode"
 
@@ -18,20 +18,41 @@ const _SetupPending: FC<SetupPendingProps & { otpProvisioningUri: string }> = ({
   otpProvisioningUri,
 }) => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null)
+  const [failedToRenderCanvas, setFailedToRenderCanvas] = useState(false)
 
-  if (canvasRef.current) {
-    qrcode.toCanvas(canvasRef.current, otpProvisioningUri, error => {
-      if (error) console.error(error)
-    })
-  }
+  useEffect(() => {
+    if (canvasRef.current) {
+      qrcode.toCanvas(
+        canvasRef.current,
+        otpProvisioningUri,
+        //https://www.npmjs.com/package/qrcode#qr-code-options
+        { margin: 0, scale: 5 },
+        error => {
+          if (error) {
+            console.error(error)
+            setFailedToRenderCanvas(true)
+          } else {
+            setFailedToRenderCanvas(false)
+          }
+        },
+      )
+    }
+  }, [otpProvisioningUri])
 
   return (
     <>
       <Typography align="center" variant="h4" marginBottom={5}>
         Enable two-factor authentication
       </Typography>
-      <canvas ref={canvasRef}></canvas>
-      <Typography>
+      {failedToRenderCanvas ? (
+        <Typography variant="h5" color="error.main">
+          Failed to render QR Code. Please manually enter secret below.
+        </Typography>
+      ) : (
+        <canvas ref={canvasRef}></canvas>
+      )}
+
+      <Typography marginTop={2}>
         Alternatively you can use the following secret to manually set up TOTP
         in your authenticator or password manager.
       </Typography>
@@ -44,10 +65,12 @@ const _SetupPending: FC<SetupPendingProps & { otpProvisioningUri: string }> = ({
         useMutation={useCreateAuthFactorMutation}
         submitOptions={{ then: onSetup }}
       >
-        <forms.OtpField />
-        <forms.SubmitButton sx={{ marginLeft: "auto" }}>
-          Next
-        </forms.SubmitButton>
+        <Stack>
+          <forms.OtpField sx={{ width: "200px" }} />
+          <forms.SubmitButton sx={{ marginLeft: "auto" }}>
+            Next
+          </forms.SubmitButton>
+        </Stack>
       </forms.Form>
     </>
   )

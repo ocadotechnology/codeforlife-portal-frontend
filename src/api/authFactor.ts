@@ -61,7 +61,7 @@ const authFactorApi = api.injectEndpoints({
     >({
       query: () => ({
         url: urls.authFactor.list + "generate-otp-provisioning-uri/",
-        method: "POST",
+        method: "GET",
       }),
     }),
   }),
