@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/ocadotechnology/codeforlife-portal-frontend/compare/v1.1.0...v1.1.1) (2025-01-20)
+
+
+### Bug Fixes
+
+* add generate otp provisioning uri endpoint ([#91](https://github.com/ocadotechnology/codeforlife-portal-frontend/issues/91)) ([c42b7b3](https://github.com/ocadotechnology/codeforlife-portal-frontend/commit/c42b7b3a154c2be42f0ec773e885cb3b0b2ea414))
+
 # [1.1.0](https://github.com/ocadotechnology/codeforlife-portal-frontend/compare/v1.0.4...v1.1.0) (2025-01-17)
 
 
