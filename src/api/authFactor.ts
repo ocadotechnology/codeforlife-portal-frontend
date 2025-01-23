@@ -26,8 +26,11 @@ export type CreateAuthFactorArg = CreateArg<AuthFactor, "type"> & {
 export type DestroyAuthFactorResult = DestroyResult
 export type DestroyAuthFactorArg = DestroyArg<AuthFactor>
 
-export type GenerateOtpProvisioningUriResult = string
-export type GenerateOtpProvisioningUriArg = null
+export type GetOtpSecretResult = {
+  secret: string
+  provisioning_uri: string
+}
+export type GetOtpSecretArg = null
 
 const authFactorApi = api.injectEndpoints({
   endpoints: build => ({
@@ -55,12 +58,9 @@ const authFactorApi = api.injectEndpoints({
       }),
       invalidatesTags: tagData(AUTH_FACTOR_TAG, { includeListTag: true }),
     }),
-    generateOtpProvisioningUri: build.query<
-      GenerateOtpProvisioningUriResult,
-      GenerateOtpProvisioningUriArg
-    >({
+    getOtpSecret: build.query<GetOtpSecretResult, GetOtpSecretArg>({
       query: () => ({
-        url: urls.authFactor.list + "generate-otp-provisioning-uri/",
+        url: urls.authFactor.list + "get-otp-secret/",
         method: "GET",
       }),
     }),
@@ -73,5 +73,5 @@ export const {
   useDestroyAuthFactorMutation,
   useListAuthFactorsQuery,
   useLazyListAuthFactorsQuery,
-  useGenerateOtpProvisioningUriQuery,
+  useGetOtpSecretQuery,
 } = authFactorApi
