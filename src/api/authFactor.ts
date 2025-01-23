@@ -27,7 +27,7 @@ export type CreateAuthFactorArg = CreateArg<AuthFactor, "type"> & {
 export type DestroyAuthFactorResult = DestroyResult
 export type DestroyAuthFactorArg = DestroyArg<AuthFactor>
 
-export type CheckIfAuthFactorExistsResult = boolean
+export type CheckIfAuthFactorExistsResult = { auth_factor_exists: boolean }
 export type CheckIfAuthFactorExistsArg = Arg<AuthFactor, "user" | "type">
 
 export type GetOtpSecretResult = {

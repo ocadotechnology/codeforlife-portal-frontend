@@ -18,8 +18,8 @@ const SetupOtp: FC<SetupOtpProps> = ({ authUserId }) => {
 
   return handleResultState(
     useCheckIfAuthFactorExistsQuery({ user: authUserId, type: "otp" }),
-    otpExists =>
-      otpExists ? (
+    ({ auth_factor_exists }) =>
+      auth_factor_exists ? (
         <Navigate
           to={paths.teacher.dashboard.tab.account._}
           state={{

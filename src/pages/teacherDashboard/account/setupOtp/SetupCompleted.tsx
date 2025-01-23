@@ -18,6 +18,7 @@ const SetupCompleted: FC<SetupCompletedProps> = () => {
       </Typography>
       <LinkButton
         to={paths.teacher.dashboard.tab.account._}
+        replace
         sx={{ marginTop: 3 }}
       >
         OK
