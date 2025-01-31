@@ -5,7 +5,6 @@ import { type SessionMetadata } from "codeforlife/hooks"
 import { Typography } from "@mui/material"
 import { handleResultState } from "codeforlife/utils/api"
 
-import * as forms from "../../components/form"
 import { paths } from "../../routes"
 import { useRetrieveUserQuery } from "../../api/user"
 
@@ -22,7 +21,7 @@ const _StudentAccount: FC<SessionMetadata> = ({ user_type, user_id }) =>
         bgcolor={user_type === "student" ? "tertiary" : "secondary"}
       />
       <page.Section>
-        <forms.UpdateAccountForm authUser={authUser} />
+        <UpdateAccountForm authUser={authUser} />
       </page.Section>
       {user_type === "indy" && (
         <>
@@ -35,7 +34,7 @@ const _StudentAccount: FC<SessionMetadata> = ({ user_type, user_id }) =>
             <LinkButton to={paths.indy.dashboard.joinClass._}>Join</LinkButton>
           </page.Section>
           <page.Section>
-            <forms.DeleteAccountForm authUser={authUser} />
+            <DeleteAccountForm authUser={authUser} />
           </page.Section>
         </>
       )}

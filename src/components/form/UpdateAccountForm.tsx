@@ -32,20 +32,20 @@ const UpdateAccountForm: FC<UpdateAccountFormProps> = ({ authUser }) => {
 
   const initialValues = authUser.student
     ? {
-        id: authUser.id,
-        password: "",
-        password_repeat: "",
-        current_password: "",
-      }
+      id: authUser.id,
+      password: "",
+      password_repeat: "",
+      current_password: "",
+    }
     : {
-        id: authUser.id,
-        password: "",
-        password_repeat: "",
-        current_password: "",
-        first_name: authUser.first_name,
-        last_name: authUser.last_name,
-        email: authUser.email,
-      }
+      id: authUser.id,
+      password: "",
+      password_repeat: "",
+      current_password: "",
+      first_name: authUser.first_name,
+      last_name: authUser.last_name,
+      email: authUser.email,
+    }
 
   return (
     <>
@@ -104,77 +104,51 @@ const UpdateAccountForm: FC<UpdateAccountFormProps> = ({ authUser }) => {
             ]
 
             if (isEmailDirty || isPasswordDirty) {
-              let loginPath = generatePath(paths.login.indy._)
+              let loginPath = "paths.login.indy._"
 
               if (authUser.student) {
-                loginPath = generatePath(paths.login.student._)
+                loginPath = "paths.login.student._"
               } else if (authUser.teacher) {
-                loginPath = generatePath(paths.login.teacher._)
+                loginPath = "paths.login.teacher._"
               }
 
-              if (isEmailDirty) {
-                void logout(null)
-                  .unwrap()
-                  .then(() => {
+              void logout(null)
+                .unwrap()
+                .then(() => {
+                  if (isEmailDirty) {
                     messages.push(
                       "Your email will be changed once you have verified it, until then you can still log in with your old email.",
                     )
-                    navigate(loginPath, {
-                      state: {
-                        notifications: messages.map(message => ({
-                          props: { children: message },
-                        })),
-                      },
-                    })
-                  })
-                  // TODO: Check what happens here - is the field still updated?
-                  .catch(() => {
-                    navigate(".", {
-                      replace: true,
-                      state: {
-                        notifications: [
-                          {
-                            props: {
-                              error: true,
-                              children: "Failed to log you out.",
-                            },
-                          },
-                        ],
-                      },
-                    })
-                  })
-              }
-              if (isPasswordDirty) {
-                void logout(null)
-                  .unwrap()
-                  .then(() => {
+                  }
+                  if (isPasswordDirty) {
                     messages.push(
                       "Going forward, please log in using your new password.",
                     )
-                    navigate(loginPath, {
-                      state: {
-                        notifications: messages.map(message => ({
-                          props: { children: message },
-                        })),
-                      },
-                    })
+                  }
+                  navigate(loginPath, {
+                    state: {
+                      notifications: messages.map(message => ({
+                        props: { children: message },
+                      })),
+                    },
                   })
-                  .catch(() => {
-                    navigate(".", {
-                      replace: true,
-                      state: {
-                        notifications: [
-                          {
-                            props: {
-                              error: true,
-                              children: "Failed to log you out.",
-                            },
+                })
+                // TODO: Check what happens here - is the field still updated?
+                .catch(() => {
+                  navigate(".", {
+                    replace: true,
+                    state: {
+                      notifications: [
+                        {
+                          props: {
+                            error: true,
+                            children: "Failed to log you out.",
                           },
-                        ],
-                      },
-                    })
+                        },
+                      ],
+                    },
                   })
-              }
+                })
             } else {
               navigate(".", {
                 state: {
