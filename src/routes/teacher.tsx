@@ -2,15 +2,15 @@ import { Route } from "react-router-dom"
 
 // import Teacher from "../../pages/teacher/Teacher"
 import TeacherDashboard from "../pages/teacherDashboard/TeacherDashboard"
+import TeacherOnboarding from "../pages/teacherOnboarding/TeacherOnboarding"
 // import AddedExternalStudent from "../../pages/teacherDashboard/classes/AddedExternalStudent"
 // import StudentCredentials from "../../pages/teacherDashboard/classes/editClass/student/editStudent/StudentCredentials"
-// import TeacherOnboarding from "../../pages/teacherOnboarding/TeacherOnboarding"
 import paths from "./paths"
 
 const teacher = (
   <>
     {/* <Route path={paths.teacher._} element={<Teacher />} /> */}
-    {/* <Route path={paths.teacher.onboarding._} element={<TeacherOnboarding />} /> */}
+    <Route path={paths.teacher.onboarding._} element={<TeacherOnboarding />} />
     <Route
       path={paths.teacher.dashboard.tab.school.leave._}
       element={<TeacherDashboard tab="school" view="leave" />}
