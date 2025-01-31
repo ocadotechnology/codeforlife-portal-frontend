@@ -32,20 +32,20 @@ const UpdateAccountForm: FC<UpdateAccountFormProps> = ({ authUser }) => {
 
   const initialValues = authUser.student
     ? {
-      id: authUser.id,
-      password: "",
-      password_repeat: "",
-      current_password: "",
-    }
+        id: authUser.id,
+        password: "",
+        password_repeat: "",
+        current_password: "",
+      }
     : {
-      id: authUser.id,
-      password: "",
-      password_repeat: "",
-      current_password: "",
-      first_name: authUser.first_name,
-      last_name: authUser.last_name,
-      email: authUser.email,
-    }
+        id: authUser.id,
+        password: "",
+        password_repeat: "",
+        current_password: "",
+        first_name: authUser.first_name,
+        last_name: authUser.last_name,
+        email: authUser.email,
+      }
 
   return (
     <>
