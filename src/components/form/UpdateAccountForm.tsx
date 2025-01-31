@@ -2,23 +2,16 @@ import * as forms from "codeforlife/components/form"
 import { getDirty, isDirty } from "codeforlife/utils/form"
 import { type FC } from "react"
 import { Typography } from "@mui/material"
-import { generatePath } from "react-router"
 import { useNavigate } from "codeforlife/hooks"
 
 import {
   type RetrieveUserResult,
   type UpdateUserArg,
   type UpdateUserResult,
-  useUpdateUserMutation,
+  useUpdateUserMutation
 } from "../../api/user"
-import {
-  indyPasswordSchema,
-  nullableSchema,
-  studentPasswordSchema,
-  teacherPasswordSchema,
-} from "../../app/schemas"
+import { indyPasswordSchema, nullableSchema, studentPasswordSchema, teacherPasswordSchema } from "../../app/schemas"
 import { LastNameField } from "./index"
-import { paths } from "../../routes"
 import { useLogoutMutation } from "../../api"
 
 export interface UpdateAccountFormProps {
