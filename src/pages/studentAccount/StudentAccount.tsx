@@ -5,7 +5,7 @@ import { type SessionMetadata } from "codeforlife/hooks"
 import { Typography } from "@mui/material"
 import { handleResultState } from "codeforlife/utils/api"
 
-import { DeleteAccountForm, UpdateAccountForm} from "../../components/form"
+import { DeleteAccountForm, UpdateAccountForm } from "../../components/form"
 import { paths } from "../../routes"
 import { useRetrieveUserQuery } from "../../api/user"
 

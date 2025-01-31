@@ -8,9 +8,14 @@ import {
   type RetrieveUserResult,
   type UpdateUserArg,
   type UpdateUserResult,
-  useUpdateUserMutation
+  useUpdateUserMutation,
 } from "../../api/user"
-import { indyPasswordSchema, nullableSchema, studentPasswordSchema, teacherPasswordSchema } from "../../app/schemas"
+import {
+  indyPasswordSchema,
+  nullableSchema,
+  studentPasswordSchema,
+  teacherPasswordSchema,
+} from "../../app/schemas"
 import { LastNameField } from "./index"
 import { useLogoutMutation } from "../../api"
 
