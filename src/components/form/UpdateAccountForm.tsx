@@ -122,7 +122,7 @@ const UpdateAccountForm: FC<UpdateAccountFormProps> = ({ authUser }) => {
           if (authUser.student) {
             passwordSchema = studentPasswordSchema
           } else if (authUser.teacher) {
-            passwordSchema = teacherPasswordSchema
+            passwordSchema = teacherPasswordSchema.concat(nullableSchema)
           }
 
           if (isDirty(form.values, initialValues, "current_password")) {
