@@ -132,7 +132,7 @@ const DeleteAccountForm: FC<DeleteAccountFormProps> = ({ authUser }) => {
         <forms.SubmitButton
           className="alert"
           endIcon={<DeleteOutlineIcon />}
-          sx={theme => ({ marginTop: theme.spacing(3) })}
+          sx={{ marginTop: 3 }}
         >
           Delete account
         </forms.SubmitButton>

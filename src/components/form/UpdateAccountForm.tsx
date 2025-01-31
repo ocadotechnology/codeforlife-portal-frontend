@@ -94,68 +94,20 @@ const UpdateAccountForm: FC<UpdateAccountFormProps> = ({ authUser }) => {
 
             return arg
           },
+          // TODO: Update backend to log user out and show a message if credential fields were updated
           then: (_: UpdateUserResult, values: typeof initialValues) => {
-            const isEmailDirty = isDirty(values, initialValues, "email")
-            const isPasswordDirty = isDirty(values, initialValues, "password")
-            const messages = [
-              "Your account details have been changed successfully.",
-            ]
-
-            if (isEmailDirty || isPasswordDirty) {
-              let loginPath = "paths.login.indy._"
-
-              if (authUser.student) {
-                loginPath = "paths.login.student._"
-              } else if (authUser.teacher) {
-                loginPath = "paths.login.teacher._"
-              }
-
-              void logout(null)
-                .unwrap()
-                .then(() => {
-                  if (isEmailDirty) {
-                    messages.push(
-                      "Your email will be changed once you have verified it, until then you can still log in with your old email.",
-                    )
-                  }
-                  if (isPasswordDirty) {
-                    messages.push(
-                      "Going forward, please log in using your new password.",
-                    )
-                  }
-                  navigate(loginPath, {
-                    state: {
-                      notifications: messages.map(message => ({
-                        props: { children: message },
-                      })),
+            navigate(".", {
+              state: {
+                notifications: [
+                  {
+                    props: {
+                      children:
+                        "Your account details have been changed successfully.",
                     },
-                  })
-                })
-                // TODO: Check what happens here - is the field still updated?
-                .catch(() => {
-                  navigate(".", {
-                    replace: true,
-                    state: {
-                      notifications: [
-                        {
-                          props: {
-                            error: true,
-                            children: "Failed to log you out.",
-                          },
-                        },
-                      ],
-                    },
-                  })
-                })
-            } else {
-              navigate(".", {
-                state: {
-                  notifications: messages.map(message => ({
-                    props: { children: message },
-                  })),
-                },
-              })
-            }
+                  },
+                ],
+              },
+            })
           },
         }}
       >
@@ -170,7 +122,7 @@ const UpdateAccountForm: FC<UpdateAccountFormProps> = ({ authUser }) => {
           if (authUser.student) {
             passwordSchema = studentPasswordSchema
           } else if (authUser.teacher) {
-            passwordSchema = teacherPasswordSchema.concat(nullableSchema)
+            passwordSchema = teacherPasswordSchema
           }
 
           if (isDirty(form.values, initialValues, "current_password")) {
@@ -204,9 +156,7 @@ const UpdateAccountForm: FC<UpdateAccountFormProps> = ({ authUser }) => {
                   placeholder="Enter your current password"
                 />
               )}
-              <forms.SubmitButton
-                sx={theme => ({ marginTop: theme.spacing(3) })}
-              >
+              <forms.SubmitButton sx={{ marginTop: 3 }}>
                 Update details
               </forms.SubmitButton>
             </>
