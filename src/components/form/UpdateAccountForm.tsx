@@ -1,50 +1,51 @@
 import * as forms from "codeforlife/components/form"
-import { Stack, Typography } from "@mui/material"
 import { getDirty, isDirty } from "codeforlife/utils/form"
 import { type FC } from "react"
-import { LinkButton } from "codeforlife/components/router"
+import { Typography } from "@mui/material"
 import { useNavigate } from "codeforlife/hooks"
 
 import {
   type RetrieveUserResult,
   type UpdateUserArg,
-  type UpdateUserResult,
   useUpdateUserMutation,
 } from "../../api/user"
-import { indyPasswordSchema, studentPasswordSchema } from "../../app/schemas"
-import { LastNameField } from "../../components/form"
+import {
+  indyPasswordSchema,
+  studentPasswordSchema,
+  teacherPasswordSchema,
+} from "../../app/schemas"
+import { LastNameField } from "./index"
 
 export interface UpdateAccountFormProps {
-  user: RetrieveUserResult
+  authUser: RetrieveUserResult
 }
 
-const UpdateAccountForm: FC<UpdateAccountFormProps> = ({ user }) => {
+// TODO: Split this form into two or three forms. Needs UX work
+const UpdateAccountForm: FC<UpdateAccountFormProps> = ({ authUser }) => {
   const navigate = useNavigate()
 
-  const initialValues = user.student
+  const initialValues = authUser.student
     ? {
-        id: user.id,
+        id: authUser.id,
         password: "",
         password_repeat: "",
         current_password: "",
       }
     : {
-        id: user.id,
-        password: "",
-        password_repeat: "",
-        current_password: "",
-        first_name: user.first_name,
-        last_name: user.last_name,
-        email: user.email,
+        id: authUser.id,
+        password: undefined as string | undefined,
+        password_repeat: undefined as string | undefined,
+        current_password: undefined as string | undefined,
+        first_name: authUser.first_name,
+        last_name: authUser.last_name,
+        email: authUser.email,
       }
 
   return (
     <>
-      {user.student ? (
+      {authUser.student ? (
         <>
-          <Typography align="center" variant="h4">
-            Update your password
-          </Typography>
+          <Typography variant="h5">Update your password</Typography>
           <Typography>
             You may edit your password below. It must be long enough and hard
             enough to stop your friends guessing it and stealing all of your
@@ -56,9 +57,7 @@ const UpdateAccountForm: FC<UpdateAccountFormProps> = ({ user }) => {
         </>
       ) : (
         <>
-          <Typography align="center" variant="h4">
-            Update your account details
-          </Typography>
+          <Typography variant="h5">Update your account details</Typography>
           <Typography>You can update your account details below.</Typography>
           <Typography>
             Please note: If you change your email address, you will need to
@@ -74,41 +73,35 @@ const UpdateAccountForm: FC<UpdateAccountFormProps> = ({ user }) => {
           exclude: ["password_repeat"],
           clean: (values: typeof initialValues) => {
             const arg: UpdateUserArg = { id: values.id }
-            if (user.student || isDirty(values, initialValues, "password")) {
+            if (isDirty(values, initialValues, "password")) {
               arg.password = values.password
               arg.current_password = values.current_password
-            } else if (isDirty(values, initialValues, "email")) {
+            }
+            if (isDirty(values, initialValues, "email")) {
               arg.email = values.email
               arg.current_password = values.current_password
-            } else if (isDirty(values, initialValues, "first_name")) {
+            }
+            if (isDirty(values, initialValues, "first_name")) {
               arg.first_name = values.first_name
-            } else if (isDirty(values, initialValues, "last_name")) {
+            }
+            if (isDirty(values, initialValues, "last_name")) {
               arg.last_name = values.last_name
             }
 
             return arg
           },
-          then: (_: UpdateUserResult, values: typeof initialValues) => {
-            const messages = [
-              "Your account details have been changed successfully.",
-            ]
-            if (isDirty(values, initialValues, "email")) {
-              // TODO: implement this behavior on the backend.
-              messages.push(
-                "Your email will be changed once you have verified it, until then you can still log in with your old email.",
-              )
-            }
-            if (isDirty(values, initialValues, "password")) {
-              messages.push(
-                "Going forward, please login using your new password.",
-              )
-            }
-
+          // TODO: Update backend to log user out and show a message if credential fields were updated
+          then: () => {
             navigate(".", {
               state: {
-                notifications: messages.map(message => ({
-                  props: { children: message },
-                })),
+                notifications: [
+                  {
+                    props: {
+                      children:
+                        "Your account details have been changed successfully.",
+                    },
+                  },
+                ],
               },
             })
           },
@@ -120,9 +113,14 @@ const UpdateAccountForm: FC<UpdateAccountFormProps> = ({ user }) => {
             "password",
           ])
 
-          let passwordSchema = user.student
-            ? studentPasswordSchema
-            : indyPasswordSchema
+          let passwordSchema = indyPasswordSchema
+
+          if (authUser.student) {
+            passwordSchema = studentPasswordSchema
+          } else if (authUser.teacher) {
+            passwordSchema = teacherPasswordSchema
+          }
+
           if (isDirty(form.values, initialValues, "current_password")) {
             passwordSchema = passwordSchema.notOneOf(
               [form.values.current_password],
@@ -132,7 +130,7 @@ const UpdateAccountForm: FC<UpdateAccountFormProps> = ({ user }) => {
 
           return (
             <>
-              {!user.student && (
+              {!authUser.student && (
                 <>
                   <forms.FirstNameField />
                   <LastNameField />
@@ -140,13 +138,13 @@ const UpdateAccountForm: FC<UpdateAccountFormProps> = ({ user }) => {
                 </>
               )}
               <forms.PasswordField
-                required={Boolean(user.student)}
+                required={Boolean(authUser.student)}
                 label="New password"
                 repeatFieldProps={{ label: "Repeat new password" }}
-                withRepeatField={Boolean(user.student) || dirty.password}
+                withRepeatField={Boolean(authUser.student) || dirty.password}
                 schema={passwordSchema}
               />
-              {(Boolean(user.student) || dirty.email || dirty.password) && (
+              {(Boolean(authUser.student) || dirty.email || dirty.password) && (
                 <forms.PasswordField
                   required
                   name="current_password"
@@ -154,12 +152,9 @@ const UpdateAccountForm: FC<UpdateAccountFormProps> = ({ user }) => {
                   placeholder="Enter your current password"
                 />
               )}
-              <Stack direction="row" spacing={2} paddingY={3}>
-                <LinkButton variant="outlined" to={-1}>
-                  Cancel
-                </LinkButton>
-                <forms.SubmitButton>Update details</forms.SubmitButton>
-              </Stack>
+              <forms.SubmitButton sx={{ marginTop: 3 }}>
+                Update details
+              </forms.SubmitButton>
             </>
           )
         }}

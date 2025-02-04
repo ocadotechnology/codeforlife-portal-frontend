@@ -7,7 +7,7 @@ import { handleResultState } from "codeforlife/utils/api"
 import SetupCompleted from "./SetupCompleted"
 import SetupPending from "./SetupPending"
 import { paths } from "../../../../routes"
-import { useCheckIfAuthFactorExistsQuery } from "../../../../api/authFactor"
+import { useListAuthFactorsQuery } from "../../../../api/authFactor"
 
 export interface SetupOtpProps {
   authUserId: User["id"]
@@ -17,9 +17,14 @@ const SetupOtp: FC<SetupOtpProps> = ({ authUserId }) => {
   const [completed, setCompleted] = useState(false)
 
   return handleResultState(
-    useCheckIfAuthFactorExistsQuery({ user: authUserId, type: "otp" }),
-    ({ auth_factor_exists }) =>
-      auth_factor_exists ? (
+    useListAuthFactorsQuery({
+      offset: 0,
+      limit: 1,
+      user: authUserId,
+      type: "otp",
+    }),
+    ({ count }) =>
+      count ? (
         <Navigate
           to={paths.teacher.dashboard.tab.account._}
           state={{
