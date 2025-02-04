@@ -7,17 +7,14 @@ import { useNavigate } from "codeforlife/hooks"
 import {
   type RetrieveUserResult,
   type UpdateUserArg,
-  type UpdateUserResult,
   useUpdateUserMutation,
 } from "../../api/user"
 import {
   indyPasswordSchema,
-  nullableSchema,
   studentPasswordSchema,
   teacherPasswordSchema,
 } from "../../app/schemas"
 import { LastNameField } from "./index"
-import { useLogoutMutation } from "../../api"
 
 export interface UpdateAccountFormProps {
   authUser: RetrieveUserResult
@@ -36,9 +33,9 @@ const UpdateAccountForm: FC<UpdateAccountFormProps> = ({ authUser }) => {
       }
     : {
         id: authUser.id,
-        password: "",
-        password_repeat: "",
-        current_password: "",
+        password: undefined as string | undefined,
+        password_repeat: undefined as string | undefined,
+        current_password: undefined as string | undefined,
         first_name: authUser.first_name,
         last_name: authUser.last_name,
         email: authUser.email,
@@ -116,12 +113,12 @@ const UpdateAccountForm: FC<UpdateAccountFormProps> = ({ authUser }) => {
             "password",
           ])
 
-          let passwordSchema = indyPasswordSchema.concat(nullableSchema)
+          let passwordSchema = indyPasswordSchema
 
           if (authUser.student) {
             passwordSchema = studentPasswordSchema
           } else if (authUser.teacher) {
-            passwordSchema = teacherPasswordSchema.concat(nullableSchema)
+            passwordSchema = teacherPasswordSchema
           }
 
           if (isDirty(form.values, initialValues, "current_password")) {
