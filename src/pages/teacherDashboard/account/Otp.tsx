@@ -4,6 +4,7 @@ import { ErrorOutlineOutlined } from "@mui/icons-material"
 import { type FC } from "react"
 import { LinkButton } from "codeforlife/components/router"
 import { handleResultState } from "codeforlife/utils/api"
+import { useNavigate } from "codeforlife/hooks"
 
 import {
   useDestroyAuthFactorMutation,
@@ -15,6 +16,7 @@ const OtpExists: FC<{ authFactorId: AuthFactor["id"] }> = ({
   authFactorId,
 }) => {
   const [destroyAuthFactor] = useDestroyAuthFactorMutation()
+  const navigate = useNavigate()
 
   return (
     <Grid container>
@@ -57,10 +59,29 @@ const OtpExists: FC<{ authFactorId: AuthFactor["id"] }> = ({
             destroyAuthFactor(authFactorId)
               .unwrap()
               .then(() => {
-                // TODO: show confirmation popup
+                navigate(".", {
+                  replace: true,
+                  state: {
+                    notifications: [
+                      { props: { children: "Successfully disabled OTP." } },
+                    ],
+                  },
+                })
               })
               .catch(() => {
-                // TODO: show error message
+                navigate(".", {
+                  replace: true,
+                  state: {
+                    notifications: [
+                      {
+                        props: {
+                          error: true,
+                          children: "Failed to disable OTP.",
+                        },
+                      },
+                    ],
+                  },
+                })
               })
           }}
           className="alert"
