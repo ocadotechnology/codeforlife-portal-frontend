@@ -21,6 +21,7 @@ const _SetupPending: FC<
   const [failedToRenderCanvas, setFailedToRenderCanvas] = useState(false)
 
   useEffect(() => {
+    // TODO: set otp image url to load logo from static files in s3 bucket.
     if (canvasRef.current) {
       qrcode.toCanvas(
         canvasRef.current,
