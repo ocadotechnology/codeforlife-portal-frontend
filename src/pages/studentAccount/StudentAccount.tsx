@@ -5,8 +5,7 @@ import { type SessionMetadata } from "codeforlife/hooks"
 import { Typography } from "@mui/material"
 import { handleResultState } from "codeforlife/utils/api"
 
-import DeleteAccountForm from "./DeleteAccountForm"
-import UpdateAccountForm from "./UpdateAccountForm"
+import { DeleteAccountForm, UpdateAccountForm } from "../../components/form"
 import { paths } from "../../routes"
 import { useRetrieveUserQuery } from "../../api/user"
 
@@ -15,15 +14,15 @@ export interface StudentAccountProps {
 }
 
 const _StudentAccount: FC<SessionMetadata> = ({ user_type, user_id }) =>
-  handleResultState(useRetrieveUserQuery(user_id), user => (
+  handleResultState(useRetrieveUserQuery(user_id), authUser => (
     <>
       <page.Banner
-        header={`Welcome, ${user.first_name}`}
+        header={`Welcome, ${authUser.first_name}`}
         textAlign="center"
         bgcolor={user_type === "student" ? "tertiary" : "secondary"}
       />
       <page.Section>
-        <UpdateAccountForm user={user} />
+        <UpdateAccountForm authUser={authUser} />
       </page.Section>
       {user_type === "indy" && (
         <>
@@ -36,7 +35,7 @@ const _StudentAccount: FC<SessionMetadata> = ({ user_type, user_id }) =>
             <LinkButton to={paths.indy.dashboard.joinClass._}>Join</LinkButton>
           </page.Section>
           <page.Section>
-            <DeleteAccountForm user={user} />
+            <DeleteAccountForm authUser={authUser} />
           </page.Section>
         </>
       )}
