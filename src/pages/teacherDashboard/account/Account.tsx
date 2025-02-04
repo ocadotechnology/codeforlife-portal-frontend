@@ -4,8 +4,8 @@ import { type SchoolTeacherUser } from "codeforlife/api"
 import { Typography } from "@mui/material"
 
 import * as forms from "../../../components/form"
-import OtpBypassTokens from "./OtpBypassTokens.tsx"
 import ManageOtpForm from "./ManageOtpForm.tsx"
+import OtpBypassTokens from "./OtpBypassTokens.tsx"
 import { type RetrieveUserResult } from "../../../api/user"
 import SetupOtp from "./SetupOtp.tsx"
 
