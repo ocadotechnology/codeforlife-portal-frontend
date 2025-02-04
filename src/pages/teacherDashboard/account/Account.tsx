@@ -1,46 +1,41 @@
-import * as page from "codeforlife/components/page"
+import * as pages from "codeforlife/components/page"
 import { type FC } from "react"
 import { type SchoolTeacherUser } from "codeforlife/api"
 import { Typography } from "@mui/material"
 
-import * as forms from "../../../components/form"
-import ManageOtpForm from "./ManageOtpForm.tsx"
-import OtpBypassTokens from "./OtpBypassTokens.tsx"
+import { DeleteAccountForm, UpdateAccountForm } from "../../../components/form"
+import Otp from "./Otp"
+import OtpBypassTokens from "./otpBypassTokens/OtpBypassTokens"
 import { type RetrieveUserResult } from "../../../api/user"
-import SetupOtp from "./SetupOtp.tsx"
+import SetupOtp from "./setupOtp/SetupOtp"
 
 export interface AccountProps {
   authUser: SchoolTeacherUser<RetrieveUserResult>
-  view?: "otp" | "otp-bypass-tokens"
+  view?: "setup-otp" | "otp-bypass-tokens"
 }
 
 const Account: FC<AccountProps> = ({ authUser, view }) => {
   if (view) {
     return {
-      otp: <SetupOtp authUser={authUser} />,
+      "setup-otp": <SetupOtp authUserId={authUser.id} />,
       "otp-bypass-tokens": <OtpBypassTokens authUser={authUser} />,
     }[view]
   }
 
   return (
     <>
-      <page.Section>
+      <pages.Section>
         <Typography align="center" variant="h4">
           Your account
         </Typography>
-        <forms.UpdateAccountForm authUser={authUser} />
-      </page.Section>
-      <page.Section boxProps={{ bgcolor: "info.main" }}>
-        <Typography variant="h5">Two factor authentication</Typography>
-        <Typography>
-          Use your smartphone or tablet to enhance your account&apos;s security
-          by using an authenticator app.
-        </Typography>
-        <ManageOtpForm authUser={authUser} />
-      </page.Section>
-      <page.Section>
-        <forms.DeleteAccountForm authUser={authUser} />
-      </page.Section>
+        <UpdateAccountForm authUser={authUser} />
+      </pages.Section>
+      <pages.Section boxProps={{ bgcolor: "info.main" }}>
+        <Otp authUserId={authUser.id} />
+      </pages.Section>
+      <pages.Section>
+        <DeleteAccountForm authUser={authUser} />
+      </pages.Section>
     </>
   )
 }

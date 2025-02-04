@@ -1,5 +1,5 @@
 import { type FC } from "react"
-import { type RetrieveUserResult } from "../../../api/user"
+import { type RetrieveUserResult } from "../../../../api/user"
 import { type SchoolTeacherUser } from "codeforlife/api"
 
 export interface OtpBypassTokensProps {

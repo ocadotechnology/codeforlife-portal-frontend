@@ -3,8 +3,6 @@ import { Route } from "react-router-dom"
 // import Teacher from "../../pages/teacher/Teacher"
 import TeacherDashboard from "../pages/teacherDashboard/TeacherDashboard"
 import TeacherOnboarding from "../pages/teacherOnboarding/TeacherOnboarding"
-// import AddedExternalStudent from "../../pages/teacherDashboard/classes/AddedExternalStudent"
-// import StudentCredentials from "../../pages/teacherDashboard/classes/editClass/student/editStudent/StudentCredentials"
 import paths from "./paths"
 
 const teacher = (
@@ -48,16 +46,16 @@ const teacher = (
       element={<TeacherDashboard tab="classes" />}
     />
     <Route
+      path={paths.teacher.dashboard.tab.account.otp.setup._}
+      element={<TeacherDashboard tab="account" view="setup-otp" />}
+    />
+    <Route
+      path={paths.teacher.dashboard.tab.account.otp.bypassTokens._}
+      element={<TeacherDashboard tab="account" view="otp-bypass-tokens" />}
+    />
+    <Route
       path={paths.teacher.dashboard.tab.account._}
       element={<TeacherDashboard tab="account" />}
-    />
-    <Route
-      path={paths.teacher.dashboard.tab.account.setupOtp._}
-      element={<TeacherDashboard tab="account" view="otp" />}
-    />
-    <Route
-      path={paths.teacher.dashboard.tab.account.otpBypassTokens._}
-      element={<TeacherDashboard tab="account" view="otp-bypass-tokens" />}
     />
   </>
 )
