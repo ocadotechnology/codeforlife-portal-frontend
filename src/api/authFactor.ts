@@ -49,7 +49,9 @@ const authFactorApi = api.injectEndpoints({
         method: "POST",
         body,
       }),
-      invalidatesTags: tagData(AUTH_FACTOR_TAG, { includeListTag: true }),
+      // NOTE: Intentionally not invalidating tags to show success sub-view.
+      // TODO: assess whether sub-view can be replaced with notification.
+      // invalidatesTags: tagData(AUTH_FACTOR_TAG, { includeListTag: true }),
     }),
     destroyAuthFactor: build.mutation<
       DestroyAuthFactorResult,

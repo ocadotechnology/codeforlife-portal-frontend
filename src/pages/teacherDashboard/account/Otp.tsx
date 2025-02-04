@@ -86,12 +86,15 @@ const Otp: FC<OtpProps> = ({ authUserId }) => (
       using an authenticator app.
     </Typography>
     {handleResultState(
-      useListAuthFactorsQuery({
-        offset: 0,
-        limit: 1,
-        user: authUserId,
-        type: "otp",
-      }),
+      useListAuthFactorsQuery(
+        {
+          offset: 0,
+          limit: 1,
+          user: authUserId,
+          type: "otp",
+        },
+        { refetchOnMountOrArgChange: true },
+      ),
       ({ count, data: authFactors }) =>
         count ? (
           <OtpExists authFactorId={authFactors[0].id} />
