@@ -26,7 +26,6 @@ export interface UpdateAccountFormProps {
 // TODO: Split this form into two or three forms. Needs UX work
 const UpdateAccountForm: FC<UpdateAccountFormProps> = ({ authUser }) => {
   const navigate = useNavigate()
-  const [logout] = useLogoutMutation()
 
   const initialValues = authUser.student
     ? {
@@ -95,7 +94,7 @@ const UpdateAccountForm: FC<UpdateAccountFormProps> = ({ authUser }) => {
             return arg
           },
           // TODO: Update backend to log user out and show a message if credential fields were updated
-          then: (_: UpdateUserResult, values: typeof initialValues) => {
+          then: () => {
             navigate(".", {
               state: {
                 notifications: [
