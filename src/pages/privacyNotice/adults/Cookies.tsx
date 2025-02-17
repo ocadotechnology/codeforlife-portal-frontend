@@ -102,7 +102,6 @@ const Cookies: FC<CookiesProps> = () => (
                 <Link
                   to="https://developers.google.com/analytics/devguides/collection/analyticsjs/cookie-usage"
                   target="_blank"
-                  rel="noreferrer"
                 >
                   Google Analytics
                 </Link>
@@ -148,6 +147,7 @@ const Cookies: FC<CookiesProps> = () => (
       <a
         href="https://support.google.com/analytics/answer/12017362?hl=en"
         target="_blank"
+        rel="noreferrer"
       >
         here
       </a>
