@@ -101,7 +101,8 @@ const Cookies: FC<CookiesProps> = () => (
                 We use third-party web analytics software on our portal (
                 <Link
                   to="https://developers.google.com/analytics/devguides/collection/analyticsjs/cookie-usage"
-                  target="_blank" rel="noreferrer"
+                  target="_blank"
+                  rel="noreferrer"
                 >
                   Google Analytics
                 </Link>
