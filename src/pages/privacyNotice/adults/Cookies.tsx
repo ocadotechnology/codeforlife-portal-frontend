@@ -138,13 +138,21 @@ const Cookies: FC<CookiesProps> = () => (
       other services relating to website activity and internet usage. Google may
       also transfer this information to third parties where required to do so by
       law, or where such third parties process the information on Google&apos;s
-      behalf. <strong>Please note: since the release of Google Analytics 4,
-      Google Analytics does not log or store IP addresses.</strong> You can read
-      more about user data collection by Google Analytics 4
-      <a href="https://support.google.com/analytics/answer/12017362?hl=en"
-         target="_blank">here</a>. By accepting analytics / performance cookies
-      on our portal, you consent to the processing of data about you by Google
-      in the manner and for the purposes set out above.
+      behalf.{" "}
+      <strong>
+        Please note: since the release of Google Analytics 4, Google Analytics
+        does not log or store IP addresses.
+      </strong>{" "}
+      You can read more about user data collection by Google Analytics 4
+      <a
+        href="https://support.google.com/analytics/answer/12017362?hl=en"
+        target="_blank"
+      >
+        here
+      </a>
+      . By accepting analytics / performance cookies on our portal, you consent
+      to the processing of data about you by Google in the manner and for the
+      purposes set out above.
     </Typography>
     <Typography>
       <strong>Mouseflow.</strong> We also use Mouseflow on our portal; this
