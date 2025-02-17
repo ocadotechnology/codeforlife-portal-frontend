@@ -30,9 +30,7 @@ const PersonalInfo: FC<PersonalInfoProps> = () => (
         logged in,
       </ListItemText>
       <ListItemText>
-        The IP address (this is a unique number which identifies the device
-        you’ve used to log on to the Code for Life site) and other information
-        about that device,
+        Information about the device you use to visit the Code for Life site,
       </ListItemText>
       <ListItemText>
         Information about how you use the site, such as which pages you’ve

@@ -139,12 +139,13 @@ const Cookies: FC<CookiesProps> = () => (
     <Typography>
       <strong>Google Analytics.</strong> We use Google Analytics (which is run
       by Google) to help us understand how you use our site. The information it
-      collects about your use of the website (including your IP address) will be
-      stored by Google in the United States. Google may pass this information to
-      other organisations who help them to interpret this information. They may
-      also pass the information to other organisations if the law says they have
-      to do so. If you choose to allow analytics / performance cookies on our
-      site, you are consenting to Google using your data for the reasons above.
+      collects about your use of the website will be stored by Google in the
+      United States. Google Analytics does not collect IP addresses. Google may
+      pass this information to other organisations who help them to interpret
+      this information. They may also pass the information to other
+      organisations if the law says they have to do so. If you choose to allow
+      analytics / performance cookies on our site, you are consenting to Google
+      using your data for the reasons above.
     </Typography>
     <Typography>
       <strong>Mouseflow.</strong> We also use Mouseflow to help us understand
