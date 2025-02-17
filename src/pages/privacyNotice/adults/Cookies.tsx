@@ -144,13 +144,12 @@ const Cookies: FC<CookiesProps> = () => (
         does not log or store IP addresses.
       </strong>{" "}
       You can read more about user data collection by Google Analytics 4
-      <a
-        href="https://support.google.com/analytics/answer/12017362?hl=en"
+      <Link
+        to="https://support.google.com/analytics/answer/12017362?hl=en"
         target="_blank"
-        rel="noreferrer"
       >
         here
-      </a>
+      </Link>
       . By accepting analytics / performance cookies on our portal, you consent
       to the processing of data about you by Google in the manner and for the
       purposes set out above.
