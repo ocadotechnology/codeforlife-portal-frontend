@@ -1,9 +1,9 @@
 import * as forms from "codeforlife/components/form"
+import { useInputRef, useNavigate } from "codeforlife/hooks"
 import { type FC } from "react"
 import { LinkButton } from "codeforlife/components/router"
 import { Stack } from "@mui/material"
 import { type User } from "codeforlife/api"
-import { useNavigate } from "codeforlife/hooks"
 
 import { classIdSchema } from "../../app/schemas.ts"
 import { paths } from "../../routes"
@@ -17,10 +17,17 @@ const RequestToJoinClassForm: FC<RequestToJoinClassFormProps> = ({
   indyUser,
 }) => {
   const navigate = useNavigate()
+  const requestingToJoinClassFieldRef = useInputRef()
 
   return (
     <forms.Form
       initialValues={indyUser}
+      order={[
+        {
+          name: "requesting_to_join_class",
+          inputRef: requestingToJoinClassFieldRef,
+        },
+      ]}
       useMutation={useUpdateUserMutation}
       submitOptions={{
         then: () => {
@@ -44,6 +51,7 @@ const RequestToJoinClassForm: FC<RequestToJoinClassFormProps> = ({
         placeholder="Class access code"
         label="Class access code"
         name="requesting_to_join_class"
+        inputRef={requestingToJoinClassFieldRef}
         sx={{ width: { xs: "100%", sm: "50%" } }}
         schema={classIdSchema}
         required

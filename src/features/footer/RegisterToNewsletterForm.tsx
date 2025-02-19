@@ -1,6 +1,7 @@
 import * as forms from "codeforlife/components/form"
 import { FormHelperText, Stack, useMediaQuery, useTheme } from "@mui/material"
 import { type FC } from "react"
+import { useInputRef } from "codeforlife/hooks"
 import { useNavigate } from "react-router-dom"
 
 import { useRegisterToNewsletterMutation } from "../../api/user"
@@ -11,6 +12,8 @@ const RegisterToNewsletterForm: FC<RegisterToNewsletterFormProps> = () => {
   const theme = useTheme()
   const onlyXS = useMediaQuery(theme.breakpoints.only("xs"))
   const navigate = useNavigate()
+  const emailFieldRef = useInputRef()
+  const over18FieldRef = useInputRef()
 
   return (
     <Stack id="register-to-newsletter-form">
@@ -23,6 +26,10 @@ const RegisterToNewsletterForm: FC<RegisterToNewsletterFormProps> = () => {
           email: "",
           over18: false,
         }}
+        order={[
+          { name: "email", inputRef: emailFieldRef },
+          { name: "over18", inputRef: over18FieldRef },
+        ]}
         useMutation={useRegisterToNewsletterMutation}
         submitOptions={{
           exclude: ["over18"],
@@ -60,6 +67,7 @@ const RegisterToNewsletterForm: FC<RegisterToNewsletterFormProps> = () => {
             id="newsletter-email" // Avoid duplicate IDs on pages which have forms with an email field
             FormHelperTextProps={{ style: { color: "white" } }}
             required
+            inputRef={emailFieldRef}
           />
           <Stack
             spacing="auto"
@@ -70,6 +78,7 @@ const RegisterToNewsletterForm: FC<RegisterToNewsletterFormProps> = () => {
             <forms.CheckboxField
               required
               name="over18"
+              inputRef={over18FieldRef}
               formControlLabelProps={{
                 label: "Please confirm that you are over 18.",
               }}

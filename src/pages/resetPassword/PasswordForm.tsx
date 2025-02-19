@@ -4,6 +4,7 @@ import { CheckCircleOutline as CheckCircleOutlineIcon } from "@mui/icons-materia
 import { type FC } from "react"
 import { LinkButton } from "codeforlife/components/router"
 import { submitForm } from "codeforlife/utils/form"
+import { useInputRef } from "codeforlife/hooks"
 
 import { NewPasswordField } from "../../components/form"
 import { paths } from "../../routes"
@@ -17,6 +18,15 @@ export interface PasswordFormProps {
 
 const PasswordForm: FC<PasswordFormProps> = ({ userType, userId, token }) => {
   const [resetPassword, { isSuccess }] = useResetPasswordMutation()
+  const passwordFieldRef = useInputRef()
+  const passwordRepeatFieldRef = useInputRef()
+
+  const initialValues = {
+    id: userId,
+    token,
+    password: "",
+    password_repeat: "",
+  }
 
   return isSuccess ? (
     <Stack gap={1} alignItems="center">
@@ -44,17 +54,20 @@ const PasswordForm: FC<PasswordFormProps> = ({ userType, userId, token }) => {
         your account’s password.
       </Typography>
       <form.Form
-        initialValues={{
-          id: userId,
-          token,
-          password: "",
-          password_repeat: "",
-        }}
-        onSubmit={submitForm(resetPassword, {
+        initialValues={initialValues}
+        order={[
+          { name: "password", inputRef: passwordFieldRef },
+          { name: "password_repeat", inputRef: passwordRepeatFieldRef },
+        ]}
+        onSubmit={submitForm(resetPassword, initialValues, {
           exclude: ["password_repeat"],
         })}
       >
-        <NewPasswordField userType={userType} />
+        <NewPasswordField
+          userType={userType}
+          inputRef={passwordFieldRef}
+          repeatFieldProps={{ inputRef: passwordRepeatFieldRef }}
+        />
         <Stack mt={3} direction="row" gap={5} justifyContent="center">
           <LinkButton variant="outlined" to={paths._}>
             Cancel

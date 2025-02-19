@@ -1,8 +1,8 @@
 import * as forms from "codeforlife/components/form"
+import { useInputRef, useNavigate } from "codeforlife/hooks"
 import { type FC } from "react"
 import { Typography } from "@mui/material"
 import { type User } from "codeforlife/api"
-import { useNavigate } from "codeforlife/hooks"
 
 import { useUpdateUserMutation } from "../../../../api/user"
 
@@ -16,6 +16,7 @@ const UpdateNameForm: FC<UpdateNameFormProps> = ({
   studentUser,
 }) => {
   const navigate = useNavigate()
+  const firstNameFieldRef = useInputRef()
 
   return (
     <>
@@ -26,6 +27,7 @@ const UpdateNameForm: FC<UpdateNameFormProps> = ({
       </Typography>
       <forms.Form
         initialValues={studentUser}
+        order={[{ name: "first_name", inputRef: firstNameFieldRef }]}
         useMutation={useUpdateUserMutation}
         submitOptions={{
           then: () => {
@@ -49,6 +51,7 @@ const UpdateNameForm: FC<UpdateNameFormProps> = ({
           dirty
           label="First name of student"
           placeholder="Enter first name of student"
+          inputRef={firstNameFieldRef}
         />
         <forms.SubmitButton>Update</forms.SubmitButton>
       </forms.Form>

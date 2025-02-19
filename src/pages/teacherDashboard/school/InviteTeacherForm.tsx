@@ -1,9 +1,9 @@
 import * as form from "codeforlife/components/form"
 import { Button, Dialog, Stack, Typography } from "@mui/material"
 import { type FC, useState } from "react"
+import { useInputRef, useNavigate } from "codeforlife/hooks"
 import { Add as AddIcon } from "@mui/icons-material"
 import { submitForm } from "codeforlife/utils/form"
-import { useNavigate } from "codeforlife/hooks"
 
 import { LastNameField } from "../../../components/form"
 import { useCreateSchoolTeacherInvitationMutation } from "../../../api/schoolTeacherInvitation"
@@ -43,11 +43,22 @@ const InviteTeacherForm: FC<InviteTeacherFormProps> = () => {
   const navigate = useNavigate()
   const [createSchoolTeacherInvitation] =
     useCreateSchoolTeacherInvitationMutation()
+  const emailFieldRef = useInputRef()
+  const firstNameFieldRef = useInputRef()
+  const lastNameFieldRef = useInputRef()
+  const isAdminFieldRef = useInputRef()
 
   const [dialog, setDialog] = useState<{
     open: boolean
     onConfirm?: () => void
   }>({ open: false })
+
+  const initialValues = {
+    invited_teacher_email: "",
+    invited_teacher_first_name: "",
+    invited_teacher_last_name: "",
+    invited_teacher_is_admin: false,
+  }
 
   return (
     <>
@@ -55,12 +66,13 @@ const InviteTeacherForm: FC<InviteTeacherFormProps> = () => {
         Invite a teacher to your school
       </Typography>
       <form.Form
-        initialValues={{
-          invited_teacher_email: "",
-          invited_teacher_first_name: "",
-          invited_teacher_last_name: "",
-          invited_teacher_is_admin: false,
-        }}
+        initialValues={initialValues}
+        order={[
+          { name: "invited_teacher_first_name", inputRef: firstNameFieldRef },
+          { name: "invited_teacher_last_name", inputRef: lastNameFieldRef },
+          { name: "invited_teacher_email", inputRef: emailFieldRef },
+          { name: "invited_teacher_is_admin", inputRef: isAdminFieldRef },
+        ]}
         onSubmit={(values, helpers) => {
           function _submitForm() {
             function showNotification(error: boolean) {
@@ -80,7 +92,7 @@ const InviteTeacherForm: FC<InviteTeacherFormProps> = () => {
               })
             }
 
-            void submitForm(createSchoolTeacherInvitation, {
+            void submitForm(createSchoolTeacherInvitation, initialValues, {
               then: () => {
                 showNotification(false)
               },
@@ -109,22 +121,26 @@ const InviteTeacherForm: FC<InviteTeacherFormProps> = () => {
               label="First name of teacher"
               placeholder="Enter first name of teacher"
               name="invited_teacher_first_name"
+              inputRef={firstNameFieldRef}
             />
             <LastNameField
               required
               label="Last name of teacher"
               placeholder="Enter last name of teacher"
               name="invited_teacher_last_name"
+              inputRef={lastNameFieldRef}
             />
             <form.EmailField
               required
               label="Email address of teacher"
               placeholder="Enter email address of teacher"
               name="invited_teacher_email"
+              inputRef={emailFieldRef}
             />
           </Stack>
           <form.CheckboxField
             name="invited_teacher_is_admin"
+            inputRef={isAdminFieldRef}
             formControlLabelProps={{
               label: "Make an administrator of the school",
             }}

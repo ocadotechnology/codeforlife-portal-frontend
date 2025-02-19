@@ -1,9 +1,9 @@
 import * as forms from "codeforlife/components/form"
 import { type Class, type StudentUser } from "codeforlife/api"
+import { useInputRef, useNavigate } from "codeforlife/hooks"
 import { type FC } from "react"
 import { Typography } from "@mui/material"
 import { generatePath } from "react-router-dom"
-import { useNavigate } from "codeforlife/hooks"
 
 import { NewPasswordField } from "../../../../components/form"
 import { type RetrieveUserResult } from "../../../../api/user"
@@ -18,6 +18,8 @@ export interface UpdatePasswordFormProps {
 
 const UpdatePasswordForm: FC<UpdatePasswordFormProps> = ({ classId, user }) => {
   const navigate = useNavigate()
+  const passwordFieldRef = useInputRef()
+  const passwordRepeatFieldRef = useInputRef()
 
   return (
     <>
@@ -34,6 +36,16 @@ const UpdatePasswordForm: FC<UpdatePasswordFormProps> = ({ classId, user }) => {
             user: { password: "", password_repeat: "" },
           },
         }}
+        order={[
+          {
+            name: `${user.student.id}.user.password`,
+            inputRef: passwordFieldRef,
+          },
+          {
+            name: `${user.student.id}.user.password_repeat`,
+            inputRef: passwordRepeatFieldRef,
+          },
+        ]}
         useMutation={useResetStudentsPasswordMutation}
         submitOptions={{
           exclude: [`${user.student.id}.user.password_repeat`],
@@ -64,10 +76,12 @@ const UpdatePasswordForm: FC<UpdatePasswordFormProps> = ({ classId, user }) => {
       >
         <NewPasswordField
           name={`${user.student.id}.user.password`}
+          inputRef={passwordFieldRef}
           userType="student"
           label="Password of student"
           placeholder="Enter password of student"
           repeatFieldProps={{
+            inputRef: passwordRepeatFieldRef,
             label: "Repeat password of student",
             placeholder: "Enter password of student again",
           }}

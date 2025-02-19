@@ -1,9 +1,9 @@
 import * as form from "codeforlife/components/form"
+import { useInputRef, useNavigate } from "codeforlife/hooks"
 import { ChevronRight as ChevronRightIcon } from "@mui/icons-material"
 import { type FC } from "react"
 import { Link } from "codeforlife/components/router"
 import { Stack } from "@mui/material"
-import { useNavigate } from "codeforlife/hooks"
 
 import { LastNameField, NewPasswordField } from "../../components/form"
 import BaseForm from "./BaseForm"
@@ -14,6 +14,13 @@ export interface TeacherFormProps {}
 
 const TeacherForm: FC<TeacherFormProps> = () => {
   const navigate = useNavigate()
+  const firstNameFieldRef = useInputRef()
+  const lastNameFieldRef = useInputRef()
+  const passwordFieldRef = useInputRef()
+  const passwordRepeatFieldRef = useInputRef()
+  const emailFieldRef = useInputRef()
+  const addToNewsletterFieldRef = useInputRef()
+  const meetsCriteriaFieldRef = useInputRef()
 
   return (
     <BaseForm
@@ -34,6 +41,15 @@ const TeacherForm: FC<TeacherFormProps> = () => {
             meets_criteria: false,
           },
         }}
+        order={[
+          { name: "user.first_name", inputRef: firstNameFieldRef },
+          { name: "user.last_name", inputRef: lastNameFieldRef },
+          { name: "user.email", inputRef: emailFieldRef },
+          { name: "user.meets_criteria", inputRef: meetsCriteriaFieldRef },
+          { name: "user.add_to_newsletter", inputRef: addToNewsletterFieldRef },
+          { name: "user.password", inputRef: passwordFieldRef },
+          { name: "user.password_repeat", inputRef: passwordRepeatFieldRef },
+        ]}
         useMutation={useCreateTeacherMutation}
         submitOptions={{
           exclude: ["user.password_repeat", "user.meets_criteria"],
@@ -42,12 +58,17 @@ const TeacherForm: FC<TeacherFormProps> = () => {
           },
         }}
       >
-        <form.FirstNameField name="user.first_name" required />
-        <LastNameField name="user.last_name" />
-        <form.EmailField name="user.email" required />
+        <form.FirstNameField
+          name="user.first_name"
+          required
+          inputRef={firstNameFieldRef}
+        />
+        <LastNameField name="user.last_name" inputRef={lastNameFieldRef} />
+        <form.EmailField name="user.email" required inputRef={emailFieldRef} />
         <form.CheckboxField
           required
           name="user.meets_criteria"
+          inputRef={meetsCriteriaFieldRef}
           formControlLabelProps={{
             label: (
               <>
@@ -69,6 +90,7 @@ const TeacherForm: FC<TeacherFormProps> = () => {
         />
         <form.CheckboxField
           name="user.add_to_newsletter"
+          inputRef={addToNewsletterFieldRef}
           formControlLabelProps={{
             label:
               "Sign up to receive updates about Code for Life games and teaching resources.",
@@ -76,8 +98,10 @@ const TeacherForm: FC<TeacherFormProps> = () => {
         />
         <NewPasswordField
           name="user.password"
+          inputRef={passwordFieldRef}
           userType="teacher"
           repeatFieldProps={{
+            inputRef: passwordRepeatFieldRef,
             label: "Repeat password",
             placeholder: "Enter your password again",
           }}
