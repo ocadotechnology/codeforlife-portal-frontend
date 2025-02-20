@@ -14,6 +14,7 @@ import { Link } from "codeforlife/components/router"
 import {
   LINK_IMPACT_REPORT_2023,
   LINK_IMPACT_REPORT_2024,
+  LINK_OPPORTUNITIES_WITH_CFL,
 } from "../../app/settings"
 import { paths } from "../../routes"
 
@@ -78,6 +79,9 @@ const Links: FC<LinksProps> = () => {
           <FooterLink to={paths.homeLearning._}>Home learning</FooterLink>
           <FooterLink to={paths.getInvolved._}>Get involved</FooterLink>
           <FooterLink to={paths.codingClubs._}>Coding clubs</FooterLink>
+          <FooterLink to={LINK_OPPORTUNITIES_WITH_CFL} newTab={true}>
+            Impact Report 2024
+          </FooterLink>
         </Stack>
       </Grid>
     </Grid>
