@@ -80,7 +80,7 @@ const Links: FC<LinksProps> = () => {
           <FooterLink to={paths.getInvolved._}>Get involved</FooterLink>
           <FooterLink to={paths.codingClubs._}>Coding clubs</FooterLink>
           <FooterLink to={LINK_OPPORTUNITIES_WITH_CFL} newTab={true}>
-            Impact Report 2024
+            Opportunities with CFL
           </FooterLink>
         </Stack>
       </Grid>
