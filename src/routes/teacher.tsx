@@ -2,15 +2,13 @@ import { Route } from "react-router-dom"
 
 // import Teacher from "../../pages/teacher/Teacher"
 import TeacherDashboard from "../pages/teacherDashboard/TeacherDashboard"
-// import AddedExternalStudent from "../../pages/teacherDashboard/classes/AddedExternalStudent"
-// import StudentCredentials from "../../pages/teacherDashboard/classes/editClass/student/editStudent/StudentCredentials"
-// import TeacherOnboarding from "../../pages/teacherOnboarding/TeacherOnboarding"
+import TeacherOnboarding from "../pages/teacherOnboarding/TeacherOnboarding"
 import paths from "./paths"
 
 const teacher = (
   <>
     {/* <Route path={paths.teacher._} element={<Teacher />} /> */}
-    {/* <Route path={paths.teacher.onboarding._} element={<TeacherOnboarding />} /> */}
+    <Route path={paths.teacher.onboarding._} element={<TeacherOnboarding />} />
     <Route
       path={paths.teacher.dashboard.tab.school.leave._}
       element={<TeacherDashboard tab="school" view="leave" />}
@@ -46,6 +44,14 @@ const teacher = (
     <Route
       path={paths.teacher.dashboard.tab.classes._}
       element={<TeacherDashboard tab="classes" />}
+    />
+    <Route
+      path={paths.teacher.dashboard.tab.account.otp.setup._}
+      element={<TeacherDashboard tab="account" view="setup-otp" />}
+    />
+    <Route
+      path={paths.teacher.dashboard.tab.account.otp.bypassTokens._}
+      element={<TeacherDashboard tab="account" view="otp-bypass-tokens" />}
     />
     <Route
       path={paths.teacher.dashboard.tab.account._}

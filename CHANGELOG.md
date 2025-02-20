@@ -1,3 +1,31 @@
+## [1.2.1](https://github.com/ocadotechnology/codeforlife-portal-frontend/compare/v1.2.0...v1.2.1) (2025-02-04)
+
+
+### Bug Fixes
+
+* Portal frontend 70 ([#92](https://github.com/ocadotechnology/codeforlife-portal-frontend/issues/92)) ([f7cb13c](https://github.com/ocadotechnology/codeforlife-portal-frontend/commit/f7cb13c2e4def1507e33325cac158e4cffe89843))
+
+# [1.2.0](https://github.com/ocadotechnology/codeforlife-portal-frontend/compare/v1.1.1...v1.2.0) (2025-02-04)
+
+
+### Features
+
+* Teacher account tab ([#82](https://github.com/ocadotechnology/codeforlife-portal-frontend/issues/82)) ([0eae0be](https://github.com/ocadotechnology/codeforlife-portal-frontend/commit/0eae0be39ef2d5dd5ae2fe2858eaf954484e25d2))
+
+## [1.1.1](https://github.com/ocadotechnology/codeforlife-portal-frontend/compare/v1.1.0...v1.1.1) (2025-01-20)
+
+
+### Bug Fixes
+
+* add generate otp provisioning uri endpoint ([#91](https://github.com/ocadotechnology/codeforlife-portal-frontend/issues/91)) ([c42b7b3](https://github.com/ocadotechnology/codeforlife-portal-frontend/commit/c42b7b3a154c2be42f0ec773e885cb3b0b2ea414))
+
+# [1.1.0](https://github.com/ocadotechnology/codeforlife-portal-frontend/compare/v1.0.4...v1.1.0) (2025-01-17)
+
+
+### Features
+
+* teacher onboarding ([#83](https://github.com/ocadotechnology/codeforlife-portal-frontend/issues/83)) ([275e94b](https://github.com/ocadotechnology/codeforlife-portal-frontend/commit/275e94bf9746b4ceafcfbcab283427c844099e62))
+
 ## [1.0.4](https://github.com/ocadotechnology/codeforlife-portal-frontend/compare/v1.0.3...v1.0.4) (2025-01-06)
 
 

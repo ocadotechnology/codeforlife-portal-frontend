@@ -4,22 +4,32 @@ import { type FC, type MutableRefObject, useEffect, useRef } from "react"
 import { Stack, Typography } from "@mui/material"
 import { type Class } from "codeforlife/api"
 import { InputFileButton } from "codeforlife/components"
+import { type SubmitFormOptions } from "codeforlife/utils/form"
 import { firstNameSchema } from "codeforlife/schemas/user"
-import { generatePath } from "react-router-dom"
 import { useNavigate } from "codeforlife/hooks"
 
 import {
   type CreateStudentsArg,
+  type CreateStudentsResult,
   useCreateStudentsMutation,
-} from "../../../../api/student"
-import { type StudentsCredentialsState } from "../studentsCredentials/StudentsCredentials"
-import { paths } from "../../../../routes"
+} from "../../api/student"
 
 export interface CreateStudentsFormProps {
   classId: Class["id"]
+  submitOptions: Omit<
+    SubmitFormOptions<
+      { first_names: string[] },
+      CreateStudentsArg,
+      CreateStudentsResult
+    >,
+    "clean" | "catch"
+  >
 }
 
-const CreateStudentsForm: FC<CreateStudentsFormProps> = ({ classId }) => {
+const CreateStudentsForm: FC<CreateStudentsFormProps> = ({
+  classId,
+  submitOptions,
+}) => {
   const fileInput = useRef<HTMLInputElement>()
   const navigate = useNavigate()
 
@@ -56,6 +66,7 @@ const CreateStudentsForm: FC<CreateStudentsFormProps> = ({ classId }) => {
         initialValues={{ first_names: [] as string[] }}
         useMutation={useCreateStudentsMutation}
         submitOptions={{
+          ...submitOptions,
           clean: ({ first_names }) =>
             first_names.reduce((arg, first_name) => {
               first_name = first_name.trim()
@@ -63,16 +74,6 @@ const CreateStudentsForm: FC<CreateStudentsFormProps> = ({ classId }) => {
                 ? [...arg, { klass: classId, user: { first_name } }]
                 : arg
             }, [] as CreateStudentsArg),
-          then: students => {
-            navigate<StudentsCredentialsState>(
-              generatePath(
-                paths.teacher.dashboard.tab.classes.class.students.credentials
-                  ._,
-                { classId },
-              ),
-              { state: { flow: "create", students } },
-            )
-          },
           catch: () => {
             navigate(".", {
               state: {
@@ -106,6 +107,7 @@ const CreateStudentsForm: FC<CreateStudentsFormProps> = ({ classId }) => {
                 name="first_names"
                 required
                 split={split}
+                uniqueCaseInsensitive
                 multiline
                 rows={5}
                 className="resize-vertical"

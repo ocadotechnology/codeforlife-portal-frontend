@@ -1,15 +1,16 @@
 import * as page from "codeforlife/components/page"
-import { type FC, useEffect } from "react"
-import { type SessionMetadata, useNavigate } from "codeforlife/hooks"
+import { type FC } from "react"
+import { Navigate } from "codeforlife/components/router"
 import { type SchoolTeacherUser } from "codeforlife/api"
+import { type SessionMetadata } from "codeforlife/hooks"
 import { getParam } from "codeforlife/utils/router"
 import { handleResultState } from "codeforlife/utils/api"
 
 import Account, { type AccountProps } from "./account/Account"
 import Classes, { type ClassesProps } from "./classes/Classes"
-import { type RetrieveUserResult, useRetrieveUserQuery } from "../../api/user"
 import School, { type SchoolProps } from "./school/School"
 import { paths } from "../../routes"
+import { useRetrieveUserQuery } from "../../api/user"
 
 export type TeacherDashboardProps =
   | {
@@ -29,64 +30,61 @@ const Tabs: FC<TeacherDashboardProps & SessionMetadata> = ({
   tab,
   view,
   user_id,
-}) => {
-  const result = useRetrieveUserQuery(user_id)
-  const navigate = useNavigate()
+}) =>
+  handleResultState(
+    useRetrieveUserQuery(user_id, { refetchOnMountOrArgChange: true }),
+    authUser => {
+      if (!authUser.teacher!.school) {
+        return <Navigate to={paths.teacher.onboarding._} />
+      }
 
-  const authUser = result.data
-  const isNonSchoolTeacher = authUser && !authUser.teacher?.school
+      const authSchoolTeacherUser = authUser as SchoolTeacherUser<
+        typeof authUser
+      >
 
-  useEffect(() => {
-    if (isNonSchoolTeacher) navigate(paths.teacher.onboarding._)
-  }, [isNonSchoolTeacher, navigate])
+      const tabs: page.TabBarProps["tabs"] = [
+        {
+          label: "Your school",
+          children: (
+            <School
+              authUser={authSchoolTeacherUser}
+              view={view as SchoolProps["view"]}
+            />
+          ),
+          path: getParam(paths.teacher.dashboard.tab.school, "tab"),
+        },
+        {
+          label: "Your classes",
+          children: (
+            <Classes
+              authUser={authSchoolTeacherUser}
+              view={view as ClassesProps["view"]}
+            />
+          ),
+          path: getParam(paths.teacher.dashboard.tab.classes, "tab"),
+        },
+        {
+          label: "Your account",
+          children: (
+            <Account
+              authUser={authSchoolTeacherUser}
+              view={view as AccountProps["view"]}
+            />
+          ),
+          path: getParam(paths.teacher.dashboard.tab.account, "tab"),
+        },
+      ]
 
-  if (isNonSchoolTeacher) return <></>
-
-  const authSchoolTeacherUser =
-    authUser as SchoolTeacherUser<RetrieveUserResult>
-
-  const tabs: page.TabBarProps["tabs"] = [
-    {
-      label: "Your school",
-      children: (
-        <School
-          authUser={authSchoolTeacherUser}
-          view={view as SchoolProps["view"]}
+      return (
+        <page.TabBar
+          header={`Welcome back, ${authUser.first_name} ${authUser.last_name}`}
+          originalPath={paths.teacher.dashboard.tab._}
+          value={tabs.findIndex(t => t.path === tab)}
+          tabs={tabs}
         />
-      ),
-      path: getParam(paths.teacher.dashboard.tab.school, "tab"),
+      )
     },
-    {
-      label: "Your classes",
-      children: (
-        <Classes
-          authUser={authSchoolTeacherUser}
-          view={view as ClassesProps["view"]}
-        />
-      ),
-      path: getParam(paths.teacher.dashboard.tab.classes, "tab"),
-    },
-    {
-      label: "Your account",
-      children: (
-        <Account
-          authUser={authSchoolTeacherUser}
-          view={view as AccountProps["view"]}
-        />
-      ),
-      path: getParam(paths.teacher.dashboard.tab.account, "tab"),
-    },
-  ]
-
-  return handleResultState(result, authUser => (
-    <page.TabBar
-      header={`Welcome back, ${authUser.first_name} ${authUser.last_name}`}
-      originalPath={paths.teacher.dashboard.tab._}
-      value={tabs.findIndex(t => t.path === tab)}
-      tabs={tabs}
-    />
-  ))
-}
+  )
 
 const TeacherDashboard: FC<TeacherDashboardProps> = props => (
   <page.Page session={{ userType: "teacher" }}>
