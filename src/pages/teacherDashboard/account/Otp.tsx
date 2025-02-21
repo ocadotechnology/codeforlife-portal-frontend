@@ -11,6 +11,7 @@ import {
   useListAuthFactorsQuery,
 } from "../../../api/authFactor"
 import { paths } from "../../../routes"
+import { useListOtpBypassTokensQuery } from "../../../api/otpBypassToken"
 
 const OtpExists: FC<{ authFactorId: AuthFactor["id"] }> = ({
   authFactorId,
@@ -21,14 +22,33 @@ const OtpExists: FC<{ authFactorId: AuthFactor["id"] }> = ({
   return (
     <Grid container>
       <Grid sm={6} mt={4}>
+        {/* TODO: rename number of "backup tokens" to "bypass tokens". */}
         <Typography variant="h6">Backup tokens</Typography>
-        {/*TODO: Update text to show the actual number of backup tokens*/}
         <Typography>
           If you don&apos;t have your smartphone or tablet with you, you can
-          access your account using backup tokens. You have 0 backup tokens
-          remaining.
+          access your account using backup tokens.
         </Typography>
         <Typography>View and create backup tokens for your account.</Typography>
+        {handleResultState(
+          useListOtpBypassTokensQuery({ offset: 0, limit: 0 }),
+          ({ count }) => (
+            <Typography variant="body2">
+              You have {count} backup tokens remaining.
+            </Typography>
+          ),
+          {
+            loading: (
+              <Typography variant="body2">
+                Counting remaining backup tokens...
+              </Typography>
+            ),
+            error: (
+              <Typography variant="body2" color="error.main">
+                Failed to count remaining backup tokens.
+              </Typography>
+            ),
+          },
+        )}
         <LinkButton
           className="body"
           to={paths.teacher.dashboard.tab.account.otp.bypassTokens._}

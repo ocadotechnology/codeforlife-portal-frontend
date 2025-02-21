@@ -32,7 +32,10 @@ const OtpExists: FC<OtpExistsProps> = () => {
         will be valid.
       </Typography>
       {handleResultState(
-        useListOtpBypassTokensQuery({ offset: 0, limit: 10 }),
+        useListOtpBypassTokensQuery(
+          { offset: 0, limit: 10 },
+          { refetchOnMountOrArgChange: true },
+        ),
         ({ data: otpBypassTokens }) => {
           const decryptedTokens = otpBypassTokens.map(
             ({ decrypted_token }) => decrypted_token,
