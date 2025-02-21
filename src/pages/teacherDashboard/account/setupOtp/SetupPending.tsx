@@ -73,7 +73,7 @@ const _SetupPending: FC<
         submitOptions={{ then: onSetup }}
       >
         <Stack>
-          <forms.OtpField sx={{ width: "200px" }} />
+          <forms.OtpField sx={{ width: "200px" }} autoFocus />
           <forms.SubmitButton sx={{ marginLeft: "auto" }}>
             Next
           </forms.SubmitButton>
