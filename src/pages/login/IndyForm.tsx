@@ -1,8 +1,8 @@
 import * as form from "codeforlife/components/form"
 import { Stack, Typography } from "@mui/material"
+import { useInputRef, useNavigate } from "codeforlife/hooks"
 import type { FC } from "react"
 import { Link } from "codeforlife/components/router"
-import { useNavigate } from "codeforlife/hooks"
 
 import BaseForm from "./BaseForm"
 import { paths } from "../../routes"
@@ -12,6 +12,8 @@ export interface IndyFormProps {}
 
 const IndyForm: FC<IndyFormProps> = () => {
   const navigate = useNavigate()
+  const emailFieldRef = useInputRef()
+  const passwordFieldRef = useInputRef()
 
   return (
     <BaseForm
@@ -25,9 +27,13 @@ const IndyForm: FC<IndyFormProps> = () => {
           navigate(paths.indy.dashboard._)
         },
       }}
+      order={[
+        { name: "email", inputRef: emailFieldRef },
+        { name: "password", inputRef: passwordFieldRef },
+      ]}
     >
-      <form.EmailField required />
-      <form.PasswordField required />
+      <form.EmailField required inputRef={emailFieldRef} />
+      <form.PasswordField required inputRef={passwordFieldRef} />
       <Stack>
         <Typography variant="body2" fontWeight="bold" mb={0}>
           Forgotten your password?

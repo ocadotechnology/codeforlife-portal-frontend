@@ -2,7 +2,7 @@ import * as form from "codeforlife/components/form"
 import * as yup from "yup"
 import { type FC, useEffect } from "react"
 import { Stack, Typography } from "@mui/material"
-import { useNavigate, useSearchParams } from "codeforlife/hooks"
+import { useInputRef, useNavigate, useSearchParams } from "codeforlife/hooks"
 import { ChevronRight as ChevronRightIcon } from "@mui/icons-material"
 import { generatePath } from "react-router-dom"
 
@@ -20,6 +20,7 @@ const Class: FC<ClassProps> = () => {
     id: yup.number().required(),
     agp: yup.string().required(),
   })
+  const classIdFieldRef = useInputRef()
 
   useEffect(() => {
     if (searchParams) {
@@ -62,12 +63,14 @@ const Class: FC<ClassProps> = () => {
           onSubmit={({ classId }) => {
             navigate(generatePath(paths.login.student.class._, { classId }))
           }}
+          order={[{ name: "classId", inputRef: classIdFieldRef }]}
         >
           <form.TextField
             name="classId"
             label="Class code"
             placeholder="Enter your class code"
             schema={classIdSchema}
+            inputRef={classIdFieldRef}
             required
           />
           <Typography variant="body2" fontWeight="bold">
