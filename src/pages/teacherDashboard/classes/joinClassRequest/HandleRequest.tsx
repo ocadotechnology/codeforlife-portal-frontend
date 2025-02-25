@@ -87,7 +87,9 @@ const HandleRequest: FC<HandleRequestProps> = ({
                   first_name: user.first_name,
                   accept: true,
                 }}
-                fieldRefs={[{ name: "first_name", inputRef: firstNameFieldRef }]}
+                fieldRefs={[
+                  { name: "first_name", inputRef: firstNameFieldRef },
+                ]}
                 useMutation={useHandleJoinClassRequestMutation}
                 submitOptions={{ then: onAcceptRequest }}
               >
