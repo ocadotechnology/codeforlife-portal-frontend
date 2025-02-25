@@ -1,7 +1,7 @@
 import * as form from "codeforlife/components/form"
 import * as yup from "yup"
 import { Stack, Typography, useTheme } from "@mui/material"
-import { useNavigate, useSession } from "codeforlife/hooks"
+import { useInputRef, useNavigate, useSession } from "codeforlife/hooks"
 import type { FC } from "react"
 import { LinkButton } from "codeforlife/components/router"
 
@@ -14,6 +14,7 @@ export interface OtpBypassTokenProps {}
 const OtpBypassToken: FC<OtpBypassTokenProps> = () => {
   const navigate = useNavigate()
   const theme = useTheme()
+  const tokenFieldRed = useInputRef()
 
   return useSession(
     <BaseForm
@@ -26,6 +27,7 @@ const OtpBypassToken: FC<OtpBypassTokenProps> = () => {
           navigate(paths.teacher.dashboard.tab.school._)
         },
       }}
+      fieldRefs={[{ name: "token", inputRef: tokenFieldRed }]}
     >
       <Typography marginBottom={theme.spacing(6)}>
         Use this form for entering backup tokens for logging in. These tokens
@@ -33,6 +35,7 @@ const OtpBypassToken: FC<OtpBypassTokenProps> = () => {
         these backup tokens to login to your account.
       </Typography>
       <form.TextField
+        inputRef={tokenFieldRed}
         name="token"
         label="OTP-bypass token"
         placeholder="Enter one of your otp-bypass tokens"

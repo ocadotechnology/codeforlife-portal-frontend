@@ -26,7 +26,7 @@
   ],
   "dependencies": {
     "@react-pdf/renderer": "^4.0.0",
-    "codeforlife": "2.6.6",
+    "codeforlife": "2.6.10",
     "crypto-js": "^4.2.0",
     "qrcode": "^1.5.4"
   },

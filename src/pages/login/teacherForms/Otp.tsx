@@ -1,5 +1,5 @@
 import * as form from "codeforlife/components/form"
-import { useNavigate, useSession } from "codeforlife/hooks"
+import { useInputRef, useNavigate, useSession } from "codeforlife/hooks"
 import { type FC } from "react"
 import { LinkButton } from "codeforlife/components/router"
 import { Stack } from "@mui/material"
@@ -12,6 +12,7 @@ export interface OtpProps {}
 
 const Otp: FC<OtpProps> = () => {
   const navigate = useNavigate()
+  const otpFieldRef = useInputRef()
 
   return useSession(
     ({ otp_bypass_token_exists }) => (
@@ -26,8 +27,9 @@ const Otp: FC<OtpProps> = () => {
             navigate(paths.teacher.dashboard.tab.school._)
           },
         }}
+        fieldRefs={[{ name: "otp", inputRef: otpFieldRef }]}
       >
-        <form.OtpField />
+        <form.OtpField inputRef={otpFieldRef} />
         {otp_bypass_token_exists && (
           <LinkButton
             className="body"

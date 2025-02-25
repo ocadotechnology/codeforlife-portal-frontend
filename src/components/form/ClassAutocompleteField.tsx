@@ -1,5 +1,5 @@
+import { type FC, type RefObject } from "react"
 import { ApiAutocompleteField } from "codeforlife/components/form"
-import { type FC } from "react"
 
 import { type ListClassesArg, useLazyListClassesQuery } from "../../api/klass"
 
@@ -7,12 +7,14 @@ export interface ClassAutocompleteFieldProps {
   required?: boolean
   name?: string
   _id?: ListClassesArg["_id"]
+  inputRef?: RefObject<HTMLInputElement>
 }
 
 const ClassAutocompleteField: FC<ClassAutocompleteFieldProps> = ({
   required = false,
   name = "klass",
   _id,
+  inputRef,
 }) => (
   <ApiAutocompleteField
     useLazyListQuery={useLazyListClassesQuery}
@@ -21,7 +23,7 @@ const ClassAutocompleteField: FC<ClassAutocompleteFieldProps> = ({
     getOptionLabel={({ name, id, teacher }) =>
       `${name} (${id}), ${teacher.user.first_name} ${teacher.user.last_name}`
     }
-    textFieldProps={{ required, name }}
+    textFieldProps={{ required, name, inputRef }}
   />
 )
 

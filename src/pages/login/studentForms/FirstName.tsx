@@ -1,6 +1,6 @@
 import * as form from "codeforlife/components/form"
 import { type FC, useEffect } from "react"
-import { useNavigate, useParams } from "codeforlife/hooks"
+import { useInputRef, useNavigate, useParams } from "codeforlife/hooks"
 import { ChevronRight as ChevronRightIcon } from "@mui/icons-material"
 import { Stack } from "@mui/material"
 
@@ -13,6 +13,8 @@ export interface FirstNameProps {}
 
 const FirstName: FC<FirstNameProps> = () => {
   const navigate = useNavigate()
+  const firstNameFieldRef = useInputRef()
+  const passwordFieldRef = useInputRef()
 
   const params = useParams({ classId: classIdSchema.required() })
 
@@ -51,9 +53,13 @@ const FirstName: FC<FirstNameProps> = () => {
               navigate(paths.student.dashboard._)
             },
           }}
+          fieldRefs={[
+            { name: "first_name", inputRef: firstNameFieldRef },
+            { name: "password", inputRef: passwordFieldRef },
+          ]}
         >
-          <form.FirstNameField required />
-          <form.PasswordField required />
+          <form.FirstNameField required inputRef={firstNameFieldRef} />
+          <form.PasswordField required inputRef={passwordFieldRef} />
           <Stack alignItems="end">
             <form.SubmitButton endIcon={<ChevronRightIcon />}>
               Log in
