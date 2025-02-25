@@ -3,6 +3,7 @@ import { Link, LinkButton } from "codeforlife/components/router"
 import { Stack, Typography } from "@mui/material"
 import { type FC } from "react"
 import { Send as SendIcon } from "@mui/icons-material"
+import { useInputRef } from "codeforlife/hooks"
 
 import { GMAIL_FILTERS_PASSWORD_RESET_REQUEST } from "../../app/settings"
 import { OpenInEmailButtons } from "../../components"
@@ -13,6 +14,7 @@ export interface EmailFormProps {}
 
 const EmailForm: FC<EmailFormProps> = () => {
   const [requestPasswordReset, result] = useLazyRequestPasswordResetQuery()
+  const emailFieldRef = useInputRef()
 
   return result.isSuccess ? (
     <Stack gap={1} alignItems="center">
@@ -42,11 +44,12 @@ const EmailForm: FC<EmailFormProps> = () => {
       </Typography>
       <form.Form
         initialValues={{ email: "" }}
+        fieldRefs={[{ name: "email", inputRef: emailFieldRef }]}
         onSubmit={values => {
           void requestPasswordReset(values)
         }}
       >
-        <form.EmailField required />
+        <form.EmailField required inputRef={emailFieldRef} />
         <Stack direction="row" gap={5} justifyContent="center" paddingY={3}>
           <LinkButton variant="outlined" to={-1}>
             Cancel

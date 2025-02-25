@@ -3,6 +3,7 @@ import { Stack, Typography } from "@mui/material"
 import { type FC } from "react"
 import { type SchoolTeacherUser } from "codeforlife/api"
 import { type SubmitFormOptions } from "codeforlife/utils/form"
+import { useInputRef } from "codeforlife/hooks"
 
 import {
   ClassNameField,
@@ -28,32 +29,48 @@ export interface CreateClassFormProps {
 const CreateClassForm: FC<CreateClassFormProps> = ({
   authUser,
   submitOptions,
-}) => (
-  <>
-    <Typography>
-      {authUser.teacher.is_admin
-        ? "When you set up a new class, a unique class access code will automatically be generated for the teacher assigned to the class."
-        : "When you set up a new class, a unique class access code will automatically be generated, with you being identified as the teacher for that class."}
-    </Typography>
-    <forms.Form
-      initialValues={{
-        name: "",
-        teacher: authUser.teacher.id,
-        read_classmates_data: false,
-      }}
-      useMutation={useCreateClassMutation}
-      submitOptions={submitOptions}
-    >
-      <Stack gap={2}>
-        <Stack direction={{ sm: "row" }} gap={2}>
-          <ClassNameField required />
-          {authUser.teacher.is_admin && <TeacherAutocompleteField required />}
+}) => {
+  const nameFieldRef = useInputRef()
+  const teacherFieldRef = useInputRef()
+  const readClassmatesDataFieldRef = useInputRef()
+
+  return (
+    <>
+      <Typography>
+        {authUser.teacher.is_admin
+          ? "When you set up a new class, a unique class access code will automatically be generated for the teacher assigned to the class."
+          : "When you set up a new class, a unique class access code will automatically be generated, with you being identified as the teacher for that class."}
+      </Typography>
+      <forms.Form
+        initialValues={{
+          name: "",
+          teacher: authUser.teacher.id,
+          read_classmates_data: false,
+        }}
+        fieldRefs={[
+          { name: "name", inputRef: nameFieldRef },
+          { name: "teacher", inputRef: teacherFieldRef },
+          {
+            name: "read_classmates_data",
+            inputRef: readClassmatesDataFieldRef,
+          },
+        ]}
+        useMutation={useCreateClassMutation}
+        submitOptions={submitOptions}
+      >
+        <Stack gap={2}>
+          <Stack direction={{ sm: "row" }} gap={2}>
+            <ClassNameField inputRef={nameFieldRef} required />
+            {authUser.teacher.is_admin && (
+              <TeacherAutocompleteField required inputRef={teacherFieldRef} />
+            )}
+          </Stack>
+          <ReadClassmatesDataField inputRef={readClassmatesDataFieldRef} />
+          <forms.SubmitButton>Create class</forms.SubmitButton>
         </Stack>
-        <ReadClassmatesDataField />
-        <forms.SubmitButton>Create class</forms.SubmitButton>
-      </Stack>
-    </forms.Form>
-  </>
-)
+      </forms.Form>
+    </>
+  )
+}
 
 export default CreateClassForm
