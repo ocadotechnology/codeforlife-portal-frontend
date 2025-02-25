@@ -37,7 +37,7 @@ const CreateSchoolForm: FC<CreateSchoolFormProps> = ({ submitOptions }) => {
             uk_county: undefined,
           } as CreateSchoolArg
         }
-        order={[
+        fieldRefs={[
           { name: "name", inputRef: nameFieldRef },
           { name: "country", inputRef: countryFieldRef },
           { name: "uk_county", inputRef: ukCountyFieldRef },

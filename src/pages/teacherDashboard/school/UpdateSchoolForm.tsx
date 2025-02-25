@@ -26,7 +26,7 @@ const UpdateSchoolForm: FC<UpdateSchoolFormProps> = ({ school }) => {
       </Typography>
       <forms.Form
         initialValues={school}
-        order={[
+        fieldRefs={[
           { name: "name", inputRef: nameFieldRef },
           { name: "country", inputRef: countryFieldRef },
           { name: "uk_county", inputRef: ukCountyFieldRef },

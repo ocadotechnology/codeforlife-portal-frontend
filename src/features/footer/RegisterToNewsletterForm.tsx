@@ -26,7 +26,7 @@ const RegisterToNewsletterForm: FC<RegisterToNewsletterFormProps> = () => {
           email: "",
           over18: false,
         }}
-        order={[
+        fieldRefs={[
           { name: "email", inputRef: emailFieldRef },
           { name: "over18", inputRef: over18FieldRef },
         ]}

@@ -74,7 +74,7 @@ const UpdateAccountForm: FC<UpdateAccountFormProps> = ({ authUser }) => {
       )}
       <forms.Form
         initialValues={initialValues}
-        order={[
+        fieldRefs={[
           { name: "first_name", inputRef: firstNameFieldRef },
           { name: "last_name", inputRef: lastNameFieldRef },
           { name: "email", inputRef: emailFieldRef },

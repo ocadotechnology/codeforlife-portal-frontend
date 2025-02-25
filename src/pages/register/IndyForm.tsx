@@ -46,7 +46,7 @@ const IndyForm: FC<IndyFormProps> = () => {
           password: "",
           password_repeat: "",
         }}
-        order={[
+        fieldRefs={[
           { name: "date_of_birth", inputRef: dateOfBirthFieldRef },
           { name: "first_name", inputRef: firstNameFieldRef },
           { name: "last_name", inputRef: lastNameFieldRef },

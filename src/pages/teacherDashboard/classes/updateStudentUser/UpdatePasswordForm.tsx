@@ -36,7 +36,7 @@ const UpdatePasswordForm: FC<UpdatePasswordFormProps> = ({ classId, user }) => {
             user: { password: "", password_repeat: "" },
           },
         }}
-        order={[
+        fieldRefs={[
           {
             name: `${user.student.id}.user.password`,
             inputRef: passwordFieldRef,

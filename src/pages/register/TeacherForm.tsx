@@ -41,7 +41,7 @@ const TeacherForm: FC<TeacherFormProps> = () => {
             meets_criteria: false,
           },
         }}
-        order={[
+        fieldRefs={[
           { name: "user.first_name", inputRef: firstNameFieldRef },
           { name: "user.last_name", inputRef: lastNameFieldRef },
           { name: "user.email", inputRef: emailFieldRef },

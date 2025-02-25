@@ -28,7 +28,7 @@ const SelectClassForm: FC<SelectClassFormProps> = ({
       </Typography>
       <forms.Form
         initialValues={{ klass: "" }}
-        order={[{ name: "klass", inputRef: klassFieldRef }]}
+        fieldRefs={[{ name: "klass", inputRef: klassFieldRef }]}
         onSubmit={({ klass }) => {
           setNewClassId(klass)
         }}

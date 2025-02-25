@@ -22,7 +22,7 @@ const RequestToJoinClassForm: FC<RequestToJoinClassFormProps> = ({
   return (
     <forms.Form
       initialValues={indyUser}
-      order={[
+      fieldRefs={[
         {
           name: "requesting_to_join_class",
           inputRef: requestingToJoinClassFieldRef,

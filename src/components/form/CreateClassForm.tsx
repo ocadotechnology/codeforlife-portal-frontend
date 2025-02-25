@@ -47,7 +47,7 @@ const CreateClassForm: FC<CreateClassFormProps> = ({
           teacher: authUser.teacher.id,
           read_classmates_data: false,
         }}
-        order={[
+        fieldRefs={[
           { name: "name", inputRef: nameFieldRef },
           { name: "teacher", inputRef: teacherFieldRef },
           {

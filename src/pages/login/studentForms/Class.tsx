@@ -63,7 +63,7 @@ const Class: FC<ClassProps> = () => {
           onSubmit={({ classId }) => {
             navigate(generatePath(paths.login.student.class._, { classId }))
           }}
-          order={[{ name: "classId", inputRef: classIdFieldRef }]}
+          fieldRefs={[{ name: "classId", inputRef: classIdFieldRef }]}
         >
           <form.TextField
             name="classId"

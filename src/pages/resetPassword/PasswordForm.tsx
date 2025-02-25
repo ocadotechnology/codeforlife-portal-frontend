@@ -55,7 +55,7 @@ const PasswordForm: FC<PasswordFormProps> = ({ userType, userId, token }) => {
       </Typography>
       <form.Form
         initialValues={initialValues}
-        order={[
+        fieldRefs={[
           { name: "password", inputRef: passwordFieldRef },
           { name: "password_repeat", inputRef: passwordRepeatFieldRef },
         ]}

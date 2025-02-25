@@ -27,7 +27,7 @@ const IndyForm: FC<IndyFormProps> = () => {
           navigate(paths.indy.dashboard._)
         },
       }}
-      order={[
+      fieldRefs={[
         { name: "email", inputRef: emailFieldRef },
         { name: "password", inputRef: passwordFieldRef },
       ]}

@@ -44,7 +44,7 @@ const EmailForm: FC<EmailFormProps> = () => {
       </Typography>
       <form.Form
         initialValues={{ email: "" }}
-        order={[{ name: "email", inputRef: emailFieldRef }]}
+        fieldRefs={[{ name: "email", inputRef: emailFieldRef }]}
         onSubmit={values => {
           void requestPasswordReset(values)
         }}

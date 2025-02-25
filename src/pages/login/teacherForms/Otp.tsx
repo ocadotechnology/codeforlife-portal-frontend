@@ -27,7 +27,7 @@ const Otp: FC<OtpProps> = () => {
             navigate(paths.teacher.dashboard.tab.school._)
           },
         }}
-        order={[{ name: "otp", inputRef: otpFieldRef }]}
+        fieldRefs={[{ name: "otp", inputRef: otpFieldRef }]}
       >
         <form.OtpField inputRef={otpFieldRef} />
         {otp_bypass_token_exists && (

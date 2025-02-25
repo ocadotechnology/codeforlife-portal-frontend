@@ -27,7 +27,7 @@ const UpdateNameForm: FC<UpdateNameFormProps> = ({
       </Typography>
       <forms.Form
         initialValues={studentUser}
-        order={[{ name: "first_name", inputRef: firstNameFieldRef }]}
+        fieldRefs={[{ name: "first_name", inputRef: firstNameFieldRef }]}
         useMutation={useUpdateUserMutation}
         submitOptions={{
           then: () => {

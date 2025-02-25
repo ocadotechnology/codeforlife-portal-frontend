@@ -27,7 +27,7 @@ const OtpBypassToken: FC<OtpBypassTokenProps> = () => {
           navigate(paths.teacher.dashboard.tab.school._)
         },
       }}
-      order={[{ name: "token", inputRef: tokenFieldRed }]}
+      fieldRefs={[{ name: "token", inputRef: tokenFieldRed }]}
     >
       <Typography marginBottom={theme.spacing(6)}>
         Use this form for entering backup tokens for logging in. These tokens

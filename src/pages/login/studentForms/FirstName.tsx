@@ -53,7 +53,7 @@ const FirstName: FC<FirstNameProps> = () => {
               navigate(paths.student.dashboard._)
             },
           }}
-          order={[
+          fieldRefs={[
             { name: "first_name", inputRef: firstNameFieldRef },
             { name: "password", inputRef: passwordFieldRef },
           ]}

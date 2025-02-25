@@ -65,7 +65,7 @@ const CreateStudentsForm: FC<CreateStudentsFormProps> = ({
       </InputFileButton>
       <forms.Form
         initialValues={{ first_names: [] as string[] }}
-        order={[{ name: "first_names", inputRef: firstNamesFieldRef }]}
+        fieldRefs={[{ name: "first_names", inputRef: firstNamesFieldRef }]}
         useMutation={useCreateStudentsMutation}
         submitOptions={{
           ...submitOptions,

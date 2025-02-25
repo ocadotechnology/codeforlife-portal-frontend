@@ -67,7 +67,7 @@ const InviteTeacherForm: FC<InviteTeacherFormProps> = () => {
       </Typography>
       <form.Form
         initialValues={initialValues}
-        order={[
+        fieldRefs={[
           { name: "invited_teacher_first_name", inputRef: firstNameFieldRef },
           { name: "invited_teacher_last_name", inputRef: lastNameFieldRef },
           { name: "invited_teacher_email", inputRef: emailFieldRef },

@@ -104,7 +104,7 @@ const DeleteAccountForm: FC<DeleteAccountFormProps> = ({ authUser }) => {
           password: "",
           remove_from_newsletter: false,
         }}
-        order={[
+        fieldRefs={[
           { name: "password", inputRef: passwordFieldRef },
           {
             name: "remove_from_newsletter",

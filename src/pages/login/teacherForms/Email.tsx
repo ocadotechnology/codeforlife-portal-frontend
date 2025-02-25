@@ -31,7 +31,7 @@ const Email: FC<EmailProps> = () => {
           )
         },
       }}
-      order={[
+      fieldRefs={[
         { name: "email", inputRef: emailFieldRef },
         { name: "password", inputRef: passwordFieldRef },
       ]}
