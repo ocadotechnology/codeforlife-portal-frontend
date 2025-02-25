@@ -1,3 +1,10 @@
+## [1.2.2](https://github.com/ocadotechnology/codeforlife-portal-frontend/compare/v1.2.1...v1.2.2) (2025-02-25)
+
+
+### Bug Fixes
+
+* order of field references ([#95](https://github.com/ocadotechnology/codeforlife-portal-frontend/issues/95)) ([3520092](https://github.com/ocadotechnology/codeforlife-portal-frontend/commit/3520092a1bc889939c075e5eee282b8501b95068))
+
 ## [1.2.1](https://github.com/ocadotechnology/codeforlife-portal-frontend/compare/v1.2.0...v1.2.1) (2025-02-04)
 
 
