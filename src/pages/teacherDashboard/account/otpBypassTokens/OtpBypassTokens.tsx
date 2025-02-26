@@ -16,12 +16,7 @@ const OtpBypassTokens: FC<OtpBypassTokensProps> = ({ authUserId }) => (
   <pages.Section>
     {handleResultState(
       useListAuthFactorsQuery(
-        {
-          offset: 0,
-          limit: 1,
-          user: authUserId,
-          type: "otp",
-        },
+        { offset: 0, limit: 0, user: authUserId, type: "otp" },
         { refetchOnMountOrArgChange: true },
       ),
       ({ count: exists }) =>

@@ -21,12 +21,12 @@ const SetupOtp: FC<SetupOtpProps> = ({ authUserId }) => {
       {handleResultState(
         useListAuthFactorsQuery({
           offset: 0,
-          limit: 1,
+          limit: 0,
           user: authUserId,
           type: "otp",
         }),
-        ({ count }) =>
-          count ? (
+        ({ count: exists }) =>
+          exists ? (
             <Navigate
               to={paths.teacher.dashboard.tab.account._}
               replace

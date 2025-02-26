@@ -28,7 +28,6 @@ const OtpExists: FC<{ authFactorId: AuthFactor["id"] }> = ({
           If you don&apos;t have your smartphone or tablet with you, you can
           access your account using backup tokens.
         </Typography>
-        <Typography>View and create backup tokens for your account.</Typography>
         {handleResultState(
           useListOtpBypassTokensQuery({ offset: 0, limit: 0 }),
           ({ count }) => (
@@ -128,16 +127,11 @@ const Otp: FC<OtpProps> = ({ authUserId }) => (
     </Typography>
     {handleResultState(
       useListAuthFactorsQuery(
-        {
-          offset: 0,
-          limit: 1,
-          user: authUserId,
-          type: "otp",
-        },
+        { offset: 0, limit: 1, user: authUserId, type: "otp" },
         { refetchOnMountOrArgChange: true },
       ),
-      ({ count, data: authFactors }) =>
-        count ? (
+      ({ count: exists, data: authFactors }) =>
+        exists ? (
           <OtpExists authFactorId={authFactors[0].id} />
         ) : (
           <LinkButton
