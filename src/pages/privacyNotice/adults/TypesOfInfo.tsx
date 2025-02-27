@@ -46,11 +46,11 @@ const TypesOfInfo: FC<TypesOfInfoProps> = () => (
         created or you log in.
       </ListItemText>
       <ListItemText>
-        Technical information, such as the IP address and other information
-        about the device you use to access the Code for Life portal, and
-        technical information about how you use these (for example, which pages
-        on our portal you visit, for how long you stay on each page, etc.): when
-        you navigate the portal and allow the use of non-essential cookies.
+        Technical information about the device you use to access the Code for
+        Life portal (e.g. device type and screen resolution), and technical
+        information about how you use these (for example, which pages on our
+        portal you visit, for how long you stay on each page, etc.): when you
+        navigate the portal and allow the use of non-essential cookies.
       </ListItemText>
       <ListItemText>
         Data from Code for Life surveys you may take part in.
@@ -82,11 +82,11 @@ const TypesOfInfo: FC<TypesOfInfoProps> = () => (
         in.
       </ListItemText>
       <ListItemText>
-        Technical information, such as the IP address and other information
-        about the device you use to access the Code for Life portal, and
-        technical information about how you use these (for example, which pages
-        on our portal you visit, for how long you stay on each page, etc.): when
-        you navigate the portal and allow the use of non-essential cookies.
+        Technical information about the device you use to access the Code for
+        Life portal (e.g. device type and screen resolution), and technical
+        information about how you use these (for example, which pages on our
+        portal you visit, for how long you stay on each page, etc.): when you
+        navigate the portal and allow the use of non-essential cookies.
       </ListItemText>
       <ListItemText>
         Data from Code for Life surveys you may take part in.
@@ -122,11 +122,11 @@ const TypesOfInfo: FC<TypesOfInfoProps> = () => (
         in.
       </ListItemText>
       <ListItemText>
-        Technical information, such as the IP address and other information
-        about the device you use to access the Code for Life portal, and
-        technical information about how you use these (for example, which pages
-        on our portal you visit, for how long you stay on each page, etc.): when
-        you navigate the portal and allow the use of non-essential cookies.
+        Technical information about the device you use to access the Code for
+        Life portal (e.g. device type and screen resolution), and technical
+        information about how you use these (for example, which pages on our
+        portal you visit, for how long you stay on each page, etc.): when you
+        navigate the portal and allow the use of non-essential cookies.
       </ListItemText>
       <ListItemText>
         Data from Code for Life surveys you may take part in.
@@ -140,11 +140,11 @@ const TypesOfInfo: FC<TypesOfInfoProps> = () => (
     </Typography>
     <ItemizedList styleType="disc">
       <ListItemText>
-        Technical information, such as the IP address and other information
-        about the device you use to access the Code for Life portal, and
-        technical information about how you use these (for example, which pages
-        on our portal you visit, for how long you stay on each page, etc.): when
-        you navigate the portal and allow the use of non-essential cookies.
+        Technical information about the device you use to access the Code for
+        Life portal (e.g. device type and screen resolution), and technical
+        information about how you use these (for example, which pages on our
+        portal you visit, for how long you stay on each page, etc.): when you
+        navigate the portal and allow the use of non-essential cookies.
       </ListItemText>
       <ListItemText className="last">
         Your email address and marketing preferences, if you select to sign up
