@@ -16,31 +16,32 @@ export interface SetupOtpProps {
 const SetupOtp: FC<SetupOtpProps> = ({ authUserId }) => {
   const [completed, setCompleted] = useState(false)
 
-  return handleResultState(
-    useListAuthFactorsQuery({
-      offset: 0,
-      limit: 1,
-      user: authUserId,
-      type: "otp",
-    }),
-    ({ count }) =>
-      count ? (
-        <Navigate
-          to={paths.teacher.dashboard.tab.account._}
-          state={{
-            notifications: [
-              {
-                props: {
-                  error: true,
-                  children: "One-time password already set up.",
-                },
-              },
-            ],
-          }}
-        />
-      ) : (
-        <pages.Section>
-          {completed ? (
+  return (
+    <pages.Section>
+      {handleResultState(
+        useListAuthFactorsQuery({
+          offset: 0,
+          limit: 0,
+          user: authUserId,
+          type: "otp",
+        }),
+        ({ count: exists }) =>
+          exists ? (
+            <Navigate
+              to={paths.teacher.dashboard.tab.account._}
+              replace
+              state={{
+                notifications: [
+                  {
+                    props: {
+                      error: true,
+                      children: "One-time password already set up.",
+                    },
+                  },
+                ],
+              }}
+            />
+          ) : completed ? (
             <SetupCompleted />
           ) : (
             <SetupPending
@@ -48,9 +49,9 @@ const SetupOtp: FC<SetupOtpProps> = ({ authUserId }) => {
                 setCompleted(true)
               }}
             />
-          )}
-        </pages.Section>
-      ),
+          ),
+      )}
+    </pages.Section>
   )
 }
 

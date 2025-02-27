@@ -7,9 +7,9 @@ import {
   Typography,
 } from "@mui/material"
 import { type FC, useState } from "react"
+import { useInputRef, useNavigate } from "codeforlife/hooks"
 import { DeleteOutline as DeleteOutlineIcon } from "@mui/icons-material"
 import { logout } from "codeforlife/utils/auth"
-import { useNavigate } from "codeforlife/hooks"
 
 import {
   type DestroyIndependentUserArg,
@@ -79,6 +79,8 @@ const DeleteAccountForm: FC<DeleteAccountFormProps> = ({ authUser }) => {
     open: boolean
     destroyIndyUserArg?: DestroyIndependentUserArg
   }>({ open: false })
+  const passwordFieldRef = useInputRef()
+  const removeFromNewsletterFieldRef = useInputRef()
   const [validatePassword] = useLazyValidatePasswordQuery()
 
   return (
@@ -102,6 +104,13 @@ const DeleteAccountForm: FC<DeleteAccountFormProps> = ({ authUser }) => {
           password: "",
           remove_from_newsletter: false,
         }}
+        fieldRefs={[
+          { name: "password", inputRef: passwordFieldRef },
+          {
+            name: "remove_from_newsletter",
+            inputRef: removeFromNewsletterFieldRef,
+          },
+        ]}
         onSubmit={values => {
           void validatePassword({ id: values.id, password: values.password })
             .unwrap()
@@ -113,6 +122,7 @@ const DeleteAccountForm: FC<DeleteAccountFormProps> = ({ authUser }) => {
         <Grid container columnSpacing={4}>
           <Grid xs={12} sm={6}>
             <forms.PasswordField
+              inputRef={passwordFieldRef}
               required
               label="Current password"
               placeholder="Enter your current password"
@@ -122,6 +132,7 @@ const DeleteAccountForm: FC<DeleteAccountFormProps> = ({ authUser }) => {
             {/* TODO: only display this checkbox if the user has been added to the newsletter. */}
             <forms.CheckboxField
               name="remove_from_newsletter"
+              inputRef={removeFromNewsletterFieldRef}
               formControlLabelProps={{
                 label:
                   "Please remove me from the newsletter and marketing emails too.",

@@ -4,6 +4,7 @@ import { ChevronRight as ChevronRightIcon } from "@mui/icons-material"
 import { type FC } from "react"
 import { Link } from "codeforlife/components/router"
 import dayjs from "dayjs"
+import { useInputRef } from "codeforlife/hooks"
 import { useNavigate } from "react-router-dom"
 
 import { LastNameField, NewPasswordField } from "../../components/form"
@@ -15,6 +16,14 @@ export interface IndyFormProps {}
 
 const IndyForm: FC<IndyFormProps> = () => {
   const navigate = useNavigate()
+  const dateOfBirthFieldRef = useInputRef()
+  const firstNameFieldRef = useInputRef()
+  const lastNameFieldRef = useInputRef()
+  const emailFieldRef = useInputRef()
+  const meetsCriteriaFieldRef = useInputRef()
+  const addToNewsletterFieldRef = useInputRef()
+  const passwordFieldRef = useInputRef()
+  const passwordRepeatFieldRef = useInputRef()
 
   const EmailApplicableAge = 13
   const ReceiveUpdateAge = 18
@@ -37,6 +46,16 @@ const IndyForm: FC<IndyFormProps> = () => {
           password: "",
           password_repeat: "",
         }}
+        fieldRefs={[
+          { name: "date_of_birth", inputRef: dateOfBirthFieldRef },
+          { name: "first_name", inputRef: firstNameFieldRef },
+          { name: "last_name", inputRef: lastNameFieldRef },
+          { name: "email", inputRef: emailFieldRef },
+          { name: "meets_criteria", inputRef: meetsCriteriaFieldRef },
+          { name: "add_to_newsletter", inputRef: addToNewsletterFieldRef },
+          { name: "password", inputRef: passwordFieldRef },
+          { name: "password_repeat", inputRef: passwordRepeatFieldRef },
+        ]}
         useMutation={useCreateIndependentUserMutation}
         submitOptions={{
           exclude: ["password_repeat", "meets_criteria"],
@@ -61,15 +80,17 @@ const IndyForm: FC<IndyFormProps> = () => {
                 information).
               </FormHelperText>
               <forms.DatePickerField
+                inputRef={dateOfBirthFieldRef}
                 name="date_of_birth"
                 maxDate={dayjs()}
                 required
               />
               {yearsOfAge !== undefined && (
                 <>
-                  <forms.FirstNameField required />
-                  <LastNameField />
+                  <forms.FirstNameField required inputRef={firstNameFieldRef} />
+                  <LastNameField inputRef={lastNameFieldRef} />
                   <forms.EmailField
+                    inputRef={emailFieldRef}
                     required
                     label={
                       yearsOfAge >= EmailApplicableAge
@@ -93,6 +114,7 @@ const IndyForm: FC<IndyFormProps> = () => {
                   {yearsOfAge >= EmailApplicableAge && (
                     <forms.CheckboxField
                       required
+                      inputRef={meetsCriteriaFieldRef}
                       name="meets_criteria"
                       formControlLabelProps={{
                         label: (
@@ -119,6 +141,7 @@ const IndyForm: FC<IndyFormProps> = () => {
                   )}
                   {yearsOfAge >= ReceiveUpdateAge && (
                     <forms.CheckboxField
+                      inputRef={addToNewsletterFieldRef}
                       name="add_to_newsletter"
                       formControlLabelProps={{
                         label:
@@ -126,7 +149,11 @@ const IndyForm: FC<IndyFormProps> = () => {
                       }}
                     />
                   )}
-                  <NewPasswordField userType="independent" />
+                  <NewPasswordField
+                    userType="independent"
+                    inputRef={passwordFieldRef}
+                    repeatFieldProps={{ inputRef: passwordRepeatFieldRef }}
+                  />
                   <Stack alignItems="end">
                     <forms.SubmitButton endIcon={<ChevronRightIcon />}>
                       Register
