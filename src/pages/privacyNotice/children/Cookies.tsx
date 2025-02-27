@@ -115,10 +115,6 @@ const Cookies: FC<CookiesProps> = () => (
                 >
                   Google Analytics
                 </Link>
-                &nbsp;and&nbsp;
-                <Link to="https://mouseflow.com/legal/gdpr/" target="_blank">
-                  Mouseflow
-                </Link>
                 ) to help us collect information from these cookies (see the
                 “Third-party cookies” section below).
               </Typography>
@@ -131,10 +127,10 @@ const Cookies: FC<CookiesProps> = () => (
     <Typography variant="h6">Third party cookies</Typography>
     <Typography>
       We work with other companies to run the analytics cookies on our portal,
-      including Google, who provides our Google Analytics cookie, and Mouseflow.
-      They might also collect information from websites that are not ours. We
-      explain in more detail below what information they collect and how it is
-      used. We do not let other companies show ads on our portal.
+      including Google, who provides our Google Analytics cookie. They might
+      also collect information from websites that are not ours. We explain in
+      more detail below what information they collect and how it is used. We do
+      not let other companies show ads on our portal.
     </Typography>
     <Typography>
       <strong>Google Analytics.</strong> We use Google Analytics (which is run
@@ -146,17 +142,6 @@ const Cookies: FC<CookiesProps> = () => (
       organisations if the law says they have to do so. If you choose to allow
       analytics / performance cookies on our site, you are consenting to Google
       using your data for the reasons above.
-    </Typography>
-    <Typography>
-      <strong>Mouseflow.</strong> We also use Mouseflow to help us understand
-      how our site is used and which areas are mostly used. It uses cookies to
-      record information such as when you click on or move your mouse, when you
-      scroll or press a key, what pages you visit on our website, how much time
-      you spend on each page, and also information about the device you use
-      (like the device type (desktop/tablet/phone), location (city/country) and
-      language). Mouseflow does not collect any information on pages where it is
-      not installed and does not track or collect information outside your web
-      browser.
     </Typography>
     <Typography>
       <strong>YouTube.</strong> While embedded YouTube videos on our website do

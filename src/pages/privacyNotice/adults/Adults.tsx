@@ -21,7 +21,7 @@ import YourRights from "./YourRights"
 export interface AdultsProps {}
 
 const Adults: FC<AdultsProps> = () => {
-  const lastUpdated = "17th February 2025"
+  const lastUpdated = "27th February 2025"
 
   return (
     <pages.Section>

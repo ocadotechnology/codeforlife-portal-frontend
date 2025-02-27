@@ -94,8 +94,7 @@ const Cookies: FC<CookiesProps> = () => (
                 anything like which pages you go to most often, and if you get
                 error messages from web pages. They allow us to measure how
                 visitors interact with the portal (for example which parts of
-                the website are clicked on and the length of time between
-                clicks).
+                the website are clicked on).
               </Typography>
               <Typography>
                 We use third-party web analytics software on our portal (
@@ -104,10 +103,6 @@ const Cookies: FC<CookiesProps> = () => (
                   target="_blank"
                 >
                   Google Analytics
-                </Link>
-                &nbsp;and&nbsp;
-                <Link to="https://mouseflow.com/legal/gdpr/" target="_blank">
-                  Mouseflow
                 </Link>
                 ). We provide further information about these partners below.
               </Typography>
@@ -123,9 +118,9 @@ const Cookies: FC<CookiesProps> = () => (
     </Typography>
     <Typography>
       As we explain above, we work with other companies to use analytics cookies
-      on our portal: these are Google, who provide Google Analytics cookies, and
-      Mouseflow. We explain in more detail below what information they collect
-      and how it is used.
+      on our portal: these are Google, who provide Google Analytics cookies. We
+      explain in more detail below what information they collect and how it is
+      used.
     </Typography>
     <Typography>
       <strong>Google Analytics.</strong> Our portal uses Google Analytics, which
@@ -153,19 +148,6 @@ const Cookies: FC<CookiesProps> = () => (
       . By accepting analytics / performance cookies on our portal, you consent
       to the processing of data about you by Google in the manner and for the
       purposes set out above.
-    </Typography>
-    <Typography>
-      <strong>Mouseflow.</strong> We also use Mouseflow on our portal; this
-      provider offers a website analytics tool that helps us understand how our
-      portal is used, and which areas are mostly used (e.g. by using heatmaps or
-      by replaying your journey on our portal). Mouseflow uses cookies to record
-      information such as when you click on or move your mouse, when you scroll,
-      or press a key, what pages you visit on our website, how much time you
-      spend on each page, and also information about the device you use
-      (operating system, device type (desktop/tablet/phone), screen resolution,
-      location (city/country), language, and similar metadata). Mouseflow does
-      not collect any information on pages where it is not installed, nor does
-      it track or collect information outside your web browser.
     </Typography>
     <Typography>
       <strong>YouTube.</strong> While embedded YouTube videos on our website do
