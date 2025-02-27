@@ -1,7 +1,7 @@
 import * as forms from "codeforlife/components/form"
 import { Stack, Typography } from "@mui/material"
+import { useInputRef, useNavigate } from "codeforlife/hooks"
 import { type FC } from "react"
-import { useNavigate } from "codeforlife/hooks"
 
 import {
   type RetrieveSchoolResult,
@@ -15,6 +15,9 @@ export interface UpdateSchoolFormProps {
 
 const UpdateSchoolForm: FC<UpdateSchoolFormProps> = ({ school }) => {
   const navigate = useNavigate()
+  const nameFieldRef = useInputRef()
+  const countryFieldRef = useInputRef()
+  const ukCountyFieldRef = useInputRef()
 
   return (
     <>
@@ -23,8 +26,15 @@ const UpdateSchoolForm: FC<UpdateSchoolFormProps> = ({ school }) => {
       </Typography>
       <forms.Form
         initialValues={school}
+        fieldRefs={[
+          { name: "name", inputRef: nameFieldRef },
+          { name: "country", inputRef: countryFieldRef },
+          { name: "uk_county", inputRef: ukCountyFieldRef },
+        ]}
         useMutation={useUpdateSchoolMutation}
         submitOptions={{
+          onlyDirtyValues: true,
+          include: ["id"],
           then: () => {
             navigate(".", {
               state: {
@@ -59,9 +69,15 @@ const UpdateSchoolForm: FC<UpdateSchoolFormProps> = ({ school }) => {
         {form => (
           <>
             <Stack direction={{ xs: "column", md: "row" }} gap={3}>
-              <SchoolNameField />
-              <forms.CountryField />
-              {form.values.country === "GB" && <forms.UkCountyField />}
+              <SchoolNameField inputRef={nameFieldRef} />
+              <forms.CountryField
+                textFieldProps={{ inputRef: countryFieldRef }}
+              />
+              {form.values.country === "GB" && (
+                <forms.UkCountyField
+                  textFieldProps={{ inputRef: ukCountyFieldRef }}
+                />
+              )}
             </Stack>
             <forms.SubmitButton>Update details</forms.SubmitButton>
           </>

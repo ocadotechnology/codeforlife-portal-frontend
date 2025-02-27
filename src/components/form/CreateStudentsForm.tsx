@@ -2,11 +2,11 @@ import * as forms from "codeforlife/components/form"
 import { Add as AddIcon, Upload as UploadIcon } from "@mui/icons-material"
 import { type FC, type MutableRefObject, useEffect, useRef } from "react"
 import { Stack, Typography } from "@mui/material"
+import { useInputRef, useNavigate } from "codeforlife/hooks"
 import { type Class } from "codeforlife/api"
 import { InputFileButton } from "codeforlife/components"
 import { type SubmitFormOptions } from "codeforlife/utils/form"
 import { firstNameSchema } from "codeforlife/schemas/user"
-import { useNavigate } from "codeforlife/hooks"
 
 import {
   type CreateStudentsArg,
@@ -31,6 +31,7 @@ const CreateStudentsForm: FC<CreateStudentsFormProps> = ({
   submitOptions,
 }) => {
   const fileInput = useRef<HTMLInputElement>()
+  const firstNamesFieldRef = useInputRef()
   const navigate = useNavigate()
 
   const reader = new FileReader()
@@ -64,6 +65,7 @@ const CreateStudentsForm: FC<CreateStudentsFormProps> = ({
       </InputFileButton>
       <forms.Form
         initialValues={{ first_names: [] as string[] }}
+        fieldRefs={[{ name: "first_names", inputRef: firstNamesFieldRef }]}
         useMutation={useCreateStudentsMutation}
         submitOptions={{
           ...submitOptions,
@@ -105,6 +107,7 @@ const CreateStudentsForm: FC<CreateStudentsFormProps> = ({
               {/* TODO: show errors from backend */}
               <forms.TextField
                 name="first_names"
+                inputRef={firstNamesFieldRef}
                 required
                 split={split}
                 uniqueCaseInsensitive

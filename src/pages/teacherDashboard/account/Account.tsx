@@ -18,7 +18,7 @@ const Account: FC<AccountProps> = ({ authUser, view }) => {
   if (view) {
     return {
       "setup-otp": <SetupOtp authUserId={authUser.id} />,
-      "otp-bypass-tokens": <OtpBypassTokens authUser={authUser} />,
+      "otp-bypass-tokens": <OtpBypassTokens authUserId={authUser.id} />,
     }[view]
   }
 
