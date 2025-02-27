@@ -1,8 +1,8 @@
 import * as tables from "codeforlife/components/table"
-import { Button, Stack, type SxProps, Typography } from "@mui/material"
 import { type Class, type Student, type User } from "codeforlife/api"
-import { type FC, useRef } from "react"
-import { CopyIconButton } from "codeforlife/components"
+import { CopyIconButton, DownloadFileButton } from "codeforlife/components"
+import { Stack, type SxProps, Typography } from "@mui/material"
+import { type FC } from "react"
 import { SaveAlt as SaveAltIcon } from "@mui/icons-material"
 import { generatePath } from "react-router-dom"
 
@@ -19,46 +19,26 @@ const DownloadCSVButton: FC<DownloadCSVButtonProps> = ({
   classLoginLink,
   students,
 }) => {
-  const linkRef = useRef<HTMLAnchorElement | null>(null)
-
-  const generateCSV: () => string = () => {
-    const lines = [["Name", "Password", "Class Link", "Login URL"].join(",")]
-    students.forEach(student => {
-      lines.push(
-        [
-          student.user.first_name,
-          student.user.password,
-          classLoginLink,
-          makeAutoLoginLink(classLoginLink, student),
-        ].join(","),
-      )
-    })
-
-    return lines.join("\n")
-  }
-
-  const downloadCSV: () => void = () => {
-    const csvContent = generateCSV()
-    const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" })
-    const url = URL.createObjectURL(blob)
-
-    if (linkRef.current) {
-      linkRef.current.href = url
-      linkRef.current.download = "data.csv"
-      linkRef.current.click()
-    }
-
-    URL.revokeObjectURL(url)
-  }
+  const text = [
+    ["Name", "Password", "Class Link", "Login URL"].join(","),
+    ...students.map(student =>
+      [
+        student.user.first_name,
+        student.user.password,
+        classLoginLink,
+        makeAutoLoginLink(classLoginLink, student),
+      ].join(","),
+    ),
+  ].join("\n")
 
   return (
-    <>
-      <Button endIcon={<SaveAltIcon />} className="body" onClick={downloadCSV}>
-        Download CSV
-      </Button>
-      {/* Invisible anchor tag to trigger the download */}
-      <a ref={linkRef} target="_blank" style={{ display: "none" }}></a>
-    </>
+    <DownloadFileButton
+      endIcon={<SaveAltIcon />}
+      className="body"
+      file={{ text, mimeType: "csv", name: "data" }}
+    >
+      Download CSV
+    </DownloadFileButton>
   )
 }
 

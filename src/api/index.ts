@@ -1,7 +1,7 @@
 import { createApi } from "codeforlife/api"
 
 const api = createApi({
-  tagTypes: ["SchoolTeacherInvitation"],
+  tagTypes: ["SchoolTeacherInvitation", "OtpBypassToken"],
 })
 
 export default api

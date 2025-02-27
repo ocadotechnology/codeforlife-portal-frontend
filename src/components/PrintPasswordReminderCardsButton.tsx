@@ -1,6 +1,9 @@
 import * as pdf from "@react-pdf/renderer"
-import { Button, type ButtonProps } from "@mui/material"
-import { type FC, useRef } from "react"
+import {
+  DownloadFileButton,
+  type DownloadFileButtonProps,
+} from "codeforlife/components"
+import { type FC, useState } from "react"
 import { type Student, type User } from "codeforlife/api"
 import { Print as PrintIcon } from "@mui/icons-material"
 import { generatePath } from "react-router-dom"
@@ -78,48 +81,35 @@ const PDF: FC<PDFProps> = ({ classId, students }) => {
 }
 
 export type PrintPasswordReminderCardsButtonProps = PDFProps &
-  Omit<ButtonProps, "endIcon" | "onClick" | "className">
+  Omit<DownloadFileButtonProps, "endIcon" | "onClick" | "className" | "file">
 
 const PrintPasswordReminderCardsButton: FC<
   PrintPasswordReminderCardsButtonProps
 > = ({ classId, students, ...buttonProps }) => {
-  const linkRef = useRef<HTMLAnchorElement | null>(null)
+  const [file, setFile] = useState<Blob>()
 
-  const downloadPdf = async (): Promise<void> => {
-    try {
-      const blob = await pdf
-        .pdf(<PDF classId={classId} students={students} />)
-        .toBlob()
-
-      const url = URL.createObjectURL(blob)
-
-      if (linkRef.current) {
-        linkRef.current.href = url
-        linkRef.current.click()
-      }
-
-      URL.revokeObjectURL(url)
-    } catch (error) {
+  pdf
+    .pdf(<PDF classId={classId} students={students} />)
+    .toBlob()
+    .then(file => {
+      setFile(file)
+    })
+    .catch(error => {
       console.error(error)
-    }
-  }
+    })
 
-  return (
-    <>
-      <Button
+  if (file) {
+    return (
+      <DownloadFileButton
         endIcon={<PrintIcon />}
-        onClick={() => {
-          void downloadPdf()
-        }}
         className="body"
+        file={file}
         {...buttonProps}
       >
         Print reminder cards
-      </Button>
-      {/* Invisible anchor tag to trigger the download */}
-      <a ref={linkRef} target="_blank" style={{ display: "none" }}></a>
-    </>
-  )
+      </DownloadFileButton>
+    )
+  }
 }
 
 export default PrintPasswordReminderCardsButton

@@ -1,8 +1,8 @@
 import * as forms from "codeforlife/components/form"
 import { getDirty, isDirty } from "codeforlife/utils/form"
+import { useInputRef, useNavigate } from "codeforlife/hooks"
 import { type FC } from "react"
 import { Typography } from "@mui/material"
-import { useNavigate } from "codeforlife/hooks"
 
 import {
   type RetrieveUserResult,
@@ -23,6 +23,12 @@ export interface UpdateAccountFormProps {
 // TODO: Split this form into two or three forms. Needs UX work
 const UpdateAccountForm: FC<UpdateAccountFormProps> = ({ authUser }) => {
   const navigate = useNavigate()
+  const passwordFieldRef = useInputRef()
+  const passwordRepeatFieldRef = useInputRef()
+  const currentPasswordFieldRef = useInputRef()
+  const firstNameFieldRef = useInputRef()
+  const lastNameFieldRef = useInputRef()
+  const emailFieldRef = useInputRef()
 
   const initialValues = authUser.student
     ? {
@@ -68,9 +74,19 @@ const UpdateAccountForm: FC<UpdateAccountFormProps> = ({ authUser }) => {
       )}
       <forms.Form
         initialValues={initialValues}
+        fieldRefs={[
+          { name: "first_name", inputRef: firstNameFieldRef },
+          { name: "last_name", inputRef: lastNameFieldRef },
+          { name: "email", inputRef: emailFieldRef },
+          { name: "password", inputRef: passwordFieldRef },
+          { name: "password_repeat", inputRef: passwordRepeatFieldRef },
+          { name: "current_password", inputRef: currentPasswordFieldRef },
+        ]}
         useMutation={useUpdateUserMutation}
         submitOptions={{
+          onlyDirtyValues: true,
           exclude: ["password_repeat"],
+          include: ["id"],
           clean: (values: typeof initialValues) => {
             const arg: UpdateUserArg = { id: values.id }
             if (isDirty(values, initialValues, "password")) {
@@ -132,15 +148,19 @@ const UpdateAccountForm: FC<UpdateAccountFormProps> = ({ authUser }) => {
             <>
               {!authUser.student && (
                 <>
-                  <forms.FirstNameField />
-                  <LastNameField />
-                  <forms.EmailField />
+                  <forms.FirstNameField inputRef={firstNameFieldRef} />
+                  <LastNameField inputRef={lastNameFieldRef} />
+                  <forms.EmailField inputRef={emailFieldRef} />
                 </>
               )}
               <forms.PasswordField
+                inputRef={passwordFieldRef}
                 required={Boolean(authUser.student)}
                 label="New password"
-                repeatFieldProps={{ label: "Repeat new password" }}
+                repeatFieldProps={{
+                  label: "Repeat new password",
+                  inputRef: passwordRepeatFieldRef,
+                }}
                 withRepeatField={Boolean(authUser.student) || dirty.password}
                 schema={passwordSchema}
               />
@@ -148,6 +168,7 @@ const UpdateAccountForm: FC<UpdateAccountFormProps> = ({ authUser }) => {
                 <forms.PasswordField
                   required
                   name="current_password"
+                  inputRef={currentPasswordFieldRef}
                   label="Current password"
                   placeholder="Enter your current password"
                 />

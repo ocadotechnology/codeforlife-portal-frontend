@@ -1,12 +1,16 @@
 import * as yup from "yup"
+import { TextField, type TextFieldProps } from "codeforlife/components/form"
 import { Business as BusinessIcon } from "@mui/icons-material"
 import { type FC } from "react"
 import { InputAdornment } from "@mui/material"
-import { TextField } from "codeforlife/components/form"
 
-export interface SchoolNameFieldProps {}
+export interface SchoolNameFieldProps
+  extends Omit<
+    TextFieldProps,
+    "required" | "schema" | "name" | "label" | "placeholder" | "InputProps"
+  > {}
 
-const SchoolNameField: FC<SchoolNameFieldProps> = () => {
+const SchoolNameField: FC<SchoolNameFieldProps> = textFieldProps => {
   return (
     <TextField
       required
@@ -21,6 +25,7 @@ const SchoolNameField: FC<SchoolNameFieldProps> = () => {
           </InputAdornment>
         ),
       }}
+      {...textFieldProps}
     />
   )
 }
