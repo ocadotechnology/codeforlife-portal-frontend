@@ -9,9 +9,13 @@ import {
 //   useOneTrustInfoToggle
 // } from 'codeforlife/hooks';
 import { type FC } from "react"
-import { LINK_IMPACT_REPORT_2023 } from "../../app/settings"
 import { Link } from "codeforlife/components/router"
 
+import {
+  LINK_IMPACT_REPORT_2023,
+  LINK_IMPACT_REPORT_2024,
+  LINK_OPPORTUNITIES_WITH_CFL,
+} from "../../app/settings"
 import { paths } from "../../routes"
 
 const LINK_STYLE: SxProps = {
@@ -50,8 +54,11 @@ const Links: FC<LinksProps> = () => {
           <FooterLink to={paths.aboutUs._}>About us</FooterLink>
           {/*TODO: Use Freshdesk hook*/}
           <MuiLink sx={LINK_STYLE}>Help and support</MuiLink>
-          <FooterLink to={LINK_IMPACT_REPORT_2023} newTab={true}>
+          <FooterLink to={LINK_IMPACT_REPORT_2023} newTab>
             Impact Report 2023
+          </FooterLink>
+          <FooterLink to={LINK_IMPACT_REPORT_2024} newTab>
+            Impact Report 2024
           </FooterLink>
         </Stack>
       </Grid>
@@ -72,6 +79,9 @@ const Links: FC<LinksProps> = () => {
           <FooterLink to={paths.homeLearning._}>Home learning</FooterLink>
           <FooterLink to={paths.getInvolved._}>Get involved</FooterLink>
           <FooterLink to={paths.codingClubs._}>Coding clubs</FooterLink>
+          <FooterLink to={LINK_OPPORTUNITIES_WITH_CFL} newTab>
+            Opportunities with CFL
+          </FooterLink>
         </Stack>
       </Grid>
     </Grid>
