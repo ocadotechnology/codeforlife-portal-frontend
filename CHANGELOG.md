@@ -1,3 +1,10 @@
+## [1.3.1](https://github.com/ocadotechnology/codeforlife-portal-frontend/compare/v1.3.0...v1.3.1) (2025-02-27)
+
+
+### Bug Fixes
+
+* Update GA4 text and remove Mouseflow text in Privacy Notice ([#94](https://github.com/ocadotechnology/codeforlife-portal-frontend/issues/94)) ([83719dc](https://github.com/ocadotechnology/codeforlife-portal-frontend/commit/83719dc6928926217105e1cbd51c7f6a4dc4a011))
+
 # [1.3.0](https://github.com/ocadotechnology/codeforlife-portal-frontend/compare/v1.2.2...v1.3.0) (2025-02-26)
 
 
