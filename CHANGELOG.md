@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/ocadotechnology/codeforlife-portal-frontend/compare/v1.3.1...v1.4.0) (2025-02-27)
+
+
+### Features
+
+* Impact Report 2024 and Opportunities with CFL docs in footer ([#88](https://github.com/ocadotechnology/codeforlife-portal-frontend/issues/88)) ([9bd76df](https://github.com/ocadotechnology/codeforlife-portal-frontend/commit/9bd76df2d36c104ab5c80e3f0a94977c0ed0466d))
+
 ## [1.3.1](https://github.com/ocadotechnology/codeforlife-portal-frontend/compare/v1.3.0...v1.3.1) (2025-02-27)
 
 
