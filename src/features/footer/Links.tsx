@@ -54,10 +54,10 @@ const Links: FC<LinksProps> = () => {
           <FooterLink to={paths.aboutUs._}>About us</FooterLink>
           {/*TODO: Use Freshdesk hook*/}
           <MuiLink sx={LINK_STYLE}>Help and support</MuiLink>
-          <FooterLink to={LINK_IMPACT_REPORT_2023} newTab={true}>
+          <FooterLink to={LINK_IMPACT_REPORT_2023} newTab>
             Impact Report 2023
           </FooterLink>
-          <FooterLink to={LINK_IMPACT_REPORT_2024} newTab={true}>
+          <FooterLink to={LINK_IMPACT_REPORT_2024} newTab>
             Impact Report 2024
           </FooterLink>
         </Stack>
@@ -79,7 +79,7 @@ const Links: FC<LinksProps> = () => {
           <FooterLink to={paths.homeLearning._}>Home learning</FooterLink>
           <FooterLink to={paths.getInvolved._}>Get involved</FooterLink>
           <FooterLink to={paths.codingClubs._}>Coding clubs</FooterLink>
-          <FooterLink to={LINK_OPPORTUNITIES_WITH_CFL} newTab={true}>
+          <FooterLink to={LINK_OPPORTUNITIES_WITH_CFL} newTab>
             Opportunities with CFL
           </FooterLink>
         </Stack>
