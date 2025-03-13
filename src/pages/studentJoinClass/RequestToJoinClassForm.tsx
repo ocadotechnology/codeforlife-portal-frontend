@@ -4,8 +4,8 @@ import { type FC } from "react"
 import { LinkButton } from "codeforlife/components/router"
 import { Stack } from "@mui/material"
 import { type User } from "codeforlife/api"
+import { idSchema } from "codeforlife/schemas/klass"
 
-import { classIdSchema } from "../../app/schemas.ts"
 import { paths } from "../../routes"
 import { useUpdateUserMutation } from "../../api/user"
 
@@ -53,7 +53,7 @@ const RequestToJoinClassForm: FC<RequestToJoinClassFormProps> = ({
         name="requesting_to_join_class"
         inputRef={requestingToJoinClassFieldRef}
         sx={{ width: { xs: "100%", sm: "50%" } }}
-        schema={classIdSchema}
+        schema={idSchema}
         required
       />
       <Stack direction="row" spacing={2} paddingY={3}>

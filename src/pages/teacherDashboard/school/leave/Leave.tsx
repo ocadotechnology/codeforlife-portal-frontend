@@ -1,13 +1,13 @@
 import * as form from "codeforlife/components/form"
 import * as page from "codeforlife/components/page"
 import * as tables from "codeforlife/components/table"
-import * as yup from "yup"
 import { CircularProgress, Stack, Typography } from "@mui/material"
 import { type FC, useEffect } from "react"
 import { Link, LinkButton } from "codeforlife/components/router"
 import { useNavigate, useParams } from "codeforlife/hooks"
 import { TablePagination } from "codeforlife/components"
 import { type User } from "codeforlife/api"
+import { idSchema } from "codeforlife/schemas/user"
 
 import {
   useLazyListClassesQuery,
@@ -28,7 +28,7 @@ const Leave: FC<LeaveProps> = ({ authUserId }) => {
     useLazyRetrieveUserQuery()
 
   const navigate = useNavigate()
-  const params = useParams({ userId: yup.number().required() })
+  const params = useParams({ userId: idSchema.required() })
 
   useEffect(() => {
     function navigateToSchoolTabWithErrorNotification(message: string) {
