@@ -22,7 +22,7 @@ const Python: FC<PythonProps> = () => {
         desc: "Adults following Python club on laptops",
         src: PythonClubImage,
       }}
-      direction="row-reverse"
+      reverse
     >
       <Typography>
         Download your FREE club packs for students aged 12 and above. These

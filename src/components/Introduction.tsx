@@ -1,45 +1,41 @@
 import type { FC, ReactNode } from "react"
-import {
-  Unstable_Grid2 as Grid,
-  type GridDirection,
-  Stack,
-  Typography,
-} from "@mui/material"
 import { Image } from "codeforlife/components"
-import type { ResponsiveStyleValue } from "@mui/system"
+import { Typography } from "@mui/material"
 
-export interface IntroductionProps {
+import LeftRightSplit, { type LeftRightSplitProps } from "./LeftRightSplit"
+
+export interface IntroductionProps
+  extends Omit<LeftRightSplitProps, "left" | "right"> {
   header: string
   img: { desc: string; src: string }
   children: ReactNode
-  direction?: ResponsiveStyleValue<GridDirection>
+  reverse?: boolean
 }
 
 const Introduction: FC<IntroductionProps> = ({
   header,
   img,
   children,
-  direction = "row",
+  reverse = false,
+  ...leftRightSplitProps
 }) => {
-  return (
+  const left = (
     <>
-      <Grid
-        container
-        spacing={{ xs: 2, lg: 3 }}
-        display="flex"
-        direction={direction}
-      >
-        <Grid xs={12} md={6}>
-          <Stack sx={{ height: "100%" }}>
-            <Typography variant="h5">{header}</Typography>
-            {children}
-          </Stack>
-        </Grid>
-        <Grid xs={12} md={6} className="flex-center">
-          <Image alt={img.desc} title={img.desc} src={img.src} />
-        </Grid>
-      </Grid>
+      <Typography variant="h5">{header}</Typography>
+      {children}
     </>
+  )
+
+  const right = (
+    <Image alt={img.desc} title={img.desc} src={img.src} marginY="auto" />
+  )
+
+  return (
+    <LeftRightSplit
+      left={reverse ? right : left}
+      right={reverse ? left : right}
+      {...leftRightSplitProps}
+    />
   )
 }
 

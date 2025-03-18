@@ -16,7 +16,7 @@ const OcadoGroup: FC<OcadoGroupProps> = () => {
         desc: "Man teaching two children on a laptop",
         src: AboutUsOcadoImage,
       }}
-      direction="row-reverse"
+      reverse
     >
       <Typography>
         Ocado Group, the online grocery solutions provider, is powering the
