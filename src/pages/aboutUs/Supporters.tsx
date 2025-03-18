@@ -3,7 +3,10 @@ import { type FC } from "react"
 import { Image } from "codeforlife/components"
 import { Link } from "codeforlife/components/router"
 
-import { LINK_CFL_DOCS, LINK_PORTAL_GITHUB } from "../../app/settings"
+import {
+  LINK_CFL_DOCS_BECOME_A_CONTRIBUTOR,
+  LINK_CFL_GH_WORKSPACE,
+} from "../../app/settings"
 import BarefootImage from "../../images/barefoot_logo.png"
 import BcsImage from "../../images/bcs_logo.png"
 import GLAImage from "../../images/gla_logo.png"
@@ -51,14 +54,14 @@ const Supporters: FC<SupportersProps> = () => {
           <Typography variant="h5">Developers</Typography>
           <Typography>
             To contribute, head over to{" "}
-            <Link to={LINK_PORTAL_GITHUB} target="_blank">
+            <Link to={LINK_CFL_GH_WORKSPACE} target="_blank">
               GitHub
             </Link>
             , check out the issue tracker, and get started. There you can
             suggest new features or assign yourself an issue to develop. You can
             find more info about how to do all these on our{" "}
-            <Link to={LINK_CFL_DOCS} target="_blank">
-              docs on Gitbook
+            <Link to={LINK_CFL_DOCS_BECOME_A_CONTRIBUTOR} target="_blank">
+              docs on GitBook
             </Link>
             .
           </Typography>
