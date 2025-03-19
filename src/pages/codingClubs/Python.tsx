@@ -9,7 +9,7 @@ import {
   LINK_PYTHON_PACK_GITBOOK,
   LINK_TIGER_SNAKES_CLUB_PACK,
 } from "../../app/settings"
-import Introduction from "../../components/Introduction"
+import { Introduction } from "../../components"
 import PythonClubImage from "../../images/coding_club_python_pack.png"
 
 export interface PythonProps {}
@@ -18,8 +18,8 @@ const Python: FC<PythonProps> = () => {
   return (
     <Introduction
       header="Python coding club"
-      img={{
-        desc: "Adults following Python club on laptops",
+      imageProps={{
+        alt: "Adults following Python club on laptops",
         src: PythonClubImage,
       }}
       reverse

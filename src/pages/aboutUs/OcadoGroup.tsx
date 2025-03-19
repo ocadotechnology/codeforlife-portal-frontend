@@ -3,7 +3,7 @@ import { Link } from "codeforlife/components/router"
 import { Typography } from "@mui/material"
 
 import AboutUsOcadoImage from "../../images/about_us_ocado.jpg"
-import Introduction from "../../components/Introduction"
+import { Introduction } from "../../components"
 import { LINK_SKILLS_FOR_THE_FUTURE } from "../../app/settings"
 
 export interface OcadoGroupProps {}
@@ -12,8 +12,8 @@ const OcadoGroup: FC<OcadoGroupProps> = () => {
   return (
     <Introduction
       header="Who is Ocado Group?"
-      img={{
-        desc: "Man teaching two children on a laptop",
+      imageProps={{
+        alt: "Man teaching two children on a laptop",
         src: AboutUsOcadoImage,
       }}
       reverse

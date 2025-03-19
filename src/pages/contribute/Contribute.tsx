@@ -3,8 +3,8 @@ import { type FC } from "react"
 
 import GithubHexagon from "../../images/github_hexagon.png"
 import HowToGetInvolved from "./HowToGetInvolved"
-// import HowYouCanContributeProps from "./HowYouCanContribute"
-// import OurProducts from "./OurProducts"
+import HowYouCanContribute from "./HowYouCanContribute"
+import OurProducts from "./OurProducts"
 
 export interface ContributeProps {}
 
@@ -18,12 +18,12 @@ const Contribute: FC<ContributeProps> = () => (
     <pages.Section>
       <HowToGetInvolved />
     </pages.Section>
-    {/* <pages.Section boxProps={{ bgcolor: "info.main" }}>
+    <pages.Section boxProps={{ bgcolor: "info.main" }}>
       <OurProducts />
     </pages.Section>
     <pages.Section>
-      <HowYouCanContributeProps />
-    </pages.Section> */}
+      <HowYouCanContribute />
+    </pages.Section>
   </pages.Page>
 )
 

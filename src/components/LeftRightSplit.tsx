@@ -16,11 +16,11 @@ const LeftRightSplit: FC<LeftRightSplitProps> = ({
   right,
   rightProps,
 }) => (
-  <Stack direction={{ sm: "row" }} gap={{ sm: 4 }} {...containerProps}>
-    <Stack width={{ sm: "50vw" }} {...leftProps}>
+  <Stack direction={{ md: "row" }} gap={{ xs: 2, md: 4 }} {...containerProps}>
+    <Stack width={{ md: "50vw" }} {...leftProps}>
       {left}
     </Stack>
-    <Stack width={{ sm: "50vw" }} {...rightProps}>
+    <Stack width={{ md: "50vw" }} {...rightProps}>
       {right}
     </Stack>
   </Stack>

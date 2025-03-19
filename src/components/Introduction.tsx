@@ -1,5 +1,5 @@
 import type { FC, ReactNode } from "react"
-import { Image } from "codeforlife/components"
+import { Image, type ImageProps } from "codeforlife/components"
 import { Typography } from "@mui/material"
 
 import LeftRightSplit, { type LeftRightSplitProps } from "./LeftRightSplit"
@@ -7,14 +7,14 @@ import LeftRightSplit, { type LeftRightSplitProps } from "./LeftRightSplit"
 export interface IntroductionProps
   extends Omit<LeftRightSplitProps, "left" | "right"> {
   header: string
-  img: { desc: string; src: string }
+  imageProps: ImageProps
   children: ReactNode
   reverse?: boolean
 }
 
 const Introduction: FC<IntroductionProps> = ({
   header,
-  img,
+  imageProps,
   children,
   reverse = false,
   ...leftRightSplitProps
@@ -26,9 +26,7 @@ const Introduction: FC<IntroductionProps> = ({
     </>
   )
 
-  const right = (
-    <Image alt={img.desc} title={img.desc} src={img.src} marginY="auto" />
-  )
+  const right = <Image marginY="auto" {...imageProps} />
 
   return (
     <LeftRightSplit
