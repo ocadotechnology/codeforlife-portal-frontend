@@ -19,7 +19,7 @@
     "noFallthroughCasesInSwitch": true
   },
   "include": [
-    // TODO: investigate if this is needed.
+    // TODO: investigate if this is needed
     "./node_modules/codeforlife/src/vite.config.ts",
   ]
 }
