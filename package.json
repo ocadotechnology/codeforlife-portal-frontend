@@ -12,7 +12,7 @@
   ],
   "dependencies": {
     "@react-pdf/renderer": "^4.0.0",
-    "codeforlife": "github:ocadotechnology/codeforlife-package-javascript#portal-frontend-48",
+    "codeforlife": "2.6.12",
     "crypto-js": "^4.2.0",
     "qrcode": "^1.5.4"
   },
