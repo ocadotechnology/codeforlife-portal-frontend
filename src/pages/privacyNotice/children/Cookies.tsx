@@ -1,44 +1,8 @@
-import {
-  Button,
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableRow,
-  Typography,
-} from "@mui/material"
+import { Button, Typography } from "@mui/material"
 import { type FC } from "react"
-import { Link } from "codeforlife/components/router"
 import { toggleOneTrustInfoDisplay } from "codeforlife/utils/window"
 
-const CustomTableRow: FC<{
-  withoutUnderline?: boolean
-  typesOfCookies: string
-  purpose: React.ReactNode
-  howLong: string
-}> = ({ withoutUnderline = false, typesOfCookies, purpose, howLong }) => (
-  <TableRow>
-    <TableCell>
-      <Typography
-        style={{
-          textDecoration: withoutUnderline ? "none" : "underline",
-        }}
-      >
-        {typesOfCookies}
-      </Typography>
-    </TableCell>
-    <TableCell>
-      {typeof purpose === "string" ? (
-        <Typography>{purpose}</Typography>
-      ) : (
-        purpose
-      )}
-    </TableCell>
-    <TableCell>
-      <Typography>{howLong}</Typography>
-    </TableCell>
-  </TableRow>
-)
+import CookieList from "../../../components/CookieList.tsx"
 
 export interface CookiesProps {}
 
@@ -70,60 +34,12 @@ const Cookies: FC<CookiesProps> = () => (
       talk about cookies in this Privacy Notice, we also mean web beacons and
       pixels.
     </Typography>
-    <Typography variant="h6">Types of cookies used</Typography>
+    <Typography variant="h6">Cookie list</Typography>
     <Typography>
       You can see all the different cookies we use and what we use them for
       below.
     </Typography>
-    <Table className="text body">
-      <TableHead>
-        <CustomTableRow
-          withoutUnderline
-          typesOfCookies="Types of cookies"
-          purpose="Purpose"
-          howLong="How long does it stay on the browser?"
-        />
-      </TableHead>
-      <TableBody className="text">
-        <CustomTableRow
-          typesOfCookies="Strictly necessary cookies"
-          purpose="These cookies do what you have asked for: for example, they allow the website to load on your device, they keep you logged in when you use our site and help keep our site safe. If you turn off these cookies using your browser settings, then it could stop some parts of the site from working."
-          howLong="12 months"
-        />
-        <CustomTableRow
-          typesOfCookies="Functional cookies"
-          purpose="These cookies allow the website to remember your settings each time you revisit the site (for example how you have your sound set up). If you do not allow these cookies, then some services may not work as smoothly."
-          howLong="For as long as you are on the site"
-        />
-        <CustomTableRow
-          typesOfCookies="Analytics/Performance cookies"
-          purpose={
-            <>
-              <Typography>
-                These cookies help us understand how you use our site, so we can
-                improve the service we provide. This can be anything like which
-                pages you go to most often and if you get error messages from
-                web pages. They allow us to measure how visitors use the portal
-                (for example which parts of the website are clicked on and the
-                length of time between clicks).
-              </Typography>
-              <Typography>
-                We use other companies called (
-                <Link
-                  to="https://developers.google.com/analytics/devguides/collection/analyticsjs/cookie-usage"
-                  target="_blank"
-                >
-                  Google Analytics
-                </Link>
-                ) to help us collect information from these cookies (see the
-                “Third-party cookies” section below).
-              </Typography>
-            </>
-          }
-          howLong="24 months"
-        />
-      </TableBody>
-    </Table>
+    <CookieList></CookieList>
     <Typography variant="h6">Third party cookies</Typography>
     <Typography>
       We work with other companies to run the analytics cookies on our portal,
