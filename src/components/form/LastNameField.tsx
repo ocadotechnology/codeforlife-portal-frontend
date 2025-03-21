@@ -2,7 +2,7 @@ import { TextField, type TextFieldProps } from "codeforlife/components/form"
 import { type FC } from "react"
 import { InputAdornment } from "@mui/material"
 import { PersonOutlined as PersonOutlinedIcon } from "@mui/icons-material"
-import { string as YupString } from "yup"
+import { lastNameSchema } from "codeforlife/schemas/user"
 
 export type LastNameFieldProps = Omit<
   TextFieldProps,
@@ -18,7 +18,7 @@ const LastNameField: FC<LastNameFieldProps> = ({
   ...otherTextFieldProps
 }) => (
   <TextField
-    schema={YupString().max(150)}
+    schema={lastNameSchema}
     name={name}
     label={label}
     placeholder={placeholder}

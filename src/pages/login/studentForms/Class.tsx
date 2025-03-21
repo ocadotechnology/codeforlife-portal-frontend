@@ -4,10 +4,11 @@ import { type FC, useEffect } from "react"
 import { Stack, Typography } from "@mui/material"
 import { useInputRef, useNavigate, useSearchParams } from "codeforlife/hooks"
 import { ChevronRight as ChevronRightIcon } from "@mui/icons-material"
+import { idSchema as classIdSchema } from "codeforlife/schemas/klass"
 import { generatePath } from "react-router-dom"
+import { idSchema as studentIdSchema } from "codeforlife/schemas/student"
 
 import BaseForm from "../BaseForm"
-import { classIdSchema } from "../../../app/schemas"
 import { paths } from "../../../routes"
 import { useAutoLoginAsStudentMutation } from "../../../api/sso"
 
@@ -17,7 +18,7 @@ const Class: FC<ClassProps> = () => {
   const [autoLoginAsStudent] = useAutoLoginAsStudentMutation()
   const navigate = useNavigate()
   const searchParams = useSearchParams({
-    id: yup.number().required(),
+    id: studentIdSchema.required(),
     agp: yup.string().required(),
   })
   const classIdFieldRef = useInputRef()

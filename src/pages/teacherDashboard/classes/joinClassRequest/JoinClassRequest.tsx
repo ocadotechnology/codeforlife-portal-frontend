@@ -1,8 +1,9 @@
-import * as yup from "yup"
 import { type FC, useEffect, useState } from "react"
 import { type IndependentUser, type StudentUser } from "codeforlife/api"
 import { useNavigate, useParams } from "codeforlife/hooks"
 import { CircularProgress } from "@mui/material"
+import { idSchema as classIdSchema } from "codeforlife/schemas/klass"
+import { idSchema as userIdSchema } from "codeforlife/schemas/user"
 
 import {
   type RetrieveUserResult,
@@ -10,7 +11,6 @@ import {
 } from "../../../../api/user"
 import AddedStudent from "./AddedStudent"
 import HandleRequest from "./HandleRequest"
-import { classIdSchema } from "../../../../app/schemas"
 import { paths } from "../../../../routes"
 import { useLazyRetrieveClassQuery } from "../../../../api/klass"
 
@@ -21,7 +21,7 @@ const JoinClassRequest: FC<JoinClassRequestProps> = () => {
   const [wasAccepted, setWasAccepted] = useState(false)
   const params = useParams({
     classId: classIdSchema.required(),
-    userId: yup.number().required(),
+    userId: userIdSchema.required(),
   })
 
   const [

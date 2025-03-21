@@ -7,12 +7,12 @@ import { Navigate } from "codeforlife/components/router"
 import { Typography } from "@mui/material"
 import { generatePath } from "react-router-dom"
 import { handleResultState } from "codeforlife/utils/api"
+import { idSchema } from "codeforlife/schemas/klass"
 
 import AdditionalClassDetails from "./AdditionalClassDetails"
 import { CreateStudentsForm } from "../../../../components/form"
 import StudentTable from "./StudentTable"
 import { type StudentsCredentialsState } from "../studentsCredentials/StudentsCredentials"
-import { classIdSchema } from "../../../../app/schemas"
 import { paths } from "../../../../routes"
 import { useRetrieveClassQuery } from "../../../../api/klass"
 
@@ -65,7 +65,7 @@ const _Class: FC<{ classId: Class["id"] }> = ({ classId }) => {
 export interface ClassProps {}
 
 const Class: FC<ClassProps> = () => {
-  const params = useParams({ classId: classIdSchema.required() })
+  const params = useParams({ classId: idSchema.required() })
 
   if (!params)
     return <Navigate to={paths.teacher.dashboard.tab.classes._} replace />

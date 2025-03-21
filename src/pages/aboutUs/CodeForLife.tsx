@@ -2,7 +2,7 @@ import { type FC } from "react"
 import { Typography } from "@mui/material"
 
 import AboutUsCFLImage from "../../images/about_us.jpg"
-import Introduction from "../../components/Introduction"
+import { Introduction } from "../../components"
 
 export interface CodeForLifeProps {}
 
@@ -10,8 +10,8 @@ const CodeForLife: FC<CodeForLifeProps> = () => {
   return (
     <Introduction
       header="What is Code for Life?"
-      img={{
-        desc: "Girl looking at Code for Life website",
+      imageProps={{
+        alt: "Girl looking at Code for Life website",
         src: AboutUsCFLImage,
       }}
     >

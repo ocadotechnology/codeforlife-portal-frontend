@@ -3,9 +3,9 @@ import { type FC, useEffect } from "react"
 import { useInputRef, useNavigate, useParams } from "codeforlife/hooks"
 import { ChevronRight as ChevronRightIcon } from "@mui/icons-material"
 import { Stack } from "@mui/material"
+import { idSchema as classIdSchema } from "codeforlife/schemas/klass"
 
 import BaseForm from "../BaseForm"
-import { classIdSchema } from "../../../app/schemas"
 import { paths } from "../../../routes"
 import { useLoginAsStudentMutation } from "../../../api/sso"
 

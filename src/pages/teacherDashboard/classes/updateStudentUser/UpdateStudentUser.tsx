@@ -3,15 +3,16 @@ import { type Class, type StudentUser, type User } from "codeforlife/api"
 import { Link, Navigate } from "codeforlife/components/router"
 import { type FC } from "react"
 import { Typography } from "@mui/material"
+import { idSchema as classIdSchema } from "codeforlife/schemas/klass"
 import { generatePath } from "react-router-dom"
 import { handleResultState } from "codeforlife/utils/api"
 import { useParams } from "codeforlife/hooks"
+import { idSchema as userIdSchema } from "codeforlife/schemas/user"
 
 import {
   type RetrieveUserResult,
   useRetrieveUserQuery,
 } from "../../../../api/user"
-import { classIdSchema, userIdSchema } from "../../../../app/schemas"
 import UpdateNameForm from "./UpdateNameForm"
 import UpdatePasswordForm from "./UpdatePasswordForm"
 import { paths } from "../../../../routes"

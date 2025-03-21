@@ -4,12 +4,12 @@ import { Link, Navigate } from "codeforlife/components/router"
 import { useLocation, useParams } from "codeforlife/hooks"
 import { type FC } from "react"
 import { Typography } from "@mui/material"
+import { idSchema as classIdSchema } from "codeforlife/schemas/klass"
 import { generatePath } from "react-router-dom"
 import { handleResultState } from "codeforlife/utils/api"
 
 import { type ListUsersResult } from "../../../../api/user"
 import ReleaseStudentsForm from "./ReleaseStudentsForm"
-import { classIdSchema } from "../../../../app/schemas"
 import { paths } from "../../../../routes"
 import { useRetrieveClassQuery } from "../../../../api/klass"
 
