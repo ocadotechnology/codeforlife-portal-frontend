@@ -8,7 +8,7 @@ import {
   LINK_PRIMARY_PACK_GITBOOK,
 } from "../../app/settings"
 import AboutUsImage from "../../images/about_us.jpg"
-import Introduction from "../../components/Introduction"
+import { Introduction } from "../../components"
 
 export interface PrimaryProps {}
 
@@ -16,8 +16,8 @@ const Primary: FC<PrimaryProps> = () => {
   return (
     <Introduction
       header="Primary coding club"
-      img={{
-        desc: "Girl looking at Code for Life website",
+      imageProps={{
+        alt: "Girl looking at Code for Life website",
         src: AboutUsImage,
       }}
     >
