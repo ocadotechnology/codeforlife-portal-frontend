@@ -12,7 +12,7 @@
   ],
   "dependencies": {
     "@react-pdf/renderer": "^4.0.0",
-    "codeforlife": "github:ocadotechnology/codeforlife-package-javascript#package-javascript-80-2",
+    "codeforlife": "2.6.13",
     "crypto-js": "^4.2.0",
     "qrcode": "^1.5.4"
   },

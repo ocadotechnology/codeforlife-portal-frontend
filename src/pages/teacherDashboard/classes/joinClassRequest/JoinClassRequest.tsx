@@ -1,9 +1,11 @@
 import { type FC, useEffect, useState } from "react"
-import { type IndependentUser, type StudentUser } from "codeforlife/api"
+import {
+  type IndependentUser,
+  type StudentUser,
+  schemas,
+} from "codeforlife/api"
 import { useNavigate, useParams } from "codeforlife/hooks"
 import { CircularProgress } from "@mui/material"
-import { idSchema as classIdSchema } from "codeforlife/schemas/klass"
-import { idSchema as userIdSchema } from "codeforlife/schemas/user"
 
 import {
   type RetrieveUserResult,
@@ -20,8 +22,8 @@ const JoinClassRequest: FC<JoinClassRequestProps> = () => {
   const navigate = useNavigate()
   const [wasAccepted, setWasAccepted] = useState(false)
   const params = useParams({
-    classId: classIdSchema.required(),
-    userId: userIdSchema.required(),
+    classId: schemas.klass.id,
+    userId: schemas.user.id,
   })
 
   const [

@@ -1,3 +1,4 @@
+import * as yup from "yup"
 import {
   type Arg,
   type CreateArg,
@@ -9,12 +10,14 @@ import {
   type Model,
   type RetrieveArg,
   type RetrieveResult,
+  type Schemas,
   type UpdateArg,
   type UpdateResult,
   buildUrl,
   tagData,
 } from "codeforlife/utils/api"
-import { type User } from "codeforlife/api"
+import { type User, schemas } from "codeforlife/api"
+import { numericId } from "codeforlife/utils/schema"
 
 import api from "."
 
@@ -28,6 +31,16 @@ export type SchoolTeacherInvitation = Model<
     invited_teacher_is_admin: boolean
   }
 >
+
+export const schoolTeacherInvitationSchemas: Schemas<SchoolTeacherInvitation> =
+  {
+    id: numericId().required(),
+    expires_at: yup.date().required(),
+    invited_teacher_first_name: schemas.user.first_name,
+    invited_teacher_last_name: schemas.user.last_name.required(),
+    invited_teacher_email: schemas.user.email.required(),
+    invited_teacher_is_admin: schemas.teacher.is_admin,
+  }
 
 export type AcceptSchoolTeacherInvitationResult = null
 export type AcceptSchoolTeacherInvitationArg = {

@@ -2,7 +2,7 @@ import { TextField, type TextFieldProps } from "codeforlife/components/form"
 import { Business as BusinessIcon } from "@mui/icons-material"
 import { type FC } from "react"
 import { InputAdornment } from "@mui/material"
-import { nameSchema } from "codeforlife/schemas/school"
+import { schemas } from "codeforlife/api"
 
 export interface SchoolNameFieldProps
   extends Omit<
@@ -14,7 +14,7 @@ const SchoolNameField: FC<SchoolNameFieldProps> = textFieldProps => {
   return (
     <TextField
       required
-      schema={nameSchema}
+      schema={schemas.school.name}
       name="name"
       label="Name of school or club"
       placeholder="Enter name of school or club"

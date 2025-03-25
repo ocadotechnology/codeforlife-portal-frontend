@@ -1,9 +1,8 @@
 import * as pages from "codeforlife/components/page"
+import { type Class, schemas } from "codeforlife/api"
 import { Link, Navigate } from "codeforlife/components/router"
 import { useLocation, useParams } from "codeforlife/hooks"
-import { type Class } from "codeforlife/api"
 import { type FC } from "react"
-import { idSchema as classIdSchema } from "codeforlife/schemas/klass"
 import { generatePath } from "react-router-dom"
 import { handleResultState } from "codeforlife/utils/api"
 
@@ -51,7 +50,7 @@ export interface StudentsCredentialsState
 export interface StudentsCredentialsProps {}
 
 const StudentsCredentials: FC<StudentsCredentialsProps> = () => {
-  const params = useParams({ classId: classIdSchema.required() })
+  const params = useParams({ classId: schemas.klass.id })
   const { state } = useLocation<StudentsCredentialsState>()
 
   if (!params)

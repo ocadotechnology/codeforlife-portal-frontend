@@ -3,7 +3,7 @@ import * as yup from "yup"
 import { type FC, useEffect } from "react"
 import { useNavigate, useParams } from "codeforlife/hooks"
 import { ThemedBox } from "codeforlife/theme"
-import { idSchema } from "codeforlife/schemas/user"
+import { schemas } from "codeforlife/api"
 
 import EmailForm from "./EmailForm"
 import PasswordForm from "./PasswordForm"
@@ -20,7 +20,7 @@ const ResetPassword: FC<ResetPasswordProps> = () => {
       .string()
       .oneOf(["teacher", "independent"] as const)
       .required(),
-    userId: idSchema,
+    userId: schemas.user.id,
     token: yup.string(),
   })
 

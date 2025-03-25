@@ -4,10 +4,9 @@ import * as tables from "codeforlife/components/table"
 import { CircularProgress, Stack, Typography } from "@mui/material"
 import { type FC, useEffect } from "react"
 import { Link, LinkButton } from "codeforlife/components/router"
+import { type User, schemas } from "codeforlife/api"
 import { useNavigate, useParams } from "codeforlife/hooks"
 import { TablePagination } from "codeforlife/components"
-import { type User } from "codeforlife/api"
-import { idSchema } from "codeforlife/schemas/user"
 
 import {
   useLazyListClassesQuery,
@@ -28,7 +27,7 @@ const Leave: FC<LeaveProps> = ({ authUserId }) => {
     useLazyRetrieveUserQuery()
 
   const navigate = useNavigate()
-  const params = useParams({ userId: idSchema.required() })
+  const params = useParams({ userId: schemas.user.id })
 
   useEffect(() => {
     function navigateToSchoolTabWithErrorNotification(message: string) {

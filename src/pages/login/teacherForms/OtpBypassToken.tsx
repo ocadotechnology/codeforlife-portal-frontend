@@ -3,7 +3,7 @@ import { Stack, Typography, useTheme } from "@mui/material"
 import { useInputRef, useNavigate, useSession } from "codeforlife/hooks"
 import type { FC } from "react"
 import { LinkButton } from "codeforlife/components/router"
-import { tokenSchema } from "codeforlife/schemas/otpBypassToken"
+import { schemas } from "codeforlife/api"
 
 import BaseForm from "../BaseForm"
 import { paths } from "../../../routes"
@@ -39,7 +39,7 @@ const OtpBypassToken: FC<OtpBypassTokenProps> = () => {
         name="token"
         label="OTP-bypass token"
         placeholder="Enter one of your otp-bypass tokens"
-        schema={tokenSchema}
+        schema={schemas.otpBypassToken.token}
         required
       />
       <Stack
