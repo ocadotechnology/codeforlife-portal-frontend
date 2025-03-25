@@ -3,17 +3,13 @@ import { getDirty, isDirty } from "codeforlife/utils/form"
 import { useInputRef, useNavigate } from "codeforlife/hooks"
 import { type FC } from "react"
 import { Typography } from "@mui/material"
+import { schemas } from "codeforlife/api"
 
 import {
   type RetrieveUserResult,
   type UpdateUserArg,
   useUpdateUserMutation,
 } from "../../api/user"
-import {
-  indyPasswordSchema,
-  studentPasswordSchema,
-  teacherPasswordSchema,
-} from "../../app/schemas"
 import { LastNameField } from "./index"
 
 export interface UpdateAccountFormProps {
@@ -129,12 +125,12 @@ const UpdateAccountForm: FC<UpdateAccountFormProps> = ({ authUser }) => {
             "password",
           ])
 
-          let passwordSchema = indyPasswordSchema
+          let passwordSchema = schemas.indyUser.password
 
           if (authUser.student) {
-            passwordSchema = studentPasswordSchema
+            passwordSchema = schemas.studentUser.password
           } else if (authUser.teacher) {
-            passwordSchema = teacherPasswordSchema
+            passwordSchema = schemas.teacherUser.password
           }
 
           if (isDirty(form.values, initialValues, "current_password")) {

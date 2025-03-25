@@ -1,16 +1,11 @@
 import { Button, Dialog, Typography } from "@mui/material"
 import { type FC, useState } from "react"
-
 import {
   PasswordField,
   type PasswordFieldProps,
 } from "codeforlife/components/form"
+import { schemas } from "codeforlife/api"
 
-import {
-  indyPasswordSchema,
-  studentPasswordSchema,
-  teacherPasswordSchema,
-} from "../../app/schemas"
 import { usePwnedPasswordsApi } from "../../app/hooks"
 
 export interface NewPasswordFieldProps
@@ -29,16 +24,16 @@ const NewPasswordField: FC<NewPasswordFieldProps> = ({
   const [dialogOpen, setDialogOpen] = useState(!pwnedPasswordsOnline)
 
   let schema = {
-    teacher: teacherPasswordSchema,
-    independent: indyPasswordSchema,
-    student: studentPasswordSchema,
+    teacher: schemas.teacherUser.password,
+    independent: schemas.indyUser.password,
+    student: schemas.studentUser.password,
   }[userType]
 
   if (
     pwnedPasswordsOnline &&
     (userType === "teacher" || userType === "independent")
   ) {
-    schema = schema.concat(pwnedPasswordsSchema)
+    schema = schema.concat(pwnedPasswordsSchema.required())
   }
 
   return (
