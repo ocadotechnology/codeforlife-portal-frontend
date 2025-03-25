@@ -21,8 +21,11 @@ const HowYouCanContribute: FC<HowYouCanContributeProps> = () => (
   >
     <Typography>
       Today, there is a small dedicated team working full time on Code for Life.
-      This year, we&apos;re expecting to reach over 100,000 newly registered
-      teachers and students. We need your help to do even more.
+      Our community, made up of dedicated teachers, tutors, students, and
+      volunteers, has played a vital part in Code For Life&apos;s growth. The
+      resources and games are aligned to the UK National Curriculum and have
+      reached over 260,000 active users across 180 countries, and over 660,000
+      users since the launch in 2014. We need your help to grow even more.
     </Typography>
     <Typography>
       If contributing to open-source projects to support education in coding and
