@@ -1,3 +1,10 @@
+## [1.4.2](https://github.com/ocadotechnology/codeforlife-portal-frontend/compare/v1.4.1...v1.4.2) (2025-03-26)
+
+
+### Bug Fixes
+
+* char set validators ([#97](https://github.com/ocadotechnology/codeforlife-portal-frontend/issues/97)) ([dfa9d69](https://github.com/ocadotechnology/codeforlife-portal-frontend/commit/dfa9d69ab3d8ffa6ef05f2b6caf6fbce89424e18))
+
 ## [1.4.1](https://github.com/ocadotechnology/codeforlife-portal-frontend/compare/v1.4.0...v1.4.1) (2025-03-21)
 
 
