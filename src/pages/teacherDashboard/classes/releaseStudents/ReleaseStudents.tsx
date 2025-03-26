@@ -1,5 +1,5 @@
 import * as pages from "codeforlife/components/page"
-import { type Class, type StudentUser } from "codeforlife/api"
+import { type Class, type StudentUser, schemas } from "codeforlife/api"
 import { Link, Navigate } from "codeforlife/components/router"
 import { useLocation, useParams } from "codeforlife/hooks"
 import { type FC } from "react"
@@ -9,7 +9,6 @@ import { handleResultState } from "codeforlife/utils/api"
 
 import { type ListUsersResult } from "../../../../api/user"
 import ReleaseStudentsForm from "./ReleaseStudentsForm"
-import { classIdSchema } from "../../../../app/schemas"
 import { paths } from "../../../../routes"
 import { useRetrieveClassQuery } from "../../../../api/klass"
 
@@ -68,7 +67,7 @@ export interface ReleaseStudentsState {
 export interface ReleaseStudentsProps {}
 
 const ReleaseStudents: FC<ReleaseStudentsProps> = () => {
-  const params = useParams({ classId: classIdSchema.required() })
+  const params = useParams({ classId: schemas.klass.id })
   const { state } = useLocation<ReleaseStudentsState>()
 
   if (!params)

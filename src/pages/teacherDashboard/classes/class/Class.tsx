@@ -1,6 +1,6 @@
 import * as pages from "codeforlife/components/page"
+import { type Class, schemas } from "codeforlife/api"
 import { useNavigate, useParams } from "codeforlife/hooks"
-import { type Class } from "codeforlife/api"
 import { type FC } from "react"
 import { Link } from "codeforlife/components/router"
 import { Navigate } from "codeforlife/components/router"
@@ -12,7 +12,6 @@ import AdditionalClassDetails from "./AdditionalClassDetails"
 import { CreateStudentsForm } from "../../../../components/form"
 import StudentTable from "./StudentTable"
 import { type StudentsCredentialsState } from "../studentsCredentials/StudentsCredentials"
-import { classIdSchema } from "../../../../app/schemas"
 import { paths } from "../../../../routes"
 import { useRetrieveClassQuery } from "../../../../api/klass"
 
@@ -65,7 +64,7 @@ const _Class: FC<{ classId: Class["id"] }> = ({ classId }) => {
 export interface ClassProps {}
 
 const Class: FC<ClassProps> = () => {
-  const params = useParams({ classId: classIdSchema.required() })
+  const params = useParams({ classId: schemas.klass.id })
 
   if (!params)
     return <Navigate to={paths.teacher.dashboard.tab.classes._} replace />

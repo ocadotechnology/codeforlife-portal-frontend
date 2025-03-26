@@ -1,12 +1,11 @@
 import * as forms from "codeforlife/components/form"
 import { Add as AddIcon, Upload as UploadIcon } from "@mui/icons-material"
+import { type Class, schemas } from "codeforlife/api"
 import { type FC, type MutableRefObject, useEffect, useRef } from "react"
 import { Stack, Typography } from "@mui/material"
 import { useInputRef, useNavigate } from "codeforlife/hooks"
-import { type Class } from "codeforlife/api"
 import { InputFileButton } from "codeforlife/components"
 import { type SubmitFormOptions } from "codeforlife/utils/form"
-import { firstNameSchema } from "codeforlife/schemas/user"
 
 import {
   type CreateStudentsArg,
@@ -115,7 +114,7 @@ const CreateStudentsForm: FC<CreateStudentsFormProps> = ({
                 rows={5}
                 className="resize-vertical"
                 placeholder="You can import names from a .CSV file, or copy and paste them from a spreadsheet directly into this text box"
-                schema={firstNameSchema}
+                schema={schemas.user.first_name}
               />
               <forms.SubmitButton endIcon={<AddIcon />}>
                 Add students

@@ -3,9 +3,9 @@ import { type FC, useEffect } from "react"
 import { useInputRef, useNavigate, useParams } from "codeforlife/hooks"
 import { ChevronRight as ChevronRightIcon } from "@mui/icons-material"
 import { Stack } from "@mui/material"
+import { schemas } from "codeforlife/api"
 
 import BaseForm from "../BaseForm"
-import { classIdSchema } from "../../../app/schemas"
 import { paths } from "../../../routes"
 import { useLoginAsStudentMutation } from "../../../api/sso"
 
@@ -16,7 +16,7 @@ const FirstName: FC<FirstNameProps> = () => {
   const firstNameFieldRef = useInputRef()
   const passwordFieldRef = useInputRef()
 
-  const params = useParams({ classId: classIdSchema.required() })
+  const params = useParams({ classId: schemas.klass.id })
 
   useEffect(() => {
     if (!params) {

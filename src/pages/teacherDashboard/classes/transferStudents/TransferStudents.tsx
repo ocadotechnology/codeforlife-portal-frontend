@@ -1,5 +1,5 @@
 import * as pages from "codeforlife/components/page"
-import { type Class, type StudentUser } from "codeforlife/api"
+import { type Class, type StudentUser, schemas } from "codeforlife/api"
 import { type FC, useState } from "react"
 import { Link, Navigate } from "codeforlife/components/router"
 import { useLocation, useParams } from "codeforlife/hooks"
@@ -15,7 +15,6 @@ import { type ListUsersResult } from "../../../../api/user"
 import SelectClassForm from "./SelectClassForm"
 import StudentTable from "./StudentTable"
 import TransferStudentsForm from "./TransferStudentsForm"
-import { classIdSchema } from "../../../../app/schemas"
 import { paths } from "../../../../routes"
 
 const NewClassSections: FC<
@@ -86,7 +85,7 @@ export interface TransferStudentsState {
 export interface TransferStudentsProps {}
 
 const TransferStudents: FC<TransferStudentsProps> = () => {
-  const params = useParams({ classId: classIdSchema.required() })
+  const params = useParams({ classId: schemas.klass.id })
   const { state } = useLocation<TransferStudentsState>()
 
   if (!params)

@@ -1,5 +1,10 @@
 import * as pages from "codeforlife/components/page"
-import { type Class, type StudentUser, type User } from "codeforlife/api"
+import {
+  type Class,
+  type StudentUser,
+  type User,
+  schemas,
+} from "codeforlife/api"
 import { Link, Navigate } from "codeforlife/components/router"
 import { type FC } from "react"
 import { Typography } from "@mui/material"
@@ -11,7 +16,6 @@ import {
   type RetrieveUserResult,
   useRetrieveUserQuery,
 } from "../../../../api/user"
-import { classIdSchema, userIdSchema } from "../../../../app/schemas"
 import UpdateNameForm from "./UpdateNameForm"
 import UpdatePasswordForm from "./UpdatePasswordForm"
 import { paths } from "../../../../routes"
@@ -65,8 +69,8 @@ export interface UpdateStudentUserProps {}
 
 const UpdateStudentUser: FC<UpdateStudentUserProps> = () => {
   const params = useParams({
-    classId: classIdSchema.required(),
-    studentUserId: userIdSchema.required(),
+    classId: schemas.klass.id,
+    studentUserId: schemas.user.id,
   })
 
   return params ? (

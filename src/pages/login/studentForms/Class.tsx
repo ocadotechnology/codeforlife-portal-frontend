@@ -1,13 +1,12 @@
 import * as form from "codeforlife/components/form"
-import * as yup from "yup"
 import { type FC, useEffect } from "react"
 import { Stack, Typography } from "@mui/material"
 import { useInputRef, useNavigate, useSearchParams } from "codeforlife/hooks"
 import { ChevronRight as ChevronRightIcon } from "@mui/icons-material"
 import { generatePath } from "react-router-dom"
+import { schemas } from "codeforlife/api"
 
 import BaseForm from "../BaseForm"
-import { classIdSchema } from "../../../app/schemas"
 import { paths } from "../../../routes"
 import { useAutoLoginAsStudentMutation } from "../../../api/sso"
 
@@ -17,8 +16,8 @@ const Class: FC<ClassProps> = () => {
   const [autoLoginAsStudent] = useAutoLoginAsStudentMutation()
   const navigate = useNavigate()
   const searchParams = useSearchParams({
-    id: yup.number().required(),
-    agp: yup.string().required(),
+    id: schemas.student.id,
+    agp: schemas.student.auto_gen_password,
   })
   const classIdFieldRef = useInputRef()
 
@@ -69,7 +68,7 @@ const Class: FC<ClassProps> = () => {
             name="classId"
             label="Class code"
             placeholder="Enter your class code"
-            schema={classIdSchema}
+            schema={schemas.klass.id}
             inputRef={classIdFieldRef}
             required
           />

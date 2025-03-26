@@ -2,7 +2,7 @@ import { TextField, type TextFieldProps } from "codeforlife/components/form"
 import { type FC } from "react"
 import { InputAdornment } from "@mui/material"
 import { PeopleAlt as PeopleAltIcon } from "@mui/icons-material"
-import { string as YupString } from "yup"
+import { schemas } from "codeforlife/api"
 
 export type ClassNameFieldProps = Omit<
   TextFieldProps,
@@ -18,7 +18,7 @@ const ClassNameField: FC<ClassNameFieldProps> = ({
   ...otherTextFieldProps
 }) => (
   <TextField
-    schema={YupString().max(200)}
+    schema={schemas.klass.name}
     name={name}
     label={label}
     placeholder={placeholder}
