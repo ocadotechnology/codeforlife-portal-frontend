@@ -31,7 +31,7 @@ const IndyForm: FC<IndyFormProps> = () => {
   return (
     <BaseForm
       header="Independent learner"
-      subheader="Register below if you are not part of a school or club and wish to set up a home learning account."
+      subheader="Register below if you are not part of a school or club and wish to set up a free home learning account."
       description="You will have access to learning resources for Rapid Router."
       userType="independent"
     >

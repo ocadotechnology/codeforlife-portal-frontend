@@ -25,7 +25,7 @@ const TeacherForm: FC<TeacherFormProps> = () => {
   return (
     <BaseForm
       header="Teacher/Tutor"
-      subheader="Register below to create your school or club."
+      subheader="Register below to create your free account."
       description="You will have access to teaching resources, progress tracking and lesson plans for both Rapid Router and Kurono."
       userType="teacher"
     >
