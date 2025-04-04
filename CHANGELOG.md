@@ -1,3 +1,10 @@
+## [1.4.3](https://github.com/ocadotechnology/codeforlife-portal-frontend/compare/v1.4.2...v1.4.3) (2025-04-04)
+
+
+### Bug Fixes
+
+* Amend register form text ([#103](https://github.com/ocadotechnology/codeforlife-portal-frontend/issues/103)) ([d427369](https://github.com/ocadotechnology/codeforlife-portal-frontend/commit/d4273697531e1c4e51ef2d4348be23f02cb8488c))
+
 ## [1.4.2](https://github.com/ocadotechnology/codeforlife-portal-frontend/compare/v1.4.1...v1.4.2) (2025-03-26)
 
 
