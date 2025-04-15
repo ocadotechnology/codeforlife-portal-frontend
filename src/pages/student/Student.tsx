@@ -1,0 +1,38 @@
+import * as page from "codeforlife/components/page"
+import { type FC } from "react"
+
+import Characters from "./Characters.tsx"
+import PlayHeroImage from "../../images/home_play_hero.png"
+import PythonDen from "./PythonDen.tsx"
+import RapidRouter from "./RapidRouter.tsx"
+
+export interface StudentProps {}
+
+const Student: FC<StudentProps> = () => {
+  return (
+    <page.Page>
+      <page.Banner
+        imageProps={{
+          alt: "Boy using a tablet",
+          title: "Boy using a tablet",
+          src: PlayHeroImage,
+        }}
+        header="Play"
+        subheader={
+          "Anyone can learn how to code. We will help you learn how. It’s fun, free and easy."
+        }
+      />
+      <page.Section>
+        <RapidRouter />
+      </page.Section>
+      <page.Section boxProps={{ bgcolor: "info.main" }}>
+        <Characters />
+      </page.Section>
+      <page.Section>
+        <PythonDen />
+      </page.Section>
+    </page.Page>
+  )
+}
+
+export default Student
