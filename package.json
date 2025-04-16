@@ -13,7 +13,7 @@
   "dependencies": {
     "@react-pdf/renderer": "^4.0.0",
     "react-material-ui-carousel": "^3.4.2",
-    "codeforlife": "2.6.14",
+    "codeforlife": "github:ocadotechnology/codeforlife-package-javascript#banner_two_buttons",
     "crypto-js": "^4.2.0",
     "qrcode": "^1.5.4"
   },

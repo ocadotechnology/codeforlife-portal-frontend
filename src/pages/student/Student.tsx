@@ -5,6 +5,8 @@ import Characters from "./Characters.tsx"
 import PlayHeroImage from "../../images/home_play_hero.png"
 import PythonDen from "./PythonDen.tsx"
 import RapidRouter from "./RapidRouter.tsx"
+import { ChevronRightRounded as ChevronRightRoundedIcon } from "@mui/icons-material"
+import { paths } from "../../routes"
 
 export interface StudentProps {}
 
@@ -21,6 +23,16 @@ const Student: FC<StudentProps> = () => {
         subheader={
           "Anyone can learn how to code. We will help you learn how. It’s fun, free and easy."
         }
+        button1Props={{
+          to: paths.rapidRouter._,
+          children: "Try Rapid Router",
+          endIcon: <ChevronRightRoundedIcon />,
+        }}
+        button2Props={{
+          to: paths.pythonDen._,
+          children: "Try Python Den",
+          endIcon: <ChevronRightRoundedIcon />,
+        }}
       />
       <page.Section>
         <RapidRouter />

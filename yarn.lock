@@ -1564,9 +1564,9 @@
     fastq "^1.6.0"
 
 "@pkgr/core@^0.2.3":
-  version "0.2.3"
-  resolved "https://registry.yarnpkg.com/@pkgr/core/-/core-0.2.3.tgz#4946c50a8e1272a5529ebd4e2d5869db183a3cbe"
-  integrity sha512-yMV8bb9prWI21N6FsrnPCbhoYb8UUvYCDGoSvPHBloVC095Ef2ker43hzXkJ6TpJPw53S8FeFYkARa7GGIGwxg==
+  version "0.2.4"
+  resolved "https://registry.yarnpkg.com/@pkgr/core/-/core-0.2.4.tgz#d897170a2b0ba51f78a099edccd968f7b103387c"
+  integrity sha512-ROFF39F6ZrnzSUEmQQZUar0Jt4xVoP9WnDRdWwF4NNcXs3xBTLgBUDoOwW141y1jP+S8nahIbdxbFC7IShw9Iw==
 
 "@polka/url@^1.0.0-next.24":
   version "1.0.0-next.29"
@@ -2916,10 +2916,9 @@ clsx@^2.0.0, clsx@^2.1.0, clsx@^2.1.1:
   resolved "https://registry.yarnpkg.com/clsx/-/clsx-2.1.1.tgz#eed397c9fd8bd882bfb18deab7102049a2f32999"
   integrity sha512-eYm0QWBtUrBWZWG0d386OGAw16Z995PiOVo2B7bjWSbHedGl5e0ZWaq65kOGgUSNesEIDkB9ISbTg/JK9dhCZA==
 
-codeforlife@2.6.14:
+"codeforlife@github:ocadotechnology/codeforlife-package-javascript#banner_two_buttons":
   version "2.6.14"
-  resolved "https://registry.yarnpkg.com/codeforlife/-/codeforlife-2.6.14.tgz#42773cda1955fad7c9ef1bb50c2f391b4f8ab3e0"
-  integrity sha512-3ka3ZEgde5VhtE2pfGJfPKxRZMdEQZUJmbgG0F7KlcHMVM6jC5gbK6wNu9C/6CPGO4i9x6ufaKuv/YhJ9xSAEg==
+  resolved "https://codeload.github.com/ocadotechnology/codeforlife-package-javascript/tar.gz/5142bac518f004e042a8e1c732ddc37476a21f2d"
   dependencies:
     "@emotion/react" "^11.10.6"
     "@emotion/styled" "^11.10.6"
