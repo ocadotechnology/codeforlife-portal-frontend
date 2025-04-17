@@ -37,7 +37,6 @@ const GetInvolved: FC<GetInvolvedProps> = () => (
             title="Starting a coding club of your own"
             description="Become a Code for Life ambassador by starting up a coding club. Find out more about how you can get involved with this by visiting our coding club page."
             mediaProps={{
-              alt: "Student showing their work to teacher",
               title: "Student showing their work to teacher",
               image: ClubsImage,
             }}
@@ -53,7 +52,6 @@ const GetInvolved: FC<GetInvolvedProps> = () => (
             title="Contribute through code"
             description="We welcome volunteers from all backgrounds to help us with our coding adventure. Take a look at our contribution guide to find out how to get involved in our open source projects."
             mediaProps={{
-              alt: "Github repository page",
               title: "Github repository page",
               image: GithubImage,
             }}
@@ -69,7 +67,6 @@ const GetInvolved: FC<GetInvolvedProps> = () => (
             title="University partnerships"
             description="Please get in touch at codeforlife@ocado.com if you are interested in working on Code for Life projects with your students including coding, user experience, data analytics and new feature design."
             mediaProps={{
-              alt: "Three students looking at laptops",
               title: "Three students looking at laptops",
               image: UniversitiesImage,
             }}
