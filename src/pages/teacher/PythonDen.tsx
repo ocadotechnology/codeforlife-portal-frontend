@@ -14,7 +14,7 @@ const PythonDen: FC<PythonDenProps> = () => {
     <Introduction
       header="Python programming"
       videoProps={{
-        src: { LINK_PYTHON_DEN_DEMO },
+        src: LINK_PYTHON_DEN_DEMO,
       }}
     >
       <Typography>

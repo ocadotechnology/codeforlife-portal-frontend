@@ -37,7 +37,7 @@ const RapidRouter: FC<RapidRouterProps> = () => {
       <Introduction
         header="Starting with Blockly"
         videoProps={{
-          src: { LINK_RAPID_ROUTER_STUDENT_DEMO },
+          src: LINK_RAPID_ROUTER_STUDENT_DEMO,
         }}
       >
         <Typography>

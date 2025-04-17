@@ -14,7 +14,7 @@ const Resources: FC<ResourcesProps> = () => {
     <Introduction
       header="Resources and progress tracking"
       videoProps={{
-        src: { LINK_TEACHING_RESOURCES_DEMO },
+        src: LINK_TEACHING_RESOURCES_DEMO,
       }}
     >
       <Typography>

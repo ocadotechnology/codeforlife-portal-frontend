@@ -33,11 +33,15 @@ const Introduction: FC<IntroductionProps> = ({
     </>
   )
 
-  const right = imageProps ? (
-    <Image marginY="auto" {...imageProps} />
-  ) : (
-    <YouTubeVideo marginY="auto" {...videoProps} />
-  )
+  let right = null
+
+  if (imageProps) {
+    right = <Image marginY="auto" {...imageProps} />
+  }
+
+  if (videoProps) {
+    right = <YouTubeVideo marginY="auto" {...videoProps} />
+  }
 
   return (
     <LeftRightSplit

@@ -18,7 +18,7 @@ const RapidRouter: FC<RapidRouterProps> = () => {
     <Introduction
       header="RapidRouter"
       videoProps={{
-        src: { LINK_RAPID_ROUTER_TEACHER_DEMO },
+        src: LINK_RAPID_ROUTER_TEACHER_DEMO,
       }}
       reverse
     >
