@@ -33,7 +33,7 @@ const CarouselItem: FC<{
       >
         <Image {...imageProps} />
       </Grid>
-      <Grid xs={6} padding={0} className="flex-center">
+      <Grid xs={6} padding={0}>
         <Typography variant="h5" margin={3}>
           {description}
         </Typography>
