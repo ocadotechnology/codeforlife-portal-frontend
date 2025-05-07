@@ -7,9 +7,6 @@ import IconStepByStepImage from "../../images/icon_step_by_step.png"
 import IconTrackingImage from "../../images/icon_tracking.png"
 import IconUkFlagImage from "../../images/icon_uk_flag.png"
 
-const SlideHeight = "500px"
-const ImageGridHeight = "400px"
-
 const CarouselItem: FC<{
   imageProps: ImageProps
   description: string
@@ -20,20 +17,21 @@ const CarouselItem: FC<{
     <Grid
       container
       margin={0}
-      spacing={3}
+      padding={5}
+      spacing={0}
       bgcolor={theme.palette.info.main}
       className="flex-center"
-      height={SlideHeight}
+      height="100%"
     >
-      <Grid xs={6} padding={0}>
-        <Grid
-          bgcolor="White"
-          margin={3}
-          className="flex-center"
-          height={ImageGridHeight}
-        >
-          <Image {...imageProps} />
-        </Grid>
+      <Grid
+        xs={6}
+        padding="10%"
+        margin={0}
+        className="flex-center"
+        height="95%"
+        bgcolor={theme.palette.background.paper}
+      >
+        <Image {...imageProps} />
       </Grid>
       <Grid xs={6} padding={0} className="flex-center">
         <Typography variant="h5" margin={3}>
@@ -47,17 +45,19 @@ const CarouselItem: FC<{
 export interface TeacherSlidesProps {}
 
 const TeacherSlides: FC<TeacherSlidesProps> = () => {
+  const theme = useTheme()
+
   return (
     <Carousel
-      height={SlideHeight}
+      height="500px"
       indicatorIconButtonProps={{
         style: {
-          padding: "2px",
+          padding: theme.spacing(0.25),
         },
       }}
       activeIndicatorIconButtonProps={{
         style: {
-          color: "#F6BE00",
+          color: theme.palette.secondary.main,
         },
       }}
       interval={8000}
@@ -67,7 +67,6 @@ const TeacherSlides: FC<TeacherSlidesProps> = () => {
           alt: "Person climbing stairs holding a flag",
           title: "Person climbing stairs holding a flag",
           src: IconStepByStepImage,
-          maxWidth: "250px",
         }}
         description={
           "The step-by-step nature of Rapid Router makes it simple for you and your students to gain experience quickly."
@@ -78,7 +77,6 @@ const TeacherSlides: FC<TeacherSlidesProps> = () => {
           alt: "UK flag",
           title: "UK flag",
           src: IconUkFlagImage,
-          maxWidth: "250px",
         }}
         description={
           "Our resources are aligned to the UK National computing curriculum, so you can gain the knowledge and confidence you need."
@@ -89,7 +87,6 @@ const TeacherSlides: FC<TeacherSlidesProps> = () => {
           alt: "Statistics bars",
           title: "Statistics bars",
           src: IconTrackingImage,
-          maxWidth: "250px",
         }}
         description={
           "Easy to use teacher dashboard includes scores to track student progress as well as comprehensive teaching resources."

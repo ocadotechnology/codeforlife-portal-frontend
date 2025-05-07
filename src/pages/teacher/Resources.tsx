@@ -9,34 +9,32 @@ import { paths } from "../../routes"
 
 export interface ResourcesProps {}
 
-const Resources: FC<ResourcesProps> = () => {
-  return (
-    <Introduction
-      header="Resources and progress tracking"
-      videoProps={{
-        src: LINK_TEACHING_RESOURCES_DEMO,
-      }}
+const Resources: FC<ResourcesProps> = () => (
+  <Introduction
+    header="Resources and progress tracking"
+    videoProps={{
+      src: LINK_TEACHING_RESOURCES_DEMO,
+    }}
+  >
+    <Typography>
+      Once you&apos;ve registered your personal details and logged in,
+      you&apos;ll be able to create your school or club, or join other teachers
+      at your institution.
+    </Typography>
+    <Typography>
+      You can sign up your class, download free teaching packs, including
+      sessions plans, pupil resources and assessment tools and track
+      pupils&apos; progress. There are even videos to help you and your class
+      understand what you&apos;ll be learning next.
+    </Typography>
+    <LinkButton
+      sx={{ marginTop: "auto" }}
+      to={paths.register._}
+      endIcon={<ChevronRightRoundedIcon />}
     >
-      <Typography>
-        Once you&lsquo;ve registered your personal details and logged in,
-        you&lsquo;ll be able to create your school or club, or join other
-        teachers at your institution.
-      </Typography>
-      <Typography>
-        You can sign up your class, download free teaching packs, including
-        sessions plans, pupil resources and assessment tools and track
-        pupils&lsquo; progress. There are even videos to help you and your class
-        understand what you&lsquo;ll be learning next.
-      </Typography>
-      <LinkButton
-        sx={{ marginTop: "auto" }}
-        to={paths.register._}
-        endIcon={<ChevronRightRoundedIcon />}
-      >
-        Register now
-      </LinkButton>
-    </Introduction>
-  )
-}
+      Register now
+    </LinkButton>
+  </Introduction>
+)
 
 export default Resources

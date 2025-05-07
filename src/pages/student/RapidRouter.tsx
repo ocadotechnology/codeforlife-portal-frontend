@@ -3,9 +3,9 @@ import {
   Launch as LaunchIcon,
 } from "@mui/icons-material"
 import { Link, LinkButton } from "codeforlife/components/router"
+import { Typography, useTheme } from "@mui/material"
 import { type FC } from "react"
 import { Image } from "codeforlife/components"
-import { Typography } from "@mui/material"
 
 import {
   LINK_BLOCKLY_GUIDE,
@@ -18,6 +18,8 @@ import { paths } from "../../routes"
 export interface RapidRouterProps {}
 
 const RapidRouter: FC<RapidRouterProps> = () => {
+  const theme = useTheme()
+
   return (
     <>
       <Typography variant="h4" textAlign="center">
@@ -58,7 +60,7 @@ const RapidRouter: FC<RapidRouterProps> = () => {
           Learn more about Blockly
         </LinkButton>
         <LinkButton
-          sx={{ marginTop: "10px" }}
+          sx={{ marginTop: theme.spacing(1.25) }}
           to={paths.rapidRouter._}
           endIcon={<ChevronRightRoundedIcon />}
         >

@@ -9,19 +9,21 @@ import { Typography } from "@mui/material"
 
 import LeftRightSplit, { type LeftRightSplitProps } from "./LeftRightSplit"
 
-export interface IntroductionProps
-  extends Omit<LeftRightSplitProps, "left" | "right"> {
+export type IntroductionProps = Omit<LeftRightSplitProps, "left" | "right"> & {
   header: string
-  imageProps?: ImageProps
-  videoProps?: YouTubeVideoProps
   children: ReactNode
   reverse?: boolean
-}
+} & (
+    | {
+        imageProps: ImageProps
+      }
+    | {
+        videoProps: YouTubeVideoProps
+      }
+  )
 
 const Introduction: FC<IntroductionProps> = ({
   header,
-  imageProps,
-  videoProps,
   children,
   reverse = false,
   ...leftRightSplitProps
@@ -35,12 +37,10 @@ const Introduction: FC<IntroductionProps> = ({
 
   let right = null
 
-  if (imageProps) {
-    right = <Image marginY="auto" {...imageProps} />
-  }
-
-  if (videoProps) {
-    right = <YouTubeVideo marginY="auto" {...videoProps} />
+  if ("imageProps" in leftRightSplitProps) {
+    right = <Image marginY="auto" {...leftRightSplitProps.imageProps} />
+  } else {
+    right = <YouTubeVideo marginY="auto" {...leftRightSplitProps.videoProps} />
   }
 
   return (
