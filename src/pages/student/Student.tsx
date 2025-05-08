@@ -1,11 +1,11 @@
 import * as page from "codeforlife/components/page"
 import { type FC } from "react"
 
-import Characters from "./Characters.tsx"
+import Characters from "./Characters"
 import { ChevronRightRounded as ChevronRightRoundedIcon } from "@mui/icons-material"
 import PlayHeroImage from "../../images/home_play_hero.png"
-import PythonDen from "./PythonDen.tsx"
-import RapidRouter from "./RapidRouter.tsx"
+import PythonDen from "./PythonDen"
+import RapidRouter from "./RapidRouter"
 import { paths } from "../../routes"
 
 export interface StudentProps {}

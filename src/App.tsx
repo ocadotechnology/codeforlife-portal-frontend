@@ -1,7 +1,7 @@
 import { App as _App, type AppProps as _AppProps } from "codeforlife/components"
 import { type FC } from "react"
 
-import Footer from "./features/footer/Footer.tsx"
+import Footer from "./features/footer/Footer"
 import routes from "./routes"
 import store from "./app/store"
 import theme from "./app/theme"

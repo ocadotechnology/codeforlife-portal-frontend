@@ -24,16 +24,17 @@ const CarouselItem: FC<{
       height="100%"
     >
       <Grid
-        xs={6}
-        padding="10%"
+        xs={12}
+        sm={6}
+        padding={{ sm: "10%", xs: "20%" }}
         margin={0}
         className="flex-center"
-        height="95%"
+        height={{ sm: "95%", xs: "65%" }}
         bgcolor={theme.palette.background.paper}
       >
         <Image {...imageProps} />
       </Grid>
-      <Grid xs={6} padding={0}>
+      <Grid xs={12} sm={6} padding={0}>
         <Typography variant="h5" margin={3}>
           {description}
         </Typography>

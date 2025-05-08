@@ -1,15 +1,15 @@
 import * as pages from "codeforlife/components/page"
 import { type FC } from "react"
 
-import Alerting from "./Alerting.tsx"
-import IntellectualProperty from "./IntellectualProperty.tsx"
-import Introduction from "./Introduction.tsx"
-import Liability from "./Liability.tsx"
-import Miscellaneous from "./Miscellaneous.tsx"
-import Misuse from "./Misuse.tsx"
-import Prohibitions from "./Prohibitions.tsx"
+import Alerting from "./Alerting"
+import IntellectualProperty from "./IntellectualProperty"
+import Introduction from "./Introduction"
+import Liability from "./Liability"
+import Miscellaneous from "./Miscellaneous"
+import Misuse from "./Misuse"
+import Prohibitions from "./Prohibitions"
 import { TableOfContents } from "../../../components"
-import TypesOfMembership from "./TypesOfMembership.tsx"
+import TypesOfMembership from "./TypesOfMembership"
 
 export interface AdultsProps {}
 

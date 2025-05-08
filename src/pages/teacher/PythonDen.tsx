@@ -4,7 +4,7 @@ import { LinkButton } from "codeforlife/components/router"
 import { Typography } from "@mui/material"
 
 import { Introduction } from "../../components"
-import { LINK_PYTHON_DEN_DEMO } from "../../app/settings.ts"
+import { LINK_PYTHON_DEN_DEMO } from "../../app/settings"
 import { paths } from "../../routes"
 
 export interface PythonDenProps {}

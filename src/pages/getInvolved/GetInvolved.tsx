@@ -7,7 +7,7 @@ import Card from "../../components/Card"
 import ClubsImage from "../../images/clubs.png"
 import GetInvolvedHeroImage from "../../images/get_involved_hero_hexagon.png"
 import GithubImage from "../../images/github.png"
-import { LINK_OPPORTUNITIES_WITH_CFL } from "../../app/settings.ts"
+import { LINK_OPPORTUNITIES_WITH_CFL } from "../../app/settings"
 import UniversitiesImage from "../../images/universities.png"
 import { paths } from "../../routes"
 

@@ -1,12 +1,12 @@
 import * as pages from "codeforlife/components/page"
 import { type FC } from "react"
 
-import Alerting from "./Alerting.tsx"
-import IntellectualProperty from "./IntellectualProperty.tsx"
-import Introduction from "./Introduction.tsx"
-import Misuse from "./Misuse.tsx"
-import OtherLimits from "./OtherLimits.tsx"
-import Responsibilities from "./Responsibilities.tsx"
+import Alerting from "./Alerting"
+import IntellectualProperty from "./IntellectualProperty"
+import Introduction from "./Introduction"
+import Misuse from "./Misuse"
+import OtherLimits from "./OtherLimits"
+import Responsibilities from "./Responsibilities"
 import { TableOfContents } from "../../../components"
 
 export interface ChildrenProps {}

@@ -1,11 +1,11 @@
 import * as page from "codeforlife/components/page"
 import { type FC } from "react"
 
-import PythonDen from "./PythonDen.tsx"
-import RapidRouter from "./RapidRouter.tsx"
-import Resources from "./Resources.tsx"
+import PythonDen from "./PythonDen"
+import RapidRouter from "./RapidRouter"
+import Resources from "./Resources"
 import TeacherHeroImage from "../../images/home_educate_hero.png"
-import TeacherSlides from "./TeacherSlides.tsx"
+import TeacherSlides from "./TeacherSlides"
 
 export interface TeacherProps {}
 
