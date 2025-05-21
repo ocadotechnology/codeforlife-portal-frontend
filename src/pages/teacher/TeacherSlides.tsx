@@ -7,41 +7,26 @@ import IconStepByStepImage from "../../images/icon_step_by_step.png"
 import IconTrackingImage from "../../images/icon_tracking.png"
 import IconUkFlagImage from "../../images/icon_uk_flag.png"
 
+// TODO: Fix image sizes, white box height and space between children
 const CarouselItem: FC<{
   imageProps: ImageProps
   description: string
-}> = ({ imageProps, description }) => {
-  const theme = useTheme()
-
-  return (
-    <Grid
-      container
-      margin={0}
-      padding={5}
-      spacing={0}
-      bgcolor={theme.palette.info.main}
-      className="flex-center"
-      height="100%"
-    >
-      <Grid
-        xs={12}
-        sm={6}
-        padding={{ sm: "10%", xs: "20%" }}
-        margin={0}
-        className="flex-center"
-        height={{ sm: "95%", xs: "65%" }}
-        bgcolor={theme.palette.background.paper}
-      >
-        <Image {...imageProps} />
-      </Grid>
-      <Grid xs={12} sm={6} padding={0}>
-        <Typography variant="h5" margin={3}>
-          {description}
-        </Typography>
-      </Grid>
+}> = ({ imageProps, description }) => (
+  <Grid
+    container
+    padding={5}
+    bgcolor="info.main"
+    className="flex-center"
+    height="100%"
+  >
+    <Grid sm={6} xs={12} className="flex-center" bgcolor="white.main">
+      <Image {...imageProps} />
     </Grid>
-  )
-}
+    <Grid sm={6} xs={12}>
+      <Typography variant="h5">{description}</Typography>
+    </Grid>
+  </Grid>
+)
 
 export interface TeacherSlidesProps {}
 
@@ -68,6 +53,7 @@ const TeacherSlides: FC<TeacherSlidesProps> = () => {
           alt: "Person climbing stairs holding a flag",
           title: "Person climbing stairs holding a flag",
           src: IconStepByStepImage,
+          style: { width: "80%" },
         }}
         description={
           "The step-by-step nature of Rapid Router makes it simple for you and your students to gain experience quickly."
@@ -78,6 +64,7 @@ const TeacherSlides: FC<TeacherSlidesProps> = () => {
           alt: "UK flag",
           title: "UK flag",
           src: IconUkFlagImage,
+          style: { width: "80%" },
         }}
         description={
           "Our resources are aligned to the UK National computing curriculum, so you can gain the knowledge and confidence you need."
@@ -88,6 +75,7 @@ const TeacherSlides: FC<TeacherSlidesProps> = () => {
           alt: "Statistics bars",
           title: "Statistics bars",
           src: IconTrackingImage,
+          style: { width: "80%" },
         }}
         description={
           "Easy to use teacher dashboard includes scores to track student progress as well as comprehensive teaching resources."
