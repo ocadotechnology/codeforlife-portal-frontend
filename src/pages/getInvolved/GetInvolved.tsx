@@ -7,6 +7,7 @@ import Card from "../../components/Card"
 import ClubsImage from "../../images/clubs.png"
 import GetInvolvedHeroImage from "../../images/get_involved_hero_hexagon.png"
 import GithubImage from "../../images/github.png"
+import { LINK_OPPORTUNITIES_WITH_CFL } from "../../app/settings"
 import UniversitiesImage from "../../images/universities.png"
 import { paths } from "../../routes"
 
@@ -21,6 +22,12 @@ const GetInvolved: FC<GetInvolvedProps> = () => (
         title: "Adult teaching two children",
         alt: "Adult teaching two children",
         src: GetInvolvedHeroImage,
+      }}
+      button1Props={{
+        to: LINK_OPPORTUNITIES_WITH_CFL,
+        target: "_blank",
+        children: "Opportunities with Code for Life",
+        endIcon: <ChevronRightRoundedIcon />,
       }}
     />
     <page.Section>
@@ -44,7 +51,10 @@ const GetInvolved: FC<GetInvolvedProps> = () => (
           <Card
             title="Contribute through code"
             description="We welcome volunteers from all backgrounds to help us with our coding adventure. Take a look at our contribution guide to find out how to get involved in our open source projects."
-            mediaProps={{ title: "Github repository page", image: GithubImage }}
+            mediaProps={{
+              title: "Github repository page",
+              image: GithubImage,
+            }}
             linkButtonProps={{
               to: paths.contribute._,
               children: "Read more",

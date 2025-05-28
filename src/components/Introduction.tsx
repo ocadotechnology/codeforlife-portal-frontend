@@ -1,20 +1,29 @@
 import type { FC, ReactNode } from "react"
-import { Image, type ImageProps } from "codeforlife/components"
+import {
+  Image,
+  type ImageProps,
+  YouTubeVideo,
+  type YouTubeVideoProps,
+} from "codeforlife/components"
 import { Typography } from "@mui/material"
 
 import LeftRightSplit, { type LeftRightSplitProps } from "./LeftRightSplit"
 
-export interface IntroductionProps
-  extends Omit<LeftRightSplitProps, "left" | "right"> {
+export type IntroductionProps = Omit<LeftRightSplitProps, "left" | "right"> & {
   header: string
-  imageProps: ImageProps
   children: ReactNode
   reverse?: boolean
-}
+} & (
+    | {
+        imageProps: ImageProps
+      }
+    | {
+        videoProps: YouTubeVideoProps
+      }
+  )
 
 const Introduction: FC<IntroductionProps> = ({
   header,
-  imageProps,
   children,
   reverse = false,
   ...leftRightSplitProps
@@ -26,7 +35,12 @@ const Introduction: FC<IntroductionProps> = ({
     </>
   )
 
-  const right = <Image marginY="auto" {...imageProps} />
+  const right =
+    "imageProps" in leftRightSplitProps ? (
+      <Image marginY="auto" {...leftRightSplitProps.imageProps} />
+    ) : (
+      <YouTubeVideo marginY="auto" {...leftRightSplitProps.videoProps} />
+    )
 
   return (
     <LeftRightSplit

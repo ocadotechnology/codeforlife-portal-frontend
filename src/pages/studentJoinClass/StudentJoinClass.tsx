@@ -6,8 +6,8 @@ import { Typography } from "@mui/material"
 import { handleResultState } from "codeforlife/utils/api"
 
 import { type RetrieveUserResult, useRetrieveUserQuery } from "../../api/user"
-import RequestPending from "./RequestPending.tsx"
-import RequestToJoinClassForm from "./RequestToJoinClassForm.tsx"
+import RequestPending from "./RequestPending"
+import RequestToJoinClassForm from "./RequestToJoinClassForm"
 
 const _StudentJoinClass: FC<SessionMetadata> = ({ user_id }) => {
   return handleResultState(useRetrieveUserQuery(user_id), authUser => {

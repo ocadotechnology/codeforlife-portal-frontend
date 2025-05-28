@@ -12,7 +12,7 @@ import {
   type StudentCredentialsTableProps,
 } from "../../../../components"
 import { paths } from "../../../../routes"
-import { useRetrieveClassQuery } from "../../../../api/klass.ts"
+import { useRetrieveClassQuery } from "../../../../api/klass"
 
 const _StudentsCredentials: FC<
   StudentsCredentialsState & {
