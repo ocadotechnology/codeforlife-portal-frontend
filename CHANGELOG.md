@@ -1,3 +1,10 @@
+# [1.5.0](https://github.com/ocadotechnology/codeforlife-portal-frontend/compare/v1.4.3...v1.5.0) (2025-05-28)
+
+
+### Features
+
+* Terms of Use, Teach and Play pages ([#104](https://github.com/ocadotechnology/codeforlife-portal-frontend/issues/104)) ([d1ceaca](https://github.com/ocadotechnology/codeforlife-portal-frontend/commit/d1ceaca43f8a7475be29573dabf08369c4a32292))
+
 ## [1.4.3](https://github.com/ocadotechnology/codeforlife-portal-frontend/compare/v1.4.2...v1.4.3) (2025-04-04)
 
 
