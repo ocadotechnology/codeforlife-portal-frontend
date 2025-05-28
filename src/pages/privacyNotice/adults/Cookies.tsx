@@ -1,44 +1,9 @@
-import {
-  Button,
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableRow,
-  Typography,
-} from "@mui/material"
+import { Button, Typography } from "@mui/material"
 import { type FC } from "react"
 import { Link } from "codeforlife/components/router"
 import { toggleOneTrustInfoDisplay } from "codeforlife/utils/window"
 
-const CustomTableRow: FC<{
-  withoutUnderline?: boolean
-  typesOfCookies: string
-  purpose: React.ReactNode
-  months: string
-}> = ({ withoutUnderline = false, typesOfCookies, purpose, months }) => (
-  <TableRow>
-    <TableCell>
-      <Typography
-        style={{
-          textDecoration: withoutUnderline ? "none" : "underline",
-        }}
-      >
-        {typesOfCookies}
-      </Typography>
-    </TableCell>
-    <TableCell>
-      {typeof purpose === "string" ? (
-        <Typography>{purpose}</Typography>
-      ) : (
-        purpose
-      )}
-    </TableCell>
-    <TableCell>
-      <Typography>{months}</Typography>
-    </TableCell>
-  </TableRow>
-)
+import CookieList from "../../../components/CookieList.tsx"
 
 export interface CookiesProps {}
 
@@ -59,59 +24,11 @@ const Cookies: FC<CookiesProps> = () => (
       website. When we talk about cookies in this notice, we also refer to these
       technologies.
     </Typography>
-    <Typography variant="h6">6.2 Types of cookies used</Typography>
+    <Typography variant="h6">6.2 Cookie list</Typography>
     <Typography>
-      We use the following types of cookies on our portal for the following
-      purposes:
+      We have the following cookies on our portal for the following purposes:
     </Typography>
-    <Table className="text body">
-      <TableHead>
-        <CustomTableRow
-          withoutUnderline
-          typesOfCookies="Type of cookies"
-          purpose="Purpose"
-          months="For how many months does the cookie stay on your browser?"
-        />
-      </TableHead>
-      <TableBody className="text">
-        <CustomTableRow
-          typesOfCookies="Strictly necessary cookies"
-          purpose="These cookies do what you have asked for: for example, they allow the website to load on your browser, they keep you logged in when you use our portal, and keep our portal safe. If you turn off these cookies via your browser settings certain parts of the website will not function for you."
-          months="12"
-        />
-        <CustomTableRow
-          typesOfCookies="Functional cookies"
-          purpose="These cookies enable the website to provide enhanced functionality and personalisation. If you do not allow these cookies then some services may not function very smoothly. These kinds of cookies remember things like your sound settings."
-          months="Session"
-        />
-        <CustomTableRow
-          typesOfCookies="Analytics/Performance cookies"
-          purpose={
-            <>
-              <Typography>
-                These cookies help us understand how you use our portal and
-                improve or optimise the experience we provide. This can be
-                anything like which pages you go to most often, and if you get
-                error messages from web pages. They allow us to measure how
-                visitors interact with the portal (for example which parts of
-                the website are clicked on).
-              </Typography>
-              <Typography>
-                We use third-party web analytics software on our portal (
-                <Link
-                  to="https://developers.google.com/analytics/devguides/collection/analyticsjs/cookie-usage"
-                  target="_blank"
-                >
-                  Google Analytics
-                </Link>
-                ). We provide further information about these partners below.
-              </Typography>
-            </>
-          }
-          months="24"
-        />
-      </TableBody>
-    </Table>
+    <CookieList></CookieList>
     <Typography variant="h6">6.3 Third party cookies</Typography>
     <Typography>
       We do not allow third party advertising, or affiliation on our portal.
