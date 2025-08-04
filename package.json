@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "cli": "../scripts/frontend/cli $@"
+    "cli": "../scripts/frontend $@"
   },
   "//": [
     "🚫 Don't add `dependencies` below that are inherited from the CFL package.",
