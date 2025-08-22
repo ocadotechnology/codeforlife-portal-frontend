@@ -1,4 +1,4 @@
-import env from "codeforlife/settings"
+import vite from "codeforlife/settings"
 
 export * from "codeforlife/settings"
 
@@ -58,4 +58,4 @@ export const {
   LINK_FEMALE_GRADUATES_IN_CS,
   LINK_OUTLOOK_HOME,
   LINK_SKILLS_FOR_THE_FUTURE,
-} = env.vite
+} = vite

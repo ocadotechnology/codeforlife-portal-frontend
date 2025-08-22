@@ -8,6 +8,7 @@ import {
   Typography,
 } from "@mui/material"
 import { LinkButton, type LinkButtonProps } from "codeforlife/components/router"
+import { type JSX } from "react"
 
 export type CardProps<
   Override extends "delta" | "to",
