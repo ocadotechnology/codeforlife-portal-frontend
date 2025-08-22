@@ -12,7 +12,7 @@ import ReleaseStudentsForm from "./ReleaseStudentsForm"
 import { paths } from "../../../../routes"
 import { useRetrieveClassQuery } from "../../../../api/klass"
 
-const _ReleaseStudents: FC<
+const ReleaseStudentsInternal: FC<
   ReleaseStudentsState & {
     classId: Class["id"]
     classPath: string
@@ -80,7 +80,7 @@ const ReleaseStudents: FC<ReleaseStudentsProps> = () => {
   })
 
   return state && state.studentUsers && state.studentUsers.length ? (
-    <_ReleaseStudents
+    <ReleaseStudentsInternal
       classId={classId}
       classPath={classPath}
       studentUsers={state.studentUsers}

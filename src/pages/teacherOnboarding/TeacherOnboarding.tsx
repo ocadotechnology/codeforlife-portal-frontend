@@ -18,9 +18,9 @@ import { paths } from "../../routes"
 
 export interface TeacherOnboardingProps {}
 
-const _TeacherOnboarding: FC<TeacherOnboardingProps & SessionMetadata> = ({
-  user_id,
-}) => {
+const TeacherOnboardingInternal: FC<
+  TeacherOnboardingProps & SessionMetadata
+> = ({ user_id }) => {
   const [activeStep, setActiveStep] = useState<{
     index: number
     klass?: CreateClassResult
@@ -141,7 +141,9 @@ const _TeacherOnboarding: FC<TeacherOnboardingProps & SessionMetadata> = ({
 
 const TeacherOnboarding: FC<TeacherOnboardingProps> = props => (
   <pages.Page session={{ userType: "teacher" }}>
-    {sessionMetadata => <_TeacherOnboarding {...props} {...sessionMetadata} />}
+    {sessionMetadata => (
+      <TeacherOnboardingInternal {...props} {...sessionMetadata} />
+    )}
   </pages.Page>
 )
 

@@ -40,7 +40,7 @@ const NewClassSections: FC<
     </>
   ))
 
-const _TransferStudents: FC<
+const TransferStudentsInternal: FC<
   TransferStudentsState & {
     classId: Class["id"]
     classPath: string
@@ -98,7 +98,7 @@ const TransferStudents: FC<TransferStudentsProps> = () => {
   })
 
   return state && state.studentUsers && state.studentUsers.length ? (
-    <_TransferStudents
+    <TransferStudentsInternal
       classId={classId}
       classPath={classPath}
       studentUsers={state.studentUsers}

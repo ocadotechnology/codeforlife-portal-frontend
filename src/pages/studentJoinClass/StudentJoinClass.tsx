@@ -1,15 +1,15 @@
 import * as page from "codeforlife/components/page"
 import { type FC } from "react"
 import type { IndependentUser } from "codeforlife/api"
-import type { SessionMetadata } from "codeforlife/hooks"
 import { Typography } from "@mui/material"
+import type { UseSessionChildren } from "codeforlife/hooks"
 import { handleResultState } from "codeforlife/utils/api"
 
 import { type RetrieveUserResult, useRetrieveUserQuery } from "../../api/user"
 import RequestPending from "./RequestPending"
 import RequestToJoinClassForm from "./RequestToJoinClassForm"
 
-const _StudentJoinClass: FC<SessionMetadata> = ({ user_id }) => {
+const StudentJoinClassInternal: UseSessionChildren<"indy"> = ({ user_id }) => {
   return handleResultState(useRetrieveUserQuery(user_id), authUser => {
     const user = authUser as IndependentUser<RetrieveUserResult>
 
@@ -58,7 +58,9 @@ const _StudentJoinClass: FC<SessionMetadata> = ({ user_id }) => {
 export interface StudentJoinClassProps {}
 
 const StudentJoinClass: FC<StudentJoinClassProps> = () => (
-  <page.Page session={{ userType: "indy" }}>{_StudentJoinClass}</page.Page>
+  <page.Page session={{ userType: "indy" }}>
+    {StudentJoinClassInternal}
+  </page.Page>
 )
 
 export default StudentJoinClass

@@ -1,8 +1,8 @@
 import * as page from "codeforlife/components/page"
 import { type FC } from "react"
 import { LinkButton } from "codeforlife/components/router"
-import { type SessionMetadata } from "codeforlife/hooks"
 import { Typography } from "@mui/material"
+import { type UseSessionChildren } from "codeforlife/hooks/auth"
 import { handleResultState } from "codeforlife/utils/api"
 
 import { DeleteAccountForm, UpdateAccountForm } from "../../components/form"
@@ -13,7 +13,10 @@ export interface StudentAccountProps {
   userType: "student" | "indy"
 }
 
-const _StudentAccount: FC<SessionMetadata> = ({ user_type, user_id }) =>
+const StudentAccountInternal: UseSessionChildren<"student" | "indy"> = ({
+  user_type,
+  user_id,
+}) =>
   handleResultState(useRetrieveUserQuery(user_id), authUser => (
     <>
       <page.Banner
@@ -43,7 +46,7 @@ const _StudentAccount: FC<SessionMetadata> = ({ user_type, user_id }) =>
   ))
 
 const StudentAccount: FC<StudentAccountProps> = ({ userType }) => (
-  <page.Page session={{ userType }}>{_StudentAccount}</page.Page>
+  <page.Page session={{ userType }}>{StudentAccountInternal}</page.Page>
 )
 
 export default StudentAccount

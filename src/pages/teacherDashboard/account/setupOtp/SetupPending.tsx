@@ -15,7 +15,7 @@ export interface SetupPendingProps {
   onSetup: () => void
 }
 
-const _SetupPending: FC<
+const SetupPendingInternal: FC<
   SetupPendingProps & { getOtpSecretResult: GetOtpSecretResult }
 > = ({ onSetup, getOtpSecretResult: { secret, provisioning_uri } }) => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null)
@@ -30,7 +30,7 @@ const _SetupPending: FC<
         provisioning_uri,
         //https://www.npmjs.com/package/qrcode#qr-code-options
         { margin: 0, scale: 5 },
-        error => {
+        (error: unknown) => {
           if (error) {
             console.error(error)
             setFailedToRenderCanvas(true)
@@ -92,7 +92,7 @@ const _SetupPending: FC<
 
 const SetupPending: FC<SetupPendingProps> = props =>
   handleResultState(useGetOtpSecretQuery(null), getOtpSecretResult => (
-    <_SetupPending getOtpSecretResult={getOtpSecretResult} {...props} />
+    <SetupPendingInternal getOtpSecretResult={getOtpSecretResult} {...props} />
   ))
 
 export default SetupPending

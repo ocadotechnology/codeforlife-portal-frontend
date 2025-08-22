@@ -21,7 +21,7 @@ import UpdatePasswordForm from "./UpdatePasswordForm"
 import { paths } from "../../../../routes"
 import { useRetrieveClassQuery } from "../../../../api/klass"
 
-const _UpdateStudentUser: FC<{
+const UpdateStudentUserInternal: FC<{
   classId: Class["id"]
   studentUserId: User["id"]
 }> = ({ classId, studentUserId }) => {
@@ -74,7 +74,7 @@ const UpdateStudentUser: FC<UpdateStudentUserProps> = () => {
   })
 
   return params ? (
-    <_UpdateStudentUser {...params} />
+    <UpdateStudentUserInternal {...params} />
   ) : (
     <Navigate to={paths.teacher.dashboard.tab.classes._} />
   )

@@ -14,7 +14,7 @@ import {
 import { paths } from "../../../../routes"
 import { useRetrieveClassQuery } from "../../../../api/klass"
 
-const _StudentsCredentials: FC<
+const StudentsCredentialsInternal: FC<
   StudentsCredentialsState & {
     classId: Class["id"]
   }
@@ -59,7 +59,7 @@ const StudentsCredentials: FC<StudentsCredentialsProps> = () => {
   const { classId } = params
 
   return state && state.students && state.students.length && state.flow ? (
-    <_StudentsCredentials
+    <StudentsCredentialsInternal
       classId={classId}
       flow={state.flow}
       students={state.students}

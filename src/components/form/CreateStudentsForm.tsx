@@ -1,7 +1,7 @@
 import * as forms from "codeforlife/components/form"
 import { Add as AddIcon, Upload as UploadIcon } from "@mui/icons-material"
 import { type Class, schemas } from "codeforlife/api"
-import { type FC, type MutableRefObject, useEffect, useRef } from "react"
+import { type FC, useEffect } from "react"
 import { Stack, Typography } from "@mui/material"
 import { useInputRef, useNavigate } from "codeforlife/hooks"
 import { InputFileButton } from "codeforlife/components"
@@ -13,14 +13,12 @@ import {
   useCreateStudentsMutation,
 } from "../../api/student"
 
+type Values = { first_names: string[] }
+
 export interface CreateStudentsFormProps {
   classId: Class["id"]
   submitOptions: Omit<
-    SubmitFormOptions<
-      { first_names: string[] },
-      CreateStudentsArg,
-      CreateStudentsResult
-    >,
+    SubmitFormOptions<Values, CreateStudentsArg, CreateStudentsResult>,
     "clean" | "catch"
   >
 }
@@ -29,7 +27,7 @@ const CreateStudentsForm: FC<CreateStudentsFormProps> = ({
   classId,
   submitOptions,
 }) => {
-  const fileInput = useRef<HTMLInputElement>()
+  const fileInput = useInputRef()
   const firstNamesFieldRef = useInputRef()
   const navigate = useNavigate()
 
@@ -55,20 +53,17 @@ const CreateStudentsForm: FC<CreateStudentsFormProps> = ({
         endIcon={<UploadIcon />}
         variant="outlined"
         className="body"
-        inputProps={{
-          ref: fileInput as MutableRefObject<HTMLInputElement>,
-          accept: ".csv",
-        }}
+        inputProps={{ ref: fileInput, accept: ".csv" }}
       >
         Import CSV file
       </InputFileButton>
       <forms.Form
-        initialValues={{ first_names: [] as string[] }}
+        initialValues={{ first_names: [] } as Values}
         fieldRefs={[{ name: "first_names", inputRef: firstNamesFieldRef }]}
         useMutation={useCreateStudentsMutation}
         submitOptions={{
           ...submitOptions,
-          clean: ({ first_names }) =>
+          clean: ({ first_names }: Values) =>
             first_names.reduce((arg, first_name) => {
               first_name = first_name.trim()
               return first_name

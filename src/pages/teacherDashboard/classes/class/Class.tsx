@@ -15,7 +15,7 @@ import { type StudentsCredentialsState } from "../studentsCredentials/StudentsCr
 import { paths } from "../../../../routes"
 import { useRetrieveClassQuery } from "../../../../api/klass"
 
-const _Class: FC<{ classId: Class["id"] }> = ({ classId }) => {
+const ClassInternal: FC<{ classId: Class["id"] }> = ({ classId }) => {
   const navigate = useNavigate()
 
   return handleResultState(useRetrieveClassQuery(classId), klass => (
@@ -69,7 +69,7 @@ const Class: FC<ClassProps> = () => {
   if (!params)
     return <Navigate to={paths.teacher.dashboard.tab.classes._} replace />
 
-  return <_Class {...params} />
+  return <ClassInternal {...params} />
 }
 
 export default Class
