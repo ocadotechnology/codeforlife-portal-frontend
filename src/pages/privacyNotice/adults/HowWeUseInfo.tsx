@@ -1,4 +1,4 @@
-import { type FC, type ReactElement } from "react"
+import { ItemizedList, type ItemizedListProps } from "codeforlife/components"
 import {
   ListItemText,
   Table,
@@ -8,11 +8,11 @@ import {
   TableRow,
   Typography,
 } from "@mui/material"
-import { ItemizedList } from "codeforlife/components"
+import { type FC } from "react"
 
 const CustomTableRow: FC<{
   left: string
-  right: string | ReactElement
+  right: ItemizedListProps["children"]
 }> = ({ left, right }) => (
   <TableRow>
     <TableCell>

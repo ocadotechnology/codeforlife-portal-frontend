@@ -7,7 +7,7 @@ export interface ClassAutocompleteFieldProps {
   required?: boolean
   name?: string
   _id?: ListClassesArg["_id"]
-  inputRef?: RefObject<HTMLInputElement>
+  inputRef?: RefObject<HTMLInputElement | null>
 }
 
 const ClassAutocompleteField: FC<ClassAutocompleteFieldProps> = ({

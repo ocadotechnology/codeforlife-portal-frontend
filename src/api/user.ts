@@ -41,7 +41,7 @@ export type RetrieveUserResult = RetrieveResult<
     }
   }
 }
-export { RetrieveUserArg }
+export { type RetrieveUserArg }
 
 export type ListUsersResult = ListResult<
   User,
@@ -60,7 +60,7 @@ export type ListUsersResult = ListResult<
     }
   }
 >
-export { ListUsersArg }
+export { type ListUsersArg }
 
 export type HandleJoinClassRequestResult = UpdateResult<User>
 export type HandleJoinClassRequestArg = UpdateArg<User, never, "first_name"> & {

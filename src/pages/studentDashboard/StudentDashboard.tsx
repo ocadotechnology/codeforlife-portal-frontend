@@ -1,7 +1,7 @@
 import * as page from "codeforlife/components/page"
 import { type FC } from "react"
 import { Link } from "codeforlife/components/router"
-import { type SessionMetadata } from "codeforlife/hooks"
+import { type UseSessionChildren } from "codeforlife/hooks"
 import { handleResultState } from "codeforlife/utils/api"
 
 import Games from "./Games"
@@ -13,7 +13,10 @@ export interface StudentDashboardProps {
   userType: "student" | "indy"
 }
 
-const BaseDashboard: FC<SessionMetadata> = ({ user_id, user_type }) => {
+const BaseDashboard: UseSessionChildren<"student" | "indy"> = ({
+  user_id,
+  user_type,
+}) => {
   const isStudent = user_type === "student"
 
   return handleResultState(useRetrieveUserQuery(user_id), user => {

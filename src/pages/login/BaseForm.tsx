@@ -2,6 +2,7 @@ import { Form, type FormProps } from "codeforlife/components/form"
 import { Stack, Typography, useTheme } from "@mui/material"
 import { ThemedBox, type ThemedBoxProps } from "codeforlife/theme"
 import { type FormValues } from "codeforlife/utils/form"
+import { type JSX } from "react"
 
 import { themeOptions } from "../../app/theme"
 

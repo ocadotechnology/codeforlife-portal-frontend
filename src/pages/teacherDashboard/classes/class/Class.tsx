@@ -1,5 +1,5 @@
 import * as pages from "codeforlife/components/page"
-import { type Class, schemas } from "codeforlife/api"
+import { type Class as ClassModel, schemas } from "codeforlife/api"
 import { useNavigate, useParams } from "codeforlife/hooks"
 import { type FC } from "react"
 import { Link } from "codeforlife/components/router"
@@ -15,7 +15,7 @@ import { type StudentsCredentialsState } from "../studentsCredentials/StudentsCr
 import { paths } from "../../../../routes"
 import { useRetrieveClassQuery } from "../../../../api/klass"
 
-const ClassInternal: FC<{ classId: Class["id"] }> = ({ classId }) => {
+const ClassInternal: FC<{ classId: ClassModel["id"] }> = ({ classId }) => {
   const navigate = useNavigate()
 
   return handleResultState(useRetrieveClassQuery(classId), klass => (

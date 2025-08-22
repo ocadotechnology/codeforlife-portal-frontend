@@ -7,7 +7,7 @@ export interface TeacherAutocompleteFieldProps {
   required?: boolean
   name?: string
   _id?: ListUsersArg["_id"]
-  inputRef?: RefObject<HTMLInputElement>
+  inputRef?: RefObject<HTMLInputElement | null>
 }
 
 const TeacherAutocompleteField: FC<TeacherAutocompleteFieldProps> = ({
