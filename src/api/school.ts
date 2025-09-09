@@ -6,12 +6,13 @@ import {
   buildUrl,
   tagData,
 } from "codeforlife/utils/api"
-import { type School, urls } from "codeforlife/api"
-import getReadSchoolEndpoints, {
+import {
   type RetrieveSchoolArg,
   type RetrieveSchoolResult,
   SCHOOL_TAG,
-} from "codeforlife/api/endpoints/school"
+  getReadSchoolEndpoints,
+} from "codeforlife/api/endpoints"
+import { type School, urls } from "codeforlife/api"
 
 import api from "."
 

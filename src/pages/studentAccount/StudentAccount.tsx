@@ -2,7 +2,7 @@ import * as page from "codeforlife/components/page"
 import { type FC } from "react"
 import { LinkButton } from "codeforlife/components/router"
 import { Typography } from "@mui/material"
-import { type UseSessionChildren } from "codeforlife/hooks/auth"
+import { type UseSessionChildren } from "codeforlife/hooks"
 import { handleResultState } from "codeforlife/utils/api"
 
 import { DeleteAccountForm, UpdateAccountForm } from "../../components/form"

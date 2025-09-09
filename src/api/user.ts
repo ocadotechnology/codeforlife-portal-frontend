@@ -17,11 +17,12 @@ import {
   type User,
   urls,
 } from "codeforlife/api"
-import getReadUserEndpoints, {
+import {
   type ListUsersArg,
   type RetrieveUserArg,
   USER_TAG,
-} from "codeforlife/api/endpoints/user"
+  getReadUserEndpoints,
+} from "codeforlife/api/endpoints"
 
 import api from "."
 

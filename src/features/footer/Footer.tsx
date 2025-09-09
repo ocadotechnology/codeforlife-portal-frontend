@@ -4,10 +4,9 @@ import {
   Stack,
   Typography,
 } from "@mui/material"
+import { ThemedBox, colors } from "codeforlife/theme"
 import { type FC } from "react"
 import { Image } from "codeforlife/components"
-import { ThemedBox } from "codeforlife/theme"
-import { primary } from "codeforlife/theme/colors"
 
 import CFLPoweredLogoImage from "../../images/logo_cfl_powered.svg"
 import { LINK_SKILLS_FOR_THE_FUTURE } from "../../app/settings"
@@ -25,7 +24,7 @@ const Footer: FC<FooterProps> = () => {
       id="footer"
       userType="teacher"
       options={themeOptions}
-      bgcolor={primary[500]}
+      bgcolor={colors.primary[500]}
     >
       <Container>
         <Grid container columnSpacing={10} rowSpacing={5}>

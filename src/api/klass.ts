@@ -10,14 +10,15 @@ import {
   buildUrl,
   tagData,
 } from "codeforlife/utils/api"
-import { type Class, urls } from "codeforlife/api"
-import getReadClassEndpoints, {
+import {
   CLASS_TAG,
   type ListClassesArg,
   type ListClassesResult,
   type RetrieveClassArg,
   type RetrieveClassResult,
-} from "codeforlife/api/endpoints/klass"
+  getReadClassEndpoints,
+} from "codeforlife/api/endpoints"
+import { type Class, urls } from "codeforlife/api"
 
 import api from "."
 

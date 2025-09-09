@@ -1,3 +1,7 @@
+import {
+  AUTH_FACTOR_TAG,
+  getReadAuthFactorEndpoints,
+} from "codeforlife/api/endpoints"
 import { type AuthFactor, type User, urls } from "codeforlife/api"
 import {
   type CreateArg,
@@ -9,9 +13,6 @@ import {
   buildUrl,
   tagData,
 } from "codeforlife/utils/api"
-import getReadAuthFactorEndpoints, {
-  AUTH_FACTOR_TAG,
-} from "codeforlife/api/endpoints/authFactor"
 
 import api from "."
 
