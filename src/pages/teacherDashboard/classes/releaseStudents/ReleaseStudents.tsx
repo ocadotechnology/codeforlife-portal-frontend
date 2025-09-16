@@ -4,7 +4,7 @@ import { Link, Navigate } from "codeforlife/components/router"
 import { useLocation, useParams } from "codeforlife/hooks"
 import { type FC } from "react"
 import { Typography } from "@mui/material"
-import { generatePath } from "react-router-dom"
+import { generatePath } from "react-router"
 import { handleResultState } from "codeforlife/utils/api"
 
 import { type ListUsersResult } from "../../../../api/user"

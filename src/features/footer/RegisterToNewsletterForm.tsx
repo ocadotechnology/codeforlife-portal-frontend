@@ -2,7 +2,7 @@ import * as forms from "codeforlife/components/form"
 import { FormHelperText, Stack, useMediaQuery, useTheme } from "@mui/material"
 import { type FC } from "react"
 import { useInputRef } from "codeforlife/hooks"
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router"
 
 import { useRegisterToNewsletterMutation } from "../../api/user"
 
@@ -34,7 +34,7 @@ const RegisterToNewsletterForm: FC<RegisterToNewsletterFormProps> = () => {
         submitOptions={{
           exclude: ["over18"],
           then: () => {
-            navigate(".", {
+            void navigate(".", {
               state: {
                 notifications: [
                   {
@@ -47,7 +47,7 @@ const RegisterToNewsletterForm: FC<RegisterToNewsletterFormProps> = () => {
             })
           },
           catch: () => {
-            navigate(".", {
+            void navigate(".", {
               state: {
                 notifications: [
                   {

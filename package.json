@@ -15,7 +15,7 @@
   ],
   "dependencies": {
     "@react-pdf/renderer": "^4.0.0",
-    "codeforlife": "2.9.2",
+    "codeforlife": "github:ocadotechnology/codeforlife-package-javascript#upgrade_react",
     "crypto-js": "^4.2.0",
     "qrcode": "^1.5.4",
     "react-material-ui-carousel": "^3.4.2"

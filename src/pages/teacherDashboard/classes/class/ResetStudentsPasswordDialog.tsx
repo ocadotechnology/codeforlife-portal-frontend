@@ -1,6 +1,6 @@
 import { type Class, type Student, type StudentUser } from "codeforlife/api"
 import { type FC } from "react"
-import { generatePath } from "react-router-dom"
+import { generatePath } from "react-router"
 import { useNavigate } from "codeforlife/hooks"
 
 import BaseDialog, { type BaseDialogProps } from "./BaseDialog"

@@ -1,4 +1,4 @@
-// import { Route } from "react-router-dom"
+// import { Route } from "react-router"
 
 // import Error from '../../pages/error/Error';
 // import paths from "../paths"

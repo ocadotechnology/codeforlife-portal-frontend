@@ -1,4 +1,4 @@
-import { Route } from "react-router-dom"
+import { Route } from "react-router"
 
 import Student from "../pages/student/Student"
 import StudentAccount from "../pages/studentAccount/StudentAccount"

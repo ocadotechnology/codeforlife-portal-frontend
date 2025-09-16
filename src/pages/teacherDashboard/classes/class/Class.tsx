@@ -5,7 +5,7 @@ import { type FC } from "react"
 import { Link } from "codeforlife/components/router"
 import { Navigate } from "codeforlife/components/router"
 import { Typography } from "@mui/material"
-import { generatePath } from "react-router-dom"
+import { generatePath } from "react-router"
 import { handleResultState } from "codeforlife/utils/api"
 
 import AdditionalClassDetails from "./AdditionalClassDetails"

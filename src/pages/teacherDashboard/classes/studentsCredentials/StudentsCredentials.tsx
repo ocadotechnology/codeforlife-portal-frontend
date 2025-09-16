@@ -3,7 +3,7 @@ import { type Class, schemas } from "codeforlife/api"
 import { Link, Navigate } from "codeforlife/components/router"
 import { useLocation, useParams } from "codeforlife/hooks"
 import { type FC } from "react"
-import { generatePath } from "react-router-dom"
+import { generatePath } from "react-router"
 import { handleResultState } from "codeforlife/utils/api"
 
 import {

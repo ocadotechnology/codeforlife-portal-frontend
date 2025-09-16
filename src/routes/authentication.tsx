@@ -1,4 +1,4 @@
-import { Route } from "react-router-dom"
+import { Route } from "react-router"
 
 import EmailVerification from "../pages/emailVerification/EmailVerification"
 import Login from "../pages/login/Login"

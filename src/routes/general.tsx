@@ -1,4 +1,4 @@
-import { Route } from "react-router-dom"
+import { Route } from "react-router"
 
 import AboutUs from "../pages/aboutUs/AboutUs"
 import CodingClubs from "../pages/codingClubs/CodingClubs"

@@ -3,7 +3,7 @@ import { type FC, useEffect } from "react"
 import { Stack, Typography } from "@mui/material"
 import { useInputRef, useNavigate, useSearchParams } from "codeforlife/hooks"
 import { ChevronRight as ChevronRightIcon } from "@mui/icons-material"
-import { generatePath } from "react-router-dom"
+import { generatePath } from "react-router"
 import { schemas } from "codeforlife/api"
 
 import BaseForm from "../BaseForm"

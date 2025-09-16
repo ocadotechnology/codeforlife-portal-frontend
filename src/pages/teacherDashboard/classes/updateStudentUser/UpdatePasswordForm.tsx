@@ -3,7 +3,7 @@ import { type Class, type StudentUser } from "codeforlife/api"
 import { useInputRef, useNavigate } from "codeforlife/hooks"
 import { type FC } from "react"
 import { Typography } from "@mui/material"
-import { generatePath } from "react-router-dom"
+import { generatePath } from "react-router"
 
 import { NewPasswordField } from "../../../../components/form"
 import { type RetrieveUserResult } from "../../../../api/user"

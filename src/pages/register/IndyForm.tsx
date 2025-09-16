@@ -5,7 +5,7 @@ import { type FC } from "react"
 import { Link } from "codeforlife/components/router"
 import dayjs from "dayjs"
 import { useInputRef } from "codeforlife/hooks"
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router"
 
 import { LastNameField, NewPasswordField } from "../../components/form"
 import BaseForm from "./BaseForm"
@@ -60,7 +60,7 @@ const IndyForm: FC<IndyFormProps> = () => {
         submitOptions={{
           exclude: ["password_repeat", "meets_criteria"],
           then: () => {
-            navigate(paths.register.emailVerification.userType.indy._)
+            void navigate(paths.register.emailVerification.userType.indy._)
           },
         }}
       >
