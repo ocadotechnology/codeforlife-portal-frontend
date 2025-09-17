@@ -2,7 +2,7 @@ import { Button, Stack, Typography } from "@mui/material"
 import { type FC } from "react"
 import { type IndependentUser } from "codeforlife/api"
 import { LinkButton } from "codeforlife/components/router"
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router"
 
 import { type RetrieveUserResult, useUpdateUserMutation } from "../../api/user"
 import { handleResultState } from "codeforlife/utils/api"
@@ -54,7 +54,7 @@ const RequestPending: FC<RequestPendingProps> = ({ user }) => {
               })
                 .unwrap()
                 .then(() => {
-                  navigate(".", {
+                  void navigate(".", {
                     state: {
                       notifications: [
                         {

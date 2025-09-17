@@ -4,7 +4,7 @@ import { type FC, useState } from "react"
 import { Link, Navigate } from "codeforlife/components/router"
 import { useLocation, useParams } from "codeforlife/hooks"
 import { Typography } from "@mui/material"
-import { generatePath } from "react-router-dom"
+import { generatePath } from "react-router"
 import { handleResultState } from "codeforlife/utils/api"
 
 import {

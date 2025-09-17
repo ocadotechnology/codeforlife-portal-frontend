@@ -4,7 +4,7 @@ import { CopyIconButton, DownloadFileButton } from "codeforlife/components"
 import { Stack, type SxProps, Typography } from "@mui/material"
 import { type FC } from "react"
 import { SaveAlt as SaveAltIcon } from "@mui/icons-material"
-import { generatePath } from "react-router-dom"
+import { generatePath } from "react-router"
 
 import { default as DownloadPDFButton } from "./PrintPasswordReminderCardsButton"
 import { makeAutoLoginLink } from "../utils/student"

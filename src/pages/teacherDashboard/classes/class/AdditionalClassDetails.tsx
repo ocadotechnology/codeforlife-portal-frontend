@@ -6,7 +6,7 @@ import {
 import { type FC, useState } from "react"
 import { type Class } from "codeforlife/api"
 import { LinkButton } from "codeforlife/components/router"
-import { generatePath } from "react-router-dom"
+import { generatePath } from "react-router"
 
 import DeleteClassDialog from "./DeleteClassDialog"
 import { paths } from "../../../../routes"

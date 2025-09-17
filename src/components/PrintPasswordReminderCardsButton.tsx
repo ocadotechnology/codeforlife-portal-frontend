@@ -6,7 +6,7 @@ import {
 import { type FC, useState } from "react"
 import { type Student, type User } from "codeforlife/api"
 import { Print as PrintIcon } from "@mui/icons-material"
-import { generatePath } from "react-router-dom"
+import { generatePath } from "react-router"
 
 import CflLogoImage from "../images/logo_cfl.png"
 import { makeAutoLoginLink } from "../utils/student"

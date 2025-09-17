@@ -9,7 +9,7 @@ import {
 import { type FC, useState } from "react"
 import { LinkButton } from "codeforlife/components/router"
 import { TablePagination } from "codeforlife/components"
-import { generatePath } from "react-router-dom"
+import { generatePath } from "react-router"
 
 import DeleteStudentsDialog from "./DeleteStudentsDialog"
 import { type ListUsersResult } from "../../../../api/user"
