@@ -1,3 +1,10 @@
+## [1.5.3](https://github.com/ocadotechnology/codeforlife-portal-frontend/compare/v1.5.2...v1.5.3) (2025-09-17)
+
+
+### Bug Fixes
+
+* Upgrade react ([#111](https://github.com/ocadotechnology/codeforlife-portal-frontend/issues/111)) ([6b99676](https://github.com/ocadotechnology/codeforlife-portal-frontend/commit/6b9967658478b79d43b279a08af6e34e537b8292))
+
 ## [1.5.2](https://github.com/ocadotechnology/codeforlife-portal-frontend/compare/v1.5.1...v1.5.2) (2025-09-09)
 
 
