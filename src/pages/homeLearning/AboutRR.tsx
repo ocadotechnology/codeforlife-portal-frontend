@@ -1,4 +1,4 @@
-import { Unstable_Grid2 as Grid, Typography } from "@mui/material"
+import { Grid, Typography } from "@mui/material"
 import { type FC } from "react"
 import { LinkButton } from "codeforlife/components/router"
 import { ScrollIntoViewLink } from "codeforlife/components"
@@ -9,12 +9,12 @@ export interface AboutRRProps {}
 
 const AboutRR: FC<AboutRRProps> = () => (
   <Grid container columnSpacing={4}>
-    <Grid xs={12}>
+    <Grid size={{ xs: 12 }}>
       <Typography variant="h4" textAlign="center">
         About Rapid Router
       </Typography>
     </Grid>
-    <Grid xs={12} md={6}>
+    <Grid size={{ xs: 12, md: 6 }}>
       <Typography>
         Rapid Router is our shopping delivery game that teaches children aged
         5-14 to learn how to code using Blockly. The pupils can then progress to
@@ -30,7 +30,7 @@ const AboutRR: FC<AboutRRProps> = () => (
         but most of all, they&apos;re fun!
       </Typography>
     </Grid>
-    <Grid xs={12} md={6}>
+    <Grid size={{ xs: 12, md: 6 }}>
       <Typography>
         Read our learning guide and start at Level 1, unless your child has
         played before. To start playing, you need to first register as an
@@ -48,7 +48,7 @@ const AboutRR: FC<AboutRRProps> = () => (
         .
       </Typography>
     </Grid>
-    <Grid xs={12} className="flex-end-x">
+    <Grid size={{ xs: 12 }} className="flex-end-x">
       <LinkButton to={paths.register._}>Register now</LinkButton>
     </Grid>
   </Grid>

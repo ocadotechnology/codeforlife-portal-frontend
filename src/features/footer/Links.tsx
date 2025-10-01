@@ -1,9 +1,4 @@
-import {
-  Unstable_Grid2 as Grid,
-  Link as MuiLink,
-  Stack,
-  type SxProps,
-} from "@mui/material"
+import { Grid, Link as MuiLink, Stack, type SxProps } from "@mui/material"
 // import {
 //   useFreshworksWidget,
 //   useOneTrustInfoToggle
@@ -49,7 +44,7 @@ const Links: FC<LinksProps> = () => {
         fontWeight: "bold",
       }}
     >
-      <Grid xs={12} sm={4}>
+      <Grid size={{ xs: 12, sm: 4 }}>
         <Stack spacing={1}>
           <FooterLink to={paths.aboutUs._}>About us</FooterLink>
           {/*TODO: Use Freshdesk hook*/}
@@ -62,7 +57,7 @@ const Links: FC<LinksProps> = () => {
           </FooterLink>
         </Stack>
       </Grid>
-      <Grid xs={12} sm={4}>
+      <Grid size={{ xs: 12, sm: 4 }}>
         <Stack spacing={1}>
           <FooterLink to={paths.privacyNotice.tab.privacyNotice._}>
             Privacy notice
@@ -74,7 +69,7 @@ const Links: FC<LinksProps> = () => {
           <MuiLink sx={LINK_STYLE}>Cookie settings</MuiLink>
         </Stack>
       </Grid>
-      <Grid xs={12} sm={4}>
+      <Grid size={{ xs: 12, sm: 4 }}>
         <Stack spacing={1}>
           <FooterLink to={paths.homeLearning._}>Home learning</FooterLink>
           <FooterLink to={paths.getInvolved._}>Get involved</FooterLink>

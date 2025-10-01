@@ -1,4 +1,4 @@
-import { Unstable_Grid2 as Grid, Stack, Typography } from "@mui/material"
+import { Grid, Stack, Typography } from "@mui/material"
 import { Link, LinkButton } from "codeforlife/components/router"
 import { ChevronRight as ChevronRightIcon } from "@mui/icons-material"
 import { type FC } from "react"
@@ -15,7 +15,7 @@ const Column: FC<{
   img: { alt: string; src: string }
   children: React.ReactNode
 }> = ({ img, children }) => (
-  <Grid xs={12} sm={6} md={3}>
+  <Grid size={{ xs: 12, sm: 6, md: 3 }}>
     <Stack alignItems="center">
       <Image alt={img.alt} src={img.src} maxWidth="200px" />
       {children}
@@ -27,7 +27,7 @@ export interface AboutUsProps {}
 
 const AboutUs: FC<AboutUsProps> = () => (
   <Grid container columnSpacing={2}>
-    <Grid xs={12}>
+    <Grid size={{ xs: 12 }}>
       <Typography variant="h4" textAlign="center">
         Giving everyone the ability to shape technology&apos;s future
       </Typography>
@@ -58,7 +58,7 @@ const AboutUs: FC<AboutUsProps> = () => (
         Code for Life has over 660,000 registered users across the world.
       </Typography>
     </Column>
-    <Grid xs={12} display="flex" justifyContent="end">
+    <Grid size={{ xs: 12 }} display="flex" justifyContent="end">
       <LinkButton to={paths.aboutUs._} endIcon={<ChevronRightIcon />}>
         About us
       </LinkButton>

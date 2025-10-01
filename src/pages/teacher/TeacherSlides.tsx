@@ -1,4 +1,4 @@
-import { Unstable_Grid2 as Grid, Typography, useTheme } from "@mui/material"
+import { Grid, Typography, useTheme } from "@mui/material"
 import { Image, type ImageProps } from "codeforlife/components"
 import Carousel from "react-material-ui-carousel"
 import { type FC } from "react"
@@ -19,10 +19,10 @@ const CarouselItem: FC<{
     className="flex-center"
     height="100%"
   >
-    <Grid sm={6} xs={12} className="flex-center" bgcolor="white.main">
+    <Grid size={{ xs: 12, sm: 6 }} className="flex-center" bgcolor="white.main">
       <Image {...imageProps} />
     </Grid>
-    <Grid sm={6} xs={12}>
+    <Grid size={{ xs: 12, sm: 6 }}>
       <Typography variant="h5">{description}</Typography>
     </Grid>
   </Grid>
