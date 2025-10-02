@@ -1,11 +1,5 @@
 import * as forms from "codeforlife/components/form"
-import {
-  Button,
-  Dialog,
-  Unstable_Grid2 as Grid,
-  Stack,
-  Typography,
-} from "@mui/material"
+import { Button, Dialog, Grid, Stack, Typography } from "@mui/material"
 import { type FC, useState } from "react"
 import { useInputRef, useNavigate } from "codeforlife/hooks"
 import { DeleteOutline as DeleteOutlineIcon } from "@mui/icons-material"
@@ -120,7 +114,7 @@ const DeleteAccountForm: FC<DeleteAccountFormProps> = ({ authUser }) => {
         }}
       >
         <Grid container columnSpacing={4}>
-          <Grid xs={12} sm={6}>
+          <Grid size={{ xs: 12, sm: 6 }}>
             <forms.PasswordField
               inputRef={passwordFieldRef}
               required
@@ -128,7 +122,7 @@ const DeleteAccountForm: FC<DeleteAccountFormProps> = ({ authUser }) => {
               placeholder="Enter your current password"
             />
           </Grid>
-          <Grid xs={12} sm={6}>
+          <Grid size={{ xs: 12, sm: 6 }}>
             {/* TODO: only display this checkbox if the user has been added to the newsletter. */}
             <forms.CheckboxField
               name="remove_from_newsletter"

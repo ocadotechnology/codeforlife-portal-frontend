@@ -1,4 +1,4 @@
-import { Unstable_Grid2 as Grid, Stack, Typography } from "@mui/material"
+import { Grid, Stack, Typography } from "@mui/material"
 import { Image, type ImageProps } from "codeforlife/components"
 import { type FC } from "react"
 import { Link } from "codeforlife/components/router"
@@ -13,7 +13,7 @@ const Column: FC<{
   quote: string
   person: { name: string; title: string }
 }> = ({ img, quote, person }) => (
-  <Grid xs={12} sm={4}>
+  <Grid size={{ xs: 12, sm: 4 }}>
     <Stack height="100%">
       <Stack alignItems="center">
         <Image alt={img.alt} src={img.src} maxWidth="350px" />
@@ -41,12 +41,12 @@ export interface QuotesProps {}
 
 const Quotes: FC<QuotesProps> = () => (
   <Grid container columnSpacing={4}>
-    <Grid xs={12}>
+    <Grid size={{ xs: 12 }}>
       <Typography variant="h3" textAlign="center">
         Why you&apos;ll love Code for Life
       </Typography>
     </Grid>
-    <Grid xs={12}>
+    <Grid size={{ xs: 12 }}>
       <Typography textAlign="center">
         Don&apos;t just take our word for it, here are some lovely quotes from
         our fabulous teacher friends.

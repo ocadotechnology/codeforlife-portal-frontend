@@ -1,7 +1,7 @@
 import * as page from "codeforlife/components/page"
 import { ChevronRightRounded as ChevronRightRoundedIcon } from "@mui/icons-material"
 import { type FC } from "react"
-import { Unstable_Grid2 as Grid } from "@mui/material"
+import { Grid } from "@mui/material"
 
 import Card from "../../components/Card"
 import ClubsImage from "../../images/clubs.png"
@@ -32,7 +32,7 @@ const GetInvolved: FC<GetInvolvedProps> = () => (
     />
     <page.Section>
       <Grid container spacing={4}>
-        <Grid xs={12} md={6} lg={4}>
+        <Grid size={{ xs: 12, md: 6, lg: 4 }}>
           <Card
             title="Starting a coding club of your own"
             description="Become a Code for Life ambassador by starting up a coding club. Find out more about how you can get involved with this by visiting our coding club page."
@@ -47,7 +47,7 @@ const GetInvolved: FC<GetInvolvedProps> = () => (
             }}
           />
         </Grid>
-        <Grid xs={12} md={6} lg={4}>
+        <Grid size={{ xs: 12, md: 6, lg: 4 }}>
           <Card
             title="Contribute through code"
             description="We welcome volunteers from all backgrounds to help us with our coding adventure. Take a look at our contribution guide to find out how to get involved in our open source projects."
@@ -62,7 +62,7 @@ const GetInvolved: FC<GetInvolvedProps> = () => (
             }}
           />
         </Grid>
-        <Grid xs={12} md={6} lg={4}>
+        <Grid size={{ xs: 12, md: 6, lg: 4 }}>
           <Card
             title="University partnerships"
             description="Please get in touch at codeforlife@ocado.com if you are interested in working on Code for Life projects with your students including coding, user experience, data analytics and new feature design."

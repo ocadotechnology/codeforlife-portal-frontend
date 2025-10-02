@@ -1,7 +1,7 @@
 import * as page from "codeforlife/components/page"
 import { type FC, useEffect } from "react"
 import { useNavigate, useSessionMetadata } from "codeforlife/hooks"
-import { Unstable_Grid2 as Grid } from "@mui/material"
+import { Grid } from "@mui/material"
 
 import IndyForm from "./IndyForm"
 import TeacherForm from "./TeacherForm"
@@ -37,10 +37,10 @@ const Register: FC<RegisterProps> = () => {
     <page.Page>
       <page.Section>
         <Grid container spacing={2}>
-          <Grid xs={12} md={6}>
+          <Grid size={{ xs: 12, md: 6 }}>
             <TeacherForm />
           </Grid>
-          <Grid xs={12} md={6}>
+          <Grid size={{ xs: 12, md: 6 }}>
             <IndyForm />
           </Grid>
         </Grid>

@@ -21,7 +21,7 @@ const OtpExists: FC<{ authFactorId: AuthFactor["id"] }> = ({
 
   return (
     <Grid container>
-      <Grid sm={6} mt={4}>
+      <Grid size={{ sm: 6 }} mt={4}>
         {/* TODO: rename number of "backup tokens" to "bypass tokens". */}
         <Typography variant="h6">Backup tokens</Typography>
         <Typography>
@@ -65,7 +65,7 @@ const OtpExists: FC<{ authFactorId: AuthFactor["id"] }> = ({
           Note: Please make that you store any login details in a secure place.
         </Typography>
       </Grid>
-      <Grid sm={6} mt={4}>
+      <Grid size={{ sm: 6 }} mt={4}>
         <Typography variant="h6">
           Disable two factor authentication (2FA)
         </Typography>

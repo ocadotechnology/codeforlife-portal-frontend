@@ -1,16 +1,11 @@
 import * as pages from "codeforlife/components/page"
-import {
-  Box,
-  Unstable_Grid2 as Grid,
-  type Grid2Props,
-  Typography,
-} from "@mui/material"
+import { Box, Grid, type GridProps, Typography } from "@mui/material"
 import { type FC, type ReactNode } from "react"
 import { OpenInNew as OpenInNewIcon } from "@mui/icons-material"
 
 import { Card, type CardProps } from "../../components"
 
-export interface LevelsProps extends Pick<Grid2Props, "direction"> {
+export interface LevelsProps extends Pick<GridProps, "direction"> {
   banner: {
     difficulty: string
     color: string
@@ -44,7 +39,7 @@ const Levels: FC<LevelsProps> = ({ direction, banner, cardProps, text }) => {
           columnSpacing={{ xs: 0, md: 4 }}
           direction={direction}
         >
-          <Grid xs={12} md={4}>
+          <Grid size={{ xs: 12, md: 4 }}>
             <Card
               {...cardProps}
               style={{
@@ -59,7 +54,7 @@ const Levels: FC<LevelsProps> = ({ direction, banner, cardProps, text }) => {
               }}
             />
           </Grid>
-          <Grid xs={12} md={8}>
+          <Grid size={{ xs: 12, md: 8 }}>
             <Typography variant="h5">Levels {text.levels}</Typography>
             {text.sessions.map((session, index) => (
               <Box key={`session-${index}`}>

@@ -99,13 +99,7 @@ const TargetAudience: FC<TargetAudienceProps> = () => {
           },
         })),
       ]}
-      globalItemProps={{
-        xs: 12,
-        sm: 6,
-        md: 6,
-        lg: 6,
-        xl: 6,
-      }}
+      globalItemProps={{ size: { xs: 12, sm: 6, md: 6, lg: 6, xl: 6 } }}
     />
   )
 }

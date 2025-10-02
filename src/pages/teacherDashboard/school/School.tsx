@@ -2,7 +2,7 @@ import * as page from "codeforlife/components/page"
 import {
   Button,
   CircularProgress,
-  Unstable_Grid2 as Grid,
+  Grid,
   Stack,
   Typography,
 } from "@mui/material"
@@ -92,14 +92,14 @@ const School: FC<SchoolProps> = ({ authUser, view }) => {
         <TeacherTable authUser={authUser} />
         {authUser.teacher.is_admin && (
           <Grid container columnSpacing={5}>
-            <Grid sm={6}>
+            <Grid size={{ sm: 6 }}>
               <Typography mb={0}>
                 Select &apos;Delete&apos; to delete a teacher from your school
                 or club. You will be able to move any existing classes assigned
                 to that teacher to other teachers in your school or club.
               </Typography>
             </Grid>
-            <Grid sm={6}>
+            <Grid size={{ sm: 6 }}>
               <Typography fontWeight="bold" color="error" mb={0}>
                 We strongly recommend that administrators who are using 2FA
                 ensure there is another administrator who will be able to

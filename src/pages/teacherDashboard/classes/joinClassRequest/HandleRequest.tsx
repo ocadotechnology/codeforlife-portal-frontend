@@ -1,6 +1,6 @@
 import * as form from "codeforlife/components/form"
 import * as page from "codeforlife/components/page"
-import { Unstable_Grid2 as Grid, Stack, Typography } from "@mui/material"
+import { Grid, Stack, Typography } from "@mui/material"
 import { Link, LinkButton } from "codeforlife/components/router"
 import { type FC } from "react"
 import { type IndependentUser } from "codeforlife/api"
@@ -38,7 +38,7 @@ const HandleRequest: FC<HandleRequestProps> = ({
       </page.Section>
       <page.Section>
         <Grid container spacing={{ xs: 2, lg: 3 }} display="flex">
-          <Grid xs={12} md={6}>
+          <Grid size={{ xs: 12, md: 6 }}>
             <TablePagination
               useLazyListQuery={useLazyListUsersQuery}
               filters={{ students_in_class: klass.id }}
@@ -72,7 +72,7 @@ const HandleRequest: FC<HandleRequestProps> = ({
               )}
             </TablePagination>
           </Grid>
-          <Grid xs={12} md={6} bgcolor="info.main">
+          <Grid size={{ xs: 12, md: 6 }} bgcolor="info.main">
             <Stack sx={{ height: "100%" }} margin={3}>
               <Typography variant="h4">Add external student</Typography>
               <Typography>
@@ -114,7 +114,7 @@ const HandleRequest: FC<HandleRequestProps> = ({
             </Stack>
           </Grid>
         </Grid>
-        <Grid xs={12} md={6} marginTop={7}>
+        <Grid size={{ xs: 12, md: 6 }} marginTop={7}>
           <Link
             className="back-to"
             to={generatePath(paths.teacher.dashboard.tab.classes.class._, {

@@ -1,9 +1,4 @@
-import {
-  Container,
-  Unstable_Grid2 as Grid,
-  Stack,
-  Typography,
-} from "@mui/material"
+import { Container, Grid, Stack, Typography } from "@mui/material"
 import { ThemedBox, colors } from "codeforlife/theme"
 import { type FC } from "react"
 import { Image } from "codeforlife/components"
@@ -28,14 +23,14 @@ const Footer: FC<FooterProps> = () => {
     >
       <Container>
         <Grid container columnSpacing={10} rowSpacing={5}>
-          <Grid xs={12} sm={8}>
+          <Grid size={{ xs: 12, sm: 8 }}>
             <Stack spacing={5}>
               <Links />
               <RegisterToNewsletterForm />
               <SocialMediaIcons />
             </Stack>
           </Grid>
-          <Grid xs={12} sm={4}>
+          <Grid size={{ xs: 12, sm: 4 }}>
             <Stack
               direction="column"
               width="100%"
@@ -55,7 +50,7 @@ const Footer: FC<FooterProps> = () => {
               />
             </Stack>
           </Grid>
-          <Grid xs={12}>
+          <Grid size={{ xs: 12 }}>
             <Typography textAlign="center" variant="body2">
               © Ocado Group {new Date().getFullYear()}
             </Typography>

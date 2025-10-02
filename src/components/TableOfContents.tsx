@@ -1,10 +1,4 @@
-import {
-  Divider,
-  Unstable_Grid2 as Grid,
-  Link,
-  Stack,
-  Typography,
-} from "@mui/material"
+import { Divider, Grid, Link, Stack, Typography } from "@mui/material"
 import { type FC, type ReactNode, useRef } from "react"
 
 export interface TableOfContentsProps {
@@ -50,16 +44,16 @@ const TableOfContents: FC<TableOfContentsProps> = ({ contents }) => {
 
   return (
     <Grid container spacing={0}>
-      <Grid container xs={12} spacing={2}>
-        <Grid id="left-link-stack" xs={12} sm={6}>
+      <Grid container size={{ xs: 12 }} spacing={2}>
+        <Grid id="left-link-stack" size={{ xs: 12, sm: 6 }}>
           {generateLinkStack("left-link-stack", 0, halfLength)}
         </Grid>
-        <Grid id="right-link-stack" xs={12} sm={6}>
+        <Grid id="right-link-stack" size={{ xs: 12, sm: 6 }}>
           {generateLinkStack("right-link-stack", halfLength, contents.length)}
         </Grid>
       </Grid>
       {contents.map((content, index) => (
-        <Grid key={index} xs={12} mt={index === 0 ? 2 : 0}>
+        <Grid key={index} size={{ xs: 12 }} mt={index === 0 ? 2 : 0}>
           <Divider sx={{ my: 2 }} />
           <Typography ref={headerRefs[index]} variant="h5">
             {index + 1}. {content.header}
